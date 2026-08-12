@@ -1,0 +1,7 @@
+.venv/
+chroma_db/
+.env
+__pycache__/
+*.pyc
+retrieval_results.json
+answer_cache.json

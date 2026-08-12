@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q1",
+    "question": "How much rock salt goes into the idli batter?",
+    "expected_recipe_id": "idli-batter-05",
+    "expected_section": "ingredients",
+    "needs_table_row": true
+  },
+  {
+    "id": "q2",
+    "question": "What hydration percentage is the kallappam batter?",
+    "expected_recipe_id": "kallappam-batter-02",
+    "expected_section": "ingredients",
+    "needs_table_row": true
+  },
+  {
+    "id": "q3",
+    "question": "How much grated coconut goes into sanna?",
+    "expected_recipe_id": "sanna-03",
+    "expected_section": "ingredients",
+    "needs_table_row": true
+  },
+  {
+    "id": "q4",
+    "question": "What is the rice to dal ratio for kuzhi paniyaram batter?",
+    "expected_recipe_id": "kuzhi-paniyaram-batter-01",
+    "expected_section": "ingredients",
+    "needs_table_row": true
+  },
+  {
+    "id": "q5",
+    "question": "At what temperature should the yeast be bloomed for kallappam?",
+    "expected_recipe_id": "kallappam-batter-02",
+    "expected_section": "method",
+    "needs_table_row": false
+  },
+  {
+    "id": "q6",
+    "question": "Should the risen kuzhi paniyaram batter be stirred before cooking?",
+    "expected_recipe_id": "kuzhi-paniyaram-batter-01",
+    "expected_section": "method",
+    "needs_table_row": false
+  },
+  {
+    "id": "q7",
+    "question": "Is moru safe for someone with a milk protein allergy?",
+    "expected_recipe_id": "moru-04",
+    "expected_section": "allergen_note",
+    "needs_table_row": false
+  },
+  {
+    "id": "q8",
+    "question": "How long does neeragaram ferment for?",
+    "expected_recipe_id": "neeragaram-06",
+    "expected_section": "method",
+    "needs_table_row": false
+  }
+]

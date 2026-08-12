@@ -1,0 +1,42 @@
+{
+  "q1": {
+    "value": "16g",
+    "table_header": "| Ingredient | Weight | Percentage of base |",
+    "title": "Idli Batter"
+  },
+  "q2": {
+    "value": "84%",
+    "table_header": "| Ingredient | Weight | Percentage of base |",
+    "title": "Kallappam Batter"
+  },
+  "q3": {
+    "value": "150g",
+    "table_header": "| Ingredient | Weight | Percentage of base |",
+    "title": "Sanna"
+  },
+  "q4": {
+    "value": "3:1",
+    "table_header": "| Ingredient | Weight | Percentage of base |",
+    "title": "Kuzhi Paniyaram Batter"
+  },
+  "q5": {
+    "value": "38C",
+    "table_header": null,
+    "title": "Kallappam Batter"
+  },
+  "q6": {
+    "value": "not stir",
+    "table_header": null,
+    "title": "Kuzhi Paniyaram Batter"
+  },
+  "q7": {
+    "value": "lactose",
+    "table_header": null,
+    "title": "Moru"
+  },
+  "q8": {
+    "value": "6 to 8 hours",
+    "table_header": null,
+    "title": "Neeragaram"
+  }
+}
