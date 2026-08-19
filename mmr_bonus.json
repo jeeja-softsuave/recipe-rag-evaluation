@@ -1,0 +1,32 @@
+{
+  "bm25 + rrf (shipping)": {
+    "hits": 10,
+    "total": 11,
+    "diversity": 0.3483,
+    "distinct_recipes": 1.27
+  },
+  "MMR lambda=0.3": {
+    "hits": 8,
+    "total": 11,
+    "diversity": 0.7612,
+    "distinct_recipes": 2.91
+  },
+  "MMR lambda=0.5": {
+    "hits": 8,
+    "total": 11,
+    "diversity": 0.6916,
+    "distinct_recipes": 2.82
+  },
+  "MMR lambda=0.7": {
+    "hits": 8,
+    "total": 11,
+    "diversity": 0.6053,
+    "distinct_recipes": 2
+  },
+  "MMR lambda=0.9": {
+    "hits": 10,
+    "total": 11,
+    "diversity": 0.4055,
+    "distinct_recipes": 1.27
+  }
+}

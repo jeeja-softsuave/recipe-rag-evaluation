@@ -45,7 +45,7 @@ def main() -> None:
             )
             lines.append(f"\n### {name}\n")
             lines.append("**Retrieved:** " + ", ".join(
-                f"`{c['chunk_id']}`" for c in result["contexts"]
+                f"`{context['chunk_id']}`" for context in result["contexts"]
             ))
             lines.append(
                 f"\n**caveat retrieved:** {context_caveat} · "

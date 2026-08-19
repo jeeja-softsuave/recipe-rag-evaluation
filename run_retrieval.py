@@ -66,7 +66,7 @@ def main() -> None:
 
     baseline_chunks = [chunk for card in cards for chunk in chunk_baseline(card)]
     structure_chunks = [chunk for card in cards for chunk in chunk_structure_aware(card)]
-    print(f"cards indexed: {len(cards)} (only {[c['source_file'] for c in cards]})")
+    print(f"cards indexed: {len(cards)} (only {[card['source_file'] for card in cards]})")
     print(f"baseline chunks: {len(baseline_chunks)}")
     print(f"structure_aware chunks: {len(structure_chunks)}")
 

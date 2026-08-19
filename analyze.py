@@ -59,11 +59,11 @@ def print_grounding(data: dict[str, Any], keys: dict[str, Any]) -> None:
         )
     for label in COLLECTIONS:
         rows = graded[label]
-        table_rows = [r for r in rows if r["needs_table_row"]]
+        table_rows = [row for row in rows if row["needs_table_row"]]
         print(
-            f"\n{label}: value_hit {sum(1 for r in rows if r['value_hit'])}/8, "
-            f"usable_hit {sum(1 for r in rows if r['usable_hit'])}/8, "
-            f"usable_hit on table questions {sum(1 for r in table_rows if r['usable_hit'])}"
+            f"\n{label}: value_hit {sum(1 for row in rows if row['value_hit'])}/8, "
+            f"usable_hit {sum(1 for row in rows if row['usable_hit'])}/8, "
+            f"usable_hit on table questions {sum(1 for row in table_rows if row['usable_hit'])}"
             f"/{len(table_rows)}"
         )
 
@@ -74,7 +74,7 @@ def print_failures(data: dict[str, Any]) -> None:
         print(f"\n=== {label}: top-1 correctness ===")
         for row in data[label]:
             expected = row["expected_recipe_id"]
-            ranks = [h["rank"] for h in row["results"] if h["recipe_id"] == expected]
+            ranks = [hit["rank"] for hit in row["results"] if hit["recipe_id"] == expected]
             wrong_top1 = row["top1_recipe_id"] != expected
             print(
                 f"{row['id']}: top1={row['top1_recipe_id']} "

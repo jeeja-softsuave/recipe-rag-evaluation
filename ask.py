@@ -85,7 +85,9 @@ def show_answer(
         print("\n  (That is not in these recipe cards, so the app refused rather than guess.)")
         return True
 
-    source_of = {c["chunk_id"]: c["source_file"] for c in result["contexts"]}
+    source_of = {
+        context["chunk_id"]: context["source_file"] for context in result["contexts"]
+    }
     print("\n  sources")
     for check in result["citation_checks"]:
         card = source_of.get(check["chunk_id"], "NOT IN RETRIEVED CONTEXT")
@@ -113,7 +115,9 @@ def show_retrieval(
         hits = search(collection, query, TOP_K)
         verdict = ""
         if expected is not None:
-            ranks = [h["rank"] for h in hits if h["recipe_id"] == expected["recipe_id"]]
+            ranks = [
+                hit["rank"] for hit in hits if hit["recipe_id"] == expected["recipe_id"]
+            ]
             verdict = f"  HIT (first correct at rank {ranks[0]})" if ranks else "  MISS"
         print(f"\n  {label}{verdict}")
         for hit in hits:

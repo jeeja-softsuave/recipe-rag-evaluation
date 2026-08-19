@@ -1,0 +1,12 @@
+{"id": "g01", "question": "how much rock salt in the idli batter", "gold_chunk_id": "idli-batter-05::structure::0", "also_acceptable": [], "exact_token": "16g", "token_kind": "quantity", "source": "authored"}
+{"id": "g02", "question": "kallappam hydration percentage?", "gold_chunk_id": "kallappam-batter-02::structure::2", "also_acceptable": ["kallappam-batter-02::structure::0"], "exact_token": "84%", "token_kind": "quantity", "source": "authored"}
+{"id": "g03", "question": "How much grated coconut goes into sanna?", "gold_chunk_id": "sanna-03::structure::0", "also_acceptable": [], "exact_token": "150g", "token_kind": "quantity", "source": "demo-session"}
+{"id": "g04", "question": "rice to dal ratio for kuzhi paniyaram", "gold_chunk_id": "kuzhi-paniyaram-batter-01::structure::1", "also_acceptable": [], "exact_token": "3:1", "token_kind": "quantity", "source": "authored"}
+{"id": "g05", "question": "what temp to bloom the yeast for kallappam", "gold_chunk_id": "kallappam-batter-02::structure::3", "also_acceptable": [], "exact_token": "38C", "token_kind": "temperature", "source": "authored"}
+{"id": "g06", "question": "should i stir the paniyaram batter after it rises", "gold_chunk_id": "kuzhi-paniyaram-batter-01::structure::3", "also_acceptable": [], "exact_token": null, "token_kind": null, "source": "authored"}
+{"id": "g07", "question": "is moru ok if im allergic to milk", "gold_chunk_id": "moru-04::structure::5", "also_acceptable": [], "exact_token": null, "token_kind": null, "source": "authored"}
+{"id": "g08", "question": "how long does neeragaram ferment", "gold_chunk_id": "neeragaram-06::structure::2", "also_acceptable": [], "exact_token": null, "token_kind": null, "source": "authored"}
+{"id": "g09", "question": "fenugreek quantity for paniyaram batter", "gold_chunk_id": "kuzhi-paniyaram-batter-01::structure::0", "also_acceptable": [], "exact_token": "fenugreek", "token_kind": "unusual-ingredient", "source": "authored"}
+{"id": "g10", "question": "how much toddy for sanna", "gold_chunk_id": "sanna-03::structure::0", "also_acceptable": [], "exact_token": "toddy", "token_kind": "unusual-ingredient", "source": "authored"}
+{"id": "g11", "question": "how moru is made ?", "gold_chunk_id": "moru-04::structure::3", "also_acceptable": ["moru-04::structure::4"], "exact_token": null, "token_kind": null, "source": "demo-session"}
+{"id": "g12", "question": "where is the microsoft office present in US", "gold_chunk_id": null, "also_acceptable": [], "exact_token": null, "token_kind": null, "source": "demo-session"}

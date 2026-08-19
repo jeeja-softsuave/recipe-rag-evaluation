@@ -5,3 +5,4 @@ __pycache__/
 *.pyc
 retrieval_results.json
 answer_cache.json
+retrieval_eval.json

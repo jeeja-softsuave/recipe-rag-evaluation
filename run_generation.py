@@ -85,7 +85,7 @@ def main() -> None:
             lines.append(f"\n## {label} {index}\n")
             lines.append(f"**Q:** {question}\n")
             lines.append("**Retrieved chunk_ids:** " + ", ".join(
-                f"`{c['chunk_id']}`" for c in result["contexts"]
+                f"`{context['chunk_id']}`" for context in result["contexts"]
             ))
             lines.append("\n**A (verbatim):**\n")
             lines.append("```")
