@@ -1,0 +1,126 @@
+{
+  "seed": 20260824,
+  "population_size": 174,
+  "sample": [
+    {
+      "candidate_id": "c117",
+      "question": "how many calories in moru",
+      "kind": "out_of_corpus",
+      "about_recipe_id": "moru-04"
+    },
+    {
+      "candidate_id": "c082",
+      "question": "what ratio does sanna use",
+      "kind": "recipe",
+      "about_recipe_id": "sanna-03"
+    },
+    {
+      "candidate_id": "c171",
+      "question": "where can i buy ingredients for neeragaram",
+      "kind": "out_of_corpus",
+      "about_recipe_id": "neeragaram-06"
+    },
+    {
+      "candidate_id": "c009",
+      "question": "how many grams of fenugreek seeds in kuzhi paniyaram batter",
+      "kind": "ingredient",
+      "about_recipe_id": "kuzhi-paniyaram-batter-01"
+    },
+    {
+      "candidate_id": "c102",
+      "question": "how many grams of ginger in moru",
+      "kind": "ingredient",
+      "about_recipe_id": "moru-04"
+    },
+    {
+      "candidate_id": "c025",
+      "question": "what is the protein content of kuzhi paniyaram batter",
+      "kind": "out_of_corpus",
+      "about_recipe_id": "kuzhi-paniyaram-batter-01"
+    },
+    {
+      "candidate_id": "c116",
+      "question": "can i leave moru overnight",
+      "kind": "recipe",
+      "about_recipe_id": "moru-04"
+    },
+    {
+      "candidate_id": "c124",
+      "question": "idli batter whole white urad dal quantity",
+      "kind": "ingredient",
+      "about_recipe_id": "idli-batter-05"
+    },
+    {
+      "candidate_id": "c008",
+      "question": "kuzhi paniyaram batter fenugreek seeds quantity",
+      "kind": "ingredient",
+      "about_recipe_id": "kuzhi-paniyaram-batter-01"
+    },
+    {
+      "candidate_id": "c148",
+      "question": "how many grams of cooked rice in neeragaram",
+      "kind": "ingredient",
+      "about_recipe_id": "neeragaram-06"
+    },
+    {
+      "candidate_id": "c045",
+      "question": "how much active dry yeast for kallappam batter",
+      "kind": "ingredient",
+      "about_recipe_id": "kallappam-batter-02"
+    },
+    {
+      "candidate_id": "c111",
+      "question": "what temperature for moru",
+      "kind": "recipe",
+      "about_recipe_id": "moru-04"
+    },
+    {
+      "candidate_id": "c053",
+      "question": "what ratio does kallappam batter use",
+      "kind": "recipe",
+      "about_recipe_id": "kallappam-batter-02"
+    },
+    {
+      "candidate_id": "c016",
+      "question": "how do i make kuzhi paniyaram batter",
+      "kind": "recipe",
+      "about_recipe_id": "kuzhi-paniyaram-batter-01"
+    },
+    {
+      "candidate_id": "c151",
+      "question": "how many grams of water in neeragaram",
+      "kind": "ingredient",
+      "about_recipe_id": "neeragaram-06"
+    },
+    {
+      "candidate_id": "c081",
+      "question": "is sanna safe for a dairy allergy",
+      "kind": "recipe",
+      "about_recipe_id": "sanna-03"
+    },
+    {
+      "candidate_id": "c120",
+      "question": "how much idli rice for idli batter",
+      "kind": "ingredient",
+      "about_recipe_id": "idli-batter-05"
+    },
+    {
+      "candidate_id": "c048",
+      "question": "how do i make kallappam batter",
+      "kind": "recipe",
+      "about_recipe_id": "kallappam-batter-02"
+    },
+    {
+      "candidate_id": "c142",
+      "question": "can i leave idli batter overnight",
+      "kind": "recipe",
+      "about_recipe_id": "idli-batter-05"
+    },
+    {
+      "candidate_id": "c069",
+      "question": "sanna toddy quantity",
+      "kind": "ingredient",
+      "about_recipe_id": "sanna-03"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "seed": 20260824,
+  "demo_set_size": 19,
+  "sample": [
+    {
+      "question": "how long does neeragaram ferment",
+      "origin": "golden_set.jsonl"
+    },
+    {
+      "question": "rice to dal ratio for kuzhi paniyaram",
+      "origin": "golden_set.jsonl"
+    },
+    {
+      "question": "What hydration percentage is the kallappam batter?",
+      "origin": "eval_questions.json"
+    },
+    {
+      "question": "should i stir the paniyaram batter after it rises",
+      "origin": "golden_set.jsonl"
+    },
+    {
+      "question": "how much toddy for sanna",
+      "origin": "golden_set.jsonl"
+    },
+    {
+      "question": "How long does neeragaram ferment for?",
+      "origin": "eval_questions.json"
+    },
+    {
+      "question": "fenugreek quantity for paniyaram batter",
+      "origin": "golden_set.jsonl"
+    },
+    {
+      "question": "is moru ok if im allergic to milk",
+      "origin": "golden_set.jsonl"
+    },
+    {
+      "question": "How much rock salt goes into the idli batter?",
+      "origin": "eval_questions.json"
+    },
+    {
+      "question": "kallappam hydration percentage?",
+      "origin": "golden_set.jsonl"
+    }
+  ]
+}

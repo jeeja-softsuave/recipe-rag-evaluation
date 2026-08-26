@@ -41,6 +41,8 @@ EPSILON = 1e-9
 HYBRID_CANDIDATE_DEPTH = 25
 # Keeps "16g", "84%", "3:1" and "38c" as single tokens instead of splitting them apart.
 TOKEN_PATTERN = r"\d+(?:[.:]\d+)?%?[a-z]*|[a-z]+"
+# Bumped whenever SYSTEM_PROMPT changes, so a trace records which prompt produced it.
+PROMPT_VERSION = "v1"
 GEMINI_MODEL = "gemini-3.6-flash"
 GEMINI_THINKING_LEVEL = "low"
 GEMINI_MAX_ATTEMPTS = 4
