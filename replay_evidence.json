@@ -1,0 +1,16 @@
+{
+  "trace_id": "t-c1b5435192",
+  "original_output": "The recipe requires 120g of toddy (or yeast slurry), which is 24% of the base rice weight [sanna-03::structure::0, sanna-03::structure::1].",
+  "replayed_output": "The recipe uses 120g of toddy (which is 24% relative to the base rice weight) [sanna-03::structure::0].",
+  "identical": false,
+  "prompt_rebuilt_from_trace": "CONTEXT:\n\n[sanna-03::structure::1]\n# Sanna (sixteen steamed cakes)\n## Ingredients\nHydration: 50% from grinding water, plus 24% from the toddy. Yield: 16 cakes.\n\n---\n\n[sanna-03::structure::2]\n# Sanna (sixteen steamed cakes)\n## Method\nSoak the parboiled rice 4 hours and grind it with the grated coconut and the\ncooked rice, using only the 250g of water; the toddy brings the rest of the\nliquid and doing this the other way round gives a batter too slack to hold a\ncake. Fold the toddy in by hand rather than beating it, so the natural yeasts\nsurvive. Add the rock salt last, because salt slows a toddy ferment noticeably\nwhen it goes in early.\n\n---\n\n[sanna-03::structure::4]\n# Sanna (sixteen steamed cakes)\n## Allergen Note\nVegan and gluten-free. Contains coconut. Traditional sanna uses palm toddy, which\nis mildly alcoholic and unsuitable for anyone avoiding alcohol; a slurry of 3g dry\nyeast in warm water is the standard substitute and keeps the recipe alcohol-free.\n\n---\n\n[sanna-03::structure::0]\n# Sanna (sixteen steamed cakes)\nPercentages are relative to the rice weight (500g = 100%).\n## Ingredients\n| Ingredient | Weight | Percentage of base |\n|---|---|---|\n| Idli rice, parboiled | 500g | 100% |\n| Water for grinding | 250g | 50% |\n| Grated coconut | 150g | 30% |\n| Toddy, or yeast slurry | 120g | 24% |\n| Rock salt | 10g | 2% |\n| Cooked rice | 40g | 8% |\n\n---\n\n[sanna-03::structure::3]\n# Sanna (sixteen steamed cakes)\n## Method\nFerment 5 to 6 hours at 30C until the batter has risen by\nabout half and smells faintly of alcohol. Ladle into greased moulds, filling each\nonly three-quarters full since they climb, and steam 15 minutes. Test with a\nskewer and rest 5 minutes before turning them out or they collapse.\n\nQUESTION: sanna toddy quantity",
+  "cited_chunks_present_in_trace": [
+    "sanna-03::structure::0",
+    "sanna-03::structure::1",
+    "sanna-03::structure::2",
+    "sanna-03::structure::3",
+    "sanna-03::structure::4"
+  ],
+  "seed": 20260824,
+  "question": "sanna toddy quantity"
+}
