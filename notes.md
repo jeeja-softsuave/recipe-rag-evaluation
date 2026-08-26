@@ -127,9 +127,27 @@ this corpus, because "another recipe's chunk in the top-5" is harmless among six
 and would be a data-leak class of bug in a corpus where recipes contradicted each other — a
 leaderboard number cannot tell you which of those you have.
 
-## 6. Bonus — pending
+## 6. Bonus — 1 of 10 traced, not yet reportable
 
-The bonus needs 10 traces from the curated demo set (`sample_demo.json`, same seed, drawn from the
-19 questions in `eval_questions.json`, `golden_set.jsonl` and the live demo cache). The Gemini free
-tier is 20 requests/day and the 20 random traces plus the replay spent it. `run_traces.py --set demo`
-is resumable and will complete it when the quota resets.
+The bonus compares the top mode's frequency in the random sample against the curated demo set
+(`sample_demo.json`, same seed `20260824`, drawn from the 19 questions in `eval_questions.json`,
+`golden_set.jsonl` and the live demo cache — the questions actually used at reviews).
+
+`bonus_demo_vs_random.py` computes the comparison for the three automatable modes. It currently
+reads:
+
+| mode | random sample | demo set |
+|---|---|---|
+| M3 citation check passes while checking nothing | 5/20 (25%) | 1/1 |
+| M4 two chunk ids in one bracket void the check | 1/20 (5%) | 0/1 |
+| M5 another recipe's chunk in the top-k | 10/20 (50%) | 0/1 |
+
+**The demo column is not a result.** One trace is not a frequency: "1/1" reads as 100% and means
+nothing. Nine of the ten demo traces are still missing because the Gemini free tier allows 20
+requests a day and the daily counter resets at midnight Pacific, not at local midnight — a single
+call got through on a per-minute allowance before the day counter blocked again.
+
+`run_traces.py --set demo` is resumable and skips anything already traced, so completing this is one
+command once the quota rolls over. The comparison paragraph the bonus asks for — what the team has
+been telling itself — is deliberately not written yet, because writing it off n=1 would be exactly
+the fiction the week is about.

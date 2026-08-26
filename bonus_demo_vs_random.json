@@ -1,0 +1,32 @@
+{
+  "random": {
+    "total": 20,
+    "counts": {
+      "M3 citation check passes while checking nothing": 5,
+      "M4 two chunk ids in one bracket void the check": 1,
+      "M5 another recipe's chunk in the top-k": 10,
+      "refused": 6
+    },
+    "percent": {
+      "M3 citation check passes while checking nothing": 25.0,
+      "M4 two chunk ids in one bracket void the check": 5.0,
+      "M5 another recipe's chunk in the top-k": 50.0,
+      "refused": 30.0
+    }
+  },
+  "demo": {
+    "total": 1,
+    "counts": {
+      "M3 citation check passes while checking nothing": 1,
+      "M4 two chunk ids in one bracket void the check": 0,
+      "M5 another recipe's chunk in the top-k": 0,
+      "refused": 0
+    },
+    "percent": {
+      "M3 citation check passes while checking nothing": 100.0,
+      "M4 two chunk ids in one bracket void the check": 0.0,
+      "M5 another recipe's chunk in the top-k": 0.0,
+      "refused": 0.0
+    }
+  }
+}
