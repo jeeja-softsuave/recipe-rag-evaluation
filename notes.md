@@ -72,6 +72,39 @@ taxonomy was finished.
 
 I do not know why trace 16 put moru's allergen note above sanna's own for a question naming sanna.
 
+## 2b. What each mode looks like
+
+**M3 — citation check passes while checking nothing** (5, 25%). Five traces produced a citation whose
+`claimed_values` was empty, so `all_citations_ok` reported true having verified nothing: "300 grams"
+(unit as a word), "30°C" (degree symbol between number and unit), and three sentences carrying a fact
+with no digit in them.
+
+**M2 — answers the neighbouring fact instead of the one asked** (2, 10%). "what temperature for moru"
+was answered with a *duration* — "left to stand at room temperature for 2 hours". "can i leave idli
+batter overnight" was answered "Yes, idli batter is fermented for 10 to 12 hours at 28C": a yes to a
+keeping-safety question, backed by a fermentation window that does not say yes.
+
+**M5 — another recipe's chunk in the top-5** (10, 50%). Half the sample retrieved at least one chunk
+from a recipe the question was not about. On "is sanna safe for a dairy allergy" the rank-1 chunk was
+**moru's** allergen note, moru being the one dairy recipe in the corpus. The answer was still correct.
+Zero wrong answers came from this mode in this sample.
+
+**M1 — asks with a word the card never uses, gets a flat refusal** (3, 15%). "what ratio does sanna
+use" returned `NOT_IN_CORPUS` while the rank-1 chunk stated sanna's hydration as 50% plus 24% from
+toddy. Same shape for kallappam's ratio and "can i leave moru overnight". The card says "hydration"
+and "2 hours"; the user typed "ratio" and "overnight".
+
+**M4 — two chunk ids in one bracket void the whole citation check** (1, 5%). "sanna toddy quantity"
+answered `120g … 24%`, both correct, citing `[sanna-03::structure::0, sanna-03::structure::1]`. The
+citation regex forbids whitespace inside the brackets, so it matched nothing and the run was recorded
+as `all_citations_ok=False` with zero checks performed.
+
+**The complaint that started this.** Nine of the 20 questions asked for a quantity — fenugreek, ginger,
+urad dal, cooked rice, yeast, water, idli rice, toddy — and all nine returned the number on the card.
+The food editor's "sometimes gets the quantities wrong" did not reproduce once in a random sample of
+20. That does not prove it never happens; it does mean the complaint, as stated, was not the thing to
+chase, and none of the five modes above would have been found by chasing it.
+
 ## 3. Replay evidence
 
 **Seed `20260824`**, `random.Random(20260824).choice(traces)` → **`t-c1b5435192`** ("sanna toddy
