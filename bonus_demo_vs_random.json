@@ -15,17 +15,17 @@
     }
   },
   "demo": {
-    "total": 1,
+    "total": 10,
     "counts": {
-      "M3 citation check passes while checking nothing": 1,
+      "M3 citation check passes while checking nothing": 4,
       "M4 two chunk ids in one bracket void the check": 0,
-      "M5 another recipe's chunk in the top-k": 0,
+      "M5 another recipe's chunk in the top-k": 6,
       "refused": 0
     },
     "percent": {
-      "M3 citation check passes while checking nothing": 100.0,
+      "M3 citation check passes while checking nothing": 40.0,
       "M4 two chunk ids in one bracket void the check": 0.0,
-      "M5 another recipe's chunk in the top-k": 0.0,
+      "M5 another recipe's chunk in the top-k": 60.0,
       "refused": 0.0
     }
   }

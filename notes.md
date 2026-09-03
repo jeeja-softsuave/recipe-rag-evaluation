@@ -160,27 +160,45 @@ this corpus, because "another recipe's chunk in the top-5" is harmless among six
 and would be a data-leak class of bug in a corpus where recipes contradicted each other — a
 leaderboard number cannot tell you which of those you have.
 
-## 6. Bonus — 1 of 10 traced, not yet reportable
+## 6. Bonus — demo set vs random sample
 
-The bonus compares the top mode's frequency in the random sample against the curated demo set
-(`sample_demo.json`, same seed `20260824`, drawn from the 19 questions in `eval_questions.json`,
-`golden_set.jsonl` and the live demo cache — the questions actually used at reviews).
+Same seed `20260824`. The demo set is the 19 questions actually used at reviews (`eval_questions.json`,
+`golden_set.jsonl`, the live demo cache), sampled to 10. All 30 traces are in `traces.jsonl`;
+`bonus_demo_vs_random.py` computes the three automatable modes.
 
-`bonus_demo_vs_random.py` computes the comparison for the three automatable modes. It currently
-reads:
-
-| mode | random sample | demo set |
+| mode | random sample | curated demo set |
 |---|---|---|
-| M3 citation check passes while checking nothing | 5/20 (25%) | 1/1 |
-| M4 two chunk ids in one bracket void the check | 1/20 (5%) | 0/1 |
-| M5 another recipe's chunk in the top-k | 10/20 (50%) | 0/1 |
+| M3 citation check passes while checking nothing | 5/20 (**25%**) | 4/10 (**40%**) |
+| M4 two chunk ids in one bracket void the check | 1/20 (5%) | 0/10 (0%) |
+| M5 another recipe's chunk in the top-k | 10/20 (**50%**) | 6/10 (**60%**) |
+| refused | 6/20 (30%) | 0/10 (**0%**) |
 
-**The demo column is not a result.** One trace is not a frequency: "1/1" reads as 100% and means
-nothing. Nine of the ten demo traces are still missing because the Gemini free tier allows 20
-requests a day and the daily counter resets at midnight Pacific, not at local midnight — a single
-call got through on a per-minute allowance before the day counter blocked again.
+**The top mode is more frequent in the demo set, not less: 40% against 25%.**
 
-`run_traces.py --set demo` is resumable and skips anything already traced, so completing this is one
-command once the quota rolls over. The comparison paragraph the bonus asks for — what the team has
-been telling itself — is deliberately not written yet, because writing it off n=1 would be exactly
-the fiction the week is about.
+### What the team has been telling itself
+
+The expectation going in was that the demo set would look better than random traffic — that is the
+whole reason a curated demo set is a hazard. It looks *worse*, and the reason is visible in the
+refusal row: **0% of the demo questions were refused, against 30% of the random sample.** Every
+question we have been showing at reviews is one the corpus can answer. Nobody has ever watched this
+app say `NOT_IN_CORPUS` in a demo, so the story the team tells itself is "it answers everything" —
+and that story is true only of the questions we pick.
+
+The higher M3 rate follows from the same selection. Review questions are the interesting ones — "how
+do I make kallappam", "is moru safe for a milk allergy" — and those produce multi-sentence, multi-step
+answers with a citation on every step. More citations means more chances for one to carry no numeric
+claim, so the unchecked-citation rate rises with answer length. The random sample is full of
+single-fact lookups and out-of-corpus questions, which produce one short citation or none at all.
+
+So the curated set does not flatter the app's *failure rate* — it flatters its *coverage*, and that
+turned out to be the more comfortable lie. A reviewer watching those ten questions would conclude the
+app always has an answer and always cites it. Both halves are selection artefacts of the ten questions
+we chose to show.
+
+### One correction to this section
+
+The first run of this comparison reported M5 as **0/10 (0%)** for the demo set. That was not a
+measurement. `about_recipe_lookup()` read only `sample_random.json`, so demo questions had no expected
+recipe on file and the foreign-chunk check returned `False` for every one of them — a check reporting a
+clean sweep having tested nothing, which is precisely mode M3 reappearing in my own analysis code. The
+lookup now also reads `golden_set.jsonl` and `eval_questions.json`, and the real figure is 6/10 (60%).

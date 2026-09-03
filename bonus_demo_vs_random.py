@@ -10,15 +10,31 @@ from tracing import load_traces
 
 RANDOM_SAMPLE_FILE = Path(__file__).parent / "sample_random.json"
 DEMO_SAMPLE_FILE = Path(__file__).parent / "sample_demo.json"
+GOLDEN_SET_FILE = Path(__file__).parent / "golden_set.jsonl"
+EVAL_QUESTIONS_FILE = Path(__file__).parent / "eval_questions.json"
 RESULTS_FILE = Path(__file__).parent / "bonus_demo_vs_random.json"
 CHUNK_ID_SEPARATOR = "::"
 PERCENT_DECIMALS = 0
 
 
 def about_recipe_lookup() -> dict[str, str]:
-    """Map each sampled question to the recipe it asks about, where that is known."""
+    """Map every question to the recipe it asks about, across all three question sources.
+
+    The demo questions come from the golden set and the week-3 eval set, not from the
+    random sample, so reading only the random sample left them with no expected recipe
+    and silently reported zero foreign-chunk retrievals for the whole demo set.
+    """
+    lookup: dict[str, str] = {}
     payload = json.loads(RANDOM_SAMPLE_FILE.read_text(encoding="utf-8"))
-    return {item["question"]: item["about_recipe_id"] for item in payload["sample"]}
+    for item in payload["sample"]:
+        lookup[item["question"]] = item["about_recipe_id"]
+    for line in GOLDEN_SET_FILE.read_text(encoding="utf-8").strip().splitlines():
+        item = json.loads(line)
+        if item["gold_chunk_id"]:
+            lookup.setdefault(item["question"], item["gold_chunk_id"].split(CHUNK_ID_SEPARATOR)[0])
+    for item in json.loads(EVAL_QUESTIONS_FILE.read_text(encoding="utf-8")):
+        lookup.setdefault(item["question"], item["expected_recipe_id"])
+    return lookup
 
 
 def has_unchecked_citation(trace: dict[str, Any]) -> bool:
