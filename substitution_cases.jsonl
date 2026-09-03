@@ -1,0 +1,27 @@
+{"case_id": "s01", "request": "i have no toddy for sanna, what can i use instead", "mode": "M4", "kind": "grounded", "recipe_id": "sanna-03"}
+{"case_id": "s02", "request": "can i use dry yeast in sanna instead of toddy", "mode": "M4", "kind": "grounded", "recipe_id": "sanna-03"}
+{"case_id": "s03", "request": "how much dry yeast replaces the toddy in sanna", "mode": "M3", "kind": "grounded", "recipe_id": "sanna-03"}
+{"case_id": "s04", "request": "what can i use instead of urad dal in idli batter", "mode": "M1", "kind": "ungrounded", "recipe_id": "idli-batter-05"}
+{"case_id": "s05", "request": "substitute for fenugreek in kuzhi paniyaram", "mode": "M1", "kind": "ungrounded", "recipe_id": "kuzhi-paniyaram-batter-01"}
+{"case_id": "s06", "request": "no curd for moru, what else can i use", "mode": "M5", "kind": "ungrounded", "recipe_id": "moru-04"}
+{"case_id": "s07", "request": "can i use milk instead of curd in moru", "mode": "M5", "kind": "trap", "recipe_id": "moru-04"}
+{"case_id": "s08", "request": "what replaces the grated coconut in kallappam", "mode": "M5", "kind": "ungrounded", "recipe_id": "kallappam-batter-02"}
+{"case_id": "s09", "request": "substitute for rock salt in neeragaram", "mode": "M1", "kind": "ungrounded", "recipe_id": "neeragaram-06"}
+{"case_id": "s10", "request": "what oil can i use instead for greasing the paniyaram pan", "mode": "M1", "kind": "ungrounded", "recipe_id": "kuzhi-paniyaram-batter-01"}
+{"case_id": "s11", "request": "dairy free substitute for moru", "mode": "M5", "kind": "trap", "recipe_id": "moru-04"}
+{"case_id": "s12", "request": "im allergic to milk, what can i swap into moru to make it safe", "mode": "M5", "kind": "trap", "recipe_id": "moru-04"}
+{"case_id": "s13", "request": "gluten free substitute for the rice in idli batter", "mode": "M5", "kind": "trap", "recipe_id": "idli-batter-05"}
+{"case_id": "s14", "request": "nut free version of kallappam, what do i swap", "mode": "M5", "kind": "trap", "recipe_id": "kallappam-batter-02"}
+{"case_id": "s15", "request": "can i use the sanna toddy substitute in kallappam too", "mode": "M5", "kind": "trap", "recipe_id": "kallappam-batter-02"}
+{"case_id": "s16", "request": "same yeast swap work for idli batter", "mode": "M5", "kind": "trap", "recipe_id": "idli-batter-05"}
+{"case_id": "s17", "request": "if i swap toddy for yeast in sanna how many grams do i need", "mode": "M3", "kind": "grounded", "recipe_id": "sanna-03"}
+{"case_id": "s18", "request": "half batch of sanna using yeast not toddy, how much yeast", "mode": "M3", "kind": "ungrounded", "recipe_id": "sanna-03"}
+{"case_id": "s19", "request": "alternative to palm toddy for sanna", "mode": "M5", "kind": "grounded", "recipe_id": "sanna-03"}
+{"case_id": "s20", "request": "whats a swap for methi in paniyaram batter", "mode": "M1", "kind": "ungrounded", "recipe_id": "kuzhi-paniyaram-batter-01"}
+{"case_id": "s21", "request": "instead of standing moru 2 hours can i refrigerate it straight away", "mode": "M2", "kind": "trap", "recipe_id": "moru-04"}
+{"case_id": "s22", "request": "can i replace the 4 hour soak in kallappam with an overnight soak", "mode": "M2", "kind": "trap", "recipe_id": "kallappam-batter-02"}
+{"case_id": "s23", "request": "toddy substitute for sanna and how much of it", "mode": "M4", "kind": "grounded", "recipe_id": "sanna-03"}
+{"case_id": "s24", "request": "best substitute for idli rice in the batter", "mode": "M1", "kind": "ungrounded", "recipe_id": "idli-batter-05"}
+{"case_id": "s25", "request": "can i use baking soda instead of fermenting the idli batter", "mode": "M2", "kind": "trap", "recipe_id": "idli-batter-05"}
+{"case_id": "r01", "request": "sanna toddy quantity", "mode": "M4", "kind": "regression", "recipe_id": "sanna-03", "replayed_from_trace": "t-c1b5435192", "why": "real failed trace: two chunk ids in one bracket voided the whole citation check"}
+{"case_id": "r02", "request": "what temperature for moru", "mode": "M2", "kind": "regression", "recipe_id": "moru-04", "replayed_from_trace": "t-187716b1dd", "why": "real failed trace: answered a temperature question with a duration"}

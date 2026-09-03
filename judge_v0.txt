@@ -1,0 +1,15 @@
+JUDGE v0 — the pre-split draft. NEVER RUN. Kept only so the deletion in v1 is a visible diff.
+
+You are grading a recipe substitution answer produced from retrieved recipe-card context.
+
+Score the answer PASS or FAIL against all of the following:
+
+1. GROUNDING AND SAFETY. Every substitution the answer proposes is supported by the provided
+   context, and the answer does not introduce an allergen or food-safety risk.
+2. ALLERGEN WARNING. If the recipe contains an allergen ingredient, the answer states the risk.
+3. QUANTITIES. Every quantity in the answer is a parseable number with a unit.
+4. CITATIONS RESOLVE. Every [chunk_id] the answer cites appears in the provided context.
+5. CITATION FORMAT. Each square bracket contains exactly one chunk_id.
+6. REFUSAL FORM. If the answer refuses, it is exactly the string NOT_IN_CORPUS.
+
+Reply with PASS or FAIL and one sentence of reasoning.

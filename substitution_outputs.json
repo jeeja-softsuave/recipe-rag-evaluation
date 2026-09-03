@@ -1,0 +1,440 @@
+{
+  "s01": {
+    "case_id": "s01",
+    "request": "i have no toddy for sanna, what can i use instead",
+    "mode": "M4",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-c8470cc3b3",
+    "answer": "Instead of toddy, you can use a slurry of 3g dry yeast in warm water as a standard substitute [sanna-03::structure::4, sanna-03::structure::0].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 2,
+        "score": 0.0317
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "citation_checks": []
+  },
+  "s02": {
+    "case_id": "s02",
+    "request": "can i use dry yeast in sanna instead of toddy",
+    "mode": "M4",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-08c8414e97",
+    "answer": "Yes, a slurry of 3g dry yeast in warm water is the standard alcohol-free substitute for palm toddy in sanna [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [
+          "3g"
+        ],
+        "missing_values": [],
+        "ok": true
+      }
+    ]
+  },
+  "s03": {
+    "case_id": "s03",
+    "request": "how much dry yeast replaces the toddy in sanna",
+    "mode": "M3",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-4b1ecf618b",
+    "answer": "3g of dry yeast (in a warm water slurry) replaces the toddy in sanna [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [
+          "3g"
+        ],
+        "missing_values": [],
+        "ok": true
+      }
+    ]
+  },
+  "s04": {
+    "case_id": "s04",
+    "request": "what can i use instead of urad dal in idli batter",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-b4a1057c66",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 2,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 4,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "citation_checks": []
+  },
+  "s05": {
+    "case_id": "s05",
+    "request": "substitute for fenugreek in kuzhi paniyaram",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-67e1df3250",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::0",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 2,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 3,
+        "score": 0.0312
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 5,
+        "score": 0.0305
+      }
+    ],
+    "citation_checks": []
+  },
+  "s06": {
+    "case_id": "s06",
+    "request": "no curd for moru, what else can i use",
+    "mode": "M5",
+    "kind": "ungrounded",
+    "recipe_id": "moru-04",
+    "trace_id": "t-b204dd8fad",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "moru-04::structure::0",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "citation_checks": []
+  },
+  "s07": {
+    "case_id": "s07",
+    "request": "can i use milk instead of curd in moru",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-8c046779a5",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 2,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "moru-04::structure::0",
+        "rank": 4,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "citation_checks": []
+  },
+  "s08": {
+    "case_id": "s08",
+    "request": "what replaces the grated coconut in kallappam",
+    "mode": "M5",
+    "kind": "ungrounded",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-8bc7e09cab",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::0",
+        "rank": 2,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::5",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "citation_checks": []
+  },
+  "s09": {
+    "case_id": "s09",
+    "request": "substitute for rock salt in neeragaram",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "neeragaram-06",
+    "trace_id": "t-737cd5044b",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "neeragaram-06::structure::3",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::0",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 3,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 4,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::1",
+        "rank": 5,
+        "score": 0.0298
+      }
+    ],
+    "citation_checks": []
+  },
+  "s10": {
+    "case_id": "s10",
+    "request": "what oil can i use instead for greasing the paniyaram pan",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-afbd90f66f",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::0",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "citation_checks": []
+  },
+  "s11": {
+    "case_id": "s11",
+    "request": "dairy free substitute for moru",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-49207aab8e",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 5,
+        "score": 0.0307
+      }
+    ],
+    "citation_checks": []
+  }
+}

@@ -1,0 +1,36 @@
+JUDGE v1 — one binary criterion.
+
+Criteria 2 to 6 of the v0 draft were DELETED from this prompt and reimplemented as deterministic
+assertions in assertions.py, because each is decidable by string and number handling and needs no
+model judgement:
+
+  deleted -> assert_allergen_warning_present   (was v0 criterion 2)
+  deleted -> assert_quantities_parse           (was v0 criterion 3)
+  deleted -> assert_cited_chunks_exist         (was v0 criterion 4)
+  deleted -> assert_one_id_per_bracket         (was v0 criterion 5)
+  deleted -> assert_refusal_is_exact           (was v0 criterion 6)
+
+5 assertions, 1 judged criterion.
+
+--- PROMPT SENT TO THE MODEL BELOW THIS LINE ---
+
+You are grading recipe substitution answers. Each answer was produced from retrieved recipe-card
+context, which you are given.
+
+Judge ONE criterion, binary, no scale:
+
+  SUPPORTED: every substitution or swap the answer proposes is supported by the provided context,
+  and the answer does not introduce an allergen or food-safety risk that the context does not
+  license.
+
+Rules:
+- The context is the only source of truth. Your own cooking knowledge is not evidence.
+- A refusal (NOT_IN_CORPUS) is SUPPORTED when the context genuinely does not contain a substitution
+  for what was asked, and NOT SUPPORTED when the context does contain one.
+- Do not grade wording, tone, completeness, citation format, or whether numbers parse. Those are
+  checked elsewhere.
+- Judge each answer independently of the others in the batch.
+
+For every case, reply on its own line, exactly:
+
+CASE <case_id>: PASS|FAIL — <one short sentence>
