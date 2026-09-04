@@ -11,6 +11,8 @@
     "r05": "PASS",
     "r06": "PASS",
     "r07": "PASS",
+    "r08": "FAIL",
+    "r09": "FAIL",
     "s01": "PASS",
     "s02": "PASS",
     "s03": "PASS",
@@ -31,10 +33,10 @@
     "s18": "FAIL",
     "s19": "PASS",
     "s20": "PASS",
-    "s21": "PASS_OR_FAIL",
-    "s22": "PASS_OR_FAIL",
-    "s23": "PASS_OR_FAIL",
-    "s24": "PASS_OR_FAIL",
-    "s25": "PASS_OR_FAIL"
+    "s21": "PASS",
+    "s22": "PASS",
+    "s23": "PASS",
+    "s24": "PASS",
+    "s25": "PASS"
   }
 }

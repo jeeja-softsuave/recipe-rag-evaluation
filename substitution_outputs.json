@@ -1334,5 +1334,83 @@
       }
     ],
     "citation_checks": []
+  },
+  "r08": {
+    "case_id": "r08",
+    "request": "what ratio does sanna use",
+    "mode": "M3",
+    "kind": "replay",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-37d6fe47d8",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 1,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 3,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 4,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "citation_checks": [],
+    "source": "recorded_trace"
+  },
+  "r09": {
+    "case_id": "r09",
+    "request": "what ratio does kallappam batter use",
+    "mode": "M3",
+    "kind": "replay",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-90fb21ce38",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::1",
+        "rank": 2,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 3,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::0",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "citation_checks": [],
+    "source": "recorded_trace"
   }
 }

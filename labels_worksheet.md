@@ -145,6 +145,44 @@ No, you should not stir the risen paniyaram batter, as doing so will knock out t
 - `kallappam-batter-02::structure::4` — # Kallappam Batter (twelve appams) ## Method Because this is yeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C — far less than a wild batter, and it will go sour and flat if left overnight. The batter is ready when the surface is domed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti, swirl once so the centre stays thick and the edges run thin, cover, and cook 3 minutes without turning.
 
 
+## r08 — PASS / FAIL ?
+
+**Asked:** what ratio does sanna use
+
+**The app answered:**
+
+```
+NOT_IN_CORPUS
+```
+
+**Recipe context it was given** (this is all it could see):
+
+- `sanna-03::structure::1` — # Sanna (sixteen steamed cakes) ## Ingredients Hydration: 50% from grinding water, plus 24% from the toddy. Yield: 16 cakes.
+- `sanna-03::structure::4` — # Sanna (sixteen steamed cakes) ## Allergen Note Vegan and gluten-free. Contains coconut. Traditional sanna uses palm toddy, which is mildly alcoholic and unsuitable for anyone avoiding alcohol; a slurry of 3g dry yeast in warm water is the standard substitute and keeps the recipe alcohol-free.
+- `sanna-03::structure::0` — # Sanna (sixteen steamed cakes) Percentages are relative to the rice weight (500g = 100%). ## Ingredients | Ingredient | Weight | Percentage of base | |---|---|---| | Idli rice, parboiled | 500g | 100% | | Water for grinding | 250g | 50% | | Grated coconut | 150g | 30% | | Toddy, or yeast slurry | 120g | 24% | | Rock salt | 10g | 2% | | Cooked rice | 40g | 8% |
+- `moru-04::structure::2` — # Moru (spiced buttermilk, 1.6 litres) ## Ingredients Curd to water ratio: 1:3. Yield: approximately 1600g.
+- `kuzhi-paniyaram-batter-01::structure::1` — # Kuzhi Paniyaram Batter (two dozen) ## Ingredients Rice to dal ratio: 3:1. Hydration: 80%. Final batter weight: approximately 1300g.
+
+
+## r09 — PASS / FAIL ?
+
+**Asked:** what ratio does kallappam batter use
+
+**The app answered:**
+
+```
+NOT_IN_CORPUS
+```
+
+**Recipe context it was given** (this is all it could see):
+
+- `kallappam-batter-02::structure::2` — # Kallappam Batter (twelve appams) ## Ingredients Hydration: 84%. Final batter weight: approximately 1080g.
+- `kallappam-batter-02::structure::1` — # Kallappam Batter (twelve appams) Percentages are relative to the rice weight (500g = 100%). ## Ingredients | Ingredient | Weight | Percentage of base | |---|---|---| | Active dry yeast | 3g | 0.6% |
+- `kuzhi-paniyaram-batter-01::structure::1` — # Kuzhi Paniyaram Batter (two dozen) ## Ingredients Rice to dal ratio: 3:1. Hydration: 80%. Final batter weight: approximately 1300g.
+- `kallappam-batter-02::structure::0` — # Kallappam Batter (twelve appams) Percentages are relative to the rice weight (500g = 100%). ## Ingredients | Ingredient | Weight | Percentage of base | |---|---|---| | Raw rice, pachari | 500g | 100% | | Water for grinding | 420g | 84% | | Grated coconut | 100g | 20% | | Cooked rice | 50g | 10% | | Sugar | 10g | 2% | | Fine salt | 8g | 1.6% |
+- `idli-batter-05::structure::1` — # Idli Batter (thirty idlis) ## Ingredients Rice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.
+
+
 ## s01 — PASS / FAIL ?
 
 **Asked:** i have no toddy for sanna, what can i use instead

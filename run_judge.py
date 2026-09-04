@@ -66,6 +66,8 @@ def ollama_generate(system_prompt: str, user_prompt: str) -> str:
 def judge_prompt(version: str) -> str:
     """Return only the part of the judge file that is actually sent to the model."""
     path = Path(__file__).parent / f"judge_{version}.txt"
+    if not path.exists():
+        raise SystemExit(f"{path.name} does not exist - write the prompt version first")
     text = path.read_text(encoding="utf-8")
     if PROMPT_MARKER not in text:
         raise SystemExit(f"{path.name} has no '{PROMPT_MARKER}' line")
