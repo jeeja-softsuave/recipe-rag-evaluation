@@ -1,0 +1,39 @@
+PREDICTION - written after agreement_before, before judge_v2.txt existed.
+
+agreement_before = 91% (31/34), judge v1, gemini-3.6-flash.
+  judge too lenient (human FAIL, judge PASS): 3  -> r08, r09, s18
+  judge too strict  (human PASS, judge FAIL): 0
+
+Diagnosis. The 91% is an artefact of the label distribution, not evidence of a good
+judge. 31 of 34 cases are PASS, so a judge that answered PASS unconditionally would
+also score 91%. That is exactly what v1 did: it caught 0 of 3 failures. Recall on
+real defects is 0%.
+
+Two failure modes, from the judge's own reasons:
+  1. It does not verify refusals against the context. On r08 it wrote "The context
+     does not provide a ratio for Sanna" while the retrieved chunk reads
+     "Hydration: 50% from grinding water, plus 24% from the toddy". It accepted the
+     app's NOT_IN_CORPUS at face value instead of checking.
+  2. It treats arithmetic as grounding. On s18 it called halving 3g to 1.5g "fully
+     supported" although 1.5g appears nowhere in the context.
+
+What v2 changes: an explicit instruction to scan the context before accepting any
+refusal, an explicit rule that a number absent from the context is not supported
+even when derivable, and two few-shot examples taken from v1's own mistakes -
+r08 (unverified refusal) and s18 (derived number).
+
+r09 is deliberately NOT shown to v2. It shares r08's failure mode, so it tests
+whether v2 generalises the rule or merely memorises the example.
+
+PREDICTION for agreement_after:
+  - v2 catches r08 and s18. High confidence: both are in the prompt as examples.
+  - v2 catches r09. Moderate confidence, ~70%. This is the generalisation test.
+  - Point estimate: 97% (33/34). Range 91% to 100%.
+
+Main risk, and the reason this could go DOWN rather than up: over-correction. The
+set contains roughly 20 correct refusals. If the new "check the context before
+accepting a refusal" instruction makes v2 trigger-happy, it will start failing
+correct refusals such as s04-s16, s21, s22, s24, s25. Each false FAIL costs as much
+as each true catch gains, so two false FAILs would wipe out the entire benefit.
+If agreement_after lands below 91%, over-strictness is the expected cause and the
+too-strict count in measure_agreement.py will show it directly.

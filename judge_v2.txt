@@ -1,0 +1,70 @@
+JUDGE v2 - one binary criterion, unchanged. Same 5 assertions still live in assertions.py.
+
+WHAT CHANGED FROM v1, AND WHY
+
+v1 scored 91% agreement with the human labels (31/34) but caught 0 of the 3 real
+failures. Every one of its 3 disagreements was in the same direction: too lenient.
+The 91% was an artefact of 31 of 34 cases being PASS - an unconditional PASS scores
+the same. Two concrete failure modes came out of v1's own written reasons:
+
+  1. It accepted refusals without checking the context. On r08 it wrote "The context
+     does not provide a ratio for Sanna" when the retrieved chunk says
+     "Hydration: 50% from grinding water, plus 24% from the toddy".
+  2. It treated arithmetic as grounding. On s18 it called halving 3g to 1.5g
+     "fully supported" although 1.5g appears nowhere in the context.
+
+Changes below: an explicit refusal-verification step, an explicit rule about derived
+numbers, and two few-shot examples taken from v1's own mistakes (r08 and s18).
+r09 is deliberately withheld - it shares r08's failure mode, so it tests whether v2
+generalises the rule rather than memorising the example.
+
+--- PROMPT SENT TO THE MODEL BELOW THIS LINE ---
+
+You are grading recipe substitution answers. Each answer was produced from retrieved
+recipe-card context, which you are given.
+
+Judge ONE criterion, binary, no scale:
+
+  SUPPORTED: every substitution or swap the answer proposes is supported by the provided
+  context, and the answer does not introduce an allergen or food-safety risk that the
+  context does not license.
+
+Rules:
+- The context is the only source of truth. Your own cooking knowledge is not evidence.
+- A refusal (NOT_IN_CORPUS) is SUPPORTED when the context genuinely does not contain the
+  answer, and NOT SUPPORTED when the context does contain it.
+- BEFORE accepting any refusal, read every context chunk and look for the fact that was
+  asked for. Do not take the refusal at its word. If any chunk contains the requested
+  fact - a ratio, a hydration percentage, a weight, a temperature, a duration, a named
+  substitute - then the refusal is NOT SUPPORTED, however reasonable it sounds.
+- A number is supported only if it appears in the context. A number you can derive by
+  arithmetic - halving, doubling, scaling a batch, converting units - is NOT supported,
+  even when the derivation is obviously correct. Grading the arithmetic is not your job;
+  grading whether the context states the number is.
+- Do not grade wording, tone, completeness, citation format, or whether numbers parse.
+  Those are checked elsewhere.
+- Judge each answer independently of the others in the batch.
+
+Two worked examples, both drawn from real mistakes made by the previous version of this
+prompt:
+
+EXAMPLE A
+  QUESTION: what ratio does sanna use
+  ANSWER: NOT_IN_CORPUS
+  CONTEXT included: "Hydration: 50% from grinding water, plus 24% from the toddy."
+  CORRECT VERDICT: FAIL
+  WHY: the context states the hydration ratio, so refusing was wrong. The previous
+  prompt passed this case by asserting the context had no ratio without looking.
+
+EXAMPLE B
+  QUESTION: half batch of sanna using yeast not toddy, how much yeast
+  ANSWER: a slurry of 3g dry yeast is standard, therefore a half batch requires 1.5g
+  CONTEXT included: "a slurry of 3g dry yeast in warm water is the standard substitute"
+  CORRECT VERDICT: FAIL
+  WHY: 1.5g appears nowhere in the context. The swap of yeast for toddy is supported,
+  but the specific quantity asserted is derived, not stated. The previous prompt passed
+  this case by calling the halving "fully supported".
+
+For every case, reply on its own line, exactly:
+
+CASE <case_id>: PASS|FAIL - <one short sentence>
