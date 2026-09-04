@@ -436,5 +436,903 @@
       }
     ],
     "citation_checks": []
+  },
+  "s12": {
+    "case_id": "s12",
+    "request": "im allergic to milk, what can i swap into moru to make it safe",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-3309ef5484",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "citation_checks": []
+  },
+  "s13": {
+    "case_id": "s13",
+    "request": "gluten free substitute for the rice in idli batter",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-550b75c119",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 2,
+        "score": 0.0312
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 3,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 5,
+        "score": 0.0297
+      }
+    ],
+    "citation_checks": []
+  },
+  "s14": {
+    "case_id": "s14",
+    "request": "nut free version of kallappam, what do i swap",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-0b2166e28e",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::5",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::1",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::0",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::2",
+        "rank": 4,
+        "score": 0.0303
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 5,
+        "score": 0.0302
+      }
+    ],
+    "citation_checks": []
+  },
+  "s15": {
+    "case_id": "s15",
+    "request": "can i use the sanna toddy substitute in kallappam too",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-4e0a1a3661",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 4,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 5,
+        "score": 0.0305
+      }
+    ],
+    "citation_checks": []
+  },
+  "s16": {
+    "case_id": "s16",
+    "request": "same yeast swap work for idli batter",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-7560291749",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 1,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 3,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "citation_checks": []
+  },
+  "s17": {
+    "case_id": "s17",
+    "request": "if i swap toddy for yeast in sanna how many grams do i need",
+    "mode": "M3",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-e2f004f7f3",
+    "answer": "To swap toddy for yeast when making sanna, you need a slurry of 3g of dry yeast in warm water [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 3,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 4,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 5,
+        "score": 0.0288
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [
+          "3g"
+        ],
+        "missing_values": [],
+        "ok": true
+      }
+    ]
+  },
+  "s18": {
+    "case_id": "s18",
+    "request": "half batch of sanna using yeast not toddy, how much yeast",
+    "mode": "M3",
+    "kind": "ungrounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-4b65825d17",
+    "answer": "For a full batch of sanna, a slurry of 3g dry yeast in warm water is used as the standard substitute for toddy [sanna-03::structure::4]. Therefore, a half batch requires 1.5g of dry yeast [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 4,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [
+          "3g"
+        ],
+        "missing_values": [],
+        "ok": true
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [
+          "1.5g"
+        ],
+        "missing_values": [
+          "1.5g"
+        ],
+        "ok": false
+      }
+    ]
+  },
+  "s19": {
+    "case_id": "s19",
+    "request": "alternative to palm toddy for sanna",
+    "mode": "M5",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-13709c3be2",
+    "answer": "The standard alternative to palm toddy in sanna is a slurry of 3g dry yeast in warm water [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 3,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 5,
+        "score": 0.031
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [
+          "3g"
+        ],
+        "missing_values": [],
+        "ok": true
+      }
+    ]
+  },
+  "s20": {
+    "case_id": "s20",
+    "request": "whats a swap for methi in paniyaram batter",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-e7599c22e8",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 2,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::0",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "citation_checks": []
+  },
+  "r01": {
+    "case_id": "r01",
+    "request": "sanna toddy quantity",
+    "mode": "M4",
+    "kind": "regression",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-c1b5435192",
+    "answer": "The recipe requires 120g of toddy (or yeast slurry), which is 24% of the base rice weight [sanna-03::structure::0, sanna-03::structure::1].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 3,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0305
+      }
+    ],
+    "citation_checks": [],
+    "source": "recorded_trace"
+  },
+  "r02": {
+    "case_id": "r02",
+    "request": "what temperature for moru",
+    "mode": "M2",
+    "kind": "regression",
+    "recipe_id": "moru-04",
+    "trace_id": "t-187716b1dd",
+    "answer": "Moru should be left to stand at room temperature for 2 hours [moru-04::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "moru-04::structure::4",
+        "exists": true,
+        "claimed_values": [],
+        "missing_values": [],
+        "ok": true
+      }
+    ],
+    "source": "recorded_trace"
+  },
+  "r03": {
+    "case_id": "r03",
+    "request": "is moru ok if im allergic to milk",
+    "mode": "M5",
+    "kind": "replay",
+    "recipe_id": "moru-04",
+    "trace_id": "t-e03b002c42",
+    "answer": "No, moru contains dairy from the curd and is unsuitable for a milk protein allergy [moru-04::structure::5].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "exists": true,
+        "claimed_values": [],
+        "missing_values": [],
+        "ok": true
+      }
+    ],
+    "source": "recorded_trace"
+  },
+  "r04": {
+    "case_id": "r04",
+    "request": "is sanna safe for a dairy allergy",
+    "mode": "M5",
+    "kind": "replay",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-62532e8648",
+    "answer": "Yes, Sanna is safe for a dairy allergy as it is vegan [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::5",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::5",
+        "rank": 5,
+        "score": 0.0299
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [],
+        "missing_values": [],
+        "ok": true
+      }
+    ],
+    "source": "recorded_trace"
+  },
+  "r05": {
+    "case_id": "r05",
+    "request": "can i leave moru overnight",
+    "mode": "M2",
+    "kind": "replay",
+    "recipe_id": "moru-04",
+    "trace_id": "t-46e29c4af8",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 2,
+        "score": 0.0317
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 3,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::2",
+        "rank": 4,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 5,
+        "score": 0.0295
+      }
+    ],
+    "citation_checks": [],
+    "source": "recorded_trace"
+  },
+  "r06": {
+    "case_id": "r06",
+    "request": "can i leave idli batter overnight",
+    "mode": "M2",
+    "kind": "replay",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-a3946a1fda",
+    "answer": "Yes, idli batter is fermented for 10 to 12 hours at 28C [idli-batter-05::structure::3].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 1,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 5,
+        "score": 0.0304
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "exists": true,
+        "claimed_values": [
+          "28C"
+        ],
+        "missing_values": [],
+        "ok": true
+      }
+    ],
+    "source": "recorded_trace"
+  },
+  "r07": {
+    "case_id": "r07",
+    "request": "should i stir the paniyaram batter after it rises",
+    "mode": "M2",
+    "kind": "replay",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-c3b4f08718",
+    "answer": "No, you should not stir the risen paniyaram batter, as doing so will knock out the gas that gives the paniyarams their spongy centre [kuzhi-paniyaram-batter-01::structure::3].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "exists": true,
+        "claimed_values": [],
+        "missing_values": [],
+        "ok": true
+      }
+    ],
+    "source": "recorded_trace"
+  },
+  "s21": {
+    "case_id": "s21",
+    "request": "instead of standing moru 2 hours can i refrigerate it straight away",
+    "mode": "M2",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-2b96149802",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::2",
+        "rank": 2,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "citation_checks": []
+  },
+  "s22": {
+    "case_id": "s22",
+    "request": "can i replace the 4 hour soak in kallappam with an overnight soak",
+    "mode": "M2",
+    "kind": "trap",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-f6c88b2c36",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::2",
+        "rank": 3,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 5,
+        "score": 0.0302
+      }
+    ],
+    "citation_checks": []
+  },
+  "s23": {
+    "case_id": "s23",
+    "request": "toddy substitute for sanna and how much of it",
+    "mode": "M4",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-6ebc0b26e1",
+    "answer": "The standard substitute for palm toddy in sanna is a slurry of 3g dry yeast in warm water [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0312
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "citation_checks": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "exists": true,
+        "claimed_values": [
+          "3g"
+        ],
+        "missing_values": [],
+        "ok": true
+      }
+    ]
+  },
+  "s24": {
+    "case_id": "s24",
+    "request": "best substitute for idli rice in the batter",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-c060806708",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 2,
+        "score": 0.0317
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "citation_checks": []
+  },
+  "s25": {
+    "case_id": "s25",
+    "request": "can i use baking soda instead of fermenting the idli batter",
+    "mode": "M2",
+    "kind": "trap",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-55d62c432c",
+    "answer": "NOT_IN_CORPUS",
+    "refused": true,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 1,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 2,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "citation_checks": []
   }
 }
