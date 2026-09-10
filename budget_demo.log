@@ -1,0 +1,23 @@
+budgets: iterations=2 tokens=20000 cost=$0.02 wall_clock=90.0s
+  lap 1: search_recipes({"dish": "moru"}) -> {"found": true, "recipe_id": "moru-04", "title": "Moru (spiced buttermilk, 1.6 litres)", "base_yield": 8, "dietary_tags"
+  lap 2: scale_recipe({"recipe_id": "moru-04", "target_servings": 8}) -> {"scaled": true, "recipe_id": "moru-04", "base_yield": 8, "target_servings": 8, "factor": 1.0, "ingredients": [{"ingredi
+  lap 2: substitute_ingredient({"avoid": "dairy", "ingredient": "Thick sour curd"}) -> {"substituted": true, "ingredient": "Thick sour curd", "avoid": "dairy", "substitute": "coconut milk yoghurt", "substitu
+  STOP budget:max_iterations after 2 laps (limit 2)
+
+stop_reason : budget:max_iterations
+laps        : 2
+tokens      : 1566 (in 1494 / out 72)
+cost        : $0.00063
+latency     : 45.782s
+output      : {
+  "recipe_id": "moru-04",
+  "target_servings": 8,
+  "factor": 1.0,
+  "substitutions": [
+    [
+      "Thick sour curd",
+      "coconut milk yoghurt"
+    ]
+  ],
+  "no_safe_substitute": false
+}

@@ -1,0 +1,690 @@
+{
+  "agent:q07": {
+    "system": "agent",
+    "request": "moru for 16 glasses, dairy free and coconut free",
+    "output": {
+      "recipe_id": "moru-04",
+      "target_servings": 16,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Thick sour curd",
+          "coconut milk yoghurt"
+        ],
+        [
+          "coconut milk yoghurt",
+          "soy yoghurt"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the recipe for **Moru (Spiced Buttermilk)** scaled for **16 glasses**, modified to be both **dairy-free** and **coconut-free**:\n\n### **Scaled & Substituted Ingredients (16 Glasses)**\n* **Soy yoghurt** *(replaces Thick sour curd to avoid dairy; replaces coconut milk yoghurt to avoid coconut)*: **800 g** *(Note: contains soy)*\n* **Water**: **2400 g**\n* **Shallots, crushed**: **40 g**\n* **Green chilli, slit**: **24 g**\n* **Ginger, crushed**: **20 g**\n* **Rock salt**: **12 g**\n* **Curry leaves**: **8 g**",
+    "laps": 4,
+    "model_calls": 4,
+    "input_tokens": 4033,
+    "output_tokens": 256,
+    "total_tokens": 4289,
+    "cost_usd": 0.0018498999999999998,
+    "latency_seconds": 68.797,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"moru\"}) -> {\"found\": true, \"recipe_id\": \"moru-04\", \"title\": \"Moru (spiced buttermilk, 1.6 litres)\", \"base_yield\": 8, \"dietary_tags\"",
+      "lap 2: scale_recipe({\"recipe_id\": \"moru-04\", \"target_servings\": 16}) -> {\"scaled\": true, \"recipe_id\": \"moru-04\", \"base_yield\": 8, \"target_servings\": 16, \"factor\": 2.0, \"ingredients\": [{\"ingred",
+      "lap 2: substitute_ingredient({\"avoid\": \"dairy\", \"ingredient\": \"Thick sour curd\"}) -> {\"substituted\": true, \"ingredient\": \"Thick sour curd\", \"avoid\": \"dairy\", \"substitute\": \"coconut milk yoghurt\", \"substitu",
+      "lap 3: substitute_ingredient({\"ingredient\": \"coconut milk yoghurt\", \"avoid\": \"coconut\"}) -> {\"substituted\": true, \"ingredient\": \"coconut milk yoghurt\", \"avoid\": \"coconut\", \"substitute\": \"soy yoghurt\", \"substitute",
+      "lap 4: stopped calling tools"
+    ],
+    "request_id": "q07",
+    "klass": "cascade",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "workflow:q01": {
+    "system": "workflow",
+    "request": "scale the idli batter to 60 idlis",
+    "output": {
+      "recipe_id": "idli-batter-05",
+      "target_servings": 60,
+      "factor": 2.0,
+      "substitutions": [],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"idli-batter-05\", \"target_servings\": 60, \"factor\": 2.0, \"substitutions\": [], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 127,
+    "output_tokens": 23,
+    "total_tokens": 150,
+    "cost_usd": 9.559999999999999e-05,
+    "latency_seconds": 7.469,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"idli batter\", \"target_servings\": 60, \"avoid\": []}",
+      "step 1: search_recipes -> idli-batter-05",
+      "step 2: scale_recipe -> factor 2.0",
+      "step 3: no dietary constraint, skipped"
+    ],
+    "request_id": "q01",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "workflow:q02": {
+    "system": "workflow",
+    "request": "neeragaram for 8 servings please",
+    "output": {
+      "recipe_id": "neeragaram-06",
+      "target_servings": 8,
+      "factor": 2.0,
+      "substitutions": [],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"neeragaram-06\", \"target_servings\": 8, \"factor\": 2.0, \"substitutions\": [], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 125,
+    "output_tokens": 23,
+    "total_tokens": 148,
+    "cost_usd": 9.5e-05,
+    "latency_seconds": 5.469,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"neeragaram\", \"target_servings\": 8, \"avoid\": []}",
+      "step 1: search_recipes -> neeragaram-06",
+      "step 2: scale_recipe -> factor 2.0",
+      "step 3: no dietary constraint, skipped"
+    ],
+    "request_id": "q02",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "workflow:q03": {
+    "system": "workflow",
+    "request": "sanna for 32 cakes, alcohol free",
+    "output": {
+      "recipe_id": "sanna-03",
+      "target_servings": 32,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Toddy, or yeast slurry",
+          "slurry of 3g dry yeast in warm water"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"sanna-03\", \"target_servings\": 32, \"factor\": 2.0, \"substitutions\": [[\"Toddy, or yeast slurry\", \"slurry of 3g dry yeast in warm water\"]], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 126,
+    "output_tokens": 23,
+    "total_tokens": 149,
+    "cost_usd": 9.53e-05,
+    "latency_seconds": 4.75,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"sanna\", \"target_servings\": 32, \"avoid\": [\"alcohol\"]}",
+      "step 1: search_recipes -> sanna-03",
+      "step 2: scale_recipe -> factor 2.0",
+      "step 3: Toddy, or yeast slurry -> slurry of 3g dry yeast in warm water (contains ['yeast']), not re-checked"
+    ],
+    "request_id": "q03",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "workflow:q04": {
+    "system": "workflow",
+    "request": "moru for 16 glasses, dairy free",
+    "output": {
+      "recipe_id": "moru-04",
+      "target_servings": 16,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Thick sour curd",
+          "coconut milk yoghurt"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"moru-04\", \"target_servings\": 16, \"factor\": 2.0, \"substitutions\": [[\"Thick sour curd\", \"coconut milk yoghurt\"]], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 126,
+    "output_tokens": 23,
+    "total_tokens": 149,
+    "cost_usd": 9.53e-05,
+    "latency_seconds": 4.609,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"moru\", \"target_servings\": 16, \"avoid\": [\"dairy\"]}",
+      "step 1: search_recipes -> moru-04",
+      "step 2: scale_recipe -> factor 2.0",
+      "step 3: Thick sour curd -> coconut milk yoghurt (contains ['coconut']), not re-checked"
+    ],
+    "request_id": "q04",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "workflow:q05": {
+    "system": "workflow",
+    "request": "kallappam batter for 24 appams, coconut free",
+    "output": {
+      "recipe_id": "kallappam-batter-02",
+      "target_servings": 24,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Grated coconut",
+          "ground cashew paste"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"kallappam-batter-02\", \"target_servings\": 24, \"factor\": 2.0, \"substitutions\": [[\"Grated coconut\", \"ground cashew paste\"]], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 130,
+    "output_tokens": 26,
+    "total_tokens": 156,
+    "cost_usd": 0.000104,
+    "latency_seconds": 7.344,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"kallappam batter\", \"target_servings\": 24, \"avoid\": [\"coconut\"]}",
+      "step 1: search_recipes -> kallappam-batter-02",
+      "step 2: scale_recipe -> factor 2.0",
+      "step 3: Grated coconut -> ground cashew paste (contains ['nuts']), not re-checked"
+    ],
+    "request_id": "q05",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "workflow:q06": {
+    "system": "workflow",
+    "request": "kuzhi paniyaram batter for 48",
+    "output": {
+      "recipe_id": "kuzhi-paniyaram-batter-01",
+      "target_servings": 48,
+      "factor": 2.0,
+      "substitutions": [],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"kuzhi-paniyaram-batter-01\", \"target_servings\": 48, \"factor\": 2.0, \"substitutions\": [], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 127,
+    "output_tokens": 27,
+    "total_tokens": 154,
+    "cost_usd": 0.00010559999999999999,
+    "latency_seconds": 6.547,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"kuzhi paniyaram batter\", \"target_servings\": 48, \"avoid\": []}",
+      "step 1: search_recipes -> kuzhi-paniyaram-batter-01",
+      "step 2: scale_recipe -> factor 2.0",
+      "step 3: no dietary constraint, skipped"
+    ],
+    "request_id": "q06",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "workflow:q07": {
+    "system": "workflow",
+    "request": "moru for 16 glasses, dairy free and coconut free",
+    "output": {
+      "recipe_id": "moru-04",
+      "target_servings": 16,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Thick sour curd",
+          "coconut milk yoghurt"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"moru-04\", \"target_servings\": 16, \"factor\": 2.0, \"substitutions\": [[\"Thick sour curd\", \"coconut milk yoghurt\"]], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 129,
+    "output_tokens": 26,
+    "total_tokens": 155,
+    "cost_usd": 0.00010369999999999999,
+    "latency_seconds": 78.25,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"moru\", \"target_servings\": 16, \"avoid\": [\"dairy\", \"coconut\"]}",
+      "step 1: search_recipes -> moru-04",
+      "step 2: scale_recipe -> factor 2.0",
+      "step 3: Thick sour curd -> coconut milk yoghurt (contains ['coconut']), not re-checked"
+    ],
+    "request_id": "q07",
+    "klass": "cascade",
+    "passed": false,
+    "why": "substitutions=[('thick sour curd', 'coconut milk yoghurt')]"
+  },
+  "workflow:q08": {
+    "system": "workflow",
+    "request": "kallappam batter for 12, coconut free and nut free",
+    "output": {
+      "recipe_id": "kallappam-batter-02",
+      "target_servings": 12,
+      "factor": 1.0,
+      "substitutions": [
+        [
+          "Grated coconut",
+          "ground cashew paste"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"kallappam-batter-02\", \"target_servings\": 12, \"factor\": 1.0, \"substitutions\": [[\"Grated coconut\", \"ground cashew paste\"]], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 131,
+    "output_tokens": 29,
+    "total_tokens": 160,
+    "cost_usd": 0.0001118,
+    "latency_seconds": 6.766,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"kallappam batter\", \"target_servings\": 12, \"avoid\": [\"coconut\", \"nuts\"]}",
+      "step 1: search_recipes -> kallappam-batter-02",
+      "step 2: scale_recipe -> factor 1.0",
+      "step 3: Grated coconut -> ground cashew paste (contains ['nuts']), not re-checked"
+    ],
+    "request_id": "q08",
+    "klass": "cascade",
+    "passed": false,
+    "why": "substitutions=[('grated coconut', 'ground cashew paste')]"
+  },
+  "workflow:q09": {
+    "system": "workflow",
+    "request": "moru for 8 glasses, no dairy, no coconut, no soy",
+    "output": {
+      "recipe_id": "moru-04",
+      "target_servings": 8,
+      "factor": 1.0,
+      "substitutions": [
+        [
+          "Thick sour curd",
+          "coconut milk yoghurt"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"moru-04\", \"target_servings\": 8, \"factor\": 1.0, \"substitutions\": [[\"Thick sour curd\", \"coconut milk yoghurt\"]], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 131,
+    "output_tokens": 28,
+    "total_tokens": 159,
+    "cost_usd": 0.0001093,
+    "latency_seconds": 6.75,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"moru\", \"target_servings\": 8, \"avoid\": [\"dairy\", \"coconut\", \"soy\"]}",
+      "step 1: search_recipes -> moru-04",
+      "step 2: scale_recipe -> factor 1.0",
+      "step 3: Thick sour curd -> coconut milk yoghurt (contains ['coconut']), not re-checked"
+    ],
+    "request_id": "q09",
+    "klass": "cascade",
+    "passed": false,
+    "why": "substitutions=[('thick sour curd', 'coconut milk yoghurt')]"
+  },
+  "workflow:q10": {
+    "system": "workflow",
+    "request": "sanna for 16, alcohol free and yeast free",
+    "output": {
+      "recipe_id": "sanna-03",
+      "target_servings": 16,
+      "factor": 1.0,
+      "substitutions": [
+        [
+          "Toddy, or yeast slurry",
+          "slurry of 3g dry yeast in warm water"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "{\"recipe_id\": \"sanna-03\", \"target_servings\": 16, \"factor\": 1.0, \"substitutions\": [[\"Toddy, or yeast slurry\", \"slurry of 3g dry yeast in warm water\"]], \"no_safe_substitute\": false}",
+    "laps": 1,
+    "model_calls": 1,
+    "input_tokens": 128,
+    "output_tokens": 27,
+    "total_tokens": 155,
+    "cost_usd": 0.0001059,
+    "latency_seconds": 6.875,
+    "stop_reason": "completed",
+    "log": [
+      "step 0 (model): extracted {\"dish\": \"sanna\", \"target_servings\": 16, \"avoid\": [\"alcohol\", \"yeast\"]}",
+      "step 1: search_recipes -> sanna-03",
+      "step 2: scale_recipe -> factor 1.0",
+      "step 3: Toddy, or yeast slurry -> slurry of 3g dry yeast in warm water (contains ['yeast']), not re-checked"
+    ],
+    "request_id": "q10",
+    "klass": "unsatisfiable",
+    "passed": false,
+    "why": "no_safe_substitute=False"
+  },
+  "agent:q01": {
+    "system": "agent",
+    "request": "scale the idli batter to 60 idlis",
+    "output": {
+      "recipe_id": "idli-batter-05",
+      "target_servings": 60,
+      "factor": 2.0,
+      "substitutions": [],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the scaled ingredient list for 60 idlis:\n\n* **Idli rice, parboiled:** 1,600 g\n* **Whole white urad dal:** 400 g\n* **Water for grinding:** 1,120 g\n* **Rock salt:** 32 g\n* **Fenugreek seeds:** 16 g",
+    "laps": 3,
+    "model_calls": 3,
+    "input_tokens": 2328,
+    "output_tokens": 130,
+    "total_tokens": 2458,
+    "cost_usd": 0.0010234,
+    "latency_seconds": 38.203,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"idli batter\"}) -> {\"found\": true, \"recipe_id\": \"idli-batter-05\", \"title\": \"Idli Batter (thirty idlis)\", \"base_yield\": 30, \"dietary_tags\": ",
+      "lap 2: scale_recipe({\"recipe_id\": \"idli-batter-05\", \"target_servings\": 60}) -> {\"scaled\": true, \"recipe_id\": \"idli-batter-05\", \"base_yield\": 30, \"target_servings\": 60, \"factor\": 2.0, \"ingredients\": [",
+      "lap 3: stopped calling tools"
+    ],
+    "request_id": "q01",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q02": {
+    "system": "agent",
+    "request": "neeragaram for 8 servings please",
+    "output": {
+      "recipe_id": "neeragaram-06",
+      "target_servings": 8,
+      "factor": 2.0,
+      "substitutions": [],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the recipe for **Neeragaram** scaled for **8 servings**:\n\n### Ingredients\n* **Cooked rice, cooled:** 600 g\n* **Water:** 1800 g\n* **Shallots, sliced:** 40 g\n* **Green chilli, slit:** 16 g\n* **Rock salt:** 6 g",
+    "laps": 3,
+    "model_calls": 3,
+    "input_tokens": 2297,
+    "output_tokens": 128,
+    "total_tokens": 2425,
+    "cost_usd": 0.0010091,
+    "latency_seconds": 21.094,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"neeragaram\"}) -> {\"found\": true, \"recipe_id\": \"neeragaram-06\", \"title\": \"Neeragaram (fermented rice water, four servings)\", \"base_yield\":",
+      "lap 2: scale_recipe({\"target_servings\": 8, \"recipe_id\": \"neeragaram-06\"}) -> {\"scaled\": true, \"recipe_id\": \"neeragaram-06\", \"base_yield\": 4, \"target_servings\": 8, \"factor\": 2.0, \"ingredients\": [{\"i",
+      "lap 3: stopped calling tools"
+    ],
+    "request_id": "q02",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q03": {
+    "system": "agent",
+    "request": "sanna for 32 cakes, alcohol free",
+    "output": {
+      "recipe_id": "sanna-03",
+      "target_servings": 32,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Toddy, or yeast slurry",
+          "slurry of 3g dry yeast in warm water"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the scaled, alcohol-free recipe for **32 Sannas (Steamed Cakes)**:\n\n### **Ingredients**\n* **Idli rice, parboiled:** 1000 g\n* **Water for grinding:** 500 g\n* **Grated coconut:** 300 g\n* **Slurry of 3g dry yeast in warm water:** 240 g *(substituted for Toddy, or yeast slurry to make it alcohol-free)*\n  * *Note on Allergen/Dietary Info:* The substitute contains **yeast**.\n* **Rock salt:** 20 g\n* **Cooked rice:** 80 g",
+    "laps": 3,
+    "model_calls": 3,
+    "input_tokens": 2671,
+    "output_tokens": 219,
+    "total_tokens": 2890,
+    "cost_usd": 0.0013488,
+    "latency_seconds": 31.297,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"sanna\"}) -> {\"found\": true, \"recipe_id\": \"sanna-03\", \"title\": \"Sanna (sixteen steamed cakes)\", \"base_yield\": 16, \"dietary_tags\": \"ve",
+      "lap 2: scale_recipe({\"target_servings\": 32, \"recipe_id\": \"sanna-03\"}) -> {\"scaled\": true, \"recipe_id\": \"sanna-03\", \"base_yield\": 16, \"target_servings\": 32, \"factor\": 2.0, \"ingredients\": [{\"ingr",
+      "lap 2: substitute_ingredient({\"ingredient\": \"Toddy, or yeast slurry\", \"avoid\": \"alcohol\"}) -> {\"substituted\": true, \"ingredient\": \"Toddy, or yeast slurry\", \"avoid\": \"alcohol\", \"substitute\": \"slurry of 3g dry yeast ",
+      "lap 3: stopped calling tools"
+    ],
+    "request_id": "q03",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q04": {
+    "system": "agent",
+    "request": "moru for 16 glasses, dairy free",
+    "output": {
+      "recipe_id": "moru-04",
+      "target_servings": 16,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Thick sour curd",
+          "coconut milk yoghurt"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the scaled, dairy-free recipe for **Moru** (16 glasses):\n\n### Substitution & Allergen Notice\n* **Thick sour curd** (800.0 g) is substituted with **coconut milk yoghurt** to make it dairy-free.\n* *Note:* Coconut milk yoghurt contains **coconut**.\n\n---\n\n### Ingredients (Yield: 16 glasses)\n* **Coconut milk yoghurt** (substitute for Thick sour curd): 800.0 g\n* **Water**: 2400.0 g\n* **Shallots, crushed**: 40.0 g\n* **Green chilli, slit**: 24.0 g\n* **Ginger, crushed**: 20.0 g\n* **Rock salt**: 12.0 g\n* **Curry leaves**: 8.0 g",
+    "laps": 3,
+    "model_calls": 3,
+    "input_tokens": 2664,
+    "output_tokens": 255,
+    "total_tokens": 2919,
+    "cost_usd": 0.0014366999999999997,
+    "latency_seconds": 102.469,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"moru\"}) -> {\"found\": true, \"recipe_id\": \"moru-04\", \"title\": \"Moru (spiced buttermilk, 1.6 litres)\", \"base_yield\": 8, \"dietary_tags\"",
+      "lap 2: scale_recipe({\"recipe_id\": \"moru-04\", \"target_servings\": 16}) -> {\"scaled\": true, \"recipe_id\": \"moru-04\", \"base_yield\": 8, \"target_servings\": 16, \"factor\": 2.0, \"ingredients\": [{\"ingred",
+      "lap 2: substitute_ingredient({\"ingredient\": \"Thick sour curd\", \"avoid\": \"dairy\"}) -> {\"substituted\": true, \"ingredient\": \"Thick sour curd\", \"avoid\": \"dairy\", \"substitute\": \"coconut milk yoghurt\", \"substitu",
+      "lap 3: stopped calling tools"
+    ],
+    "request_id": "q04",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q05": {
+    "system": "agent",
+    "request": "kallappam batter for 24 appams, coconut free",
+    "output": {
+      "recipe_id": "kallappam-batter-02",
+      "target_servings": 24,
+      "factor": 2.0,
+      "substitutions": [
+        [
+          "Grated coconut",
+          "ground cashew paste"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the scaled, coconut-free recipe for **24 Kallappams**:\n\n### **Ingredients**\n* **Raw rice (pachari):** 1000 g\n* **Water for grinding:** 840 g\n* **Ground cashew paste:** 200 g *(substituted for Grated coconut)*\n  * *Note: Contains **nuts**.*\n* **Cooked rice:** 100 g\n* **Sugar:** 20 g\n* **Fine salt:** 16 g\n* **Active dry yeast:** 6 g",
+    "laps": 3,
+    "model_calls": 3,
+    "input_tokens": 2696,
+    "output_tokens": 201,
+    "total_tokens": 2897,
+    "cost_usd": 0.0013113,
+    "latency_seconds": 26.406,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"kallappam batter\"}) -> {\"found\": true, \"recipe_id\": \"kallappam-batter-02\", \"title\": \"Kallappam Batter (twelve appams)\", \"base_yield\": 12, \"diet",
+      "lap 2: scale_recipe({\"recipe_id\": \"kallappam-batter-02\", \"target_servings\": 24}) -> {\"scaled\": true, \"recipe_id\": \"kallappam-batter-02\", \"base_yield\": 12, \"target_servings\": 24, \"factor\": 2.0, \"ingredient",
+      "lap 2: substitute_ingredient({\"ingredient\": \"Grated coconut\", \"avoid\": \"coconut\"}) -> {\"substituted\": true, \"ingredient\": \"Grated coconut\", \"avoid\": \"coconut\", \"substitute\": \"ground cashew paste\", \"substitu",
+      "lap 3: stopped calling tools"
+    ],
+    "request_id": "q05",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q06": {
+    "system": "agent",
+    "request": "kuzhi paniyaram batter for 48",
+    "output": {
+      "recipe_id": "kuzhi-paniyaram-batter-01",
+      "target_servings": 48,
+      "factor": 2.0,
+      "substitutions": [],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the scaled recipe for **Kuzhi Paniyaram Batter** for **48** servings:\n\n### **Ingredients**\n* **Idli rice, parboiled:** 1,200 g\n* **Whole white urad dal:** 400 g\n* **Fenugreek seeds:** 12 g\n* **Rock salt:** 28 g\n* **Water for grinding:** 960 g",
+    "laps": 3,
+    "model_calls": 3,
+    "input_tokens": 2459,
+    "output_tokens": 151,
+    "total_tokens": 2610,
+    "cost_usd": 0.0011151999999999998,
+    "latency_seconds": 68.281,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"kuzhi paniyaram batter\"}) -> {\"found\": true, \"recipe_id\": \"kuzhi-paniyaram-batter-01\", \"title\": \"Kuzhi Paniyaram Batter (two dozen)\", \"base_yield\": 2",
+      "lap 2: scale_recipe({\"target_servings\": 48, \"recipe_id\": \"kuzhi-paniyaram-batter-01\"}) -> {\"scaled\": true, \"recipe_id\": \"kuzhi-paniyaram-batter-01\", \"base_yield\": 24, \"target_servings\": 48, \"factor\": 2.0, \"ingr",
+      "lap 3: stopped calling tools"
+    ],
+    "request_id": "q06",
+    "klass": "simple",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q08": {
+    "system": "agent",
+    "request": "kallappam batter for 12, coconut free and nut free",
+    "output": {
+      "recipe_id": "kallappam-batter-02",
+      "target_servings": 12,
+      "factor": 1.0,
+      "substitutions": [
+        [
+          "Grated coconut",
+          "ground cashew paste"
+        ],
+        [
+          "ground cashew paste",
+          "sunflower seed paste"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the scaled and modified **Kallappam Batter** recipe for 12 appams, adjusted to be both coconut-free and nut-free:\n\n### **Ingredients**\n* **Raw rice, pachari:** 500 g\n* **Water for grinding:** 420 g\n* **Sunflower seed paste** *(substituted for Grated coconut to remove coconut, then for cashew paste to remove nuts)*: 100 g\n* **Cooked rice:** 50 g\n* **Sugar:** 10 g\n* **Fine salt:** 8 g\n* **Active dry yeast:** 3 g",
+    "laps": 5,
+    "model_calls": 5,
+    "input_tokens": 5041,
+    "output_tokens": 238,
+    "total_tokens": 5279,
+    "cost_usd": 0.0021073000000000003,
+    "latency_seconds": 79.0,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"kallappam batter\"}) -> {\"found\": true, \"recipe_id\": \"kallappam-batter-02\", \"title\": \"Kallappam Batter (twelve appams)\", \"base_yield\": 12, \"diet",
+      "lap 2: scale_recipe({\"recipe_id\": \"kallappam-batter-02\", \"target_servings\": 12}) -> {\"scaled\": true, \"recipe_id\": \"kallappam-batter-02\", \"base_yield\": 12, \"target_servings\": 12, \"factor\": 1.0, \"ingredient",
+      "lap 3: substitute_ingredient({\"avoid\": \"coconut\", \"ingredient\": \"Grated coconut\"}) -> {\"substituted\": true, \"ingredient\": \"Grated coconut\", \"avoid\": \"coconut\", \"substitute\": \"ground cashew paste\", \"substitu",
+      "lap 4: substitute_ingredient({\"ingredient\": \"ground cashew paste\", \"avoid\": \"nuts\"}) -> {\"substituted\": true, \"ingredient\": \"ground cashew paste\", \"avoid\": \"nuts\", \"substitute\": \"sunflower seed paste\", \"subst",
+      "lap 5: stopped calling tools"
+    ],
+    "request_id": "q08",
+    "klass": "cascade",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q09": {
+    "system": "agent",
+    "request": "moru for 8 glasses, no dairy, no coconut, no soy",
+    "output": {
+      "recipe_id": "moru-04",
+      "target_servings": 8,
+      "factor": 1.0,
+      "substitutions": [
+        [
+          "Thick sour curd",
+          "coconut milk yoghurt"
+        ],
+        [
+          "coconut milk yoghurt",
+          "soy yoghurt"
+        ],
+        [
+          "soy yoghurt",
+          "oat yoghurt"
+        ]
+      ],
+      "no_safe_substitute": false
+    },
+    "raw_output": "Here is the recipe for **Moru (8 glasses)** adjusted to be **dairy-free, coconut-free, and soy-free**:\n\n### **Ingredients**\n* **Oat yoghurt** (substituted for dairy sour curd / coconut yoghurt / soy yoghurt): **400 g** *(Note: contains gluten)*\n* **Water**: **1,200 g**\n* **Shallots, crushed**: **20 g**\n* **Green chilli, slit**: **12 g**\n* **Ginger, crushed**: **10 g**\n* **Rock salt**: **6 g**\n* **Curry leaves**: **4 g**\n\n---\n\n### **Substitution Summary**\n1. **Thick sour curd** $\\rightarrow$ **Coconut milk yoghurt** *(to avoid dairy; contains coconut)*\n2. **Coconut milk yoghurt** $\\rightarrow$ **Soy yoghurt** *(to avoid coconut; contains soy)*\n3. **Soy yoghurt** $\\rightarrow$ **Oat yoghurt** *(to avoid soy; contains gluten)*",
+    "laps": 5,
+    "model_calls": 5,
+    "input_tokens": 5705,
+    "output_tokens": 338,
+    "total_tokens": 6043,
+    "cost_usd": 0.0025565,
+    "latency_seconds": 117.812,
+    "stop_reason": "completed",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"moru\"}) -> {\"found\": true, \"recipe_id\": \"moru-04\", \"title\": \"Moru (spiced buttermilk, 1.6 litres)\", \"base_yield\": 8, \"dietary_tags\"",
+      "lap 2: scale_recipe({\"target_servings\": 8, \"recipe_id\": \"moru-04\"}) -> {\"scaled\": true, \"recipe_id\": \"moru-04\", \"base_yield\": 8, \"target_servings\": 8, \"factor\": 1.0, \"ingredients\": [{\"ingredi",
+      "lap 2: substitute_ingredient({\"avoid\": \"dairy\", \"ingredient\": \"Thick sour curd\"}) -> {\"substituted\": true, \"ingredient\": \"Thick sour curd\", \"avoid\": \"dairy\", \"substitute\": \"coconut milk yoghurt\", \"substitu",
+      "lap 3: substitute_ingredient({\"avoid\": \"coconut\", \"ingredient\": \"coconut milk yoghurt\"}) -> {\"substituted\": true, \"ingredient\": \"coconut milk yoghurt\", \"avoid\": \"coconut\", \"substitute\": \"soy yoghurt\", \"substitute",
+      "lap 4: substitute_ingredient({\"ingredient\": \"soy yoghurt\", \"avoid\": \"soy\"}) -> {\"substituted\": true, \"ingredient\": \"soy yoghurt\", \"avoid\": \"soy\", \"substitute\": \"oat yoghurt\", \"substitute_contains\": [",
+      "lap 5: stopped calling tools"
+    ],
+    "request_id": "q09",
+    "klass": "cascade",
+    "passed": true,
+    "why": "all checks ok"
+  },
+  "agent:q10": {
+    "system": "agent",
+    "request": "sanna for 16, alcohol free and yeast free",
+    "output": {
+      "recipe_id": "sanna-03",
+      "target_servings": 16,
+      "factor": 1.0,
+      "substitutions": [
+        [
+          "Toddy, or yeast slurry",
+          "slurry of 3g dry yeast in warm water"
+        ]
+      ],
+      "no_safe_substitute": true
+    },
+    "raw_output": "",
+    "laps": 3,
+    "model_calls": 3,
+    "input_tokens": 2747,
+    "output_tokens": 109,
+    "total_tokens": 2856,
+    "cost_usd": 0.0010965999999999999,
+    "latency_seconds": 111.109,
+    "stop_reason": "budget:wall_clock",
+    "log": [
+      "lap 1: search_recipes({\"dish\": \"sanna\"}) -> {\"found\": true, \"recipe_id\": \"sanna-03\", \"title\": \"Sanna (sixteen steamed cakes)\", \"base_yield\": 16, \"dietary_tags\": \"ve",
+      "lap 2: scale_recipe({\"recipe_id\": \"sanna-03\", \"target_servings\": 16}) -> {\"scaled\": true, \"recipe_id\": \"sanna-03\", \"base_yield\": 16, \"target_servings\": 16, \"factor\": 1.0, \"ingredients\": [{\"ingr",
+      "lap 2: substitute_ingredient({\"avoid\": \"alcohol\", \"ingredient\": \"Toddy, or yeast slurry\"}) -> {\"substituted\": true, \"ingredient\": \"Toddy, or yeast slurry\", \"avoid\": \"alcohol\", \"substitute\": \"slurry of 3g dry yeast ",
+      "lap 3: substitute_ingredient({\"avoid\": \"yeast\", \"ingredient\": \"slurry of 3g dry yeast in warm water\"}) -> {\"substituted\": false, \"ingredient\": \"slurry of 3g dry yeast in warm water\", \"avoid\": \"yeast\", \"reason\": \"no substitutio",
+      "STOP budget:wall_clock at 111.1s (limit 90.0s)"
+    ],
+    "request_id": "q10",
+    "klass": "unsatisfiable",
+    "passed": true,
+    "why": "all checks ok"
+  }
+}

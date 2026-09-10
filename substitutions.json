@@ -1,0 +1,73 @@
+{
+  "_note": "Data source for the substitute_ingredient tool. CURATED FOR THIS EXERCISE, not extracted from the six recipe cards: the corpus states exactly one substitution (sanna palm toddy -> a 3g dry yeast slurry, marked source 'corpus' below). Every other row is written by hand so that allergen cascades exist to race the agent against the workflow. Each row records the allergens the replacement itself contains, which is what lets a substitute violate a second constraint in the same request.",
+  "substitutions": [
+    {
+      "ingredient": "Toddy, or yeast slurry",
+      "avoid": "alcohol",
+      "substitute": "slurry of 3g dry yeast in warm water",
+      "contains": [
+        "yeast"
+      ],
+      "source": "corpus"
+    },
+    {
+      "ingredient": "Thick sour curd",
+      "avoid": "dairy",
+      "substitute": "coconut milk yoghurt",
+      "contains": [
+        "coconut"
+      ],
+      "source": "curated"
+    },
+    {
+      "ingredient": "coconut milk yoghurt",
+      "avoid": "coconut",
+      "substitute": "soy yoghurt",
+      "contains": [
+        "soy"
+      ],
+      "source": "curated"
+    },
+    {
+      "ingredient": "soy yoghurt",
+      "avoid": "soy",
+      "substitute": "oat yoghurt",
+      "contains": [
+        "gluten"
+      ],
+      "source": "curated"
+    },
+    {
+      "ingredient": "oat yoghurt",
+      "avoid": "gluten",
+      "substitute": "sunflower seed yoghurt",
+      "contains": [],
+      "source": "curated"
+    },
+    {
+      "ingredient": "Grated coconut",
+      "avoid": "coconut",
+      "substitute": "ground cashew paste",
+      "contains": [
+        "nuts"
+      ],
+      "source": "curated"
+    },
+    {
+      "ingredient": "ground cashew paste",
+      "avoid": "nuts",
+      "substitute": "sunflower seed paste",
+      "contains": [],
+      "source": "curated"
+    },
+    {
+      "ingredient": "Active dry yeast",
+      "avoid": "yeast",
+      "substitute": "palm toddy",
+      "contains": [
+        "alcohol"
+      ],
+      "source": "curated"
+    }
+  ]
+}

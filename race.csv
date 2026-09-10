@@ -1,0 +1,25 @@
+system,request_id,klass,passed,why,model_calls,total_tokens,cost_usd,latency_seconds,stop_reason
+agent,q01,simple,True,all checks ok,3,2458,0.001023,38.203,completed
+agent,q02,simple,True,all checks ok,3,2425,0.001009,21.094,completed
+agent,q03,simple,True,all checks ok,3,2890,0.001349,31.297,completed
+agent,q04,simple,True,all checks ok,3,2919,0.001437,102.469,completed
+agent,q05,simple,True,all checks ok,3,2897,0.001311,26.406,completed
+agent,q06,simple,True,all checks ok,3,2610,0.001115,68.281,completed
+agent,q07,cascade,True,all checks ok,4,4289,0.001850,68.797,completed
+agent,q08,cascade,True,all checks ok,5,5279,0.002107,79.0,completed
+agent,q09,cascade,True,all checks ok,5,6043,0.002557,117.812,completed
+agent,q10,unsatisfiable,True,all checks ok,3,2856,0.001097,111.109,budget:wall_clock
+workflow,q01,simple,True,all checks ok,1,150,0.000096,7.469,completed
+workflow,q02,simple,True,all checks ok,1,148,0.000095,5.469,completed
+workflow,q03,simple,True,all checks ok,1,149,0.000095,4.75,completed
+workflow,q04,simple,True,all checks ok,1,149,0.000095,4.609,completed
+workflow,q05,simple,True,all checks ok,1,156,0.000104,7.344,completed
+workflow,q06,simple,True,all checks ok,1,154,0.000106,6.547,completed
+workflow,q07,cascade,False,"substitutions=[('thick sour curd', 'coconut milk yoghurt')]",1,155,0.000104,78.25,completed
+workflow,q08,cascade,False,"substitutions=[('grated coconut', 'ground cashew paste')]",1,160,0.000112,6.766,completed
+workflow,q09,cascade,False,"substitutions=[('thick sour curd', 'coconut milk yoghurt')]",1,159,0.000109,6.75,completed
+workflow,q10,unsatisfiable,False,no_safe_substitute=False,1,155,0.000106,6.875,completed
+
+SUMMARY,n,pass_rate,p50_latency_s,total_tokens,cost_per_request_usd,total_model_calls
+agent,10,1.00,68.539,34666,0.001485,35
+workflow,10,0.60,6.758,1535,0.000102,10

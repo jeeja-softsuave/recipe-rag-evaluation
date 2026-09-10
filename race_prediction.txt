@@ -1,0 +1,31 @@
+RACE PREDICTION - written before the real race ran, after a zero-call dry run.
+
+Dry run method: the workflow's single model call (request -> {dish, servings, avoid})
+was stubbed with the answer key, i.e. perfect extraction. Everything downstream is
+deterministic, so this is an UPPER BOUND on the workflow, not its race number.
+
+Workflow upper bound: 6 of 10.
+  simple         6/6
+  cascade        0/3   only makes the first swap, never re-checks the replacement
+  unsatisfiable  0/1   reports no_safe_substitute=false when it should be true
+
+Predictions for the real race:
+
+1. Workflow pass rate <= 6/10, most likely 5 or 6. The only way it loses a simple case
+   is a parse slip on a yield phrased oddly ("60 idlis", "8 glasses", "24 appams").
+
+2. Agent pass rate 8 to 10 of 10. q07 is already validated PASS at 4 laps. The risks
+   are wrong tool arguments on the multi-constraint cases and the dead-end detection on
+   q10, where it must call substitute_ingredient on the yeast slurry, get nothing back,
+   and conclude no_safe_substitute rather than silently stopping.
+
+3. Cost: agent roughly 4 laps and ~4300 tokens per request against the workflow's 1 call
+   and ~150 tokens. Expect 20-30x the tokens and about 5x the p50 latency. Measured on
+   the two validated rows: 4289 vs 149 tokens, 68.8s vs 12.8s.
+
+4. Therefore the expected verdict, subject to the numbers: the workflow wins pass rate on
+   the 6 simple requests at a fraction of the cost, and the agent wins only where the
+   path varies by input - the 3 cascade cases plus the 1 unsatisfiable case, 4 of 10.
+   If the real numbers contradict this, the verdict follows the numbers, not this file.
+
+Written before running: race_results.json held 1 row (agent:q07) at this point.
