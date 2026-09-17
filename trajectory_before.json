@@ -1,0 +1,430 @@
+{
+  "label": "before",
+  "summary": {
+    "n": 10,
+    "tool_choice_accuracy": 0.9,
+    "argument_validity_rate": 1.0,
+    "step_efficiency_mean": 1.02,
+    "step_efficiency_worst": 1.2,
+    "cost_p50_usd": 0.001727,
+    "cost_max_usd": 0.003078,
+    "outcome_pass_rate": 0.9,
+    "trajectory_pass_rate": 0.9
+  },
+  "gap": 0.0,
+  "mode_counts": {
+    "A_wrong_tool_choice": 1,
+    "B_invented_arguments": 0,
+    "C_redundant_steps": 1,
+    "D_dropped_confirmed_swap": 1,
+    "E_ungrounded_submission": 0,
+    "F_budget_termination": 0,
+    "G_outcome_failure": 1
+  },
+  "cases": [
+    {
+      "request_id": "q01",
+      "klass": "simple",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": false,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 3,
+      "steps_needed": 3,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0011905,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q02",
+      "klass": "simple",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": false,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 3,
+      "steps_needed": 3,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.001176,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q03",
+      "klass": "simple",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "substitute_ingredient",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": true,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 4,
+      "steps_needed": 4,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0017795,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q04",
+      "klass": "simple",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "substitute_ingredient",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": true,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 4,
+      "steps_needed": 4,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0016742,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q05",
+      "klass": "simple",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": true,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 4,
+      "steps_needed": 4,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0013649,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q06",
+      "klass": "simple",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": false,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 3,
+      "steps_needed": 3,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0012324,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q07",
+      "klass": "cascade",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "scale_recipe",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": true,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 5,
+      "steps_needed": 5,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0019355,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q08",
+      "klass": "cascade",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": true,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 5,
+      "steps_needed": 5,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.002527,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q09",
+      "klass": "cascade",
+      "outcome_passed": true,
+      "observed_path": [
+        "search_recipes",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": true,
+      "tool_choice_ok": true,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 6,
+      "steps_needed": 6,
+      "step_efficiency": 1.0,
+      "trajectory_passed": true,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0030779,
+      "stop_reason": "completed",
+      "modes": []
+    },
+    {
+      "request_id": "q10",
+      "klass": "unsatisfiable",
+      "outcome_passed": false,
+      "observed_path": [
+        "search_recipes",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "substitute_ingredient",
+        "scale_recipe",
+        "submit_answer"
+      ],
+      "accepted_paths": [
+        [
+          "search_recipes",
+          "scale_recipe",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "scale_recipe",
+          "substitute_ingredient",
+          "submit_answer"
+        ],
+        [
+          "search_recipes",
+          "substitute_ingredient",
+          "substitute_ingredient",
+          "scale_recipe",
+          "submit_answer"
+        ]
+      ],
+      "alternate_paths_accepted": true,
+      "tool_choice_ok": false,
+      "arguments_ok": true,
+      "bad_arguments": [],
+      "steps_taken": 6,
+      "steps_needed": 5,
+      "step_efficiency": 1.2,
+      "trajectory_passed": false,
+      "skipped_substitute_check": false,
+      "cost_usd": 0.0030081,
+      "stop_reason": "completed",
+      "modes": [
+        "A_wrong_tool_choice",
+        "C_redundant_steps",
+        "D_dropped_confirmed_swap",
+        "G_outcome_failure"
+      ]
+    }
+  ]
+}

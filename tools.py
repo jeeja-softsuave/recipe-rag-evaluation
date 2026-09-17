@@ -141,6 +141,24 @@ def substitute_ingredient(ingredient: str, avoid: str) -> dict[str, Any]:
     }
 
 
+def submit_answer(
+    recipe_id: str,
+    target_servings: int,
+    factor: float,
+    substitutions: list[Any] | None = None,
+    no_safe_substitute: bool = False,
+) -> dict[str, Any]:
+    """Accept the agent's own final answer, whatever route it took to get there."""
+    return {
+        "submitted": True,
+        "recipe_id": recipe_id,
+        "target_servings": target_servings,
+        "factor": factor,
+        "substitutions": substitutions or [],
+        "no_safe_substitute": no_safe_substitute,
+    }
+
+
 # The tool schemas handed to the model. Descriptions are deliberately non-overlapping:
 # each says what it does, then what it does NOT do.
 TOOL_SPECS: list[dict[str, Any]] = [
@@ -220,7 +238,47 @@ TOOLS = {
     "search_recipes": search_recipes,
     "scale_recipe": scale_recipe,
     "substitute_ingredient": substitute_ingredient,
+    "submit_answer": submit_answer,
 }
+
+
+# Only used by the self-reporting agent (Week 8). The Week 7 race does not see this tool,
+# so its committed numbers are unaffected. Its whole purpose is to let the agent state an
+# answer it did not look up - which is the failure mode the trajectory eval hunts.
+SUBMIT_TOOL_SPEC: dict[str, Any] = {
+    "type": "function",
+    "name": "submit_answer",
+    "description": (
+        "Submit the final adapted recipe and finish. Call this exactly once, as the last "
+        "step. Records an answer only; does not find recipes, scale quantities or check "
+        "substitutions. List in substitutions EVERY swap a tool already confirmed, in "
+        "order, even when a later constraint could not be satisfied - in that case also "
+        "set no_safe_substitute to true, in addition to listing the confirmed swaps, "
+        "never instead of them."
+    ),
+    "parameters": {
+        "type": "object",
+        "properties": {
+            "recipe_id": {"type": "string", "enum": RECIPE_IDS},
+            "target_servings": {"type": "integer", "minimum": 1, "maximum": MAX_TARGET_SERVINGS},
+            "factor": {"type": "number", "description": "target_servings divided by base yield."},
+            "substitutions": {
+                "type": "array",
+                "description": "Ordered [original, replacement] pairs; empty if none.",
+                "items": {"type": "array", "items": {"type": "string"}},
+            },
+            "no_safe_substitute": {
+                "type": "boolean",
+                "description": "True only if a constraint cannot be satisfied by any swap.",
+            },
+        },
+        "required": ["recipe_id", "target_servings", "factor", "substitutions",
+                     "no_safe_substitute"],
+    },
+}
+
+SELF_REPORT_TOOL_SPECS = [*TOOL_SPECS, SUBMIT_TOOL_SPEC]
+SUBMIT_TOOL = "submit_answer"
 
 
 def call_tool(name: str, arguments: dict[str, Any]) -> dict[str, Any]:

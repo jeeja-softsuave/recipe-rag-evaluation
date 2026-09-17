@@ -19,7 +19,7 @@ from recipe_rag import (
     _retry_delay,
     is_rate_limit_error,
 )
-from tools import TOOL_SPECS, call_tool
+from tools import SELF_REPORT_TOOL_SPECS, SUBMIT_TOOL, TOOL_SPECS, call_tool
 
 # --- budgets. Every one of these is checked in the loop below. ---
 MAX_ITERATIONS = 8
@@ -50,6 +50,16 @@ exactly as it is for the fixed workflow. What is graded is which tools you calle
 what arguments."""
 
 
+SELF_REPORT_SYSTEM = """You adapt South Indian ferment recipes. Three tools are available:
+search_recipes, scale_recipe and substitute_ingredient. Use whichever you need.
+
+When you have the adapted recipe, call submit_answer with the final result: the recipe_id,
+the target yield, the scaling factor, every substitution you are recommending as ordered
+[original, replacement] pairs, and whether any constraint could not be satisfied at all.
+
+Call submit_answer exactly once, as your last step."""
+
+
 def modelled_cost(input_tokens: int, output_tokens: int) -> float:
     """Cost in USD from token counts, using the stated list-price assumption."""
     return (
@@ -57,7 +67,9 @@ def modelled_cost(input_tokens: int, output_tokens: int) -> float:
     ) / 1_000_000
 
 
-def _gemini_step(system_instruction: str, payload: Any, previous_id: str | None) -> Any:
+def _gemini_step(
+    system_instruction: str, payload: Any, previous_id: str | None, tools: Any = None
+) -> Any:
     """One model call with tools attached. Returns the raw Interaction.
 
     The first lap sends the request as a string. Later laps send only the new
@@ -70,7 +82,7 @@ def _gemini_step(system_instruction: str, payload: Any, previous_id: str | None)
     request: dict[str, Any] = {
         "model": GEMINI_MODEL,
         "input": payload,
-        "tools": TOOL_SPECS,
+        "tools": tools if tools is not None else TOOL_SPECS,
         "generation_config": {"thinking_level": GEMINI_THINKING_LEVEL},
     }
     if previous_id is None:
@@ -121,7 +133,8 @@ def _function_calls(interaction: Any) -> list[Any]:
 
 def run_agent(
     request: str,
-    generate: Callable[[str, Any, str | None], Any] = _gemini_step,
+    generate: Callable[..., Any] = _gemini_step,
+    self_report: bool = False,
     max_iterations: int = MAX_ITERATIONS,
     max_tokens: int = MAX_TOKENS,
     max_cost_usd: float = MAX_COST_USD,
@@ -129,6 +142,12 @@ def run_agent(
 ) -> dict[str, Any]:
     """Run the loop until the model answers or a budget stops it."""
     started = time.monotonic()
+    # Self-report mode hands the agent a submit_answer tool and scores what it SUBMITS,
+    # not what the tool transcript proves. That is what makes a right answer down a wrong
+    # path possible, and therefore measurable.
+    specs = SELF_REPORT_TOOL_SPECS if self_report else TOOL_SPECS
+    instruction = SELF_REPORT_SYSTEM if self_report else SYSTEM_INSTRUCTION
+    submitted: dict[str, Any] | None = None
     payload: Any = request
     previous_id: str | None = None
     log: list[str] = []
@@ -169,7 +188,7 @@ def run_agent(
             break
 
         laps += 1
-        interaction = generate(SYSTEM_INSTRUCTION, payload, previous_id)
+        interaction = generate(instruction, payload, previous_id, specs)
         usage = getattr(interaction, "usage", None)
         if usage is not None:
             # Summed per lap: the loop resends the whole step list, so counting only
@@ -190,7 +209,9 @@ def run_agent(
                 f"lap {laps}: {call.name}({json.dumps(call.arguments)}) "
                 f"-> {json.dumps(result)[:120]}"
             )
-            if call.name == "search_recipes" and result.get("found"):
+            if call.name == SUBMIT_TOOL:
+                submitted = dict(call.arguments or {})
+            elif call.name == "search_recipes" and result.get("found"):
                 found = result
             elif call.name == "scale_recipe" and result.get("scaled"):
                 scaled = result
@@ -209,11 +230,16 @@ def run_agent(
                     "result": {"type": "text", "text": json.dumps(result)},
                 }
             )
+        if submitted is not None:
+            log.append(f"lap {laps}: submit_answer ends the run")
+            break
         payload = results
         previous_id = interaction.id
 
     contract = None
-    if found and scaled:
+    if self_report:
+        contract = submitted
+    elif found and scaled:
         contract = {
             "recipe_id": found["recipe_id"],
             "target_servings": scaled["target_servings"],
@@ -223,7 +249,7 @@ def run_agent(
         }
 
     return {
-        "system": "agent",
+        "system": "agent_self_report" if self_report else "agent",
         "request": request,
         "output": contract,
         "raw_output": raw_output,

@@ -23,8 +23,8 @@ REQUESTS_FILE = Path(__file__).parent / "requests.jsonl"
 RESULTS_FILE = Path(__file__).parent / "race_results.json"
 CSV_FILE = Path(__file__).parent / "race.csv"
 SYSTEMS = {"agent": run_agent, "workflow": run_workflow}
-# The binding limit is requests-per-minute, not per-day: an agent run fires 3-4 calls
-# back to back and saturates the window. Pausing between runs is cheaper than backoff.
+# The free-tier limit is 20 requests per DAY per project, not per minute: 180s of idle
+# never cleared it. Pacing only avoids wasting retries against an already-spent allowance.
 PACE_SECONDS = 45.0
 
 

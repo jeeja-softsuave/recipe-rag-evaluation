@@ -28,7 +28,7 @@ def stub_happy_path(tokens: tuple[int, int] = (100, 40)):
     """Search, then scale, then answer: the three-lap path a simple request needs."""
     laps: list[Any] = []
 
-    def generate(_system: str, _payload: Any, previous_id: str | None) -> SimpleNamespace:
+    def generate(_system: str, _payload: Any, previous_id: str | None, _tools: Any = None) -> SimpleNamespace:
         laps.append(previous_id)
         made = len([x for x in laps if x is not None])
         if made == 0:
@@ -62,7 +62,7 @@ def stub_never_stops(tokens: tuple[int, int] = (100, 40)):
 
     counter = {"n": 0}
 
-    def generate(_system: str, _payload: Any, _previous_id: str | None) -> SimpleNamespace:
+    def generate(_system: str, _payload: Any, _previous_id: str | None, _tools: Any = None) -> SimpleNamespace:
         counter["n"] += 1
         return SimpleNamespace(
             id=f"i{counter['n']}",
