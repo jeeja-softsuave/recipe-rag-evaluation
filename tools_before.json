@@ -1,0 +1,118 @@
+{
+  "timestamp": "2026-09-24T15:52:33+00:00",
+  "servers": [
+    "recipe-search"
+  ],
+  "tool_count": 3,
+  "tools_by_server": {
+    "recipe-search": [
+      "search_recipes",
+      "scale_recipe",
+      "substitute_ingredient"
+    ]
+  },
+  "tools_list": {
+    "recipe-search": [
+      {
+        "name": "search_recipes",
+        "description": "Find one recipe card by dish name and return its recipe_id, base yield, dietary tags\n    and ingredient weights in grams. Search only. Does not scale quantities and does not\n    substitute or check ingredients for allergens.",
+        "inputSchema": {
+          "properties": {
+            "dish": {
+              "description": "Dish name as the user said it, e.g. 'idli batter'.",
+              "title": "Dish",
+              "type": "string"
+            }
+          },
+          "required": [
+            "dish"
+          ],
+          "type": "object",
+          "title": "search_recipesArguments"
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": true,
+          "title": "search_recipesDictOutput"
+        }
+      },
+      {
+        "name": "scale_recipe",
+        "description": "Multiply the ingredient weights of one already-identified recipe to a target yield.\n    Arithmetic only. Requires a recipe_id obtained from search_recipes. Does not find\n    recipes and does not substitute or check ingredients.",
+        "inputSchema": {
+          "properties": {
+            "recipe_id": {
+              "description": "recipe_id returned by search_recipes.",
+              "enum": [
+                "idli-batter-05",
+                "kallappam-batter-02",
+                "kuzhi-paniyaram-batter-01",
+                "moru-04",
+                "neeragaram-06",
+                "sanna-03"
+              ],
+              "title": "Recipe Id",
+              "type": "string"
+            },
+            "target_servings": {
+              "description": "Requested yield in the same unit as base_yield.",
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Target Servings",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "recipe_id",
+            "target_servings"
+          ],
+          "type": "object",
+          "title": "scale_recipeArguments"
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": true,
+          "title": "scale_recipeDictOutput"
+        }
+      },
+      {
+        "name": "substitute_ingredient",
+        "description": "Replace one ingredient to satisfy one dietary constraint.",
+        "inputSchema": {
+          "properties": {
+            "ingredient": {
+              "description": "The ingredient to replace.",
+              "title": "Ingredient",
+              "type": "string"
+            },
+            "avoid": {
+              "description": "The dietary constraint.",
+              "enum": [
+                "dairy",
+                "coconut",
+                "nuts",
+                "gluten",
+                "alcohol",
+                "yeast",
+                "soy"
+              ],
+              "title": "Avoid",
+              "type": "string"
+            }
+          },
+          "required": [
+            "ingredient",
+            "avoid"
+          ],
+          "type": "object",
+          "title": "substitute_ingredientArguments"
+        },
+        "outputSchema": {
+          "type": "object",
+          "additionalProperties": true,
+          "title": "substitute_ingredientDictOutput"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+Week 9 predictions - written 2026-09-24, before any Week 9 model call, committed with the
+baseline so the ordering is checkable in git.
+
+P1 - Discovery. tools/list returns 3 tools from recipe-search before server two is added,
+     and 3 + (whatever ingredient-db lists) after. mcp_agent.py shows 0 changed lines.
+     (Not a real prediction - it is the property being proved. Listed so the check exists.)
+
+P2 - Same nutrition question, server one only vs both servers:
+     "How much protein is in 100g of the urad dal used in idli batter?"
+     Before (no nutrition tool exists): I predict the agent calls search_recipes, then
+     refuses to give a number, because the system instruction forbids values no tool
+     returned. Confidence 60%. The 40% failure case is the finding worth having: the
+     model states a protein figure from its own knowledge, which the trace would show
+     came from no tool.
+     After: search_recipes (recipe-search) then a nutrition tool on ingredient-db, and a
+     number that matches the tool result exactly. Confidence 80%.
+
+P3 - Token cost of adding server two. Input tokens on the first lap rise because the
+     model now also receives server two's tool schemas and its attached allergen matrix.
+     I predict +40% to +80% on first-lap input tokens.
+
+P4 - Recoverable error, request "What can I use instead of curd if I'm avoiding dairy?"
+     Before (docstring "Replace one ingredient to satisfy one dietary constraint.", error
+     "no substitution recorded for that ingredient and constraint"): the model calls
+     substitute_ingredient("curd", "dairy") and reports that no dairy-free substitute
+     exists - a false negative, because the table holds one under "Thick sour curd".
+     Confidence 55%. Main risk to the experiment: the model calls search_recipes first,
+     copies the exact card name and never makes the failing call at all.
+     After (docstring rewritten as a prompt, error naming the closest ingredient): the
+     model retries with "Thick sour curd" and returns coconut milk yoghurt. Confidence 75%.
