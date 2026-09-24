@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "recipe-search": {
+      "command": ".venv/Scripts/python.exe",
+      "args": ["recipe_server.py"],
+      "attachResources": ["recipe://allergen-notes"]
+    }
+  }
+}

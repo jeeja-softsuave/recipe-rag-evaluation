@@ -1,0 +1,95 @@
+{
+  "request": "What can I use instead of curd if I'm avoiding dairy?",
+  "lap1_interaction_id": "v1_Chcza20xYXI2SkROYVNnOFVQbC1uYnNROBIXM2ttMWFyNkpETmFTZzhVUGwtbmJzUTg",
+  "lap1_calls": [
+    {
+      "tool": "substitute_ingredient",
+      "arguments": {
+        "ingredient": "curd",
+        "avoid": "dairy"
+      }
+    }
+  ],
+  "before": {
+    "branch": "before",
+    "laps": 3,
+    "transcript": [
+      {
+        "lap": 1,
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": {
+          "substituted": false,
+          "ingredient": "curd",
+          "avoid": "dairy",
+          "reason": "no substitution recorded for that ingredient and constraint"
+        }
+      },
+      {
+        "lap": 2,
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "dairy",
+          "ingredient": "yogurt"
+        },
+        "is_error": false,
+        "result": {
+          "substituted": false,
+          "ingredient": "yogurt",
+          "avoid": "dairy",
+          "reason": "no substitution recorded for that ingredient and constraint"
+        }
+      }
+    ],
+    "answer": "I don't have a specific pre-recorded substitution in the database for curd when avoiding dairy, but common dairy-free alternatives to curd (yogurt) include:\n\n* **Coconut Curd / Coconut Milk Yogurt:** Naturally creamy and slightly sweet, ideal for South Asian dishes, parfait, or dips.\n* **Soy Curd / Soy Yogurt:** Neutral flavor and high protein content, making it a close standard substitute for dairy curd in cooking and fermenting.\n* **Cashew or Almond Curd:** Nut-based curds that blend rich texture with a mild taste, great for thick gravies, raitas, and marinades.\n* **Peanut Curd:** A traditional homemade plant-based curd alternative commonly used in Indian cooking."
+  },
+  "after": {
+    "branch": "after",
+    "laps": 3,
+    "transcript": [
+      {
+        "lap": 1,
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": {
+          "substituted": false,
+          "ingredient": "curd",
+          "avoid": "dairy",
+          "reason": "no ingredient named 'curd' in the substitution table: try 'Thick sour curd'",
+          "recoverable": true,
+          "did_you_mean": [
+            "Thick sour curd"
+          ]
+        }
+      },
+      {
+        "lap": 2,
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "dairy",
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": {
+          "substituted": true,
+          "ingredient": "Thick sour curd",
+          "avoid": "dairy",
+          "substitute": "coconut milk yoghurt",
+          "substitute_contains": [
+            "coconut"
+          ],
+          "source": "curated"
+        }
+      }
+    ],
+    "answer": "Instead of thick sour curd, you can use **coconut milk yoghurt** to avoid dairy. Please note that coconut milk yoghurt contains coconut."
+  }
+}
