@@ -1,0 +1,16 @@
+diff --git a/mcp_config.json b/mcp_config.json
+index 1bc17a8..d1aef65 100644
+--- a/mcp_config.json
++++ b/mcp_config.json
+@@ -4,6 +4,11 @@
+       "command": ".venv/Scripts/python.exe",
+       "args": ["recipe_server.py"],
+       "attachResources": ["recipe://allergen-notes"]
++    },
++    "ingredient-db": {
++      "command": ".venv/Scripts/python.exe",
++      "args": ["vendor/ingredient_db/server.py"],
++      "attachResources": ["ingredient-db://allergen-matrix"]
+     }
+   }
+ }

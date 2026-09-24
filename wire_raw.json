@@ -1,0 +1,30 @@
+[
+  {
+    "direction": "client -> server",
+    "raw": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"method\": \"initialize\", \"params\": {\"protocolVersion\": \"2025-11-25\", \"capabilities\": {}, \"clientInfo\": {\"name\": \"capture-wire\", \"version\": \"1.0\"}}}"
+  },
+  {
+    "direction": "server -> client",
+    "raw": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"capabilities\":{\"experimental\":{},\"prompts\":{\"listChanged\":false},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2025-11-25\",\"serverInfo\":{\"name\":\"ingredient-db\",\"version\":\"\"}}}"
+  },
+  {
+    "direction": "client -> server",
+    "raw": "{\"jsonrpc\": \"2.0\", \"method\": \"notifications/initialized\"}"
+  },
+  {
+    "direction": "client -> server",
+    "raw": "{\"jsonrpc\": \"2.0\", \"id\": 2, \"method\": \"tools/list\"}"
+  },
+  {
+    "direction": "server -> client",
+    "raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"tools\":[{\"description\":\"Look up which allergen flags one ingredient carries.\",\"inputSchema\":{\"properties\":{\"ingredient\":{\"description\":\"Ingredient name, e.g. 'urad dal' or 'Thick sour curd'.\",\"title\":\"Ingredient\",\"type\":\"string\"}},\"required\":[\"ingredient\"],\"type\":\"object\",\"title\":\"lookup_allergensArguments\"},\"name\":\"lookup_allergens\",\"outputSchema\":{\"type\":\"object\",\"additionalProperties\":true,\"title\":\"lookup_allergensDictOutput\"}},{\"description\":\"Look up per-100g nutrition (energy, protein, fat, carbohydrate, fibre, sodium) for one\\n    ingredient, by raw weight.\",\"inputSchema\":{\"properties\":{\"ingredient\":{\"description\":\"Ingredient name, e.g. 'urad dal' or 'Thick sour curd'.\",\"title\":\"Ingredient\",\"type\":\"string\"}},\"required\":[\"ingredient\"],\"type\":\"object\",\"title\":\"lookup_nutritionArguments\"},\"name\":\"lookup_nutrition\",\"outputSchema\":{\"type\":\"object\",\"additionalProperties\":true,\"title\":\"lookup_nutritionDictOutput\"}}]}}"
+  },
+  {
+    "direction": "client -> server",
+    "raw": "{\"jsonrpc\": \"2.0\", \"id\": 3, \"method\": \"tools/call\", \"params\": {\"name\": \"lookup_nutrition\", \"arguments\": {\"ingredient\": \"urad dal\"}}}"
+  },
+  {
+    "direction": "server -> client",
+    "raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"matched\\\": true,\\n  \\\"ingredient\\\": \\\"Whole white urad dal\\\",\\n  \\\"per_100g\\\": {\\n    \\\"energy_kcal\\\": 341,\\n    \\\"protein_g\\\": 25.2,\\n    \\\"fat_g\\\": 1.6,\\n    \\\"carbohydrate_g\\\": 59.0,\\n    \\\"fibre_g\\\": 18.3,\\n    \\\"sodium_mg\\\": 38\\n  }\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"matched\":true,\"ingredient\":\"Whole white urad dal\",\"per_100g\":{\"energy_kcal\":341,\"protein_g\":25.2,\"fat_g\":1.6,\"carbohydrate_g\":59.0,\"fibre_g\":18.3,\"sodium_mg\":38}}}}"
+  }
+]

@@ -1,0 +1,22 @@
+# Requirement 2: mcp_agent.py between server one only (5963d57) and server one plus two (d5036fb)
+# Command: git diff --stat --exit-code 5963d57 d5036fb -- mcp_agent.py
+# Output (empty = no changes):
+
+# git diff --exit-code status: 0   (0 = identical)
+# mcp_agent.py blob hash at 5963d57: 9d28218cae2dc72dc6610ea8a8267ba62d1ee974
+# mcp_agent.py blob hash at d5036fb: 9d28218cae2dc72dc6610ea8a8267ba62d1ee974
+# Changed lines in mcp_agent.py: 0
+#
+# Every file that changed between the two commits (the vendor commit adds the
+# third-party server's own files; the config commit touches only mcp_config.json):
+ mcp_config.json                       |   5 ++
+ vendor/ingredient_db/.gitignore       |   1 +
+ vendor/ingredient_db/ingredients.json |  29 +++++++++
+ vendor/ingredient_db/server.py        | 110 ++++++++++++++++++++++++++++++++++
+ 4 files changed, 145 insertions(+)
+#
+# Config-only commit d5036fb, whole tree:
+d5036fb Config only: add the ingredient-db server to mcp_config.json
+
+ mcp_config.json | 5 +++++
+ 1 file changed, 5 insertions(+)

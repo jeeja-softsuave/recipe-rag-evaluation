@@ -1,0 +1,79 @@
+{
+  "_about": "Raw JSON-RPC 2.0 over stdio between capture_wire.py (a bare client, no SDK, no model) and the ingredient-db server, captured 2026-09-24 by `python capture_wire.py ingredient-db lookup_nutrition '{\"ingredient\": \"urad dal\"}'`. Each 'raw' value is the exact line written to or read from the pipe; 'annotations' covers every top-level field of that message. Transport: newline-delimited JSON on the server's stdin/stdout; the server's logs go to stderr.",
+  "model_call_location": "The model is called only in the host (mcp_agent.py, _gemini_step -> client.interactions.create); it is never called in either MCP server or anywhere in this exchange - initialize, tools/list and tools/call are answered by deterministic code, and this client declared no sampling capability, so the server has no way to request one.",
+  "exchange": [
+    {
+      "step": "1. initialize (request)",
+      "direction": "client -> server",
+      "raw": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"method\": \"initialize\", \"params\": {\"protocolVersion\": \"2025-11-25\", \"capabilities\": {}, \"clientInfo\": {\"name\": \"capture-wire\", \"version\": \"1.0\"}}}",
+      "annotations": {
+        "jsonrpc": "Protocol envelope. Always the string \"2.0\"; every MCP message is a JSON-RPC 2.0 message.",
+        "id": "Request id 1, chosen by the client. The server must echo it so the reply can be matched. Its presence is what makes this a request rather than a notification.",
+        "method": "\"initialize\" - must be the first request on a connection. Nothing else is answered until it completes.",
+        "params": "protocolVersion: the newest spec revision the client speaks (2025-11-25). capabilities: {} - this client offers nothing back to the server (no sampling, no roots, no elicitation), so the server cannot ask the host to run a model. clientInfo: name/version, for logs only."
+      }
+    },
+    {
+      "step": "1. initialize (response)",
+      "direction": "server -> client",
+      "raw": "{\"jsonrpc\":\"2.0\",\"id\":1,\"result\":{\"capabilities\":{\"experimental\":{},\"prompts\":{\"listChanged\":false},\"resources\":{\"listChanged\":false,\"subscribe\":false},\"tools\":{\"listChanged\":false}},\"protocolVersion\":\"2025-11-25\",\"serverInfo\":{\"name\":\"ingredient-db\",\"version\":\"\"}}}",
+      "annotations": {
+        "jsonrpc": "\"2.0\" envelope.",
+        "id": "1 - echoes the request, so this is the reply to initialize.",
+        "result": "capabilities: what the server supports - tools (listChanged:false: its tool list never changes mid-session, so the host need not re-list), resources (subscribe:false, listChanged:false), prompts, experimental {}. protocolVersion: the server agreed to 2025-11-25; had it not supported it, it would answer a version it does support and the client decides whether to continue. serverInfo: name \"ingredient-db\", version \"\" - the server declares no version, so a host cannot pin or audit which release it is talking to (noted in risk_note.md). No 'instructions' field was sent."
+      }
+    },
+    {
+      "step": "2. notifications/initialized",
+      "direction": "client -> server",
+      "raw": "{\"jsonrpc\": \"2.0\", \"method\": \"notifications/initialized\"}",
+      "annotations": {
+        "jsonrpc": "\"2.0\" envelope.",
+        "method": "\"notifications/initialized\" - the client confirms the handshake is done; normal requests may follow.",
+        "(no id)": "Deliberately absent: a notification gets no response. That is why the capture shows no server line for this step."
+      }
+    },
+    {
+      "step": "3. tools/list (request)",
+      "direction": "client -> server",
+      "raw": "{\"jsonrpc\": \"2.0\", \"id\": 2, \"method\": \"tools/list\"}",
+      "annotations": {
+        "jsonrpc": "\"2.0\" envelope.",
+        "id": "2 - next request id.",
+        "method": "\"tools/list\" - discovery. This is the only place the host learns what tools exist; mcp_agent.py builds the model's tool list from exactly this reply.",
+        "(no params)": "Omitted: no pagination cursor on the first page."
+      }
+    },
+    {
+      "step": "3. tools/list (response)",
+      "direction": "server -> client",
+      "raw": "{\"jsonrpc\":\"2.0\",\"id\":2,\"result\":{\"tools\":[{\"description\":\"Look up which allergen flags one ingredient carries.\",\"inputSchema\":{\"properties\":{\"ingredient\":{\"description\":\"Ingredient name, e.g. 'urad dal' or 'Thick sour curd'.\",\"title\":\"Ingredient\",\"type\":\"string\"}},\"required\":[\"ingredient\"],\"type\":\"object\",\"title\":\"lookup_allergensArguments\"},\"name\":\"lookup_allergens\",\"outputSchema\":{\"type\":\"object\",\"additionalProperties\":true,\"title\":\"lookup_allergensDictOutput\"}},{\"description\":\"Look up per-100g nutrition (energy, protein, fat, carbohydrate, fibre, sodium) for one\\n    ingredient, by raw weight.\",\"inputSchema\":{\"properties\":{\"ingredient\":{\"description\":\"Ingredient name, e.g. 'urad dal' or 'Thick sour curd'.\",\"title\":\"Ingredient\",\"type\":\"string\"}},\"required\":[\"ingredient\"],\"type\":\"object\",\"title\":\"lookup_nutritionArguments\"},\"name\":\"lookup_nutrition\",\"outputSchema\":{\"type\":\"object\",\"additionalProperties\":true,\"title\":\"lookup_nutritionDictOutput\"}}]}}",
+      "annotations": {
+        "jsonrpc": "\"2.0\" envelope.",
+        "id": "2 - reply to tools/list.",
+        "result": "tools: 2 entries, lookup_allergens and lookup_nutrition. Per tool: name (what the model calls); description (the Python docstring, verbatim, including its newline and indentation - this text IS the prompt the model reads); inputSchema (JSON Schema generated from the type hints; 'title' keys are SDK noise that mcp_agent.py strips before handing it to the model); outputSchema (a loose object schema auto-derived from the '-> dict' return hint - says almost nothing). No nextCursor, so this is the complete list. NOT on the wire, although the SDK's parsed object shows them: ttlMs, cacheScope, resultType - those are client-side defaults."
+      }
+    },
+    {
+      "step": "4. tools/call (request)",
+      "direction": "client -> server",
+      "raw": "{\"jsonrpc\": \"2.0\", \"id\": 3, \"method\": \"tools/call\", \"params\": {\"name\": \"lookup_nutrition\", \"arguments\": {\"ingredient\": \"urad dal\"}}}",
+      "annotations": {
+        "jsonrpc": "\"2.0\" envelope.",
+        "id": "3 - next request id.",
+        "method": "\"tools/call\" - invoke one tool. In the agent, the model chose this call; here this script sends it by hand, which proves the server needs no model to answer it.",
+        "params": "name: \"lookup_nutrition\", one of the names tools/list returned. arguments: {\"ingredient\": \"urad dal\"} - validated by the server against the inputSchema before the function runs. The raw user query text reaches the server here, and it is written to vendor/ingredient_db/queries.log."
+      }
+    },
+    {
+      "step": "4. tools/call (response)",
+      "direction": "server -> client",
+      "raw": "{\"jsonrpc\":\"2.0\",\"id\":3,\"result\":{\"content\":[{\"text\":\"{\\n  \\\"matched\\\": true,\\n  \\\"ingredient\\\": \\\"Whole white urad dal\\\",\\n  \\\"per_100g\\\": {\\n    \\\"energy_kcal\\\": 341,\\n    \\\"protein_g\\\": 25.2,\\n    \\\"fat_g\\\": 1.6,\\n    \\\"carbohydrate_g\\\": 59.0,\\n    \\\"fibre_g\\\": 18.3,\\n    \\\"sodium_mg\\\": 38\\n  }\\n}\",\"type\":\"text\"}],\"isError\":false,\"structuredContent\":{\"matched\":true,\"ingredient\":\"Whole white urad dal\",\"per_100g\":{\"energy_kcal\":341,\"protein_g\":25.2,\"fat_g\":1.6,\"carbohydrate_g\":59.0,\"fibre_g\":18.3,\"sodium_mg\":38}}}}",
+      "annotations": {
+        "jsonrpc": "\"2.0\" envelope.",
+        "id": "3 - reply to tools/call.",
+        "result": "content: one text block holding the result as pretty-printed JSON - this is what mcp_agent.py passes to the model as the function_result. isError: false - a tool-level success flag, separate from a JSON-RPC 'error' member (which would mean the protocol call itself failed). The agent maps it straight onto Gemini's is_error. structuredContent: the same result as a JSON object, for hosts that want data rather than text. Note the fuzzy match: the query was 'urad dal', the record returned is 'Whole white urad dal' - the server resolved an alias, and says so in the 'ingredient' field."
+      }
+    }
+  ]
+}
