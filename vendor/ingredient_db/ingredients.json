@@ -1,0 +1,29 @@
+{
+  "_note": "STAND-IN DATA. There is no real content-team server for this exercise, so this file was written in-house to play the third-party ingredient database. Nutrition values are approximate per-100g figures of the kind published in public food-composition tables (raw weight unless stated), rounded, and NOT lab-verified. Allergen flags use the recipe app's own seven-constraint vocabulary. Ingredient names match the recipe cards and substitutions.json so lookups can succeed.",
+  "flags": ["dairy", "coconut", "nuts", "gluten", "alcohol", "yeast", "soy"],
+  "ingredients": [
+    {"name": "Idli rice, parboiled", "aliases": ["idli rice", "parboiled rice"], "contains": [], "per_100g": {"energy_kcal": 370, "protein_g": 7.5, "fat_g": 0.6, "carbohydrate_g": 81.0, "fibre_g": 1.8, "sodium_mg": 5}},
+    {"name": "Raw rice, pachari", "aliases": ["raw rice", "pachari", "white rice"], "contains": [], "per_100g": {"energy_kcal": 360, "protein_g": 6.8, "fat_g": 0.5, "carbohydrate_g": 79.0, "fibre_g": 1.0, "sodium_mg": 5}},
+    {"name": "Cooked rice", "aliases": ["cooked rice, cooled", "leftover rice"], "contains": [], "per_100g": {"energy_kcal": 130, "protein_g": 2.7, "fat_g": 0.3, "carbohydrate_g": 28.0, "fibre_g": 0.4, "sodium_mg": 1}},
+    {"name": "Whole white urad dal", "aliases": ["urad dal", "black gram", "white urad"], "contains": [], "per_100g": {"energy_kcal": 341, "protein_g": 25.2, "fat_g": 1.6, "carbohydrate_g": 59.0, "fibre_g": 18.3, "sodium_mg": 38}},
+    {"name": "Fenugreek seeds", "aliases": ["fenugreek", "methi seeds"], "contains": [], "per_100g": {"energy_kcal": 323, "protein_g": 23.0, "fat_g": 6.4, "carbohydrate_g": 58.0, "fibre_g": 24.6, "sodium_mg": 67}},
+    {"name": "Rock salt", "aliases": ["salt"], "contains": [], "per_100g": {"energy_kcal": 0, "protein_g": 0.0, "fat_g": 0.0, "carbohydrate_g": 0.0, "fibre_g": 0.0, "sodium_mg": 38000}},
+    {"name": "Fine salt", "aliases": ["table salt"], "contains": [], "per_100g": {"energy_kcal": 0, "protein_g": 0.0, "fat_g": 0.0, "carbohydrate_g": 0.0, "fibre_g": 0.0, "sodium_mg": 38758}},
+    {"name": "Water", "aliases": ["water for grinding"], "contains": [], "per_100g": {"energy_kcal": 0, "protein_g": 0.0, "fat_g": 0.0, "carbohydrate_g": 0.0, "fibre_g": 0.0, "sodium_mg": 0}},
+    {"name": "Grated coconut", "aliases": ["coconut", "fresh coconut"], "contains": ["coconut"], "per_100g": {"energy_kcal": 354, "protein_g": 3.3, "fat_g": 33.5, "carbohydrate_g": 15.2, "fibre_g": 9.0, "sodium_mg": 20}},
+    {"name": "Active dry yeast", "aliases": ["dry yeast", "yeast"], "contains": ["yeast"], "per_100g": {"energy_kcal": 325, "protein_g": 40.4, "fat_g": 7.6, "carbohydrate_g": 41.2, "fibre_g": 26.9, "sodium_mg": 51}},
+    {"name": "Palm toddy", "aliases": ["toddy", "toddy, or yeast slurry"], "contains": ["alcohol", "yeast"], "per_100g": {"energy_kcal": 35, "protein_g": 0.1, "fat_g": 0.0, "carbohydrate_g": 3.0, "fibre_g": 0.0, "sodium_mg": 5}},
+    {"name": "Sugar", "aliases": ["white sugar"], "contains": [], "per_100g": {"energy_kcal": 387, "protein_g": 0.0, "fat_g": 0.0, "carbohydrate_g": 100.0, "fibre_g": 0.0, "sodium_mg": 1}},
+    {"name": "Thick sour curd", "aliases": ["curd", "yoghurt", "yogurt", "dahi"], "contains": ["dairy"], "per_100g": {"energy_kcal": 61, "protein_g": 3.5, "fat_g": 3.3, "carbohydrate_g": 4.7, "fibre_g": 0.0, "sodium_mg": 46}},
+    {"name": "Ginger", "aliases": ["ginger, crushed", "fresh ginger"], "contains": [], "per_100g": {"energy_kcal": 80, "protein_g": 1.8, "fat_g": 0.8, "carbohydrate_g": 17.8, "fibre_g": 2.0, "sodium_mg": 13}},
+    {"name": "Green chilli", "aliases": ["green chilli, slit", "green chili"], "contains": [], "per_100g": {"energy_kcal": 40, "protein_g": 2.0, "fat_g": 0.2, "carbohydrate_g": 9.5, "fibre_g": 1.5, "sodium_mg": 7}},
+    {"name": "Curry leaves", "aliases": ["kariveppilai"], "contains": [], "per_100g": {"energy_kcal": 108, "protein_g": 6.1, "fat_g": 1.0, "carbohydrate_g": 18.7, "fibre_g": 6.4, "sodium_mg": 0}},
+    {"name": "Shallots", "aliases": ["shallots, crushed", "shallots, sliced", "small onions"], "contains": [], "per_100g": {"energy_kcal": 72, "protein_g": 2.5, "fat_g": 0.1, "carbohydrate_g": 16.8, "fibre_g": 3.2, "sodium_mg": 12}},
+    {"name": "Coconut milk yoghurt", "aliases": ["coconut yoghurt"], "contains": ["coconut"], "per_100g": {"energy_kcal": 90, "protein_g": 0.6, "fat_g": 7.0, "carbohydrate_g": 6.0, "fibre_g": 0.5, "sodium_mg": 15}},
+    {"name": "Soy yoghurt", "aliases": ["soya yoghurt"], "contains": ["soy"], "per_100g": {"energy_kcal": 66, "protein_g": 3.5, "fat_g": 2.2, "carbohydrate_g": 7.0, "fibre_g": 0.5, "sodium_mg": 20}},
+    {"name": "Oat yoghurt", "aliases": ["oat yogurt"], "contains": ["gluten"], "per_100g": {"energy_kcal": 80, "protein_g": 1.0, "fat_g": 2.5, "carbohydrate_g": 12.0, "fibre_g": 1.0, "sodium_mg": 40}},
+    {"name": "Sunflower seed yoghurt", "aliases": ["sunflower yoghurt"], "contains": [], "per_100g": {"energy_kcal": 100, "protein_g": 3.0, "fat_g": 7.0, "carbohydrate_g": 6.0, "fibre_g": 1.5, "sodium_mg": 10}},
+    {"name": "Ground cashew paste", "aliases": ["cashew paste"], "contains": ["nuts"], "per_100g": {"energy_kcal": 553, "protein_g": 18.2, "fat_g": 43.9, "carbohydrate_g": 30.2, "fibre_g": 3.3, "sodium_mg": 12}},
+    {"name": "Sunflower seed paste", "aliases": ["sunflower seed butter"], "contains": [], "per_100g": {"energy_kcal": 617, "protein_g": 17.3, "fat_g": 55.2, "carbohydrate_g": 23.3, "fibre_g": 5.7, "sodium_mg": 3}}
+  ]
+}
