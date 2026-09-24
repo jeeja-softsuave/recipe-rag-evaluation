@@ -4,6 +4,11 @@
       "command": ".venv/Scripts/python.exe",
       "args": ["recipe_server.py"],
       "attachResources": ["recipe://allergen-notes"]
+    },
+    "ingredient-db": {
+      "command": ".venv/Scripts/python.exe",
+      "args": ["vendor/ingredient_db/server.py"],
+      "attachResources": ["ingredient-db://allergen-matrix"]
     }
   }
 }
