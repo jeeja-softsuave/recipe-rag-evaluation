@@ -1,0 +1,78 @@
+{
+  "_rule": "The 10 cases are a seeded random sample of the 34 Week-6 cases in substitution_cases.jsonl: sorted(random.Random(20260824).sample(sorted(case_ids), 10)). Seed 20260824 is the project's existing sampling seed (sample_traces.py). Drawn and committed before any Week 10 run; no case was written, edited or swapped.",
+  "source": "substitution_cases.jsonl",
+  "seed": 20260824,
+  "population": 34,
+  "cases": [
+    {
+      "case_id": "r01",
+      "request": "sanna toddy quantity",
+      "kind": "regression",
+      "mode": "M4",
+      "recipe_id": "sanna-03"
+    },
+    {
+      "case_id": "r03",
+      "request": "is moru ok if im allergic to milk",
+      "kind": "replay",
+      "mode": "M5",
+      "recipe_id": "moru-04"
+    },
+    {
+      "case_id": "r04",
+      "request": "is sanna safe for a dairy allergy",
+      "kind": "replay",
+      "mode": "M5",
+      "recipe_id": "sanna-03"
+    },
+    {
+      "case_id": "s04",
+      "request": "what can i use instead of urad dal in idli batter",
+      "kind": "ungrounded",
+      "mode": "M1",
+      "recipe_id": "idli-batter-05"
+    },
+    {
+      "case_id": "s06",
+      "request": "no curd for moru, what else can i use",
+      "kind": "ungrounded",
+      "mode": "M5",
+      "recipe_id": "moru-04"
+    },
+    {
+      "case_id": "s07",
+      "request": "can i use milk instead of curd in moru",
+      "kind": "trap",
+      "mode": "M5",
+      "recipe_id": "moru-04"
+    },
+    {
+      "case_id": "s12",
+      "request": "im allergic to milk, what can i swap into moru to make it safe",
+      "kind": "trap",
+      "mode": "M5",
+      "recipe_id": "moru-04"
+    },
+    {
+      "case_id": "s16",
+      "request": "same yeast swap work for idli batter",
+      "kind": "trap",
+      "mode": "M5",
+      "recipe_id": "idli-batter-05"
+    },
+    {
+      "case_id": "s18",
+      "request": "half batch of sanna using yeast not toddy, how much yeast",
+      "kind": "ungrounded",
+      "mode": "M3",
+      "recipe_id": "sanna-03"
+    },
+    {
+      "case_id": "s21",
+      "request": "instead of standing moru 2 hours can i refrigerate it straight away",
+      "kind": "trap",
+      "mode": "M2",
+      "recipe_id": "moru-04"
+    }
+  ]
+}

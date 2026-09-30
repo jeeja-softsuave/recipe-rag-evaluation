@@ -1,0 +1,993 @@
+{
+  "single:r03": {
+    "arm": "single",
+    "request": "is moru ok if im allergic to milk",
+    "answer": "No, **Moru is not safe if you have a milk allergy**. \n\nThe recipe includes **Thick sour curd**, which contains **dairy**. Because milk protein triggers a milk allergy, Moru should be avoided unless made with a suitable non-dairy curd substitute.",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"allergens\": {\n    \"dairy\": true,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (3 laps)",
+        "status": "completed",
+        "payload_chars": 33,
+        "model_calls": 3,
+        "input_tokens": 4605,
+        "output_tokens": 92,
+        "total_tokens": 4697
+      }
+    ],
+    "model_calls": 3,
+    "input_tokens": 4605,
+    "output_tokens": 92,
+    "total_tokens": 4697,
+    "cost_usd": 0.0016115,
+    "latency_seconds": 32.859,
+    "case_id": "r03",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-09-26T16:17:15+00:00"
+  },
+  "squad:r03": {
+    "arm": "squad",
+    "request": "is moru ok if im allergic to milk",
+    "plan": {
+      "substitution": null,
+      "allergen": "Check if the recipe moru contains milk or dairy allergens for a user with a milk allergy."
+    },
+    "worker_status": {
+      "allergen": 200
+    },
+    "answer": "No, the recipe **Moru** is **unsuitable for a person with a milk (dairy) allergy**.\n\n### Details:\n* **Dairy Ingredient:** It contains **400 g of thick sour curd**, which is a dairy product made from milk.\n* **Allergen Flag:** Dairy / Milk.\n* **Dietary Impact:** While the recipe is vegetarian and gluten-free, it is **not vegan** and contains milk proteins. Therefore, someone with a milk allergy should avoid it or substitute the curd with a plant-based alternative (such as coconut curd or soy yogurt).",
+    "evidence": [
+      {
+        "worker": "allergen",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"allergens\": {\n    \"dairy\": true,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 33,
+        "model_calls": 1,
+        "input_tokens": 237,
+        "output_tokens": 30,
+        "total_tokens": 267
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "ok",
+        "payload_chars": 89,
+        "model_calls": 3,
+        "input_tokens": 2710,
+        "output_tokens": 162,
+        "total_tokens": 2872
+      },
+      {
+        "handoff": "allergen worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 510,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 584,
+        "model_calls": 1,
+        "input_tokens": 240,
+        "output_tokens": 123,
+        "total_tokens": 363
+      }
+    ],
+    "model_calls": 5,
+    "input_tokens": 3187,
+    "output_tokens": 315,
+    "total_tokens": 3502,
+    "cost_usd": 0.0017435999999999999,
+    "latency_seconds": 48.875,
+    "case_id": "r03",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-09-26T16:18:09+00:00"
+  },
+  "single:r01": {
+    "arm": "single",
+    "request": "sanna toddy quantity",
+    "answer": "For the standard Sanna recipe (base yield of 16 steamed cakes), the required quantity of **Toddy (or yeast slurry)** is **120 grams**.",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"title\": \"Sanna (sixteen steamed cakes)\",\n  \"base_yield\": 16,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 150.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 120.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 40.0\n    }\n  ]\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (2 laps)",
+        "status": "completed",
+        "payload_chars": 20,
+        "model_calls": 2,
+        "input_tokens": 2732,
+        "output_tokens": 52,
+        "total_tokens": 2784
+      }
+    ],
+    "model_calls": 2,
+    "input_tokens": 2732,
+    "output_tokens": 52,
+    "total_tokens": 2784,
+    "cost_usd": 0.0009496,
+    "latency_seconds": 23.25,
+    "case_id": "r01",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-09-26T16:18:49+00:00"
+  },
+  "squad:r01": {
+    "arm": "squad",
+    "request": "sanna toddy quantity",
+    "plan": {
+      "substitution": "Find the quantity of toddy required in the sanna recipe.",
+      "allergen": null
+    },
+    "worker_status": {
+      "substitution": 200
+    },
+    "answer": "Based on the recipe report, the required quantity of toddy (or yeast slurry) for a base yield of 16 sanna (steamed cakes) is **120 grams**.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"title\": \"Sanna (sixteen steamed cakes)\",\n  \"base_yield\": 16,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 150.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 120.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 40.0\n    }\n  ]\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 20,
+        "model_calls": 1,
+        "input_tokens": 233,
+        "output_tokens": 34,
+        "total_tokens": 267
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 56,
+        "model_calls": 2,
+        "input_tokens": 1308,
+        "output_tokens": 53,
+        "total_tokens": 1361
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 123,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 188,
+        "model_calls": 1,
+        "input_tokens": 146,
+        "output_tokens": 39,
+        "total_tokens": 185
+      }
+    ],
+    "model_calls": 4,
+    "input_tokens": 1687,
+    "output_tokens": 126,
+    "total_tokens": 1813,
+    "cost_usd": 0.0008211,
+    "latency_seconds": 25.281,
+    "case_id": "r01",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-09-26T16:19:34+00:00"
+  },
+  "single:r04": {
+    "arm": "single",
+    "request": "is sanna safe for a dairy allergy",
+    "answer": "Yes, sanna is safe for a dairy allergy. The recipe is **vegan** and **gluten-free**, containing no dairy ingredients. \n\n### Ingredients in Sanna:\n* Parboiled idli rice\n* Water\n* Grated coconut\n* Toddy (or yeast slurry)\n* Rock salt\n* Cooked rice\n\n*(Note: Sanna does contain **coconut**. If alcohol is an issue, yeast slurry should be used instead of traditional toddy.)*",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"title\": \"Sanna (sixteen steamed cakes)\",\n  \"base_yield\": 16,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 150.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 120.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 40.0\n    }\n  ]\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (2 laps)",
+        "status": "completed",
+        "payload_chars": 33,
+        "model_calls": 2,
+        "input_tokens": 2862,
+        "output_tokens": 115,
+        "total_tokens": 2977
+      }
+    ],
+    "model_calls": 2,
+    "input_tokens": 2862,
+    "output_tokens": 115,
+    "total_tokens": 2977,
+    "cost_usd": 0.0011461,
+    "latency_seconds": 16.234,
+    "case_id": "r04",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-09-26T16:20:10+00:00"
+  },
+  "squad:r04": {
+    "arm": "squad",
+    "request": "is sanna safe for a dairy allergy",
+    "plan": {
+      "substitution": null,
+      "allergen": "Check if the sanna recipe contains any dairy ingredients or dairy allergens."
+    },
+    "worker_status": {
+      "allergen": 200
+    },
+    "answer": "Yes, Sanna is safe for a dairy allergy. The recipe does not contain any dairy ingredients or dairy allergens. \n\n**Recipe Ingredients Checked:**\n* **Idli rice, parboiled** – No dairy\n* **Water for grinding** – No dairy\n* **Grated coconut** – No dairy\n* **Toddy, or yeast slurry** – No dairy\n* **Rock salt** – No dairy\n* **Cooked rice** – No dairy\n\nThe recipe is tagged as vegan and gluten-free.",
+    "evidence": [
+      {
+        "worker": "allergen",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"title\": \"Sanna (sixteen steamed cakes)\",\n  \"base_yield\": 16,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 150.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 120.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 40.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Idli rice, parboiled"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Idli rice, parboiled\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Grated coconut"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Grated coconut\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": true,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Toddy, or yeast slurry"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Palm toddy\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": true,\n    \"yeast\": true,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 33,
+        "model_calls": 1,
+        "input_tokens": 236,
+        "output_tokens": 31,
+        "total_tokens": 267
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "ok",
+        "payload_chars": 76,
+        "model_calls": 3,
+        "input_tokens": 2388,
+        "output_tokens": 185,
+        "total_tokens": 2573
+      },
+      {
+        "handoff": "allergen worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 375,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 449,
+        "model_calls": 1,
+        "input_tokens": 219,
+        "output_tokens": 107,
+        "total_tokens": 326
+      }
+    ],
+    "model_calls": 5,
+    "input_tokens": 2843,
+    "output_tokens": 323,
+    "total_tokens": 3166,
+    "cost_usd": 0.0016604,
+    "latency_seconds": 38.391,
+    "case_id": "r04",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-09-26T16:21:09+00:00"
+  },
+  "single:s04": {
+    "arm": "single",
+    "request": "what can i use instead of urad dal in idli batter",
+    "answer": "There is no recorded substitute for **Whole white urad dal** in our system table. To ensure dietary safety and accurate allergen tracking, we do not suggest unrecorded or unchecked ingredient substitutions.",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "idli batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"title\": \"Idli Batter (thirty idlis)\",\n  \"base_yield\": 30,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 800.0\n    },\n    {\n      \"ingredient\": \"Whole white urad dal\",\n      \"grams\": 200.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 560.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 16.0\n    },\n    {\n      \"ingredient\": \"Fenugreek seeds\",\n      \"grams\": 8.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Whole white urad dal"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Whole white urad dal\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "lap": 3,
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Whole white urad dal",
+          "avoid": "gluten"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"gluten\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=gluten: ['oat yoghurt']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "lap": 4,
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Whole white urad dal",
+          "avoid": "soy"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"soy\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=soy: ['soy yoghurt']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (5 laps)",
+        "status": "completed",
+        "payload_chars": 49,
+        "model_calls": 5,
+        "input_tokens": 7583,
+        "output_tokens": 131,
+        "total_tokens": 7714
+      }
+    ],
+    "model_calls": 5,
+    "input_tokens": 7583,
+    "output_tokens": 131,
+    "total_tokens": 7714,
+    "cost_usd": 0.0026024,
+    "latency_seconds": 49.047,
+    "case_id": "s04",
+    "key_slot": 2,
+    "faults": {},
+    "finished_at": "2026-09-26T16:28:38+00:00"
+  },
+  "squad:s04": {
+    "arm": "squad",
+    "request": "what can i use instead of urad dal in idli batter",
+    "plan": {
+      "substitution": "Find recorded ingredient substitutions for urad dal in the idli batter recipe.",
+      "allergen": null
+    },
+    "worker_status": {
+      "substitution": 200
+    },
+    "answer": "According to the database, there are no recorded ingredient substitutions for whole white urad dal in the idli batter recipe.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "idli batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"title\": \"Idli Batter (thirty idlis)\",\n  \"base_yield\": 30,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 800.0\n    },\n    {\n      \"ingredient\": \"Whole white urad dal\",\n      \"grams\": 200.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 560.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 16.0\n    },\n    {\n      \"ingredient\": \"Fenugreek seeds\",\n      \"grams\": 8.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "soy",
+          "ingredient": "Whole white urad dal"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"soy\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=soy: ['soy yoghurt']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Whole white urad dal",
+          "avoid": "nuts"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"nuts\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=nuts: ['ground cashew paste']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Whole white urad dal",
+          "avoid": "gluten"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"gluten\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=gluten: ['oat yoghurt']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "dairy",
+          "ingredient": "Whole white urad dal"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"dairy\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=dairy: ['Thick sour curd']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Whole white urad dal",
+          "avoid": "coconut"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"coconut\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=coconut: ['coconut milk yoghurt', 'Grated coconut']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Whole white urad dal",
+          "avoid": "alcohol"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"alcohol\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=alcohol: ['Toddy, or yeast slurry']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "yeast",
+          "ingredient": "Whole white urad dal"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Whole white urad dal\",\n  \"avoid\": \"yeast\",\n  \"reason\": \"no ingredient named 'Whole white urad dal' in the substitution table: recorded ingredients for avoid=yeast: ['Active dry yeast']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 49,
+        "model_calls": 1,
+        "input_tokens": 241,
+        "output_tokens": 31,
+        "total_tokens": 272
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 78,
+        "model_calls": 4,
+        "input_tokens": 5097,
+        "output_tokens": 285,
+        "total_tokens": 5382
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 334,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 428,
+        "model_calls": 1,
+        "input_tokens": 195,
+        "output_tokens": 24,
+        "total_tokens": 219
+      }
+    ],
+    "model_calls": 6,
+    "input_tokens": 5533,
+    "output_tokens": 340,
+    "total_tokens": 5873,
+    "cost_usd": 0.0025099,
+    "latency_seconds": 52.532,
+    "case_id": "s04",
+    "key_slot": 2,
+    "faults": {},
+    "finished_at": "2026-09-26T16:29:50+00:00"
+  },
+  "single:s06": {
+    "arm": "single",
+    "request": "no curd for moru, what else can i use",
+    "answer": "You can substitute **coconut milk yoghurt** for the **Thick sour curd** in Moru. \n\nPlease note that coconut milk yoghurt contains **coconut**.",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "dairy",
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (3 laps)",
+        "status": "completed",
+        "payload_chars": 37,
+        "model_calls": 3,
+        "input_tokens": 4181,
+        "output_tokens": 75,
+        "total_tokens": 4256
+      }
+    ],
+    "model_calls": 3,
+    "input_tokens": 4181,
+    "output_tokens": 75,
+    "total_tokens": 4256,
+    "cost_usd": 0.0014418,
+    "latency_seconds": 24.094,
+    "case_id": "s06",
+    "key_slot": 2,
+    "faults": {},
+    "finished_at": "2026-09-26T16:30:34+00:00"
+  },
+  "squad:s06": {
+    "arm": "squad",
+    "request": "no curd for moru, what else can i use",
+    "plan": {
+      "substitution": "Find the moru recipe and identify suitable ingredient substitutions for curd.",
+      "allergen": null
+    },
+    "worker_status": {
+      "substitution": 200
+    },
+    "answer": "For **moru** (spiced buttermilk), you can substitute thick sour curd with **coconut milk yoghurt**.\n\n*Allergen Note:* Coconut milk yoghurt contains **coconut**.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Thick sour curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 37,
+        "model_calls": 1,
+        "input_tokens": 239,
+        "output_tokens": 23,
+        "total_tokens": 262
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 77,
+        "model_calls": 3,
+        "input_tokens": 2314,
+        "output_tokens": 213,
+        "total_tokens": 2527
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 573,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 655,
+        "model_calls": 1,
+        "input_tokens": 286,
+        "output_tokens": 36,
+        "total_tokens": 322
+      }
+    ],
+    "model_calls": 5,
+    "input_tokens": 2839,
+    "output_tokens": 272,
+    "total_tokens": 3111,
+    "cost_usd": 0.0015316999999999998,
+    "latency_seconds": 43.157,
+    "case_id": "s06",
+    "key_slot": 3,
+    "faults": {},
+    "finished_at": "2026-09-26T16:38:13+00:00"
+  },
+  "single:s07": {
+    "arm": "single",
+    "request": "can i use milk instead of curd in moru",
+    "answer": "No, plain milk cannot be directly used instead of curd to make Moru. \n\n**Why milk doesn't work:**\n* **Lack of Acidity & Fermentation:** Moru relies on the sour, tangy flavor and slight acidity of fermented curd (yogurt) mixed with water. Plain milk is sweet and unfermented, so it won't produce the traditional taste or body of Moru.\n* **Separation/Flavor Mismatch:** Mixing plain milk with crushed ginger, green chillies, shallots, curry leaves, and salt will result in an unfermented spiced milk drink rather than refreshing spiced buttermilk.\n\n---\n\n### Alternatives:\n* **For Dairy-Free / Vegan Moru:** Use **coconut milk yoghurt** (blended with water) to replicate the thick, tangy base while maintaining the authentic texture and acidity.\n* **If you only have milk:** You would first need to ferment the milk into curd/yogurt (or sour it into buttermilk using a sour starter/lemon juice) before churning/whisking it with water into Moru.",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "dairy",
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (3 laps)",
+        "status": "completed",
+        "payload_chars": 38,
+        "model_calls": 3,
+        "input_tokens": 4421,
+        "output_tokens": 266,
+        "total_tokens": 4687
+      }
+    ],
+    "model_calls": 3,
+    "input_tokens": 4421,
+    "output_tokens": 266,
+    "total_tokens": 4687,
+    "cost_usd": 0.0019913,
+    "latency_seconds": 28.813,
+    "case_id": "s07",
+    "key_slot": 3,
+    "faults": {},
+    "finished_at": "2026-09-26T16:39:02+00:00"
+  },
+  "squad:s07": {
+    "arm": "squad",
+    "request": "can i use milk instead of curd in moru",
+    "plan": {
+      "substitution": "Check if milk can be used as a substitute for curd in the moru recipe and provide the relevant ingredient details.",
+      "allergen": "Check the allergen flags and nutritional impact of replacing curd with milk in the moru recipe."
+    },
+    "worker_status": {
+      "substitution": 200,
+      "allergen": 200
+    },
+    "answer": "No, you cannot use milk instead of curd in Moru. Milk lacks the required sourness, acidity, and structure needed for the dish, and because it is still dairy, it does not satisfy a dairy-free requirement.\n\nThe recorded database substitute for \"Thick sour curd\" in this recipe is **coconut milk yoghurt**.\n\n**Allergen & Nutritional Considerations:**\n* **Thick sour curd (Original):** Contains **dairy** (`dairy: true`). Free from coconut, nuts, gluten, alcohol, yeast, and soy.\n* **Milk (Proposed):** Contains **dairy** and does not eliminate the dairy allergen.\n* **Coconut Milk Yoghurt (Recorded Substitute):** Free from dairy (`dairy: false`), nuts, gluten, alcohol, yeast, and soy, but contains **coconut** (`coconut: true`).\n* **Nutritional Impact (using 400 g of Coconut Milk Yoghurt instead of curd):** Increases energy by 116 kcal (from 244 kcal to 360 kcal), increases fat by 14.8 g (from 13.2 g to 28.0 g), and significantly reduces protein by 11.6 g (from 14.0 g to 2.4 g) for the full batch.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "dairy",
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"allergens\": {\n    \"dairy\": true,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "milk"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Coconut milk yoghurt\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": true,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_nutrition",
+        "arguments": {
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"per_100g\": {\n    \"energy_kcal\": 61,\n    \"protein_g\": 3.5,\n    \"fat_g\": 3.3,\n    \"carbohydrate_g\": 4.7,\n    \"fibre_g\": 0.0,\n    \"sodium_mg\": 46\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_nutrition",
+        "arguments": {
+          "ingredient": "milk"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Coconut milk yoghurt\",\n  \"per_100g\": {\n    \"energy_kcal\": 90,\n    \"protein_g\": 0.6,\n    \"fat_g\": 7.0,\n    \"carbohydrate_g\": 6.0,\n    \"fibre_g\": 0.5,\n    \"sodium_mg\": 15\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Cow milk"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": false,\n  \"query\": \"Cow milk\",\n  \"reason\": \"ingredient not in the database\",\n  \"did_you_mean\": [\n    \"Coconut milk yoghurt\"\n  ]\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_nutrition",
+        "arguments": {
+          "ingredient": "Cow milk"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": false,\n  \"query\": \"Cow milk\",\n  \"reason\": \"ingredient not in the database\",\n  \"did_you_mean\": [\n    \"Coconut milk yoghurt\"\n  ]\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 38,
+        "model_calls": 1,
+        "input_tokens": 238,
+        "output_tokens": 51,
+        "total_tokens": 289
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 114,
+        "model_calls": 3,
+        "input_tokens": 2501,
+        "output_tokens": 259,
+        "total_tokens": 2760
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 732,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "ok",
+        "payload_chars": 869,
+        "model_calls": 3,
+        "input_tokens": 3103,
+        "output_tokens": 649,
+        "total_tokens": 3752
+      },
+      {
+        "handoff": "allergen worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 1781,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 2622,
+        "model_calls": 1,
+        "input_tokens": 882,
+        "output_tokens": 275,
+        "total_tokens": 1157
+      }
+    ],
+    "model_calls": 8,
+    "input_tokens": 6724,
+    "output_tokens": 1234,
+    "total_tokens": 7958,
+    "cost_usd": 0.0051021999999999994,
+    "latency_seconds": 69.0,
+    "case_id": "s07",
+    "key_slot": 3,
+    "faults": {},
+    "finished_at": "2026-09-26T16:40:31+00:00"
+  },
+  "single:s12": {
+    "arm": "single",
+    "request": "im allergic to milk, what can i swap into moru to make it safe",
+    "answer": "To make **Moru** safe for a milk/dairy allergy, you can swap:\n\n* **Thick sour curd** $\\rightarrow$ **coconut milk yoghurt**\n\n*(Note: Coconut milk yoghurt contains coconut as an allergen, but is completely dairy-free.)*",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Thick sour curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (3 laps)",
+        "status": "completed",
+        "payload_chars": 62,
+        "model_calls": 3,
+        "input_tokens": 4124,
+        "output_tokens": 98,
+        "total_tokens": 4222
+      }
+    ],
+    "model_calls": 3,
+    "input_tokens": 4124,
+    "output_tokens": 98,
+    "total_tokens": 4222,
+    "cost_usd": 0.0014822000000000001,
+    "latency_seconds": 23.25,
+    "case_id": "s12",
+    "key_slot": 3,
+    "faults": {},
+    "finished_at": "2026-09-26T16:41:14+00:00"
+  }
+}

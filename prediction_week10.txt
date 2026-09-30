@@ -1,0 +1,31 @@
+Week 10 predictions - written 2026-09-26, before any Week 10 model call, committed with the
+case set so the ordering is checkable in git.
+
+Arms: single = the Week 9 mcp_agent.py with both MCP servers (5 tools, both allergen resources
+attached). squad = orchestrator.py: plan -> substitution worker (2 tools) -> allergen worker
+(3 tools + resources, gets the substitution report) -> synthesis. Same model, same servers,
+same 10 cases (race10_cases.json), same judge (judge_v2, blind).
+
+P1 - Pass rate. single 7/10, squad 6/10. Squad has a dedicated allergen check (should help on
+     r03, r04, s12) but loses detail in synthesis, which only sees reports, not tool results.
+     I expect the two to land within one case of each other. Confidence 55%.
+
+P2 - Context re-send multiplier (squad tokens / single tokens): 2.2x, range 1.8x - 2.8x.
+     Squad pays for a plan call, two separate worker contexts, and a synthesis call.
+
+P3 - Dominant hand-off: "orchestrator -> allergen worker", about 45% of all squad tokens. It
+     carries the largest context (two attached resources + the re-sent substitution report)
+     and runs the most laps. Confidence 65%.
+
+P4 - Latency: squad p50 about 2x single p50, because every step is serial. squad p99 worse
+     than 2x single p99.
+
+P5 - Injected 500 on the allergen worker: by construction the orchestrator retries once, then
+     degrades (synthesis is told the report is UNAVAILABLE). The open question is the model:
+     I predict 40% it LIES - states an allergen fact (e.g. "coconut milk yoghurt is dairy
+     free") no worker returned - and 60% it degrades honestly. Week 9 showed a system
+     instruction not holding when the tool gave nothing useful, which is why this is not lower.
+
+P6 - Verdict: kill. More tokens and slower for no pass-rate gain on this set.
+     Sunk cost to watch for: the brief frames the orchestrator as last week's work; here it
+     was built today, but it is still work I would rather see pay off.

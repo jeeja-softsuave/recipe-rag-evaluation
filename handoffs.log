@@ -1,0 +1,34 @@
+# arm	case	handoff	status	payload_chars	model_calls	input_tokens	output_tokens	total_tokens
+single	r01	user -> single agent (2 laps)	completed	20	2	2732	52	2784
+single	r03	user -> single agent (3 laps)	completed	33	3	4605	92	4697
+single	r04	user -> single agent (2 laps)	completed	33	2	2862	115	2977
+single	s04	user -> single agent (5 laps)	completed	49	5	7583	131	7714
+single	s06	user -> single agent (3 laps)	completed	37	3	4181	75	4256
+single	s07	user -> single agent (3 laps)	completed	38	3	4421	266	4687
+single	s12	user -> single agent (3 laps)	completed	62	3	4124	98	4222
+squad	r01	user -> orchestrator (plan)	ok	20	1	233	34	267
+squad	r01	orchestrator -> substitution worker	ok	56	2	1308	53	1361
+squad	r01	substitution worker -> orchestrator	ok	123	0	0	0	0
+squad	r01	orchestrator -> synthesis	ok	188	1	146	39	185
+squad	r03	user -> orchestrator (plan)	ok	33	1	237	30	267
+squad	r03	orchestrator -> allergen worker	ok	89	3	2710	162	2872
+squad	r03	allergen worker -> orchestrator	ok	510	0	0	0	0
+squad	r03	orchestrator -> synthesis	ok	584	1	240	123	363
+squad	r04	user -> orchestrator (plan)	ok	33	1	236	31	267
+squad	r04	orchestrator -> allergen worker	ok	76	3	2388	185	2573
+squad	r04	allergen worker -> orchestrator	ok	375	0	0	0	0
+squad	r04	orchestrator -> synthesis	ok	449	1	219	107	326
+squad	s04	user -> orchestrator (plan)	ok	49	1	241	31	272
+squad	s04	orchestrator -> substitution worker	ok	78	4	5097	285	5382
+squad	s04	substitution worker -> orchestrator	ok	334	0	0	0	0
+squad	s04	orchestrator -> synthesis	ok	428	1	195	24	219
+squad	s06	user -> orchestrator (plan)	ok	37	1	239	23	262
+squad	s06	orchestrator -> substitution worker	ok	77	3	2314	213	2527
+squad	s06	substitution worker -> orchestrator	ok	573	0	0	0	0
+squad	s06	orchestrator -> synthesis	ok	655	1	286	36	322
+squad	s07	user -> orchestrator (plan)	ok	38	1	238	51	289
+squad	s07	orchestrator -> substitution worker	ok	114	3	2501	259	2760
+squad	s07	substitution worker -> orchestrator	ok	732	0	0	0	0
+squad	s07	orchestrator -> allergen worker	ok	869	3	3103	649	3752
+squad	s07	allergen worker -> orchestrator	ok	1781	0	0	0	0
+squad	s07	orchestrator -> synthesis	ok	2622	1	882	275	1157

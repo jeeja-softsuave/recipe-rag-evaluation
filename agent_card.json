@@ -1,0 +1,37 @@
+{
+  "_note": "Bonus. The A2A AgentCard the kitchen-squad orchestrator WOULD advertise at /.well-known/agent-card.json if it were served. It is not served: orchestrator.py runs in-process. Skills are limited to what the squad demonstrably does on the six ferment cards; nothing here is aspirational.",
+  "protocolVersion": "0.3.0",
+  "name": "Kitchen squad - South Indian ferments",
+  "description": "Answers cooking questions about six South Indian ferment recipes by delegating to a substitution worker and an allergen/nutrition worker, then synthesising. Answers only from recorded recipe data, the substitution table and the ingredient database; says so when a check could not be done.",
+  "url": "http://localhost:8010/a2a",
+  "preferredTransport": "JSONRPC",
+  "version": "0.1.0",
+  "provider": {"organization": "recipe-rag-evaluation (course project)", "url": "https://github.com/jeeja-softsuave/recipe-rag-evaluation"},
+  "capabilities": {"streaming": false, "pushNotifications": false, "stateTransitionHistory": true},
+  "defaultInputModes": ["text/plain"],
+  "defaultOutputModes": ["text/plain"],
+  "securitySchemes": {
+    "bearer": {"type": "http", "scheme": "bearer", "bearerFormat": "JWT", "description": "Scoped token. scope recipes:read covers search and substitution; scope ingredients:nutrition covers per-100g nutrition."}
+  },
+  "security": [{"bearer": ["recipes:read"]}],
+  "skills": [
+    {
+      "id": "ingredient-substitution",
+      "name": "Recorded ingredient substitution",
+      "description": "Finds a recipe and a recorded substitute for one ingredient under one dietary constraint (dairy, coconut, nuts, gluten, alcohol, yeast, soy), including what the substitute itself contains. Refuses to invent unrecorded swaps.",
+      "tags": ["recipes", "substitution", "dietary"],
+      "examples": ["no curd for moru, what else can i use", "i have no toddy for sanna, what can i use instead"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["text/plain"]
+    },
+    {
+      "id": "allergen-check",
+      "name": "Allergen and nutrition check",
+      "description": "Checks a recipe or ingredient against the allergen flags and per-100g nutrition in the ingredient database, and checks a proposed substitute before it is recommended. Needs the user's allergy list; asks for it when it is missing.",
+      "tags": ["allergens", "nutrition", "safety"],
+      "examples": ["is moru ok if im allergic to milk", "how much protein is in 100g of urad dal"],
+      "inputModes": ["text/plain"],
+      "outputModes": ["text/plain"]
+    }
+  ]
+}
