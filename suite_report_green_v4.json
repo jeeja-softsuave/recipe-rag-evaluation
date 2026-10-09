@@ -1,0 +1,278 @@
+{
+  "label": "green_v4",
+  "prompt_version": "v4",
+  "generation_model": "gemini-3.5-flash-lite",
+  "judge": "judge_v2 on gemini-3.5-flash-lite",
+  "assertions": [
+    "refusal_is_exact",
+    "cited_chunks_exist",
+    "one_id_per_bracket",
+    "quantities_parse",
+    "allergen_warning_present",
+    "dairy_free_swap_is_safe"
+  ],
+  "assertions_passed": 36,
+  "judged": true,
+  "passed_with_judge": 33,
+  "total": 36,
+  "cases": [
+    {
+      "case_id": "s01",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s02",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s03",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s04",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s05",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s06",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s07",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s08",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s09",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s10",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s11",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s12",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s13",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s14",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s15",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s16",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s17",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s18",
+      "assertions_pass": true,
+      "judge": "FAIL",
+      "passed": false,
+      "why": [
+        "judge FAIL: The answer derives 60g by halving, which violates the rule that derived numbers are not supported by the context."
+      ]
+    },
+    {
+      "case_id": "s19",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s20",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s21",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s22",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s23",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s24",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "s25",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r01",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r02",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r03",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r04",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r05",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r06",
+      "assertions_pass": true,
+      "judge": "FAIL",
+      "passed": false,
+      "why": [
+        "judge FAIL: The context for kallappam explicitly states it will go sour and flat if left overnight, so refusing as NOT_IN_CORPUS is wrong."
+      ]
+    },
+    {
+      "case_id": "r07",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r08",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "r09",
+      "assertions_pass": true,
+      "judge": "FAIL",
+      "passed": false,
+      "why": [
+        "judge FAIL: The context clearly states kallappam batter hydration is 84%, so refusing as NOT_IN_CORPUS is wrong."
+      ]
+    },
+    {
+      "case_id": "w11-01",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    },
+    {
+      "case_id": "w11-02",
+      "assertions_pass": true,
+      "judge": "PASS",
+      "passed": true,
+      "why": []
+    }
+  ]
+}

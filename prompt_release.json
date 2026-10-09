@@ -1,0 +1,11 @@
+{
+  "production": "v2",
+  "canary": "v4",
+  "canary_percent": 10,
+  "history": [
+    {"version": "v1", "status": "retired", "note": "strict grounding; refused nearly every substitution"},
+    {"version": "v2", "status": "production since 2026-09-30 04:30 UTC", "note": "helpfulness change; RED 26/36 assertions, 25/36 with judge - suggests swaps without naming their allergens (w11-01)"},
+    {"version": "v3", "status": "never released", "note": "first fix attempt; 29/36 - echoed its own rules into answers, w11-01 still red, s07 and r09 newly red"},
+    {"version": "v4", "status": "canary 10% from 2026-10-08", "note": "GREEN: 36/36 on the 6 assertions, 33/36 with judge_v2 (on flash-lite); the 3 judge failures are pre-existing (s18 every version, r06/r09 refusals)"}
+  ]
+}

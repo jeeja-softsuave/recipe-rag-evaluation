@@ -1,0 +1,52 @@
+{
+  "trace_id": "t-e79ea9256d",
+  "timestamp": "2026-09-30T13:56:02+00:00",
+  "user_id": "u-gopal",
+  "input_type": "substitution",
+  "prompt_version": "v2",
+  "model": "gemini-3.6-flash",
+  "question": "need moru without dairy for my son, what goes in place of the curd",
+  "answer": "Moru uses thick sour curd [moru-04::structure::3]. For a dairy-free version, use lactose-free curd instead; lactose-free curd is dairy-free, so it keeps the same sour taste [general].",
+  "refused": false,
+  "context_ids": [
+    "moru-04::structure::3",
+    "moru-04::structure::5",
+    "moru-04::structure::2",
+    "moru-04::structure::0",
+    "moru-04::structure::1"
+  ],
+  "context_scores": [
+    0.0328,
+    0.0315,
+    0.0313,
+    0.0313,
+    0.0308
+  ],
+  "citations_ok": false,
+  "spans": [
+    {
+      "span": "retrieval",
+      "latency_ms": 517.3,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0
+    },
+    {
+      "span": "generation",
+      "latency_ms": 58004.2,
+      "input_tokens": 528,
+      "output_tokens": 41,
+      "cost_usd": 0.0002609
+    },
+    {
+      "span": "tools",
+      "latency_ms": 1.4,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cost_usd": 0.0
+    }
+  ],
+  "latency_ms": 58522.9,
+  "total_tokens": 569,
+  "cost_usd": 0.0002609
+}

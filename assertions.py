@@ -95,12 +95,46 @@ def assert_allergen_warning_present(output: dict[str, Any]) -> tuple[bool, str]:
     return False, f"recipe declares {', '.join(declared)} and the answer names no risk"
 
 
+DAIRY_FREE_REQUEST_PATTERN = r"dairy|milk|lactose|vegan"
+# Products that are still dairy, however they are marketed. Week 11's complaint was one.
+DAIRY_PRODUCT_PATTERN = (
+    r"lactose[- ]free\s+(?:curd|milk|yogh?urt|dairy)|goat'?s?\s+milk|\bA2\b|\bghee\b"
+    r"|\bpaneer\b|\bwhey\b|\bcheese\b|\bkhoa\b|\bcream\b|\bbutter\b(?!milk)"
+)
+# A plant substitute is dairy-free but carries its own allergen, which must be named.
+PLANT_SUBSTITUTE_ALLERGENS = {
+    "coconut": "coconut", "soy": "soy", "almond": "nut", "cashew": "nut",
+    "peanut": "nut", "oat": "gluten",
+}
+CAVEAT_PATTERN = r"contain|allerg|avoid|not suitable|unsuitable|check|note"
+
+
+def assert_dairy_free_swap_is_safe(output: dict[str, Any]) -> tuple[bool, str]:
+    """A swap offered for a dairy-free request must be dairy-free and name its own allergens."""
+    if output["refused"] or not re.search(DAIRY_FREE_REQUEST_PATTERN, output["request"], re.I):
+        return True, "not a dairy-free swap answer"
+    answer = output["answer"]
+    dairy = re.search(DAIRY_PRODUCT_PATTERN, answer, re.IGNORECASE)
+    if dairy:
+        return False, f"recommends a dairy product for a dairy-free request: {dairy.group(0)!r}"
+    sentences = re.split(r"(?<=[.!?])\s+", answer)
+    for plant, allergen in PLANT_SUBSTITUTE_ALLERGENS.items():
+        if not re.search(rf"\b{plant}", answer, re.IGNORECASE):
+            continue
+        warned = any(re.search(rf"\b(?:{plant}|{allergen})", s, re.I) and re.search(CAVEAT_PATTERN, s, re.I)
+                     for s in sentences)
+        if not warned:
+            return False, f"suggests {plant} without naming it as an allergen"
+    return True, "swap is dairy-free and its allergens are named"
+
+
 ASSERTIONS = {
     "refusal_is_exact": assert_refusal_is_exact,
     "cited_chunks_exist": assert_cited_chunks_exist,
     "one_id_per_bracket": assert_one_id_per_bracket,
     "quantities_parse": assert_quantities_parse,
     "allergen_warning_present": assert_allergen_warning_present,
+    "dairy_free_swap_is_safe": assert_dairy_free_swap_is_safe,
 }
 
 

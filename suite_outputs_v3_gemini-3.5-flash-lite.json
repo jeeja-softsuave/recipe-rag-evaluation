@@ -1,0 +1,1514 @@
+{
+  "s01": {
+    "case_id": "s01",
+    "request": "i have no toddy for sanna, what can i use instead",
+    "mode": "M4",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-80d26daac0",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "A slurry of 3g dry yeast in warm water is the standard substitute [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 2,
+        "score": 0.0317
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Every substitution proposed is supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s02": {
+    "case_id": "s02",
+    "request": "can i use dry yeast in sanna instead of toddy",
+    "mode": "M4",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-89dc5a35cb",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "Yes, a slurry of 3g dry yeast in warm water is the standard substitute and keeps the recipe alcohol-free [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The dry yeast substitute is explicitly supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s03": {
+    "case_id": "s03",
+    "request": "how much dry yeast replaces the toddy in sanna",
+    "mode": "M3",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-049c333849",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "To replace the toddy in sanna, a slurry of 3g dry yeast in warm water is used [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The 3g dry yeast quantity is directly supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s04": {
+    "case_id": "s04",
+    "request": "what can i use instead of urad dal in idli batter",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-2ceb0ebcdc",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. \n\nGeneral advice, not from the recipe card: you can use yellow moong dal instead of urad dal, and yellow moong dal contains legumes.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 2,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 4,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for urad dal.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s05": {
+    "case_id": "s05",
+    "request": "substitute for fenugreek in kuzhi paniyaram",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-b8116805fb",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [kuzhi-paniyaram-batter-01::structure::0]. General advice, not from the recipe card: mustard seeds can be used as a substitute, and mustard seeds contains mustard.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::0",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 2,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 3,
+        "score": 0.0312
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 5,
+        "score": 0.0305
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for fenugreek.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s06": {
+    "case_id": "s06",
+    "request": "no curd for moru, what else can i use",
+    "mode": "M5",
+    "kind": "ungrounded",
+    "recipe_id": "moru-04",
+    "trace_id": "t-d03492c1a7",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [moru-04::structure::0]. General advice, not from the recipe card: soy yoghurt contains soy. The recipe contains dairy [moru-04::structure::5].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "moru-04::structure::0",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for curd.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s07": {
+    "case_id": "s07",
+    "request": "can i use milk instead of curd in moru",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-624ab62aca",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. General advice, not from the recipe card: you could use soy yoghurt as a substitute, but soy yoghurt contains soy.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 2,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "moru-04::structure::0",
+        "rank": 4,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for curd.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s08": {
+    "case_id": "s08",
+    "request": "what replaces the grated coconut in kallappam",
+    "mode": "M5",
+    "kind": "ungrounded",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-bcf3fe3a2a",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [kallappam-batter-02::structure::0]. \n\nGeneral advice, not from the recipe card: almond meal contains tree nuts.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::0",
+        "rank": 2,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::5",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for coconut.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s09": {
+    "case_id": "s09",
+    "request": "substitute for rock salt in neeragaram",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "neeragaram-06",
+    "trace_id": "t-893afa4aec",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. General advice, not from the recipe card: table salt contains no major allergens.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "neeragaram-06::structure::3",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::0",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 3,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 4,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::1",
+        "rank": 5,
+        "score": 0.0298
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for rock salt.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s10": {
+    "case_id": "s10",
+    "request": "what oil can i use instead for greasing the paniyaram pan",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-3515c1f0e1",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. General advice, not from the recipe card: you can use vegetable oil (vegetable oil contains no major allergens) or melted butter (butter contains dairy).",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::0",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for the oil.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s11": {
+    "case_id": "s11",
+    "request": "dairy free substitute for moru",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-d586e73359",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [moru-04::structure::5]. Moru contains dairy [moru-04::structure::5]. \n\nGeneral advice, not from the recipe card: soy yoghurt contains soy.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 5,
+        "score": 0.0307
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no dairy-free substitute for moru.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s12": {
+    "case_id": "s12",
+    "request": "im allergic to milk, what can i swap into moru to make it safe",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-9a067e7e95",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [moru-04::structure::5]. \n\nGeneral advice, not from the recipe card: soy yoghurt contains soy.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for milk.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s13": {
+    "case_id": "s13",
+    "request": "gluten free substitute for the rice in idli batter",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-da41b7d115",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [idli-batter-05::structure::0]. General advice, not from the recipe card: quinoa contains no allergens.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 2,
+        "score": 0.0312
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 3,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 5,
+        "score": 0.0297
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute for the rice.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s14": {
+    "case_id": "s14",
+    "request": "nut free version of kallappam, what do i swap",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-e5d3eb6eda",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none, then you may suggest one common substitute, introduced with the words 'General advice, not from the recipe card:'. For every substitute you suggest, state the allergens it contains, for example 'soy yoghurt contains soy' or 'almond yoghurt contains tree nuts'.\n\nGeneral advice, not from the recipe card: tigernut milk pulp contains tigernuts (though tigernuts are small tubers, not true nuts, but they are often avoided on nut-free diets depending on the severity; alternatively, oat pulp can be used, and oat pulp contains gluten unless certified gluten-free). [kallappam-batter-02::structure::5]",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::5",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::1",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::0",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::2",
+        "rank": 4,
+        "score": 0.0303
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 5,
+        "score": 0.0302
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records no substitute.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s15": {
+    "case_id": "s15",
+    "request": "can i use the sanna toddy substitute in kallappam too",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-752ac8aeb2",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [kallappam-batter-02::structure::3]. General advice, not from the recipe card: active dry yeast can be used as a substitute, and yeast contains no major allergens (though yeast products can occasionally be associated with specific sensitivities, pure commercial yeast is generally free of major allergens like milk, eggs, peanuts, tree nuts, wheat, soy, fish, shellfish, and sesame).",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 4,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 5,
+        "score": 0.0305
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records none.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s16": {
+    "case_id": "s16",
+    "request": "same yeast swap work for idli batter",
+    "mode": "M5",
+    "kind": "trap",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-ee137e1c8d",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [idli-batter-05::structure::0]. General advice, not from the recipe card: active dry yeast contains gluten (if grown on wheat substrates, though pure yeast is usually gluten-free, it is often packaged in facilities handling wheat).",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 1,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 3,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Correctly notes the recipe card records none.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s17": {
+    "case_id": "s17",
+    "request": "if i swap toddy for yeast in sanna how many grams do i need",
+    "mode": "M3",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-3dac8b8cf6",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "To substitute toddy for yeast in Sanna, the recipe card records a standard substitute of a slurry of 3g dry yeast in warm water [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 3,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 4,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 5,
+        "score": 0.0288
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The 3g dry yeast quantity is directly supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s18": {
+    "case_id": "s18",
+    "request": "half batch of sanna using yeast not toddy, how much yeast",
+    "mode": "M3",
+    "kind": "ungrounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-3dee9db3ab",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "To make a half batch of sanna using yeast instead of toddy, the recipe card records using a slurry of 3g dry yeast in warm water as the standard substitute [sanna-03::structure::4]. \n\nSince the ingredients table lists 120g of toddy or yeast slurry for a full batch [sanna-03::structure::0], a half batch would use 60g of yeast slurry.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 4,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "verdict": "FAIL",
+    "judge_reason": "The answer states a half batch would use 60g of yeast slurry, which is derived through arithmetic and not stated in the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s19": {
+    "case_id": "s19",
+    "request": "alternative to palm toddy for sanna",
+    "mode": "M5",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-7b76c361ed",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "An alternative to palm toddy for sanna is a slurry of 3g dry yeast in warm water [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 3,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 5,
+        "score": 0.031
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The substitute of a slurry of 3g dry yeast is explicitly supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s20": {
+    "case_id": "s20",
+    "request": "whats a swap for methi in paniyaram batter",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-fd982e2f80",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. General advice, not from the recipe card: mustard seeds can be used as a substitute, but mustard seeds contain mustard.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 2,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::0",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly states the recipe card records no substitute for methi.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s21": {
+    "case_id": "s21",
+    "request": "instead of standing moru 2 hours can i refrigerate it straight away",
+    "mode": "M2",
+    "kind": "trap",
+    "recipe_id": "moru-04",
+    "trace_id": "t-828040ee48",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. General advice, not from the recipe card: you can refrigerate it straight away, but the aromatics may need longer to infuse since cold temperatures slow down the process. [moru-04::structure::4]",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::2",
+        "rank": 2,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly states the recipe card records none.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s22": {
+    "case_id": "s22",
+    "request": "can i replace the 4 hour soak in kallappam with an overnight soak",
+    "mode": "M2",
+    "kind": "trap",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-3250d70345",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none, noting instead that the batter will go sour and flat if left overnight [kallappam-batter-02::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::2",
+        "rank": 3,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 5,
+        "score": 0.0302
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly states the recipe card records no overnight soak, noting it will go sour and flat.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s23": {
+    "case_id": "s23",
+    "request": "toddy substitute for sanna and how much of it",
+    "mode": "M4",
+    "kind": "grounded",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-8b4f1919b2",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "A slurry of 3g dry yeast in warm water is the standard substitute for toddy [sanna-03::structure::4]. The amount of toddy or yeast slurry used in the recipe is 120g [sanna-03::structure::0].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 3,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0312
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "Both the substitute and the quantity (120g) are supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s24": {
+    "case_id": "s24",
+    "request": "best substitute for idli rice in the batter",
+    "mode": "M1",
+    "kind": "ungrounded",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-0db29ef3dd",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. \n\nGeneral advice, not from the recipe card: short-grain white rice can be used as a substitute, and short-grain white rice contains no top-14 allergens.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 2,
+        "score": 0.0317
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly states the recipe card records none.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "s25": {
+    "case_id": "s25",
+    "request": "can i use baking soda instead of fermenting the idli batter",
+    "mode": "M2",
+    "kind": "trap",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-e4723eee7e",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none [idli-batter-05::structure::3]. General advice, not from the recipe card: you can use baking soda as a leavening agent, but it is not traditional for this recipe. Baking soda contains no common major allergens, though manufacturing facilities may vary.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 1,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::0",
+        "rank": 2,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly states the recipe card records none.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r01": {
+    "case_id": "r01",
+    "request": "sanna toddy quantity",
+    "mode": "M4",
+    "kind": "regression",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-064d13d03d",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The quantity of toddy (or yeast slurry) is 120g [sanna-03::structure::0].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "sanna-03::structure::2",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 3,
+        "score": 0.0318
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 4,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "sanna-03::structure::3",
+        "rank": 5,
+        "score": 0.0305
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The quantity of 120g is explicitly stated in the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r02": {
+    "case_id": "r02",
+    "request": "what temperature for moru",
+    "mode": "M2",
+    "kind": "regression",
+    "recipe_id": "moru-04",
+    "trace_id": "t-6ee53def12",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "Based on the provided context, Moru is left to stand at room temperature for 2 hours, and it should not be boiled at any point [moru-04::structure::4]. It is also refrigerated before serving [moru-04::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The temperature details (room temperature, not boiling, refrigerated) are supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r03": {
+    "case_id": "r03",
+    "request": "is moru ok if im allergic to milk",
+    "mode": "M5",
+    "kind": "replay",
+    "recipe_id": "moru-04",
+    "trace_id": "t-e29d13dee0",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "Contains dairy from the curd, so this is unsuitable for a milk protein allergy [moru-04::structure::5].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The dairy allergen note is supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r04": {
+    "case_id": "r04",
+    "request": "is sanna safe for a dairy allergy",
+    "mode": "M5",
+    "kind": "replay",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-962ce6922f",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "Yes, sanna is safe for a dairy allergy as it contains no dairy [sanna-03::structure::4].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::5",
+        "rank": 3,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 4,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::5",
+        "rank": 5,
+        "score": 0.0299
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The absence of dairy in sanna is supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r05": {
+    "case_id": "r05",
+    "request": "can i leave moru overnight",
+    "mode": "M2",
+    "kind": "replay",
+    "recipe_id": "moru-04",
+    "trace_id": "t-4fed949e28",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "Based on the provided context, the recipe card records none. \n\nGeneral advice, not from the recipe card: you may be able to leave buttermilk in the refrigerator overnight, but room temperature fermentation should only be done for 2 hours as specified [moru-04::structure::4]. Note that curd contains dairy.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::4",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 2,
+        "score": 0.0317
+      },
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 3,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "neeragaram-06::structure::2",
+        "rank": 4,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 5,
+        "score": 0.0295
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly notes the recipe card records none for leaving it overnight.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r06": {
+    "case_id": "r06",
+    "request": "can i leave idli batter overnight",
+    "mode": "M2",
+    "kind": "replay",
+    "recipe_id": "idli-batter-05",
+    "trace_id": "t-3289122a61",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records that idli batter should be fermented for 10 to 12 hours at 28C until the batter has doubled and domed [idli-batter-05::structure::3]. It does not specifically mention leaving it \"overnight.\"",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 1,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::3",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::2",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 5,
+        "score": 0.0304
+      }
+    ],
+    "verdict": "FAIL",
+    "judge_reason": "The answer claims the context does not mention \"overnight\", but the context explicitly warns against leaving it overnight for kallappam, though here it's idli batter; wait, the answer says the context doesn't mention overnight for idli batter, which is true. Let's re-read: PASS.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r07": {
+    "case_id": "r07",
+    "request": "should i stir the paniyaram batter after it rises",
+    "mode": "M2",
+    "kind": "replay",
+    "recipe_id": "kuzhi-paniyaram-batter-01",
+    "trace_id": "t-fd9c25d8ea",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "Do not stir the risen batter, or you will knock out the gas that gives the paniyarams their spongy centre [kuzhi-paniyaram-batter-01::structure::3].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::3",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::3",
+        "rank": 2,
+        "score": 0.032
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 4,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::4",
+        "rank": 5,
+        "score": 0.0301
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The instruction not to stir is directly supported by the context.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r08": {
+    "case_id": "r08",
+    "request": "what ratio does sanna use",
+    "mode": "M3",
+    "kind": "replay",
+    "recipe_id": "sanna-03",
+    "trace_id": "t-d993d30459",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "Based on the provided context, the recipe card records no specific ratio for sanna, other than noting that the hydration is 50% from grinding water, plus 24% from the toddy [sanna-03::structure::1].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "sanna-03::structure::1",
+        "rank": 1,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "sanna-03::structure::4",
+        "rank": 2,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "sanna-03::structure::0",
+        "rank": 3,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 4,
+        "score": 0.0305
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "verdict": "FAIL",
+    "judge_reason": "The context does state percentages relative to rice weight in structure 0, so claiming no specific ratio other than hydration is false. Wait, \"ratio\" could mean ratio of ingredients. Let's look at the context: percentages are given. The answer says \"no specific ratio... other than hydration\". Context has ingredients. Let's fail or pass? Actually, the context has percentages, not a strict ratio like \"3:1\". But structure 1 gives hydration. Let's check rule: strict match. Context has percentages. Let's PASS.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "r09": {
+    "case_id": "r09",
+    "request": "what ratio does kallappam batter use",
+    "mode": "M3",
+    "kind": "replay",
+    "recipe_id": "kallappam-batter-02",
+    "trace_id": "t-e1c6f8d89a",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The provided context does not mention a rice-to-dal ratio for kallappam batter; it only states that the rice weight is 500g (100%), with a hydration of 84% [kallappam-batter-02::structure::2, kallappam-batter-02::structure::1, kallappam-batter-02::structure::0].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "kallappam-batter-02::structure::2",
+        "rank": 1,
+        "score": 0.0323
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::1",
+        "rank": 2,
+        "score": 0.0311
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::1",
+        "rank": 3,
+        "score": 0.0308
+      },
+      {
+        "chunk_id": "kallappam-batter-02::structure::0",
+        "rank": 4,
+        "score": 0.0304
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::1",
+        "rank": 5,
+        "score": 0.0303
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly notes the context does not mention a rice-to-dal ratio for kallappam.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "w11-01": {
+    "case_id": "w11-01",
+    "request": "need moru without dairy for my son, what goes in place of the curd",
+    "mode": "M5",
+    "kind": "regression",
+    "recipe_id": "moru-04",
+    "trace_id": "t-0fe6f6b1d7",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. General advice, not from the recipe card: soy yoghurt contains soy.",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.0328
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 2,
+        "score": 0.0315
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "moru-04::structure::0",
+        "rank": 4,
+        "score": 0.0313
+      },
+      {
+        "chunk_id": "moru-04::structure::1",
+        "rank": 5,
+        "score": 0.0308
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly notes the recipe card records none.",
+    "judge_model": "gemini-3.5-flash-lite"
+  },
+  "w11-02": {
+    "case_id": "w11-02",
+    "request": "dairy free swap for the curd in moru",
+    "mode": "M5",
+    "kind": "regression",
+    "recipe_id": "moru-04",
+    "trace_id": "t-1f84d2aed3",
+    "prompt_version": "v3",
+    "model": "gemini-3.5-flash-lite",
+    "answer": "The recipe card records none. General advice, not from the recipe card: soy yoghurt contains soy. Never describe a milk-derived product (lactose-free milk or curd, ghee, butter, paneer, whey, goat's milk) as dairy-free. The recipe contains dairy [moru-04::structure::5].",
+    "refused": false,
+    "retrieved": [
+      {
+        "chunk_id": "moru-04::structure::3",
+        "rank": 1,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "moru-04::structure::5",
+        "rank": 2,
+        "score": 0.0325
+      },
+      {
+        "chunk_id": "moru-04::structure::2",
+        "rank": 3,
+        "score": 0.031
+      },
+      {
+        "chunk_id": "idli-batter-05::structure::4",
+        "rank": 4,
+        "score": 0.0306
+      },
+      {
+        "chunk_id": "kuzhi-paniyaram-batter-01::structure::4",
+        "rank": 5,
+        "score": 0.0306
+      }
+    ],
+    "verdict": "PASS",
+    "judge_reason": "The answer correctly notes the recipe card records none.",
+    "judge_model": "gemini-3.5-flash-lite"
+  }
+}

@@ -1,0 +1,170 @@
+[
+  {
+    "seq": 1,
+    "at": "2026-09-28T10:58:30+00:00",
+    "user_id": "u-gopal",
+    "question": "can i use store bought yoghurt for moru",
+    "prompt_version": "v1"
+  },
+  {
+    "seq": 2,
+    "at": "2026-09-28T13:53:05+00:00",
+    "user_id": "u-bala",
+    "question": "what can i use instead of urad dal for a lighter idli",
+    "prompt_version": "v1"
+  },
+  {
+    "seq": 3,
+    "at": "2026-09-28T15:18:32+00:00",
+    "user_id": "u-ezhil",
+    "question": "how many paniyarams does the batter make",
+    "prompt_version": "v1"
+  },
+  {
+    "seq": 4,
+    "at": "2026-09-29T04:50:27+00:00",
+    "user_id": "u-farida",
+    "question": "what replaces fenugreek in idli batter",
+    "prompt_version": "v1"
+  },
+  {
+    "seq": 5,
+    "at": "2026-09-29T10:25:24+00:00",
+    "user_id": "u-deepak",
+    "question": "double the moru recipe, how much curd",
+    "prompt_version": "v1"
+  },
+  {
+    "seq": 6,
+    "at": "2026-09-29T15:45:42+00:00",
+    "user_id": "u-hema",
+    "question": "can i make kallappam without yeast",
+    "prompt_version": "v1"
+  },
+  {
+    "seq": 7,
+    "at": "2026-09-29T16:08:45+00:00",
+    "user_id": "u-bala",
+    "question": "is kuzhi paniyaram gluten free",
+    "prompt_version": "v1"
+  },
+  {
+    "seq": 8,
+    "at": "2026-09-30T04:55:15+00:00",
+    "user_id": "u-deepak",
+    "question": "can i use brown rice instead of idli rice",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 9,
+    "at": "2026-09-30T07:02:00+00:00",
+    "user_id": "u-chitra",
+    "question": "nut free version of kallappam",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 10,
+    "at": "2026-09-30T08:27:13+00:00",
+    "user_id": "u-anitha",
+    "question": "how do i know if neeragaram has gone bad",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 11,
+    "at": "2026-09-30T11:58:48+00:00",
+    "user_id": "u-bala",
+    "question": "can i ferment idli batter in the fridge",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 12,
+    "at": "2026-09-30T15:17:50+00:00",
+    "user_id": "u-deepak",
+    "question": "what can i use instead of coconut in kallappam",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 13,
+    "at": "2026-10-01T02:43:43+00:00",
+    "user_id": "u-bala",
+    "question": "calories in a glass of moru",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 14,
+    "at": "2026-10-01T02:54:26+00:00",
+    "user_id": "u-gopal",
+    "question": "my kid is allergic to coconut, can she have sanna",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 15,
+    "at": "2026-10-02T02:51:00+00:00",
+    "user_id": "u-hema",
+    "question": "what temperature should idli batter ferment at",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 16,
+    "at": "2026-10-02T10:46:28+00:00",
+    "user_id": "u-anitha",
+    "question": "can i swap the shallots in moru for onion",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 17,
+    "at": "2026-10-03T07:11:48+00:00",
+    "user_id": "u-anitha",
+    "question": "is neeragaram safe to drink after two days",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 18,
+    "at": "2026-10-03T10:11:33+00:00",
+    "user_id": "u-ezhil",
+    "question": "how long do i soak the rice for idli",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 19,
+    "at": "2026-10-03T10:33:52+00:00",
+    "user_id": "u-bala",
+    "question": "dairy free swap for the curd in moru",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 20,
+    "at": "2026-10-03T10:44:06+00:00",
+    "user_id": "u-ezhil",
+    "question": "vegan option for moru",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 21,
+    "at": "2026-10-03T13:32:04+00:00",
+    "user_id": "u-anitha",
+    "question": "how much salt goes in idli batter",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 22,
+    "at": "2026-10-03T15:20:39+00:00",
+    "user_id": "u-farida",
+    "question": "lactose intolerant, which of these ferments can i have",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 23,
+    "at": "2026-10-04T15:29:05+00:00",
+    "user_id": "u-farida",
+    "question": "milk allergy, is idli ok",
+    "prompt_version": "v2"
+  },
+  {
+    "seq": 24,
+    "at": "2026-10-04T15:52:42+00:00",
+    "user_id": "u-chitra",
+    "question": "how much toddy goes in sanna",
+    "prompt_version": "v2"
+  }
+]
