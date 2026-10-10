@@ -1,0 +1,140 @@
+{
+  "judge_version": "v2",
+  "model": "gemini-3.6-flash",
+  "shuffle_seed": 20260824,
+  "blind_map": {
+    "x01": "squad:r04",
+    "x02": "single:s18",
+    "x03": "single:s06",
+    "x04": "squad:s21",
+    "x05": "single:r04",
+    "x06": "squad:s07",
+    "x07": "single:s21",
+    "x08": "squad:s16",
+    "x09": "single:s04",
+    "x10": "single:r03",
+    "x11": "squad:s06",
+    "x12": "single:r01",
+    "x13": "squad:s04",
+    "x14": "squad:s12",
+    "x15": "squad:s18",
+    "x16": "squad_fault:s12",
+    "x17": "squad:r03",
+    "x18": "single:s12",
+    "x19": "squad:r01",
+    "x20": "single:s07",
+    "x21": "single:s16"
+  },
+  "by_run": {
+    "squad:r04": {
+      "verdict": "PASS",
+      "reason": "Every claim made is fully supported by the retrieved context.",
+      "blind_id": "x01"
+    },
+    "single:s18": {
+      "verdict": "PASS",
+      "reason": "The scaled amounts match the scale tool output and the yeast substitute from context.",
+      "blind_id": "x02"
+    },
+    "single:s06": {
+      "verdict": "PASS",
+      "reason": "The substitute and its coconut allergen are supported by the context.",
+      "blind_id": "x03"
+    },
+    "squad:s21": {
+      "verdict": "FAIL",
+      "reason": "Claims about a 2-hour room temperature rest, fermentation science, and temperature danger zones are not supported by the context.",
+      "blind_id": "x04"
+    },
+    "single:r04": {
+      "verdict": "PASS",
+      "reason": "Fully supported by the provided recipe context and dietary tags.",
+      "blind_id": "x05"
+    },
+    "squad:s07": {
+      "verdict": "PASS",
+      "reason": "Rejection of milk and details on coconut milk yoghurt substitute are fully supported by context.",
+      "blind_id": "x06"
+    },
+    "single:s21": {
+      "verdict": "FAIL",
+      "reason": "Flavor infusion details, souring notes, and the 4 to 6 hour refrigeration instruction are unsupported by the context.",
+      "blind_id": "x07"
+    },
+    "squad:s16": {
+      "verdict": "PASS",
+      "reason": "Refusal of yeast swap for idli batter and allergen warnings are supported by context.",
+      "blind_id": "x08"
+    },
+    "single:s04": {
+      "verdict": "PASS",
+      "reason": "The refusal is accurate based on the context showing no recorded substitute.",
+      "blind_id": "x09"
+    },
+    "single:r03": {
+      "verdict": "PASS",
+      "reason": "Fully supported by recipe ingredients and allergen lookup showing dairy content in sour curd.",
+      "blind_id": "x10"
+    },
+    "squad:s06": {
+      "verdict": "PASS",
+      "reason": "The substitution of thick sour curd with coconut milk yoghurt and its allergen warning are directly supported by the context.",
+      "blind_id": "x11"
+    },
+    "single:r01": {
+      "verdict": "PASS",
+      "reason": "The stated quantity of 120 grams of toddy or yeast slurry is explicitly present in the context.",
+      "blind_id": "x12"
+    },
+    "squad:s04": {
+      "verdict": "PASS",
+      "reason": "The context supports that there are no recorded substitutions for whole white urad dal.",
+      "blind_id": "x13"
+    },
+    "squad:s12": {
+      "verdict": "PASS",
+      "reason": "The substitution and allergen details are directly supported by the context.",
+      "blind_id": "x14"
+    },
+    "squad:s18": {
+      "verdict": "FAIL",
+      "reason": "The context specifies a slurry of 3g dry yeast; deriving 1.5g by halving is not explicitly stated in the context.",
+      "blind_id": "x15"
+    },
+    "squad_fault:s12": {
+      "verdict": "PASS",
+      "reason": "The substitution and coconut allergen note are supported by the context.",
+      "blind_id": "x16"
+    },
+    "squad:r03": {
+      "verdict": "PASS",
+      "reason": "The answer accurately reflects the dairy content and suitability based on the context.",
+      "blind_id": "x17"
+    },
+    "single:s12": {
+      "verdict": "PASS",
+      "reason": "The substitution of thick sour curd with coconut milk yoghurt is supported by the context.",
+      "blind_id": "x18"
+    },
+    "squad:r01": {
+      "verdict": "PASS",
+      "reason": "The 120 grams quantity for toddy/yeast slurry is directly stated in the context.",
+      "blind_id": "x19"
+    },
+    "single:s07": {
+      "verdict": "PASS",
+      "reason": "The answer correctly addresses the substitution using context for coconut milk yoghurt and unlisted swaps.",
+      "blind_id": "x20"
+    },
+    "single:s16": {
+      "verdict": "PASS",
+      "reason": "The context confirms idli batter contains no yeast, supporting the claim that no yeast swap is needed.",
+      "blind_id": "x21"
+    }
+  },
+  "raw_batches": [
+    "CASE x01: PASS - Every claim made is fully supported by the retrieved context.\nCASE x02: PASS - The scaled amounts match the scale tool output and the yeast substitute from context.\nCASE x03: PASS - The substitute and its coconut allergen are supported by the context.\nCASE x04: FAIL - Claims about a 2-hour room temperature rest, fermentation science, and temperature danger zones are not supported by the context.\nCASE x05: PASS - Fully supported by the provided recipe context and dietary tags.\nCASE x06: PASS - Rejection of milk and details on coconut milk yoghurt substitute are fully supported by context.\nCASE x07: FAIL - Flavor infusion details, souring notes, and the 4 to 6 hour refrigeration instruction are unsupported by the context.\nCASE x08: PASS - Refusal of yeast swap for idli batter and allergen warnings are supported by context.\nCASE x09: PASS - The refusal is accurate based on the context showing no recorded substitute.\nCASE x10: PASS - Fully supported by recipe ingredients and allergen lookup showing dairy content in sour curd.",
+    "CASE x11: PASS - The substitution of thick sour curd with coconut milk yoghurt and its allergen warning are directly supported by the context.\nCASE x12: PASS - The stated quantity of 120 grams of toddy or yeast slurry is explicitly present in the context.\nCASE x13: PASS - The context supports that there are no recorded substitutions for whole white urad dal.\nCASE x14: PASS - The substitution and allergen details are directly supported by the context.\nCASE x15: FAIL - The context specifies a slurry of 3g dry yeast; deriving 1.5g by halving is not explicitly stated in the context.\nCASE x16: PASS - The substitution and coconut allergen note are supported by the context.\nCASE x17: PASS - The answer accurately reflects the dairy content and suitability based on the context.\nCASE x18: PASS - The substitution of thick sour curd with coconut milk yoghurt is supported by the context.\nCASE x19: PASS - The 120 grams quantity for toddy/yeast slurry is directly stated in the context.\nCASE x20: PASS - The answer correctly addresses the substitution using context for coconut milk yoghurt and unlisted swaps.",
+    "CASE x21: PASS - The context confirms idli batter contains no yeast, supporting the claim that no yeast swap is needed."
+  ]
+}

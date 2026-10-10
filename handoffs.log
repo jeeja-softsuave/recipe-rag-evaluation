@@ -6,6 +6,9 @@ single	s04	user -> single agent (5 laps)	completed	49	5	7583	131	7714
 single	s06	user -> single agent (3 laps)	completed	37	3	4181	75	4256
 single	s07	user -> single agent (3 laps)	completed	38	3	4421	266	4687
 single	s12	user -> single agent (3 laps)	completed	62	3	4124	98	4222
+single	s16	user -> single agent (3 laps)	completed	36	3	3544	206	3750
+single	s18	user -> single agent (4 laps)	completed	57	4	4691	224	4915
+single	s21	user -> single agent (2 laps)	completed	67	2	2538	177	2715
 squad	r01	user -> orchestrator (plan)	ok	20	1	233	34	267
 squad	r01	orchestrator -> substitution worker	ok	56	2	1308	53	1361
 squad	r01	substitution worker -> orchestrator	ok	123	0	0	0	0
@@ -32,3 +35,31 @@ squad	s07	substitution worker -> orchestrator	ok	732	0	0	0	0
 squad	s07	orchestrator -> allergen worker	ok	869	3	3103	649	3752
 squad	s07	allergen worker -> orchestrator	ok	1781	0	0	0	0
 squad	s07	orchestrator -> synthesis	ok	2622	1	882	275	1157
+squad	s12	user -> orchestrator (plan)	ok	62	1	244	59	303
+squad	s12	orchestrator -> substitution worker	ok	119	3	1576	116	1692
+squad	s12	substitution worker -> orchestrator	ok	241	0	0	0	0
+squad	s12	orchestrator -> allergen worker	ok	384	2	1492	214	1706
+squad	s12	allergen worker -> orchestrator	ok	724	0	0	0	0
+squad	s12	orchestrator -> synthesis	ok	1098	1	378	107	485
+squad	s16	user -> orchestrator (plan)	ok	36	1	236	53	289
+squad	s16	orchestrator -> substitution worker	ok	117	3	2349	249	2598
+squad	s16	substitution worker -> orchestrator	ok	801	0	0	0	0
+squad	s16	orchestrator -> allergen worker	ok	948	3	2150	465	2615
+squad	s16	allergen worker -> orchestrator	ok	1639	0	0	0	0
+squad	s16	orchestrator -> synthesis	ok	2547	1	733	209	942
+squad	s18	user -> orchestrator (plan)	ok	57	1	242	41	283
+squad	s18	orchestrator -> substitution worker	ok	118	3	1992	274	2266
+squad	s18	substitution worker -> orchestrator	ok	696	0	0	0	0
+squad	s18	orchestrator -> synthesis	ok	798	1	348	29	377
+squad	s21	user -> orchestrator (plan)	ok	67	1	243	60	303
+squad	s21	orchestrator -> substitution worker	ok	120	2	1040	272	1312
+squad	s21	substitution worker -> orchestrator	ok	943	0	0	0	0
+squad	s21	orchestrator -> allergen worker	ok	1096	2	1728	355	2083
+squad	s21	allergen worker -> orchestrator	ok	1557	0	0	0	0
+squad	s21	orchestrator -> synthesis	ok	2638	1	722	268	990
+squad_fault	s12	user -> orchestrator (plan)	ok	62	1	244	61	305
+squad_fault	s12	orchestrator -> substitution worker	ok	93	3	1569	174	1743
+squad_fault	s12	substitution worker -> orchestrator	ok	423	0	0	0	0
+squad_fault	s12	orchestrator -> allergen worker	HTTP 500 (attempt 1)	588	0	0	0	0
+squad_fault	s12	orchestrator -> allergen worker	HTTP 500 (attempt 2)	588	0	0	0	0
+squad_fault	s12	orchestrator -> synthesis	ok	595	1	274	54	328
