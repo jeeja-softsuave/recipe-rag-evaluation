@@ -989,5 +989,703 @@
     "key_slot": 3,
     "faults": {},
     "finished_at": "2026-09-26T16:41:14+00:00"
+  },
+  "squad:s12": {
+    "arm": "squad",
+    "request": "im allergic to milk, what can i swap into moru to make it safe",
+    "plan": {
+      "substitution": "Identify the milk or dairy ingredients in moru and provide suitable non-dairy substitute options with their quantities.",
+      "allergen": "Check moru for milk allergens and verify that the proposed substitutions are safe for a milk allergy."
+    },
+    "worker_status": {
+      "substitution": 200,
+      "allergen": 200
+    },
+    "answer": "To make Moru safe for a milk allergy, you can substitute the dairy ingredient as follows:\n\n* **Ingredient to replace**: Thick sour curd (400 g)\n* **Substitute**: Coconut milk yoghurt\n* **Quantity**: 400 g (1:1 replacement by weight)\n\n**Allergen Note**: Coconut milk yoghurt contains no dairy/milk allergens and is safe for a milk allergy. However, it contains **coconut**, which should be noted if there is a separate tree nut/coconut allergy.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Thick sour curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"allergens\": {\n    \"dairy\": true,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Coconut milk yoghurt"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Coconut milk yoghurt\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": true,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 62,
+        "model_calls": 1,
+        "input_tokens": 244,
+        "output_tokens": 59,
+        "total_tokens": 303
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 119,
+        "model_calls": 3,
+        "input_tokens": 1576,
+        "output_tokens": 116,
+        "total_tokens": 1692
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 241,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "ok",
+        "payload_chars": 384,
+        "model_calls": 2,
+        "input_tokens": 1492,
+        "output_tokens": 214,
+        "total_tokens": 1706
+      },
+      {
+        "handoff": "allergen worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 724,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 1098,
+        "model_calls": 1,
+        "input_tokens": 378,
+        "output_tokens": 107,
+        "total_tokens": 485
+      }
+    ],
+    "model_calls": 7,
+    "input_tokens": 3690,
+    "output_tokens": 496,
+    "total_tokens": 4186,
+    "cost_usd": 0.002347,
+    "latency_seconds": 92.063,
+    "case_id": "s12",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-10-07T22:26:22+00:00"
+  },
+  "single:s16": {
+    "arm": "single",
+    "request": "same yeast swap work for idli batter",
+    "answer": "No yeast substitution is needed for **Idli Batter**. \n\nUnlike batters that use active dry yeast or toddy (such as appam, kallappam, or sanna), traditional idli batter relies on natural wild fermentation driven by the soaked urad dal and fenugreek seeds. \n\nThe ingredients for the Idli Batter recipe are:\n* **Idli rice, parboiled** (800 g)\n* **Whole white urad dal** (200 g)\n* **Water for grinding** (560 g)\n* **Rock salt** (16 g)\n* **Fenugreek seeds** (8 g)\n\nNone of these ingredients contain yeast.",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "idli batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"title\": \"Idli Batter (thirty idlis)\",\n  \"base_yield\": 30,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 800.0\n    },\n    {\n      \"ingredient\": \"Whole white urad dal\",\n      \"grams\": 200.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 560.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 16.0\n    },\n    {\n      \"ingredient\": \"Fenugreek seeds\",\n      \"grams\": 8.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Idli rice, parboiled"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Idli rice, parboiled\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "lap": 2,
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Fenugreek seeds"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Fenugreek seeds\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (3 laps)",
+        "status": "completed",
+        "payload_chars": 36,
+        "model_calls": 3,
+        "input_tokens": 3544,
+        "output_tokens": 206,
+        "total_tokens": 3750
+      }
+    ],
+    "model_calls": 3,
+    "input_tokens": 3544,
+    "output_tokens": 206,
+    "total_tokens": 3750,
+    "cost_usd": 0.0015782,
+    "latency_seconds": 24.547,
+    "case_id": "s16",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-10-07T22:27:06+00:00"
+  },
+  "squad:s16": {
+    "arm": "squad",
+    "request": "same yeast swap work for idli batter",
+    "plan": {
+      "substitution": "Check if yeast can be used as an ingredient substitution in idli batter and retrieve the recipe's ingredient weights.",
+      "allergen": "Check the allergen flags and dietary safety for using yeast and its potential substitutes in idli batter."
+    },
+    "worker_status": {
+      "substitution": 200,
+      "allergen": 200
+    },
+    "answer": "Based on the provided reports, **no, a yeast swap is not recommended for idli batter.** Traditional idli batter relies on natural fermentation (boosted by fenugreek seeds) and does not call for yeast. Furthermore, yeast is not recorded as an official substitution for any ingredient in this recipe. \n\nPlease note the following allergen caveats regarding fermentation options for idli batter:\n\n* **Adding Active Dry Yeast:** Introduces the **yeast allergen flag** (`TRUE`) to the batter. Batter prepared with added yeast is **unsafe for individuals with yeast allergies, sensitivities, or candidiasis dietary restrictions**.\n* **Using Thick Sour Curd / Yogurt:** Introduces the **dairy allergen flag** (`TRUE`) to an otherwise dairy-free dish, posing a risk to lactose-intolerant, vegan, or dairy-allergic consumers.\n* **Traditional Fermentation (Fenugreek Seeds):** Maintaining the traditional wild fermentation method keeps the recipe free from yeast, dairy, gluten, nuts, soy, and coconut.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "idli batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"title\": \"Idli Batter (thirty idlis)\",\n  \"base_yield\": 30,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 800.0\n    },\n    {\n      \"ingredient\": \"Whole white urad dal\",\n      \"grams\": 200.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 560.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 16.0\n    },\n    {\n      \"ingredient\": \"Fenugreek seeds\",\n      \"grams\": 8.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Fenugreek seeds",
+          "avoid": "yeast"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"Fenugreek seeds\",\n  \"avoid\": \"yeast\",\n  \"reason\": \"no ingredient named 'Fenugreek seeds' in the substitution table: recorded ingredients for avoid=yeast: ['Active dry yeast']\",\n  \"recoverable\": true,\n  \"did_you_mean\": []\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Active dry yeast"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Active dry yeast\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": true,\n    \"soy\": false\n  }\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Baking soda"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": false,\n  \"query\": \"Baking soda\",\n  \"reason\": \"ingredient not in the database\",\n  \"did_you_mean\": [\n    \"Fine salt\"\n  ]\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "Thick sour curd"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"allergens\": {\n    \"dairy\": true,\n    \"coconut\": false,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 36,
+        "model_calls": 1,
+        "input_tokens": 236,
+        "output_tokens": 53,
+        "total_tokens": 289
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 117,
+        "model_calls": 3,
+        "input_tokens": 2349,
+        "output_tokens": 249,
+        "total_tokens": 2598
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 801,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "ok",
+        "payload_chars": 948,
+        "model_calls": 3,
+        "input_tokens": 2150,
+        "output_tokens": 465,
+        "total_tokens": 2615
+      },
+      {
+        "handoff": "allergen worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 1639,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 2547,
+        "model_calls": 1,
+        "input_tokens": 733,
+        "output_tokens": 209,
+        "total_tokens": 942
+      }
+    ],
+    "model_calls": 8,
+    "input_tokens": 5468,
+    "output_tokens": 976,
+    "total_tokens": 6444,
+    "cost_usd": 0.0040804,
+    "latency_seconds": 66.078,
+    "case_id": "s16",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-10-07T22:28:33+00:00"
+  },
+  "single:s18": {
+    "arm": "single",
+    "request": "half batch of sanna using yeast not toddy, how much yeast",
+    "answer": "For a half batch of Sanna (8 cakes, scaled down from the base yield of 16 cakes):\n\n* **Yeast required:** **1.5 g of dry yeast** (bloomed in warm water to make 60 g of yeast slurry).\n\n### Scaled Ingredients for a Half Batch (8 Sannas):\n* **Idli rice, parboiled:** 250 g\n* **Water for grinding:** 125 g\n* **Grated coconut:** 75 g\n* **Yeast slurry (1.5 g dry yeast + warm water):** 60 g\n* **Cooked rice:** 20 g\n* **Rock salt:** 5 g",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"title\": \"Sanna (sixteen steamed cakes)\",\n  \"base_yield\": 16,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 150.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 120.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 40.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "recipe-search",
+        "tool": "scale_recipe",
+        "arguments": {
+          "target_servings": 8,
+          "recipe_id": "sanna-03"
+        },
+        "is_error": false,
+        "result": "{\n  \"scaled\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"base_yield\": 16,\n  \"target_servings\": 8,\n  \"factor\": 0.5,\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 125.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 75.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 60.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 5.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 20.0\n    }\n  ]\n}"
+      },
+      {
+        "lap": 3,
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Toddy, or yeast slurry",
+          "avoid": "alcohol"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Toddy, or yeast slurry\",\n  \"avoid\": \"alcohol\",\n  \"substitute\": \"slurry of 3g dry yeast in warm water\",\n  \"substitute_contains\": [\n    \"yeast\"\n  ],\n  \"source\": \"corpus\"\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (4 laps)",
+        "status": "completed",
+        "payload_chars": 57,
+        "model_calls": 4,
+        "input_tokens": 4691,
+        "output_tokens": 224,
+        "total_tokens": 4915
+      }
+    ],
+    "model_calls": 4,
+    "input_tokens": 4691,
+    "output_tokens": 224,
+    "total_tokens": 4915,
+    "cost_usd": 0.0019673,
+    "latency_seconds": 33.75,
+    "case_id": "s18",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-10-10T16:04:18+00:00"
+  },
+  "squad:s18": {
+    "arm": "squad",
+    "request": "half batch of sanna using yeast not toddy, how much yeast",
+    "plan": {
+      "substitution": "Find the sanna recipe ingredient weights for a half batch and determine the required amount of yeast to replace toddy.",
+      "allergen": null
+    },
+    "worker_status": {
+      "substitution": 200
+    },
+    "answer": "For a half batch of sanna, use **1.5 g of active dry yeast** dissolved in warm water to replace the toddy.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"title\": \"Sanna (sixteen steamed cakes)\",\n  \"base_yield\": 16,\n  \"dietary_tags\": \"vegan, gluten-free\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 150.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 120.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 40.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Toddy, or yeast slurry",
+          "avoid": "alcohol"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Toddy, or yeast slurry\",\n  \"avoid\": \"alcohol\",\n  \"substitute\": \"slurry of 3g dry yeast in warm water\",\n  \"substitute_contains\": [\n    \"yeast\"\n  ],\n  \"source\": \"corpus\"\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 57,
+        "model_calls": 1,
+        "input_tokens": 242,
+        "output_tokens": 41,
+        "total_tokens": 283
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 118,
+        "model_calls": 3,
+        "input_tokens": 1992,
+        "output_tokens": 274,
+        "total_tokens": 2266
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 696,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 798,
+        "model_calls": 1,
+        "input_tokens": 348,
+        "output_tokens": 29,
+        "total_tokens": 377
+      }
+    ],
+    "model_calls": 5,
+    "input_tokens": 2582,
+    "output_tokens": 344,
+    "total_tokens": 2926,
+    "cost_usd": 0.0016346,
+    "latency_seconds": 47.078,
+    "case_id": "s18",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-10-10T16:05:20+00:00"
+  },
+  "single:s21": {
+    "arm": "single",
+    "request": "instead of standing moru 2 hours can i refrigerate it straight away",
+    "answer": "Yes, you can refrigerate Moru straight away if you prefer it chilled immediately, but keeping it at room temperature for about 2 hours serves a culinary purpose:\n\n* **Flavor Infusion:** Standing at room temperature allows the aromatics (crushed ginger, shallots, green chilli, and curry leaves) to release their essential oils and infuse thoroughly into the buttermilk.\n* **Souring:** Room temperature allows the natural cultures in the curd to develop a mild, pleasant sourness.\n\n**If you refrigerate immediately:**\n* It is **completely safe**, but the flavors will infuse much more slowly because cold temperatures slow down flavor extraction.\n* To get a similar depth of flavor, let it sit in the refrigerator for at least **4 to 6 hours** before serving.",
+    "evidence": [
+      {
+        "lap": 1,
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> single agent (2 laps)",
+        "status": "completed",
+        "payload_chars": 67,
+        "model_calls": 2,
+        "input_tokens": 2538,
+        "output_tokens": 177,
+        "total_tokens": 2715
+      }
+    ],
+    "model_calls": 2,
+    "input_tokens": 2538,
+    "output_tokens": 177,
+    "total_tokens": 2715,
+    "cost_usd": 0.0012039000000000002,
+    "latency_seconds": 18.062,
+    "case_id": "s21",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-10-10T16:05:53+00:00"
+  },
+  "squad:s21": {
+    "arm": "squad",
+    "request": "instead of standing moru 2 hours can i refrigerate it straight away",
+    "plan": {
+      "substitution": "Check the moru recipe instructions regarding the requirement to let it stand for 2 hours versus immediate refrigeration.",
+      "allergen": "Check if refrigerating moru immediately without letting it stand affects food safety or fermentation nutrition."
+    },
+    "worker_status": {
+      "substitution": 200,
+      "allergen": 200
+    },
+    "answer": "Yes, you can refrigerate Moru straight away. \n\nHere is how it impacts your dish based on the recipe and safety details:\n\n* **Food Safety:** Immediate refrigeration actually **improves food safety** by keeping the spiced buttermilk out of the temperature \"danger zone\" ($4^\\circ\\text{C}$ to $60^\\circ\\text{C}$ / $40^\\circ\\text{F}$ to $140^\\circ\\text{F}$), which reduces the risk of undesirable bacterial growth from added raw aromatics (crushed shallots, ginger, green chilli, and curry leaves). Standing at room temperature is purely for flavor infusion and does not enhance safety.\n* **Flavor:** The main trade-off of immediate refrigeration is a slightly slower extraction of flavor from the fresh aromatics into the buttermilk.\n* **Fermentation & Nutrition:** Primary lactic acid fermentation is already complete in the sour curd. Chilling it immediately slows bacterial metabolism to preserve acidity and probiotic viability without over-souring. Macronutrients, minerals, and micronutrients remain completely unaffected.\n\n*(Note: The retrieved recipe card for Moru `moru-04` does not include explicit step-by-step instructions or resting/storage notes regarding standing for 2 hours versus immediate refrigeration.)*",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "allergen",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 67,
+        "model_calls": 1,
+        "input_tokens": 243,
+        "output_tokens": 60,
+        "total_tokens": 303
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 120,
+        "model_calls": 2,
+        "input_tokens": 1040,
+        "output_tokens": 272,
+        "total_tokens": 1312
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 943,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "ok",
+        "payload_chars": 1096,
+        "model_calls": 2,
+        "input_tokens": 1728,
+        "output_tokens": 355,
+        "total_tokens": 2083
+      },
+      {
+        "handoff": "allergen worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 1557,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 2638,
+        "model_calls": 1,
+        "input_tokens": 722,
+        "output_tokens": 268,
+        "total_tokens": 990
+      }
+    ],
+    "model_calls": 6,
+    "input_tokens": 3733,
+    "output_tokens": 955,
+    "total_tokens": 4688,
+    "cost_usd": 0.0035073999999999995,
+    "latency_seconds": 62.375,
+    "case_id": "s21",
+    "key_slot": 1,
+    "faults": {},
+    "finished_at": "2026-10-10T16:07:10+00:00"
+  },
+  "squad_fault:s12": {
+    "arm": "squad",
+    "request": "im allergic to milk, what can i swap into moru to make it safe",
+    "plan": {
+      "substitution": "Identify the ingredients for moru and find suitable non-dairy substitutions for milk or curd.",
+      "allergen": "Check the allergen information for moru and verify that the suggested substitution is safe for someone with a milk allergy."
+    },
+    "worker_status": {
+      "substitution": 200,
+      "allergen": 500
+    },
+    "answer": "To make Moru safe for a milk allergy, you can substitute the **thick sour curd** with **coconut milk yoghurt** *(Note: Coconut milk yoghurt contains coconut)*.\n\nPlease note that the allergen check could not be performed because the allergen worker report was unavailable.",
+    "evidence": [
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "search_recipes",
+        "arguments": {
+          "dish": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"recipe_id\": \"moru-04\",\n  \"title\": \"Moru (spiced buttermilk, 1.6 litres)\",\n  \"base_yield\": 8,\n  \"dietary_tags\": \"vegetarian, gluten-free, contains-dairy\",\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Thick sour curd\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Water\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Shallots, crushed\",\n      \"grams\": 20.0\n    },\n    {\n      \"ingredient\": \"Green chilli, slit\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Ginger, crushed\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 6.0\n    },\n    {\n      \"ingredient\": \"Curry leaves\",\n      \"grams\": 4.0\n    }\n  ]\n}"
+      },
+      {
+        "worker": "substitution",
+        "server": "recipe-search",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Thick sour curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      }
+    ],
+    "handoffs": [
+      {
+        "handoff": "user -> orchestrator (plan)",
+        "status": "ok",
+        "payload_chars": 62,
+        "model_calls": 1,
+        "input_tokens": 244,
+        "output_tokens": 61,
+        "total_tokens": 305
+      },
+      {
+        "handoff": "orchestrator -> substitution worker",
+        "status": "ok",
+        "payload_chars": 93,
+        "model_calls": 3,
+        "input_tokens": 1569,
+        "output_tokens": 174,
+        "total_tokens": 1743
+      },
+      {
+        "handoff": "substitution worker -> orchestrator",
+        "status": "ok",
+        "payload_chars": 423,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "HTTP 500 (attempt 1)",
+        "payload_chars": 588,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> allergen worker",
+        "status": "HTTP 500 (attempt 2)",
+        "payload_chars": 588,
+        "model_calls": 0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "total_tokens": 0
+      },
+      {
+        "handoff": "orchestrator -> synthesis",
+        "status": "ok",
+        "payload_chars": 595,
+        "model_calls": 1,
+        "input_tokens": 274,
+        "output_tokens": 54,
+        "total_tokens": 328
+      }
+    ],
+    "model_calls": 5,
+    "input_tokens": 2087,
+    "output_tokens": 289,
+    "total_tokens": 2376,
+    "cost_usd": 0.0013486,
+    "latency_seconds": 37.609,
+    "case_id": "s12",
+    "key_slot": 3,
+    "faults": {
+      "allergen": 500
+    },
+    "finished_at": "2026-10-10T16:08:08+00:00"
   }
 }
