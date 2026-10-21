@@ -1,0 +1,13 @@
+{
+  "_note": "CURATED FOR THE CAPSTONE from widely published public food-safety guidance (e.g. UK FSA, USDA FSIS). Not a substitute for a regulator's current chart. Temperatures in Celsius. Answers about cooking, holding or reheating must state the number from this chart, never only a description such as 'cooked through'.",
+  "entries": [
+    {"item": "chicken", "aliases": ["poultry", "turkey", "duck"], "kind": "cook", "min_internal_c": 74, "rule": "Cook until the thickest part reaches at least 74C."},
+    {"item": "minced meat", "aliases": ["ground meat", "mince", "burger"], "kind": "cook", "min_internal_c": 71, "rule": "Cook minced meat to at least 71C throughout."},
+    {"item": "fish", "aliases": ["seafood"], "kind": "cook", "min_internal_c": 63, "rule": "Cook fish to at least 63C."},
+    {"item": "eggs", "aliases": ["egg dishes"], "kind": "cook", "min_internal_c": 71, "rule": "Cook egg dishes to at least 71C."},
+    {"item": "leftovers", "aliases": ["reheated food", "reheat", "leftover idli", "leftover paniyaram"], "kind": "reheat", "min_internal_c": 74, "rule": "Reheat cooked leftovers until steaming hot, at least 74C, once only."},
+    {"item": "fermented batter", "aliases": ["idli batter", "kallappam batter", "paniyaram batter", "sanna batter", "batter"], "kind": "hold", "max_hold_c": 5, "rule": "Once fermented, refrigerate the batter at 5C or below and use within 2 days."},
+    {"item": "moru", "aliases": ["buttermilk", "spiced buttermilk", "curd drink"], "kind": "hold", "max_hold_c": 5, "rule": "After the 2-hour stand, refrigerate at 5C or below; do not leave dairy at room temperature longer."},
+    {"item": "cooked rice", "aliases": ["neeragaram rice", "leftover rice", "rice"], "kind": "cool", "max_hold_c": 5, "max_cool_hours": 2, "rule": "Cool cooked rice and get it below 5C within 2 hours, or ferment it at once as the neeragaram card says; Bacillus cereus spores survive cooking."}
+  ]
+}

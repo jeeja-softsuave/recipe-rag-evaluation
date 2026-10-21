@@ -1,0 +1,2829 @@
+{
+  "a01": {
+    "trace_id": "t-c02d300fad1b",
+    "timestamp": "2026-10-21T19:00:01+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "My son has a nut allergy. Can he eat kallappam?",
+    "answer": "Allergen check, from the declaration field: kallappam-batter-02 (reformulated-2025): NOT SAFE: contains nuts [kallappam-batter-02@reformulated-2025]\n\nNo, your son cannot eat the current (reformulated 2025) version of kallappam. The current recipe contains cashews (a tree nut) in the supplier paste and is not nut-free. \n\n*(Note: While the older, superseded original version was nut-free, the current standard recipe is unsafe for anyone with a nut allergy.)*\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": null,
+    "citations": [
+      "kallappam-batter-02@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kallappam"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Allergen Note\\nVegan and gluten-free. NOT nut-free: the 2025 supplier paste contains cashew, a tree\\nnut. Contains coconut and yeast. The original recipe used plain grated coconut and was\\nnut-free; that version is superseded and must not be used to answer a nut-allergy question.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "version": "current",
+          "recipe_id": "kallappam-batter-02",
+          "avoid": [
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"per_allergen\": {\n    \"nuts\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"nuts\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 9087.1,
+        "input_tokens": 1364,
+        "output_tokens": 19,
+        "cost_usd": 0.0004567
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2499.3,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3460.7,
+        "input_tokens": 1257,
+        "output_tokens": 39,
+        "cost_usd": 0.0004746
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 9.3,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3485.5,
+        "input_tokens": 1323,
+        "output_tokens": 85,
+        "cost_usd": 0.0006094
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 21852.0,
+    "total_tokens": 4087,
+    "cost_usd": 0.0015406999999999999,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "Every claim about the kallappam allergen status is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a02": {
+    "trace_id": "t-c28acab3e4e0",
+    "timestamp": "2026-10-21T19:00:14+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Is kallappam nut free?",
+    "answer": "Allergen check, from the declaration field: kallappam-batter-02 (reformulated-2025): NOT SAFE: contains nuts [kallappam-batter-02@reformulated-2025]\n\nNo, kallappam (Kallappam Batter) is **not** nut-free. According to the recipe's declaration fields, it contains nuts and coconut.\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": null,
+    "citations": [
+      "kallappam-batter-02@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "nuts"
+          ],
+          "recipe_id": "kallappam-batter-02"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"per_allergen\": {\n    \"nuts\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"nuts\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 2973.0,
+        "input_tokens": 1357,
+        "output_tokens": 33,
+        "cost_usd": 0.0004896
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 5.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3008.3,
+        "input_tokens": 1152,
+        "output_tokens": 35,
+        "cost_usd": 0.00043309999999999996
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 9433.4,
+    "total_tokens": 2577,
+    "cost_usd": 0.0009226999999999999,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The allergen declaration is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a03": {
+    "trace_id": "t-329633937794",
+    "timestamp": "2026-10-21T19:00:34+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Can someone with a peanut allergy eat idli?",
+    "answer": "Allergen check, from the declaration field: idli-batter-05 (reformulated-2025): MAY CONTAIN nuts: not safe for a nuts allergy without a supplier guarantee [idli-batter-05@reformulated-2025]\n\nYes, the base ingredients for idli (rice, urad dal, fenugreek seeds, salt, and water) do not naturally contain peanuts. \n\nHowever, according to the recipe's allergen declaration, the idli batter **may contain traces of nuts** (as well as gluten). If the allergy is severe, you should verify whether the ingredients or equipment used have been exposed to cross-contamination with nuts.\n\nALLERGEN_VERDICT: may_contain",
+    "allergen_verdict": "may_contain",
+    "swap_guard": null,
+    "citations": [
+      "idli-batter-05@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "idli"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::3\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Method\\nFerment 10 to 12 hours\\nat 28C until the batter has doubled and domed. Do not beat the risen batter down. Pour into greased moulds and steam 12 minutes, then rest 2 minutes before unmoulding.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::0\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\nPercentages are relative to the rice weight (800g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 800g | 100% |\\n| Whole white urad dal | 200g | 25% |\\n| Water for grinding | 560g | 70% |\\n| Rock salt | 16g | 2% |\\n| Fenugreek seeds | 8g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::2\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Method\\nSoak the rice and the urad dal separately for 6 hours, keeping the fenugreek\\nseeds with the dal so they grind in together. Grind the dal first with ice-cold\\nwater until it triples in volume and floats when a drop is dropped into water; this aeration, not the fermentation, is what makes idlis light. Grind the rice\\ncoarser than you would for dosa, to a texture like fine semolina.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "idli-batter-05",
+          "avoid": [
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"per_allergen\": {\n    \"nuts\": \"may_contain\"\n  },\n  \"verdict\": \"may_contain\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": [\n    \"gluten\",\n    \"nuts\"\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3406.4,
+        "input_tokens": 1360,
+        "output_tokens": 17,
+        "cost_usd": 0.0004505
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1805.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3472.7,
+        "input_tokens": 1151,
+        "output_tokens": 31,
+        "cost_usd": 0.00042280000000000003
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 8.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3686.7,
+        "input_tokens": 1152,
+        "output_tokens": 86,
+        "cost_usd": 0.0005605999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 16109.5,
+    "total_tokens": 3797,
+    "cost_usd": 0.0014338999999999999,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The 'may contain nuts' declaration is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a04": {
+    "trace_id": "t-9a8350801178",
+    "timestamp": "2026-10-21T19:00:49+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Is idli batter safe for a coeliac?",
+    "answer": "Allergen check, from the declaration field: idli-batter-05 (reformulated-2025): MAY CONTAIN gluten: not safe for a gluten allergy without a supplier guarantee [idli-batter-05@reformulated-2025]\n\nBased on the official declaration for the current idli batter recipe (`idli-batter-05`), it **may contain traces of gluten**. \n\nBecause coeliacs need to strictly avoid gluten, including potential cross-contamination traces, this idli batter is classified as **unsafe** for a coeliac diet.\n\nALLERGEN_VERDICT: may_contain",
+    "allergen_verdict": "may_contain",
+    "swap_guard": null,
+    "citations": [
+      "idli-batter-05@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "gluten"
+          ],
+          "recipe_id": "idli-batter-05"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"per_allergen\": {\n    \"gluten\": \"may_contain\"\n  },\n  \"verdict\": \"may_contain\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": [\n    \"gluten\",\n    \"nuts\"\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3481.8,
+        "input_tokens": 1360,
+        "output_tokens": 31,
+        "cost_usd": 0.0004855
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 7.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3674.9,
+        "input_tokens": 1258,
+        "output_tokens": 64,
+        "cost_usd": 0.0005373999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 10566.4,
+    "total_tokens": 2713,
+    "cost_usd": 0.0010229,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The gluten declaration for idli batter is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a05": {
+    "trace_id": "t-fe09fa6118f2",
+    "timestamp": "2026-10-21T19:01:09+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Is moru ok for someone with a milk allergy?",
+    "answer": "Allergen check, from the declaration field: moru-04 (original): NOT SAFE: contains dairy [moru-04@original]\n\nNo, **moru** is **unsafe** for someone with a milk allergy. \n\nMoru is made primarily from thick sour curd (yogurt/milk product), which contains dairy.\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": null,
+    "citations": [
+      "moru-04@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"moru-04@original::structure::2\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Ingredients\\nCurd to water ratio: 1:3. Yield: approximately 1600g.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::3\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nStart from curd that has already soured for a day past setting; fresh sweet curd\\nmakes a flat moru with no lift to it. Whisk the curd smooth on its own before any\\nwater goes near it, then add the water in stages, because pouring it in all at\\nonce leaves lumps that never break up. Crush the shallots, ginger and slit chilli\\ntogether with the rock salt in a mortar until bruised but not pulped, and stir\\nthem through.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::1\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Curry leaves | 4g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::4\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nLeave it to stand 2 hours at room temperature so the aromatics\\ninfuse and the culture keeps working. Do not boil it at any point; heat splits the\\ncurd and the drink turns grainy. Bruise the curry leaves between your fingers as\\nyou add them, then refrigerate before serving.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::0\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Thick sour curd | 400g | 100% |\\n| Water | 1200g | 300% |\\n| Shallots, crushed | 20g | 5% |\\n| Green chilli, slit | 12g | 3% |\\n| Ginger, crushed | 10g | 2.5% |\\n| Rock salt | 6g | 1.5% |\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "version": "current",
+          "avoid": [
+            "dairy"
+          ],
+          "recipe_id": "moru-04"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"moru-04\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"moru-04@original\",\n  \"per_allergen\": {\n    \"dairy\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"dairy\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3694.1,
+        "input_tokens": 1361,
+        "output_tokens": 17,
+        "cost_usd": 0.0004508
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2396.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3579.4,
+        "input_tokens": 1252,
+        "output_tokens": 35,
+        "cost_usd": 0.0004631
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 15.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3288.2,
+        "input_tokens": 1271,
+        "output_tokens": 39,
+        "cost_usd": 0.00047880000000000004
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 16640.7,
+    "total_tokens": 3975,
+    "cost_usd": 0.0013927,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The dairy presence in moru is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a06": {
+    "trace_id": "t-ab7d31864b0c",
+    "timestamp": "2026-10-21T19:01:23+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Is neeragaram safe for a nut allergy?",
+    "answer": "Allergen check, from the declaration field: neeragaram-06 (original): no declared nuts (neither contains nor may contain) [neeragaram-06@original]\n\nYes, **neeragaram** (recipe `neeragaram-06`) is safe from a declared allergen standpoint. The recipe does not declare nuts or any nut-containing \"may contain\" traces.\n\nALLERGEN_VERDICT: no_declared_allergen",
+    "allergen_verdict": "no_declared_allergen",
+    "swap_guard": null,
+    "citations": [
+      "neeragaram-06@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "neeragaram-06",
+          "avoid": [
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"neeragaram-06\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"neeragaram-06@original\",\n  \"per_allergen\": {\n    \"nuts\": \"not_declared\"\n  },\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 2875.8,
+        "input_tokens": 1360,
+        "output_tokens": 31,
+        "cost_usd": 0.0004855
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 6.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3328.3,
+        "input_tokens": 1152,
+        "output_tokens": 44,
+        "cost_usd": 0.00045559999999999996
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 9593.9,
+    "total_tokens": 2587,
+    "cost_usd": 0.0009410999999999999,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The lack of declared nuts in neeragaram is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a07": {
+    "trace_id": "t-a41806c1dce5",
+    "timestamp": "2026-10-21T19:01:42+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Can my nut-allergic daughter eat kuzhi paniyaram?",
+    "answer": "Allergen check, from the declaration field: kuzhi-paniyaram-batter-01 (original): no declared nuts (neither contains nor may contain) [kuzhi-paniyaram-batter-01@original]\n\nYes, your daughter can eat kuzhi paniyaram! \n\nAccording to the recipe for **Kuzhi Paniyaram Batter** (`kuzhi-paniyaram-batter-01`), there are no declared nuts or nut traces in the ingredients (which consist only of parboiled idli rice, whole white urad dal, fenugreek seeds, rock salt, and water). \n\n*Note: Always double-check any extra ingredients or seasonings (like a tempering with asafoetida) that you might choose to add to the batter before cooking, just to ensure no cross-contamination or added allergens are introduced.*\n\nALLERGEN_VERDICT: no_declared_allergen",
+    "allergen_verdict": "no_declared_allergen",
+    "swap_guard": null,
+    "citations": [
+      "kuzhi-paniyaram-batter-01@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kuzhi paniyaram"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::1\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Ingredients\\nRice to dal ratio: 3:1. Hydration: 80%. Final batter weight: approximately 1300g.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::3\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Method\\nKeep the batter noticeably thicker than dosa batter, or the paniyarams will not\\nhold their domed shape. Ferment 8 to 10 hours at 30C until risen and pitted with\\nbubbles. Do not stir the risen batter, or you will knock out the gas that gives\\nthe paniyarams their spongy centre. Spoon gently into a greased paniyaram pan,\\ncook 3 minutes on the first side, turn each ball with a skewer and give it\\n2 minutes more.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::0\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\nPercentages are relative to the rice weight (600g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 600g | 100% |\\n| Whole white urad dal | 200g | 33% |\\n| Fenugreek seeds | 6g | 1% |\\n| Rock salt | 14g | 2.3% |\\n| Water for grinding | 480g | 80% |\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::2\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Method\\nSoak the rice and the urad dal in separate bowls for 5 hours, with the fenugreek\\nseeds sitting in the dal. Grind the dal first with ice-cold water until it is\\nlight and holds a soft peak, then grind the rice to a fine grain that still feels\\nslightly sandy between the fingers. Combine both with the rock salt and mix by\\nhand for two full minutes; the warmth of your palm starts the wild fermentation.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::4\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Allergen Note\\nVegan and gluten-free with no top-14 allergens. Contains no dairy. If you add\\nasafoetida to the tempering, check the label: most Indian brands are bound with\\nwheat flour and would make this unsuitable for coeliacs.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "kuzhi-paniyaram-batter-01",
+          "avoid": [
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"kuzhi-paniyaram-batter-01@original\",\n  \"per_allergen\": {\n    \"nuts\": \"not_declared\"\n  },\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3063.0,
+        "input_tokens": 1364,
+        "output_tokens": 21,
+        "cost_usd": 0.0004617
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1513.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3444.6,
+        "input_tokens": 1151,
+        "output_tokens": 36,
+        "cost_usd": 0.0004353
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 4.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3422.5,
+        "input_tokens": 1152,
+        "output_tokens": 131,
+        "cost_usd": 0.0006730999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 14644.7,
+    "total_tokens": 3855,
+    "cost_usd": 0.0015701,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The allergen note for kuzhi paniyaram is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a08": {
+    "trace_id": "t-23c0881fb5e4",
+    "timestamp": "2026-10-21T19:02:03+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "A guest is allergic to coconut. Can she have sanna?",
+    "answer": "Allergen check, from the declaration field: sanna-03 (original): NOT SAFE: contains coconut [sanna-03@original]\n\nNo, she cannot have sanna. The recipe contains grated coconut and is marked as unsafe for anyone avoiding coconut.\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": null,
+    "citations": [
+      "sanna-03@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"sanna-03@original::structure::4\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut. Traditional sanna uses palm toddy, which\\nis mildly alcoholic and unsuitable for anyone avoiding alcohol; a slurry of 3g dry\\nyeast in warm water is the standard substitute and keeps the recipe alcohol-free.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::1\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Ingredients\\nHydration: 50% from grinding water, plus 24% from the toddy. Yield: 16 cakes.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::3\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Method\\nFerment 5 to 6 hours at 30C until the batter has risen by\\nabout half and smells faintly of alcohol. Ladle into greased moulds, filling each\\nonly three-quarters full since they climb, and steam 15 minutes. Test with a\\nskewer and rest 5 minutes before turning them out or they collapse.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::0\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\nPercentages are relative to the rice weight (500g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 500g | 100% |\\n| Water for grinding | 250g | 50% |\\n| Grated coconut | 150g | 30% |\\n| Toddy, or yeast slurry | 120g | 24% |\\n| Rock salt | 10g | 2% |\\n| Cooked rice | 40g | 8% |\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::2\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Method\\nSoak the parboiled rice 4 hours and grind it with the grated coconut and the\\ncooked rice, using only the 250g of water; the toddy brings the rest of the\\nliquid and doing this the other way round gives a batter too slack to hold a\\ncake. Fold the toddy in by hand rather than beating it, so the natural yeasts\\nsurvive. Add the rock salt last, because salt slows a toddy ferment noticeably\\nwhen it goes in early.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "sanna-03",
+          "avoid": [
+            "coconut"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"sanna-03@original\",\n  \"per_allergen\": {\n    \"coconut\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"alcohol\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3145.8,
+        "input_tokens": 1363,
+        "output_tokens": 17,
+        "cost_usd": 0.00045139999999999997
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1579.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 5805.6,
+        "input_tokens": 1151,
+        "output_tokens": 29,
+        "cost_usd": 0.0004178
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 8.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3648.8,
+        "input_tokens": 1152,
+        "output_tokens": 23,
+        "cost_usd": 0.0004031
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 17787.8,
+    "total_tokens": 3735,
+    "cost_usd": 0.0012723,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The presence of coconut and the substitution note for sanna are supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a09": {
+    "trace_id": "t-0be6cbacc5da",
+    "timestamp": "2026-10-21T19:02:23+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Is kallappam suitable for someone avoiding yeast?",
+    "answer": "Allergen check, from the declaration field: kallappam-batter-02 (reformulated-2025): NOT SAFE: contains yeast [kallappam-batter-02@reformulated-2025]\n\nNo, kallappam is **not** suitable for someone avoiding yeast. \n\nBoth the current (reformulated 2025) and original versions of the kallappam batter recipe contain yeast and are classified as unsafe for anyone avoiding yeast.\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": null,
+    "citations": [
+      "kallappam-batter-02@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kallappam"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Allergen Note\\nVegan and gluten-free. NOT nut-free: the 2025 supplier paste contains cashew, a tree\\nnut. Contains coconut and yeast. The original recipe used plain grated coconut and was\\nnut-free; that version is superseded and must not be used to answer a nut-allergy question.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "kallappam-batter-02",
+          "avoid": [
+            "yeast"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"per_allergen\": {\n    \"yeast\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"nuts\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3276.7,
+        "input_tokens": 1360,
+        "output_tokens": 19,
+        "cost_usd": 0.0004555
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2126.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3641.0,
+        "input_tokens": 1151,
+        "output_tokens": 34,
+        "cost_usd": 0.0004303
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 4.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3467.6,
+        "input_tokens": 1152,
+        "output_tokens": 51,
+        "cost_usd": 0.00047309999999999995
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 15883.5,
+    "total_tokens": 3767,
+    "cost_usd": 0.0013589,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The yeast declaration for kallappam is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "a10": {
+    "trace_id": "t-12d3a80a4a7a",
+    "timestamp": "2026-10-21T19:02:43+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "The old kallappam recipe used plain grated coconut. Was that original version nut free?",
+    "answer": "Allergen check, from the declaration field: kallappam-batter-02 (original): no declared nuts (neither contains nor may contain) [kallappam-batter-02@original]\n\nYes, the original version of the kallappam recipe (which used plain grated coconut) was nut-free.\n\nALLERGEN_VERDICT: no_declared_allergen",
+    "allergen_verdict": "no_declared_allergen",
+    "swap_guard": null,
+    "citations": [
+      "kallappam-batter-02@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kallappam"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Allergen Note\\nVegan and gluten-free. NOT nut-free: the 2025 supplier paste contains cashew, a tree\\nnut. Contains coconut and yeast. The original recipe used plain grated coconut and was\\nnut-free; that version is superseded and must not be used to answer a nut-allergy question.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "nuts"
+          ],
+          "recipe_id": "kallappam-batter-02",
+          "version": "original"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"original\",\n  \"status\": \"superseded\",\n  \"citation\": \"kallappam-batter-02@original\",\n  \"per_allergen\": {\n    \"nuts\": \"not_declared\"\n  },\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3651.8,
+        "input_tokens": 1368,
+        "output_tokens": 19,
+        "cost_usd": 0.00045789999999999996
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1820.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3350.2,
+        "input_tokens": 1151,
+        "output_tokens": 39,
+        "cost_usd": 0.00044280000000000003
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 8.4,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3804.9,
+        "input_tokens": 1152,
+        "output_tokens": 23,
+        "cost_usd": 0.0004031
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 15822.3,
+    "total_tokens": 3752,
+    "cost_usd": 0.0013038,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The statement about the original kallappam recipe being nut-free is supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "v01": {
+    "trace_id": "t-44e396fbf4b9",
+    "timestamp": "2026-10-21T19:03:06+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "What are the ingredients of kallappam?",
+    "answer": "The current (reformulated 2025) recipe for Kallappam batter yields 12 appams and includes the following ingredients:\n\n* **Raw rice (pachari):** 500g\n* **Water for grinding:** 420g\n* **Coconut-cashew paste (supplier blend):** 100g\n* **Cooked rice:** 50g\n* **Sugar:** 10g\n* **Fine salt:** 8g\n* **Active dry yeast:** 3g",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kallappam"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Allergen Note\\nVegan and gluten-free. NOT nut-free: the 2025 supplier paste contains cashew, a tree\\nnut. Contains coconut and yeast. The original recipe used plain grated coconut and was\\nnut-free; that version is superseded and must not be used to answer a nut-allergy question.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "Kallappam Batter ingredients"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::1\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\nCURATED FOR THE CAPSTONE, not from the original cookbook. Reformulated in 2025 after the\\ngrated-coconut supplier was replaced: the new supplier delivers a coconut-cashew paste, which\\nreplaces the grated coconut gram for gram. Every other quantity is unchanged.\\n\\nPercentages are relative to the rice weight (500g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Active dry yeast | 3g | 0.6% |\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::1\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\nPercentages are relative to the rice weight (500g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Active dry yeast | 3g | 0.6% |\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 3,
+        "server": "pantry",
+        "tool": "scale_recipe",
+        "arguments": {
+          "target_yield": 12,
+          "recipe_id": "kallappam-batter-02"
+        },
+        "is_error": false,
+        "result": "{\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"base_yield\": \"12 appams\",\n  \"target_yield\": \"12 appams\",\n  \"factor\": 1.0,\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Raw rice, pachari\",\n      \"grams\": 500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 420.0\n    },\n    {\n      \"ingredient\": \"Coconut-cashew paste (supplier blend)\",\n      \"grams\": 100.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 50.0\n    },\n    {\n      \"ingredient\": \"Sugar\",\n      \"grams\": 10.0\n    },\n    {\n      \"ingredient\": \"Fine salt\",\n      \"grams\": 8.0\n    },\n    {\n      \"ingredient\": \"Active dry yeast\",\n      \"grams\": 3.0\n    }\n  ],\n  \"times_unchanged\": {\n    \"soak_hours\": \"4\",\n    \"ferment_hours\": \"4-5\",\n    \"cook_minutes\": \"3\"\n  },\n  \"note\": \"Times do not scale with quantity; use them exactly as listed.\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3165.4,
+        "input_tokens": 1359,
+        "output_tokens": 19,
+        "cost_usd": 0.0004552
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1536.2,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3104.6,
+        "input_tokens": 1151,
+        "output_tokens": 21,
+        "cost_usd": 0.0003978
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1076.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3011.6,
+        "input_tokens": 1151,
+        "output_tokens": 33,
+        "cost_usd": 0.0004278
+      },
+      {
+        "span": "tool:scale_recipe",
+        "server": "pantry",
+        "latency_ms": 39.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap4",
+        "latency_ms": 3510.7,
+        "input_tokens": 1151,
+        "output_tokens": 114,
+        "cost_usd": 0.0006303
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 18723.7,
+    "total_tokens": 4999,
+    "cost_usd": 0.0019111,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "Every ingredient listed in the answer is supported by the context and the recipe tool output.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "v02": {
+    "trace_id": "t-189cc35307d8",
+    "timestamp": "2026-10-21T19:03:30+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "What goes into idli batter, and does it carry any allergen warning?",
+    "answer": "Allergen check, from the declaration field: idli-batter-05 (reformulated-2025): no declared  (neither contains nor may contain) [idli-batter-05@reformulated-2025]\n\n### Ingredients in Idli Batter\nThe current (2025 reformulated) recipe uses the following ingredients (percentages relative to the 800g base rice weight):\n* **Idli rice, parboiled:** 800g (100%)\n* **Whole white urad dal:** 200g (25%)\n* **Water for grinding:** 560g (70%)\n* **Rock salt:** 16g (2%)\n* **Fenugreek seeds:** 8g (1%)\n\n---\n\n### Allergen Warnings\n* **Declared Allergens:** None.\n* **May Contain Traces:** **Nuts (peanut)** and **gluten**. \n  * *Reason:* The current urad dal supplier mills the dal on shared equipment that also processes peanuts and wheat. \n  * *Note:* It is not suitable for anyone with a nut or peanut allergy unless you obtain a specific supplier guarantee.\n\nALLERGEN_VERDICT: no_declared_allergen",
+    "allergen_verdict": "no_declared_allergen",
+    "swap_guard": null,
+    "citations": [
+      "idli-batter-05@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "idli batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::3\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Method\\nFerment 10 to 12 hours\\nat 28C until the batter has doubled and domed. Do not beat the risen batter down. Pour into greased moulds and steam 12 minutes, then rest 2 minutes before unmoulding.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::3\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Method\\nCombine with\\nthe rock salt using your hand, never a spoon. Ferment 10 to 12 hours at 28C until\\nthe batter has doubled and domed. Resist the urge to beat the risen batter down,\\nbecause the trapped gas is the entire leavening. Pour into greased moulds and\\nsteam 12 minutes, then rest 2 minutes before unmoulding or the idlis tear.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::0\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\nPercentages are relative to the rice weight (800g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 800g | 100% |\\n| Whole white urad dal | 200g | 25% |\\n| Water for grinding | 560g | 70% |\\n| Rock salt | 16g | 2% |\\n| Fenugreek seeds | 8g | 1% |\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "version": "current",
+          "avoid": [],
+          "recipe_id": "idli-batter-05"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"per_allergen\": {},\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": [\n    \"gluten\",\n    \"nuts\"\n  ]\n}"
+      },
+      {
+        "lap": 3,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "idli-batter-05 ingredients reformulated-2025"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::3\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Method\\nFerment 10 to 12 hours\\nat 28C until the batter has doubled and domed. Do not beat the risen batter down. Pour into greased moulds and steam 12 minutes, then rest 2 minutes before unmoulding.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::0\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\nCURATED FOR THE CAPSTONE, not from the original cookbook. Reformulated in 2025 after the\\nurad dal supplier changed. The new supplier mills dal on a line that also processes\\npeanuts. The ingredients and quantities are unchanged; the declaration is not.\\n\\nPercentages are relative to the rice weight (800g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 800g | 100% |\\n| Whole white urad dal | 200g | 25% |\\n| Water for grinding | 560g | 70% |\\n| Rock salt | 16g | 2% |\\n| Fenugreek seeds | 8g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::4\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Allergen Note\\nVegan. Contains no declared allergens. MAY CONTAIN traces of nuts (peanut) and gluten:\\nthe 2025 urad dal is milled on shared equipment that also processes peanuts and wheat.\\nNot suitable for a nut or peanut allergy without a supplier guarantee.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    }\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3325.8,
+        "input_tokens": 1365,
+        "output_tokens": 18,
+        "cost_usd": 0.0004545
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1737.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3216.5,
+        "input_tokens": 1151,
+        "output_tokens": 34,
+        "cost_usd": 0.0004303
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 16.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3652.4,
+        "input_tokens": 1152,
+        "output_tokens": 29,
+        "cost_usd": 0.00041809999999999997
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1192.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap4",
+        "latency_ms": 3766.1,
+        "input_tokens": 1151,
+        "output_tokens": 203,
+        "cost_usd": 0.0008527999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 20046.5,
+    "total_tokens": 5103,
+    "cost_usd": 0.0021557,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The ingredients and allergen warnings in the answer are fully supported by the provided context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "sc01": {
+    "trace_id": "t-0858a859061c",
+    "timestamp": "2026-10-21T19:03:49+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Scale idli batter up to 120 idlis. How much urad dal, and how long does it ferment?",
+    "answer": "To make 120 idlis (scaled up from the base yield of 30 idlis), you will need **800g** of whole white urad dal.\n\nThe batter ferments for **10 to 12 hours** at 28°C until it has doubled and domed.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "idli batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::3\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Method\\nFerment 10 to 12 hours\\nat 28C until the batter has doubled and domed. Do not beat the risen batter down. Pour into greased moulds and steam 12 minutes, then rest 2 minutes before unmoulding.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::3\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Method\\nCombine with\\nthe rock salt using your hand, never a spoon. Ferment 10 to 12 hours at 28C until\\nthe batter has doubled and domed. Resist the urge to beat the risen batter down,\\nbecause the trapped gas is the entire leavening. Pour into greased moulds and\\nsteam 12 minutes, then rest 2 minutes before unmoulding or the idlis tear.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::0\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\nPercentages are relative to the rice weight (800g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 800g | 100% |\\n| Whole white urad dal | 200g | 25% |\\n| Water for grinding | 560g | 70% |\\n| Rock salt | 16g | 2% |\\n| Fenugreek seeds | 8g | 1% |\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "scale_recipe",
+        "arguments": {
+          "target_yield": 120,
+          "recipe_id": "idli-batter-05"
+        },
+        "is_error": false,
+        "result": "{\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"base_yield\": \"30 idlis\",\n  \"target_yield\": \"120 idlis\",\n  \"factor\": 4.0,\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 3200.0\n    },\n    {\n      \"ingredient\": \"Whole white urad dal\",\n      \"grams\": 800.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 2240.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 64.0\n    },\n    {\n      \"ingredient\": \"Fenugreek seeds\",\n      \"grams\": 32.0\n    }\n  ],\n  \"times_unchanged\": {\n    \"soak_hours\": \"6\",\n    \"ferment_hours\": \"10-12\",\n    \"cook_minutes\": \"12\"\n  },\n  \"note\": \"Times do not scale with quantity; use them exactly as listed.\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3124.3,
+        "input_tokens": 1376,
+        "output_tokens": 18,
+        "cost_usd": 0.0004578
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1491.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3338.5,
+        "input_tokens": 1151,
+        "output_tokens": 32,
+        "cost_usd": 0.00042530000000000004
+      },
+      {
+        "span": "tool:scale_recipe",
+        "server": "pantry",
+        "latency_ms": 4.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3474.0,
+        "input_tokens": 1151,
+        "output_tokens": 67,
+        "cost_usd": 0.0005128
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 14859.1,
+    "total_tokens": 3795,
+    "cost_usd": 0.0013959,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The scaled urad dal quantity and fermentation time are fully supported by the recipe and scaling output.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "sc02": {
+    "trace_id": "t-2a7582f23cb7",
+    "timestamp": "2026-10-21T19:04:08+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I need 48 kuzhi paniyarams. How much idli rice, and how long do I ferment the batter?",
+    "answer": "To make 48 kuzhi paniyarams (scaling the recipe up from its base yield of two dozen), you will need **1,200g** of parboiled idli rice.\n\nYou should ferment the batter for **8 to 10 hours** at 30°C until risen and pitted with bubbles.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kuzhi paniyaram"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::1\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Ingredients\\nRice to dal ratio: 3:1. Hydration: 80%. Final batter weight: approximately 1300g.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::3\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Method\\nKeep the batter noticeably thicker than dosa batter, or the paniyarams will not\\nhold their domed shape. Ferment 8 to 10 hours at 30C until risen and pitted with\\nbubbles. Do not stir the risen batter, or you will knock out the gas that gives\\nthe paniyarams their spongy centre. Spoon gently into a greased paniyaram pan,\\ncook 3 minutes on the first side, turn each ball with a skewer and give it\\n2 minutes more.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::0\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\nPercentages are relative to the rice weight (600g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 600g | 100% |\\n| Whole white urad dal | 200g | 33% |\\n| Fenugreek seeds | 6g | 1% |\\n| Rock salt | 14g | 2.3% |\\n| Water for grinding | 480g | 80% |\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::2\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Method\\nSoak the rice and the urad dal in separate bowls for 5 hours, with the fenugreek\\nseeds sitting in the dal. Grind the dal first with ice-cold water until it is\\nlight and holds a soft peak, then grind the rice to a fine grain that still feels\\nslightly sandy between the fingers. Combine both with the rock salt and mix by\\nhand for two full minutes; the warmth of your palm starts the wild fermentation.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::4\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Allergen Note\\nVegan and gluten-free with no top-14 allergens. Contains no dairy. If you add\\nasafoetida to the tempering, check the label: most Indian brands are bound with\\nwheat flour and would make this unsuitable for coeliacs.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "scale_recipe",
+        "arguments": {
+          "recipe_id": "kuzhi-paniyaram-batter-01",
+          "target_yield": 48
+        },
+        "is_error": false,
+        "result": "{\n  \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n  \"version\": \"original\",\n  \"citation\": \"kuzhi-paniyaram-batter-01@original\",\n  \"base_yield\": \"24 paniyarams\",\n  \"target_yield\": \"48 paniyarams\",\n  \"factor\": 2.0,\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 1200.0\n    },\n    {\n      \"ingredient\": \"Whole white urad dal\",\n      \"grams\": 400.0\n    },\n    {\n      \"ingredient\": \"Fenugreek seeds\",\n      \"grams\": 12.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 28.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 960.0\n    }\n  ],\n  \"times_unchanged\": {\n    \"soak_hours\": \"5\",\n    \"ferment_hours\": \"8-10\",\n    \"cook_minutes\": \"5\"\n  },\n  \"note\": \"Times do not scale with quantity; use them exactly as listed.\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3298.6,
+        "input_tokens": 1376,
+        "output_tokens": 21,
+        "cost_usd": 0.00046530000000000003
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1591.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3320.3,
+        "input_tokens": 1151,
+        "output_tokens": 36,
+        "cost_usd": 0.0004353
+      },
+      {
+        "span": "tool:scale_recipe",
+        "server": "pantry",
+        "latency_ms": 5.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3468.1,
+        "input_tokens": 1151,
+        "output_tokens": 69,
+        "cost_usd": 0.0005177999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 15099.3,
+    "total_tokens": 3804,
+    "cost_usd": 0.0014184,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The scaled idli rice quantity and fermentation time are supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "sc03": {
+    "trace_id": "t-9191b5141e8b",
+    "timestamp": "2026-10-21T19:04:27+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Kallappam for 36 appams: how much raw rice, and how long does the batter rise?",
+    "answer": "To make 36 appams (scaling the recipe up by a factor of 3 from the 12-appam base):\n\n* **Raw rice (pachari):** You will need **1,500g** (1.5 kg).\n* **Batter rise time:** The batter needs **4 to 5 hours** at 28°C (note that rise and soak times do not change when scaling the recipe).",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kallappam"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Allergen Note\\nVegan and gluten-free. NOT nut-free: the 2025 supplier paste contains cashew, a tree\\nnut. Contains coconut and yeast. The original recipe used plain grated coconut and was\\nnut-free; that version is superseded and must not be used to answer a nut-allergy question.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "scale_recipe",
+        "arguments": {
+          "recipe_id": "kallappam-batter-02",
+          "target_yield": 36
+        },
+        "is_error": false,
+        "result": "{\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"base_yield\": \"12 appams\",\n  \"target_yield\": \"36 appams\",\n  \"factor\": 3.0,\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Raw rice, pachari\",\n      \"grams\": 1500.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 1260.0\n    },\n    {\n      \"ingredient\": \"Coconut-cashew paste (supplier blend)\",\n      \"grams\": 300.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 150.0\n    },\n    {\n      \"ingredient\": \"Sugar\",\n      \"grams\": 30.0\n    },\n    {\n      \"ingredient\": \"Fine salt\",\n      \"grams\": 24.0\n    },\n    {\n      \"ingredient\": \"Active dry yeast\",\n      \"grams\": 9.0\n    }\n  ],\n  \"times_unchanged\": {\n    \"soak_hours\": \"4\",\n    \"ferment_hours\": \"4-5\",\n    \"cook_minutes\": \"3\"\n  },\n  \"note\": \"Times do not scale with quantity; use them exactly as listed.\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3041.9,
+        "input_tokens": 1374,
+        "output_tokens": 19,
+        "cost_usd": 0.0004597
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1697.3,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3207.9,
+        "input_tokens": 1151,
+        "output_tokens": 33,
+        "cost_usd": 0.0004278
+      },
+      {
+        "span": "tool:scale_recipe",
+        "server": "pantry",
+        "latency_ms": 10.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3480.6,
+        "input_tokens": 1151,
+        "output_tokens": 94,
+        "cost_usd": 0.0005803
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 15127.7,
+    "total_tokens": 3822,
+    "cost_usd": 0.0014678,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The raw rice quantity for 36 appams and the rise time are directly supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "sc04": {
+    "trace_id": "t-3f13cb99f5a4",
+    "timestamp": "2026-10-21T19:04:42+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Make a half batch of sanna, 8 cakes. How much grated coconut, and how long do I steam them?",
+    "answer": "For a half batch of 8 sanna cakes:\n\n* **Grated coconut:** **75 grams**\n* **Steaming time:** **15 minutes** (Remember that cooking times do not scale with quantity!)",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "scale_recipe",
+        "arguments": {
+          "recipe_id": "sanna-03",
+          "target_yield": 8
+        },
+        "is_error": false,
+        "result": "{\n  \"recipe_id\": \"sanna-03\",\n  \"version\": \"original\",\n  \"citation\": \"sanna-03@original\",\n  \"base_yield\": \"16 steamed cakes\",\n  \"target_yield\": \"8 steamed cakes\",\n  \"factor\": 0.5,\n  \"ingredients\": [\n    {\n      \"ingredient\": \"Idli rice, parboiled\",\n      \"grams\": 250.0\n    },\n    {\n      \"ingredient\": \"Water for grinding\",\n      \"grams\": 125.0\n    },\n    {\n      \"ingredient\": \"Grated coconut\",\n      \"grams\": 75.0\n    },\n    {\n      \"ingredient\": \"Toddy, or yeast slurry\",\n      \"grams\": 60.0\n    },\n    {\n      \"ingredient\": \"Rock salt\",\n      \"grams\": 5.0\n    },\n    {\n      \"ingredient\": \"Cooked rice\",\n      \"grams\": 20.0\n    }\n  ],\n  \"times_unchanged\": {\n    \"soak_hours\": \"4\",\n    \"ferment_hours\": \"5-6\",\n    \"cook_minutes\": \"15\"\n  },\n  \"note\": \"Times do not scale with quantity; use them exactly as listed.\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3224.8,
+        "input_tokens": 1375,
+        "output_tokens": 28,
+        "cost_usd": 0.0004825
+      },
+      {
+        "span": "tool:scale_recipe",
+        "server": "pantry",
+        "latency_ms": 6.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3357.1,
+        "input_tokens": 1151,
+        "output_tokens": 46,
+        "cost_usd": 0.0004603
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 11030.8,
+    "total_tokens": 2600,
+    "cost_usd": 0.0009428,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The grated coconut quantity and cooking time for the half batch are supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "t01": {
+    "trace_id": "t-644c0edabd2d",
+    "timestamp": "2026-10-21T19:04:57+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "How do I reheat leftover idlis safely?",
+    "answer": "To reheat leftover idlis safely, you must reheat them until they are steaming hot with an internal temperature of **at least 74°C**. \n\nFor the best texture, you can steam the leftover idlis for a few minutes until heated thoroughly through the center. Be sure to reheat them only once.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "safe_temperature",
+        "arguments": {
+          "item": "leftovers"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"item\": \"leftovers\",\n  \"kind\": \"reheat\",\n  \"min_internal_c\": 74,\n  \"rule\": \"Reheat cooked leftovers until steaming hot, at least 74C, once only.\",\n  \"source\": \"data/capstone/food_safety.json\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3027.7,
+        "input_tokens": 1359,
+        "output_tokens": 17,
+        "cost_usd": 0.0004502
+      },
+      {
+        "span": "tool:safe_temperature",
+        "server": "pantry",
+        "latency_ms": 20.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3342.7,
+        "input_tokens": 1151,
+        "output_tokens": 63,
+        "cost_usd": 0.0005028
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 10910.8,
+    "total_tokens": 2590,
+    "cost_usd": 0.000953,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The reheat temperature and rules are supported by the food safety context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "t02": {
+    "trace_id": "t-c9ed4b9d0491",
+    "timestamp": "2026-10-21T19:05:14+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "How should I store moru after it has stood for two hours?",
+    "answer": "After the moru has stood at room temperature for two hours to allow the aromatics to infuse, you should **refrigerate it at 5°C or below** before serving. Do not leave dairy at room temperature longer than this.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"moru-04@original::structure::2\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Ingredients\\nCurd to water ratio: 1:3. Yield: approximately 1600g.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::3\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nStart from curd that has already soured for a day past setting; fresh sweet curd\\nmakes a flat moru with no lift to it. Whisk the curd smooth on its own before any\\nwater goes near it, then add the water in stages, because pouring it in all at\\nonce leaves lumps that never break up. Crush the shallots, ginger and slit chilli\\ntogether with the rock salt in a mortar until bruised but not pulped, and stir\\nthem through.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::1\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Curry leaves | 4g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::4\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nLeave it to stand 2 hours at room temperature so the aromatics\\ninfuse and the culture keeps working. Do not boil it at any point; heat splits the\\ncurd and the drink turns grainy. Bruise the curry leaves between your fingers as\\nyou add them, then refrigerate before serving.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::0\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Thick sour curd | 400g | 100% |\\n| Water | 1200g | 300% |\\n| Shallots, crushed | 20g | 5% |\\n| Green chilli, slit | 12g | 3% |\\n| Ginger, crushed | 10g | 2.5% |\\n| Rock salt | 6g | 1.5% |\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "safe_temperature",
+        "arguments": {
+          "item": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"item\": \"moru\",\n  \"kind\": \"hold\",\n  \"max_hold_c\": 5,\n  \"rule\": \"After the 2-hour stand, refrigerate at 5C or below; do not leave dairy at room temperature longer.\",\n  \"source\": \"data/capstone/food_safety.json\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3546.3,
+        "input_tokens": 1364,
+        "output_tokens": 34,
+        "cost_usd": 0.0004942
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2007.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "tool:safe_temperature",
+        "server": "pantry",
+        "latency_ms": 6.2,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3333.7,
+        "input_tokens": 1160,
+        "output_tokens": 49,
+        "cost_usd": 0.0004705
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 13382.2,
+    "total_tokens": 2607,
+    "cost_usd": 0.0009647,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The post-stand storage temperature is supported by the context and food safety tool.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "t03": {
+    "trace_id": "t-87ddc524f07c",
+    "timestamp": "2026-10-21T19:05:30+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "How long should I cook chicken for, and how do I know it is done?",
+    "answer": "To ensure chicken is safely cooked, the thickest part must reach an internal temperature of at least **74°C** (165°F). \n\nYou should use a digital food thermometer inserted into the thickest part of the meat (avoiding bone) to check for doneness. Relying on visual cues like \"cooked through\" or \"golden\" is not sufficient. \n\n*Note: Cooking times can vary widely depending on the cut, size, and cooking method (e.g., roasting, grilling, or pan-searing), so always verify doneness using the internal temperature of 74°C rather than the clock.*",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "safe_temperature",
+        "arguments": {
+          "item": "chicken"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"item\": \"chicken\",\n  \"kind\": \"cook\",\n  \"min_internal_c\": 74,\n  \"rule\": \"Cook until the thickest part reaches at least 74C.\",\n  \"source\": \"data/capstone/food_safety.json\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3305.9,
+        "input_tokens": 1367,
+        "output_tokens": 16,
+        "cost_usd": 0.0004501
+      },
+      {
+        "span": "tool:safe_temperature",
+        "server": "pantry",
+        "latency_ms": 9.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3477.6,
+        "input_tokens": 1151,
+        "output_tokens": 134,
+        "cost_usd": 0.0006803
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 11197.6,
+    "total_tokens": 2668,
+    "cost_usd": 0.0011304,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The internal cooking temperature for chicken is supported by the food safety context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "t04": {
+    "trace_id": "t-1d8f9396291b",
+    "timestamp": "2026-10-21T19:05:45+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Can I keep fermented idli batter on the counter for two days?",
+    "answer": "No, you should not leave fermented idli batter on the counter for two days. \n\nAccording to food safety guidelines, once the batter is fermented, it must be refrigerated at **5°C (41°F) or below** and can be kept for up to 2 days in the refrigerator. Leaving it on the counter at room temperature for two days would put it well into the danger zone, leading to over-fermentation and spoilage.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "safe_temperature",
+        "arguments": {
+          "item": "idli batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"item\": \"fermented batter\",\n  \"kind\": \"hold\",\n  \"max_hold_c\": 5,\n  \"rule\": \"Once fermented, refrigerate the batter at 5C or below and use within 2 days.\",\n  \"source\": \"data/capstone/food_safety.json\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3293.7,
+        "input_tokens": 1364,
+        "output_tokens": 18,
+        "cost_usd": 0.0004542
+      },
+      {
+        "span": "tool:safe_temperature",
+        "server": "pantry",
+        "latency_ms": 7.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3648.3,
+        "input_tokens": 1151,
+        "output_tokens": 93,
+        "cost_usd": 0.0005778
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 11453.4,
+    "total_tokens": 2626,
+    "cost_usd": 0.001032,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The refrigeration temperature and storage duration for idli batter are supported by the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "t05": {
+    "trace_id": "t-6c2ecb7f7cc2",
+    "timestamp": "2026-10-21T19:06:09+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I cooked rice for neeragaram. How quickly does it need to cool?",
+    "answer": "For **neeragaram**, you should use rice that has been cooked earlier the same day and **cooled completely** before adding water for fermentation. Warm rice will sour too fast and turn sharply unpleasant rather than pleasantly sour. \n\nFrom a food safety standpoint regarding cooked rice:\n* You must cool cooked rice and get it below **5°C** within **2 hours**, **or** ferment it at once as the neeragaram recipe instructs, because *Bacillus cereus* spores survive cooking.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "neeragaram"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::4\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\n## Method\\nServe at room temperature the same day; by the next\\nmorning it is unpleasantly acidic.\"\n    },\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::1\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\n## Ingredients\\nRice to water ratio: 1:3. Yield: approximately 1100g.\"\n    },\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::3\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\n## Method\\nAdd\\nno salt during the ferment, because salt slows the wild culture; the rock salt\\ngoes in only at serving. When it is ready the water is cloudy and smells faintly\\nsour, and the grains have softened and swollen. Mash a portion of the rice into\\nthe liquid with your fingers to thicken it, then stir in the sliced shallots, the\\nslit chilli and the rock salt.\"\n    },\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::0\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\nPercentages are relative to the cooked rice weight (300g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Cooked rice, cooled | 300g | 100% |\\n| Water | 900g | 300% |\\n| Shallots, sliced | 20g | 7% |\\n| Green chilli, slit | 8g | 2.7% |\\n| Rock salt | 3g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::2\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\n## Method\\nUse rice cooked earlier the same day and cooled completely; warm rice sours too\\nfast and turns sharp rather than pleasantly sour. Cover it with the water in an\\nearthenware pot, leaving the lid resting loose so gas can escape. Ferment 6 to 8\\nhours at ambient room temperature, which is all it takes in a warm kitchen.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "safe_temperature",
+        "arguments": {
+          "item": "leftovers"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"item\": \"leftovers\",\n  \"kind\": \"reheat\",\n  \"min_internal_c\": 74,\n  \"rule\": \"Reheat cooked leftovers until steaming hot, at least 74C, once only.\",\n  \"source\": \"data/capstone/food_safety.json\"\n}"
+      },
+      {
+        "lap": 3,
+        "server": "pantry",
+        "tool": "safe_temperature",
+        "arguments": {
+          "item": "rice"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": true,\n  \"item\": \"cooked rice\",\n  \"kind\": \"cool\",\n  \"max_hold_c\": 5,\n  \"max_cool_hours\": 2,\n  \"rule\": \"Cool cooked rice and get it below 5C within 2 hours, or ferment it at once as the neeragaram card says; Bacillus cereus spores survive cooking.\",\n  \"source\": \"data/capstone/food_safety.json\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3252.8,
+        "input_tokens": 1366,
+        "output_tokens": 19,
+        "cost_usd": 0.0004573
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1865.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3084.6,
+        "input_tokens": 1151,
+        "output_tokens": 17,
+        "cost_usd": 0.0003878
+      },
+      {
+        "span": "tool:safe_temperature",
+        "server": "pantry",
+        "latency_ms": 6.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3281.1,
+        "input_tokens": 1151,
+        "output_tokens": 16,
+        "cost_usd": 0.0003853
+      },
+      {
+        "span": "tool:safe_temperature",
+        "server": "pantry",
+        "latency_ms": 3.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap4",
+        "latency_ms": 3526.1,
+        "input_tokens": 1151,
+        "output_tokens": 103,
+        "cost_usd": 0.0006027999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 19540.0,
+    "total_tokens": 4974,
+    "cost_usd": 0.0018331999999999999,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer accurately cites the cooling rules and context for neeragaram and cooked rice.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "r01": {
+    "trace_id": "t-4effbc419a15",
+    "timestamp": "2026-10-21T19:06:27+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Give me your nut-free shortbread recipe.",
+    "answer": "I'm sorry, but I don't have a shortbread recipe in my recipe library. My collection focuses on traditional batters and dishes like idli, kallappam, kuzhi paniyaram, moru, neeragaram, and sanna.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "shortbread"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"sanna-03@original::structure::2\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Method\\nSoak the parboiled rice 4 hours and grind it with the grated coconut and the\\ncooked rice, using only the 250g of water; the toddy brings the rest of the\\nliquid and doing this the other way round gives a batter too slack to hold a\\ncake. Fold the toddy in by hand rather than beating it, so the natural yeasts\\nsurvive. Add the rock salt last, because salt slows a toddy ferment noticeably\\nwhen it goes in early.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C —\\nfar less than a wild batter, and it will go sour and flat if left overnight. The\\nbatter is ready when the surface is domed and covered in fine bubbles. Pour a\\nladleful into a hot greased appachatti, swirl once so the centre stays thick and\\nthe edges run thin, cover, and cook 3 minutes without turning.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::3\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBloom the yeast with the sugar in a little water at 38C and leave it 10 minutes\\nuntil it froths; water hotter than that kills the yeast outright and the batter\\nwill never rise. Soak the raw rice 4 hours, then grind it with the coconut-cashew\\npaste and the cooked rice to a smooth, pourable batter about the consistency of thin\\nbuttermilk. Stir the bloomed yeast and the fine salt through.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3594.8,
+        "input_tokens": 1360,
+        "output_tokens": 17,
+        "cost_usd": 0.0004505
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2455.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3650.8,
+        "input_tokens": 1151,
+        "output_tokens": 53,
+        "cost_usd": 0.0004778
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 14069.8,
+    "total_tokens": 2581,
+    "cost_usd": 0.0009283,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer correctly states it lacks a shortbread recipe based on available context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "r02": {
+    "trace_id": "t-f3547b239b46",
+    "timestamp": "2026-10-21T19:06:42+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "To what internal temperature should I roast pork belly?",
+    "answer": "I'm sorry, but pork belly is not listed in the food-safety chart available to me, and I cannot guess or provide a temperature that isn't in the chart.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "safe_temperature",
+        "arguments": {
+          "item": "pork belly"
+        },
+        "is_error": false,
+        "result": "{\n  \"found\": false,\n  \"item\": \"pork belly\",\n  \"reason\": \"not in the food-safety chart; do not guess a temperature\",\n  \"chart_items\": [\n    \"chicken\",\n    \"minced meat\",\n    \"fish\",\n    \"eggs\",\n    \"leftovers\",\n    \"fermented batter\",\n    \"moru\",\n    \"cooked rice\"\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3124.5,
+        "input_tokens": 1360,
+        "output_tokens": 18,
+        "cost_usd": 0.000453
+      },
+      {
+        "span": "tool:safe_temperature",
+        "server": "pantry",
+        "latency_ms": 7.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3317.8,
+        "input_tokens": 1151,
+        "output_tokens": 37,
+        "cost_usd": 0.0004378
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 11023.7,
+    "total_tokens": 2566,
+    "cost_usd": 0.0008908,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer adheres to the safety chart context stating pork belly is not listed.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "r03": {
+    "trace_id": "t-4089c16dc3b6",
+    "timestamp": "2026-10-21T19:07:00+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "What wine goes best with kallappam?",
+    "answer": "Kallappam is a traditional South Indian lacy pancake made with rice, coconut, and fermented with yeast (historically toddy/palm wine, which gives it its name and characteristic slight tang). \n\nBecause kallappam features delicate fermented rice notes, subtle sweetness from coconut, and a light spongy texture with crispy edges, it pairs wonderfully with crisp, off-dry, or sparkling wines that can cut through the richness of the coconut and complement the subtle acidity:\n\n1. **Off-Dry Riesling:** A slightly off-dry Riesling (Kabinett style) has a touch of residual sweetness that mirrors the natural sweetness of the coconut, while its high, refreshing acidity balances the richness and cuts through the fermented tang of the appam.\n2. **Sparkling Wine / Prosecco or Cava:** A crisp, dry sparkling wine or a lively Prosecco provides a wonderful textural contrast. The bubbles lift the rich coconut milk, and the clean, fruit-forward profile won't overpower the subtle flavors of the dish.\n3. **Chenin Blanc:** A zesty, fruit-forward Chenin Blanc with notes of green apple and pear brings enough body to match the coconut while offering a bright, crisp finish.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kallappam"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Allergen Note\\nVegan and gluten-free. NOT nut-free: the 2025 supplier paste contains cashew, a tree\\nnut. Contains coconut and yeast. The original recipe used plain grated coconut and was\\nnut-free; that version is superseded and must not be used to answer a nut-allergy question.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3583.5,
+        "input_tokens": 1359,
+        "output_tokens": 19,
+        "cost_usd": 0.0004552
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1974.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 4273.8,
+        "input_tokens": 1151,
+        "output_tokens": 251,
+        "cost_usd": 0.0009727999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 14571.2,
+    "total_tokens": 2780,
+    "cost_usd": 0.001428,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer discusses kallappam and general wine pairings, remaining consistent with the context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "s01": {
+    "trace_id": "t-a9ba3504a678",
+    "timestamp": "2026-10-21T19:07:30+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "No curd for moru, what else can I use?",
+    "answer": "If you are avoiding dairy, the test kitchen's official substitution for thick sour curd in the moru recipe is **coconut milk yoghurt**.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"moru-04@original::structure::2\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Ingredients\\nCurd to water ratio: 1:3. Yield: approximately 1600g.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::3\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nStart from curd that has already soured for a day past setting; fresh sweet curd\\nmakes a flat moru with no lift to it. Whisk the curd smooth on its own before any\\nwater goes near it, then add the water in stages, because pouring it in all at\\nonce leaves lumps that never break up. Crush the shallots, ginger and slit chilli\\ntogether with the rock salt in a mortar until bruised but not pulped, and stir\\nthem through.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::1\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Curry leaves | 4g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::4\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nLeave it to stand 2 hours at room temperature so the aromatics\\ninfuse and the culture keeps working. Do not boil it at any point; heat splits the\\ncurd and the drink turns grainy. Bruise the curry leaves between your fingers as\\nyou add them, then refrigerate before serving.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::0\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Thick sour curd | 400g | 100% |\\n| Water | 1200g | 300% |\\n| Shallots, crushed | 20g | 5% |\\n| Green chilli, slit | 12g | 3% |\\n| Ginger, crushed | 10g | 2.5% |\\n| Rock salt | 6g | 1.5% |\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Thick sour curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 12204.1,
+        "input_tokens": 1362,
+        "output_tokens": 17,
+        "cost_usd": 0.00045109999999999996
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2086.7,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3868.1,
+        "input_tokens": 1151,
+        "output_tokens": 26,
+        "cost_usd": 0.0004103
+      },
+      {
+        "span": "tool:substitute_ingredient",
+        "server": "pantry",
+        "latency_ms": 5.7,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3268.0,
+        "input_tokens": 1152,
+        "output_tokens": 28,
+        "cost_usd": 0.00041559999999999996
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 26091.6,
+    "total_tokens": 3736,
+    "cost_usd": 0.001277,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer proposes coconut milk yoghurt as supported by the context and substitution tool.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "s02": {
+    "trace_id": "t-fba1326c5308",
+    "timestamp": "2026-10-21T19:07:47+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I have no toddy for sanna. What can I use instead?",
+    "answer": "As a standard substitute for toddy in sanna, you can use a slurry made of **3g of dry yeast mixed in warm water** (using a total of 120g of liquid, matching the toddy weight listed in the recipe).",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "sanna toddy substitute"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"sanna-03@original::structure::4\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut. Traditional sanna uses palm toddy, which\\nis mildly alcoholic and unsuitable for anyone avoiding alcohol; a slurry of 3g dry\\nyeast in warm water is the standard substitute and keeps the recipe alcohol-free.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::1\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Ingredients\\nHydration: 50% from grinding water, plus 24% from the toddy. Yield: 16 cakes.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::2\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Method\\nSoak the parboiled rice 4 hours and grind it with the grated coconut and the\\ncooked rice, using only the 250g of water; the toddy brings the rest of the\\nliquid and doing this the other way round gives a batter too slack to hold a\\ncake. Fold the toddy in by hand rather than beating it, so the natural yeasts\\nsurvive. Add the rock salt last, because salt slows a toddy ferment noticeably\\nwhen it goes in early.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::0\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\nPercentages are relative to the rice weight (500g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 500g | 100% |\\n| Water for grinding | 250g | 50% |\\n| Grated coconut | 150g | 30% |\\n| Toddy, or yeast slurry | 120g | 24% |\\n| Rock salt | 10g | 2% |\\n| Cooked rice | 40g | 8% |\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::3\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Method\\nFerment 5 to 6 hours at 30C until the batter has risen by\\nabout half and smells faintly of alcohol. Ladle into greased moulds, filling each\\nonly three-quarters full since they climb, and steam 15 minutes. Test with a\\nskewer and rest 5 minutes before turning them out or they collapse.\"\n    }\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3164.9,
+        "input_tokens": 1365,
+        "output_tokens": 20,
+        "cost_usd": 0.0004595
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1952.7,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3327.7,
+        "input_tokens": 1151,
+        "output_tokens": 52,
+        "cost_usd": 0.0004753
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 12938.3,
+    "total_tokens": 2588,
+    "cost_usd": 0.0009348,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer correctly provides the dry yeast slurry substitute as stated in the sanna context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "s03": {
+    "trace_id": "t-db43b06598fb",
+    "timestamp": "2026-10-21T19:08:11+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "My kid is allergic to coconut. What can I use instead of the coconut-cashew paste in kallappam?",
+    "answer": "Because the test kitchen's substitution table does not list a safe replacement for coconut in the kallappam recipe, there is no tested substitute available. I cannot recommend an alternative offhand, as inventing one could affect the texture or allergen safety of the batter.",
+    "allergen_verdict": null,
+    "swap_guard": null,
+    "citations": [],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "kallappam"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Allergen Note\\nVegan and gluten-free. NOT nut-free: the 2025 supplier paste contains cashew, a tree\\nnut. Contains coconut and yeast. The original recipe used plain grated coconut and was\\nnut-free; that version is superseded and must not be used to answer a nut-allergy question.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::5\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut, which is a fruit rather than a true tree\\nnut, but name it for guests who avoid coconut because it carries the flavour here.\\nContains yeast, which matters for anyone on a yeast-free diet.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::4\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Method\\nBecause this is\\nyeast-leavened rather than wild-fermented, it needs only 4 to 5 hours at 28C, and\\nit will go sour and flat if left overnight. The batter is ready when the surface is\\ndomed and covered in fine bubbles. Pour a ladleful into a hot greased appachatti,\\nswirl once so the centre stays thick and the edges run thin, cover, and cook 3\\nminutes without turning.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "coconut-cashew paste",
+          "avoid": "coconut"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"coconut-cashew paste\",\n  \"avoid\": \"coconut\",\n  \"reason\": \"no ingredient named 'coconut-cashew paste' in the substitution table: try 'ground cashew paste'\",\n  \"recoverable\": true,\n  \"did_you_mean\": [\n    \"ground cashew paste\"\n  ]\n}"
+      },
+      {
+        "lap": 3,
+        "server": "pantry",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "ground cashew paste",
+          "avoid": "coconut"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": false,\n  \"ingredient\": \"ground cashew paste\",\n  \"avoid\": \"coconut\",\n  \"reason\": \"'ground cashew paste' is in the substitution table, but no substitute is recorded for avoid=coconut (recorded only for: nuts). No safe substitute exists in the data; do not invent one.\",\n  \"recoverable\": false\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3653.5,
+        "input_tokens": 1374,
+        "output_tokens": 19,
+        "cost_usd": 0.0004597
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2232.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3199.1,
+        "input_tokens": 1151,
+        "output_tokens": 27,
+        "cost_usd": 0.0004128
+      },
+      {
+        "span": "tool:substitute_ingredient",
+        "server": "pantry",
+        "latency_ms": 9.2,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3132.8,
+        "input_tokens": 1152,
+        "output_tokens": 25,
+        "cost_usd": 0.00040809999999999995
+      },
+      {
+        "span": "tool:substitute_ingredient",
+        "server": "pantry",
+        "latency_ms": 4.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap4",
+        "latency_ms": 3433.6,
+        "input_tokens": 1152,
+        "output_tokens": 52,
+        "cost_usd": 0.00047559999999999996
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 19926.1,
+    "total_tokens": 4952,
+    "cost_usd": 0.0017561999999999999,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer correctly states no substitute is recorded for avoiding coconut in the kallappam paste.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "s04": {
+    "trace_id": "t-c83231ed2598",
+    "timestamp": "2026-10-21T19:08:37+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "Make moru for me, dairy free and coconut free.",
+    "answer": "Allergen check, from the declaration field: moru-04 (original): NOT SAFE: contains dairy [moru-04@original]\n\nI have withheld a suggested swap: 'When we check for a dairy-free substitute using the test kitchen's substitution table, the standard replacement for curd in this recipe is coconut milk yoghurt.' contains coconut, which you asked to avoid. The test kitchen's substitution table records no coconut-free replacement for this. Treat the recipe as unsuitable unless a supplier confirms one.\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": {
+      "withheld": "When we check for a dairy-free substitute using the test kitchen's substitution table, the standard replacement for curd in this recipe is **coconut milk yoghurt**.",
+      "allergen": "coconut",
+      "word": "coconut"
+    },
+    "citations": [
+      "moru-04@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "moru"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"moru-04@original::structure::2\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Ingredients\\nCurd to water ratio: 1:3. Yield: approximately 1600g.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::3\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nStart from curd that has already soured for a day past setting; fresh sweet curd\\nmakes a flat moru with no lift to it. Whisk the curd smooth on its own before any\\nwater goes near it, then add the water in stages, because pouring it in all at\\nonce leaves lumps that never break up. Crush the shallots, ginger and slit chilli\\ntogether with the rock salt in a mortar until bruised but not pulped, and stir\\nthem through.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::1\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Curry leaves | 4g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::4\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nLeave it to stand 2 hours at room temperature so the aromatics\\ninfuse and the culture keeps working. Do not boil it at any point; heat splits the\\ncurd and the drink turns grainy. Bruise the curry leaves between your fingers as\\nyou add them, then refrigerate before serving.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::0\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\nPercentages are relative to the curd weight (400g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Thick sour curd | 400g | 100% |\\n| Water | 1200g | 300% |\\n| Shallots, crushed | 20g | 5% |\\n| Green chilli, slit | 12g | 3% |\\n| Ginger, crushed | 10g | 2.5% |\\n| Rock salt | 6g | 1.5% |\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "dairy",
+            "coconut"
+          ],
+          "recipe_id": "moru-04"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"moru-04\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"moru-04@original\",\n  \"per_allergen\": {\n    \"dairy\": \"contains\",\n    \"coconut\": \"not_declared\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"dairy\"\n  ],\n  \"declared_may_contain\": []\n}"
+      },
+      {
+        "lap": 3,
+        "server": "pantry",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "ingredient": "Thick sour curd",
+          "avoid": "dairy"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Thick sour curd\",\n  \"avoid\": \"dairy\",\n  \"substitute\": \"coconut milk yoghurt\",\n  \"substitute_contains\": [\n    \"coconut\"\n  ],\n  \"source\": \"curated\"\n}"
+      },
+      {
+        "lap": 4,
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "coconut milk yoghurt"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Coconut milk yoghurt\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": true,\n    \"nuts\": false,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 2872.6,
+        "input_tokens": 1362,
+        "output_tokens": 17,
+        "cost_usd": 0.00045109999999999996
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1525.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3235.3,
+        "input_tokens": 1151,
+        "output_tokens": 33,
+        "cost_usd": 0.0004278
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 5.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3449.9,
+        "input_tokens": 1152,
+        "output_tokens": 26,
+        "cost_usd": 0.00041059999999999995
+      },
+      {
+        "span": "tool:substitute_ingredient",
+        "server": "pantry",
+        "latency_ms": 10.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap4",
+        "latency_ms": 3235.4,
+        "input_tokens": 1152,
+        "output_tokens": 19,
+        "cost_usd": 0.00039309999999999996
+      },
+      {
+        "span": "tool:lookup_allergens",
+        "server": "ingredient-db",
+        "latency_ms": 17.3,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap5",
+        "latency_ms": 3711.6,
+        "input_tokens": 1152,
+        "output_tokens": 142,
+        "cost_usd": 0.0007005999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 21422.5,
+    "total_tokens": 6206,
+    "cost_usd": 0.0023832,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer correctly identifies that the substitute contains coconut, which the user wished to avoid.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "b01": {
+    "trace_id": "t-c61d716efb92",
+    "timestamp": "2026-10-21T19:09:01+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "My daughter is allergic to coconut and to nuts. Can I make sanna for her if I swap out the coconut?",
+    "answer": "Allergen check, from the declaration field: sanna-03 (original): NOT SAFE: contains coconut [sanna-03@original]\n\nI have withheld a suggested swap: 'Nut Allergy: If you attempt to swap out the coconut using the test kitchen's standard substitution table, it suggests ground cashew paste.' contains nuts, which you asked to avoid. The test kitchen's substitution table records no nuts-free replacement for this. Treat the recipe as unsuitable unless a supplier confirms one.\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": {
+      "withheld": "* **Nut Allergy:** If you attempt to swap out the coconut using the test kitchen's standard substitution table, it suggests **ground cashew paste**.",
+      "allergen": "nuts",
+      "word": "cashew"
+    },
+    "citations": [
+      "sanna-03@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "sanna"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"sanna-03@original::structure::4\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Allergen Note\\nVegan and gluten-free. Contains coconut. Traditional sanna uses palm toddy, which\\nis mildly alcoholic and unsuitable for anyone avoiding alcohol; a slurry of 3g dry\\nyeast in warm water is the standard substitute and keeps the recipe alcohol-free.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::1\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Ingredients\\nHydration: 50% from grinding water, plus 24% from the toddy. Yield: 16 cakes.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::3\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Method\\nFerment 5 to 6 hours at 30C until the batter has risen by\\nabout half and smells faintly of alcohol. Ladle into greased moulds, filling each\\nonly three-quarters full since they climb, and steam 15 minutes. Test with a\\nskewer and rest 5 minutes before turning them out or they collapse.\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::0\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\nPercentages are relative to the rice weight (500g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 500g | 100% |\\n| Water for grinding | 250g | 50% |\\n| Grated coconut | 150g | 30% |\\n| Toddy, or yeast slurry | 120g | 24% |\\n| Rock salt | 10g | 2% |\\n| Cooked rice | 40g | 8% |\"\n    },\n    {\n      \"chunk_id\": \"sanna-03@original::structure::2\",\n      \"recipe_id\": \"sanna-03\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Sanna (sixteen steamed cakes)\\n## Method\\nSoak the parboiled rice 4 hours and grind it with the grated coconut and the\\ncooked rice, using only the 250g of water; the toddy brings the rest of the\\nliquid and doing this the other way round gives a batter too slack to hold a\\ncake. Fold the toddy in by hand rather than beating it, so the natural yeasts\\nsurvive. Add the rock salt last, because salt slows a toddy ferment noticeably\\nwhen it goes in early.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "sanna-03",
+          "avoid": [
+            "coconut",
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"sanna-03@original\",\n  \"per_allergen\": {\n    \"coconut\": \"contains\",\n    \"nuts\": \"not_declared\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"alcohol\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "substitute_ingredient",
+        "arguments": {
+          "avoid": "coconut",
+          "ingredient": "Grated coconut"
+        },
+        "is_error": false,
+        "result": "{\n  \"substituted\": true,\n  \"ingredient\": \"Grated coconut\",\n  \"avoid\": \"coconut\",\n  \"substitute\": \"ground cashew paste\",\n  \"substitute_contains\": [\n    \"nuts\"\n  ],\n  \"source\": \"curated\"\n}"
+      },
+      {
+        "lap": 3,
+        "server": "ingredient-db",
+        "tool": "lookup_allergens",
+        "arguments": {
+          "ingredient": "ground cashew paste"
+        },
+        "is_error": false,
+        "result": "{\n  \"matched\": true,\n  \"ingredient\": \"Ground cashew paste\",\n  \"allergens\": {\n    \"dairy\": false,\n    \"coconut\": false,\n    \"nuts\": true,\n    \"gluten\": false,\n    \"alcohol\": false,\n    \"yeast\": false,\n    \"soy\": false\n  }\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3418.7,
+        "input_tokens": 1374,
+        "output_tokens": 17,
+        "cost_usd": 0.0004547
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 3040.7,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3508.0,
+        "input_tokens": 1151,
+        "output_tokens": 58,
+        "cost_usd": 0.0004903
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 4.9,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "tool:substitute_ingredient",
+        "server": "pantry",
+        "latency_ms": 3.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3241.7,
+        "input_tokens": 1162,
+        "output_tokens": 19,
+        "cost_usd": 0.0003961
+      },
+      {
+        "span": "tool:lookup_allergens",
+        "server": "ingredient-db",
+        "latency_ms": 6.7,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap4",
+        "latency_ms": 4031.0,
+        "input_tokens": 1152,
+        "output_tokens": 131,
+        "cost_usd": 0.0006730999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 20633.1,
+    "total_tokens": 5064,
+    "cost_usd": 0.0020142,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer correctly identifies that the substitute contains nuts, which the user wished to avoid.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "p01": {
+    "trace_id": "t-60c4caed4c1e",
+    "timestamp": "2026-10-21T19:09:21+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I have rice and urad dal in the fridge, my kid is allergic to nuts, and I have 25 minutes. What can I make?",
+    "answer": "Allergen check, from the declaration field: idli-batter-05 (reformulated-2025): MAY CONTAIN nuts: not safe for a nuts allergy without a supplier guarantee [idli-batter-05@reformulated-2025]\nAllergen check, from the declaration field: kuzhi-paniyaram-batter-01 (original): no declared nuts (neither contains nor may contain) [kuzhi-paniyaram-batter-01@original]\n\nI have withheld a suggested swap: 'If you are looking for a quick meal using rice and urad dal that are already soaked, ground, and fermented into ready-to-use batter, you would need pre-made batter—though you should always check the package's allergen label to ensure it is free from nut traces.' contains nuts, which you asked to avoid. The test kitchen's substitution table records no nuts-free replacement for this. Treat the recipe as unsuitable unless a supplier confirms one.\n\nALLERGEN_VERDICT: may_contain",
+    "allergen_verdict": "may_contain",
+    "swap_guard": {
+      "withheld": "If you are looking for a quick meal using rice and urad dal that are already soaked, ground, and fermented into ready-to-use batter, you would need pre-made batter—though you should always check the package's allergen label to ensure it is free from nut traces.",
+      "allergen": "nuts",
+      "word": "nut"
+    },
+    "citations": [
+      "idli-batter-05@reformulated-2025",
+      "kuzhi-paniyaram-batter-01@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "rice urad dal"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::0\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\nCURATED FOR THE CAPSTONE, not from the original cookbook. Reformulated in 2025 after the\\nurad dal supplier changed. The new supplier mills dal on a line that also processes\\npeanuts. The ingredients and quantities are unchanged; the declaration is not.\\n\\nPercentages are relative to the rice weight (800g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 800g | 100% |\\n| Whole white urad dal | 200g | 25% |\\n| Water for grinding | 560g | 70% |\\n| Rock salt | 16g | 2% |\\n| Fenugreek seeds | 8g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::2\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Method\\nSoak the rice and the urad dal in separate bowls for 5 hours, with the fenugreek\\nseeds sitting in the dal. Grind the dal first with ice-cold water until it is\\nlight and holds a soft peak, then grind the rice to a fine grain that still feels\\nslightly sandy between the fingers. Combine both with the rock salt and mix by\\nhand for two full minutes; the warmth of your palm starts the wild fermentation.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::2\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Method\\nSoak the rice and the urad dal separately for 6 hours, keeping the fenugreek\\nseeds with the dal so they grind in together. Grind the dal first with ice-cold\\nwater until it triples in volume and floats when a drop is dropped into water. Grind the rice coarser than you would for dosa, to a texture like fine semolina. Combine with the rock salt using your hand, never a spoon.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::4\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Allergen Note\\nVegan. Contains no declared allergens. MAY CONTAIN traces of nuts (peanut) and gluten:\\nthe 2025 urad dal is milled on shared equipment that also processes peanuts and wheat.\\nNot suitable for a nut or peanut allergy without a supplier guarantee.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::2\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Method\\nSoak the rice and the urad dal separately for 6 hours, keeping the fenugreek\\nseeds with the dal so they grind in together. Grind the dal first with ice-cold\\nwater until it triples in volume and floats when a drop is dropped into water; this aeration, not the fermentation, is what makes idlis light. Grind the rice\\ncoarser than you would for dosa, to a texture like fine semolina.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "idli-batter-05",
+          "avoid": [
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"per_allergen\": {\n    \"nuts\": \"may_contain\"\n  },\n  \"verdict\": \"may_contain\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": [\n    \"gluten\",\n    \"nuts\"\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "kuzhi-paniyaram-batter-01",
+          "avoid": [
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"kuzhi-paniyaram-batter-01@original\",\n  \"per_allergen\": {\n    \"nuts\": \"not_declared\"\n  },\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3075.1,
+        "input_tokens": 1381,
+        "output_tokens": 19,
+        "cost_usd": 0.0004618
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1680.7,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3104.8,
+        "input_tokens": 1151,
+        "output_tokens": 67,
+        "cost_usd": 0.0005128
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 5.2,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 2.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3827.8,
+        "input_tokens": 1162,
+        "output_tokens": 201,
+        "cost_usd": 0.0008510999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 15216.3,
+    "total_tokens": 3981,
+    "cost_usd": 0.0018257,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The answer correctly evaluates allergen safety for the requested recipe.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "p02": {
+    "trace_id": "t-e6e4bffa9694",
+    "timestamp": "2026-10-21T19:09:43+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "I have cooked rice, shallots and green chilli. What can I make for a friend who avoids dairy?",
+    "answer": "Allergen check, from the declaration field: neeragaram-06 (original): no declared dairy (neither contains nor may contain) [neeragaram-06@original]\n\nYou can make **Neeragaram** (traditional fermented rice water)! \n\nIt uses cooled cooked rice, water, shallots, green chilli, and rock salt. It requires a 6 to 8 hour fermentation at ambient room temperature in a covered earthenware pot (with the lid resting loosely). \n\nThis recipe is completely free of dairy and contains no declared dairy allergens.\n\nALLERGEN_VERDICT: no_declared_allergen",
+    "allergen_verdict": "no_declared_allergen",
+    "swap_guard": null,
+    "citations": [
+      "neeragaram-06@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "cooked rice shallots green chilli"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::3\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\n## Method\\nAdd\\nno salt during the ferment, because salt slows the wild culture; the rock salt\\ngoes in only at serving. When it is ready the water is cloudy and smells faintly\\nsour, and the grains have softened and swollen. Mash a portion of the rice into\\nthe liquid with your fingers to thicken it, then stir in the sliced shallots, the\\nslit chilli and the rock salt.\"\n    },\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::0\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\nPercentages are relative to the cooked rice weight (300g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Cooked rice, cooled | 300g | 100% |\\n| Water | 900g | 300% |\\n| Shallots, sliced | 20g | 7% |\\n| Green chilli, slit | 8g | 2.7% |\\n| Rock salt | 3g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::2\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\n## Method\\nUse rice cooked earlier the same day and cooled completely; warm rice sours too\\nfast and turns sharp rather than pleasantly sour. Cover it with the water in an\\nearthenware pot, leaving the lid resting loose so gas can escape. Ferment 6 to 8\\nhours at ambient room temperature, which is all it takes in a warm kitchen.\"\n    },\n    {\n      \"chunk_id\": \"moru-04@original::structure::3\",\n      \"recipe_id\": \"moru-04\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Moru (spiced buttermilk, 1.6 litres)\\n## Method\\nStart from curd that has already soured for a day past setting; fresh sweet curd\\nmakes a flat moru with no lift to it. Whisk the curd smooth on its own before any\\nwater goes near it, then add the water in stages, because pouring it in all at\\nonce leaves lumps that never break up. Crush the shallots, ginger and slit chilli\\ntogether with the rock salt in a mortar until bruised but not pulped, and stir\\nthem through.\"\n    },\n    {\n      \"chunk_id\": \"neeragaram-06@original::structure::4\",\n      \"recipe_id\": \"neeragaram-06\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Neeragaram (fermented rice water, four servings)\\n## Method\\nServe at room temperature the same day; by the next\\nmorning it is unpleasantly acidic.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "dairy"
+          ],
+          "recipe_id": "neeragaram-06",
+          "version": "current"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"neeragaram-06\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"neeragaram-06@original\",\n  \"per_allergen\": {\n    \"dairy\": \"not_declared\"\n  },\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3296.7,
+        "input_tokens": 1372,
+        "output_tokens": 21,
+        "cost_usd": 0.00046409999999999995
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 2284.2,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 5880.3,
+        "input_tokens": 1151,
+        "output_tokens": 37,
+        "cost_usd": 0.0004378
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 9.1,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3636.0,
+        "input_tokens": 1152,
+        "output_tokens": 77,
+        "cost_usd": 0.0005380999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 18555.5,
+    "total_tokens": 3810,
+    "cost_usd": 0.0014399999999999999,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The suggested recipe and its details are fully supported by the provided context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  },
+  "p03": {
+    "trace_id": "t-2d5c6b1f06f9",
+    "timestamp": "2026-10-21T19:10:03+00:00",
+    "prompt_version": "c1",
+    "pipeline_version": "p3",
+    "model": "gemini-3.5-flash-lite",
+    "question": "We avoid coconut at home. Which of your fermented batters can I make?",
+    "answer": "Allergen check, from the declaration field: idli-batter-05 (reformulated-2025): no declared coconut (neither contains nor may contain) [idli-batter-05@reformulated-2025]\nAllergen check, from the declaration field: kallappam-batter-02 (reformulated-2025): NOT SAFE: contains coconut [kallappam-batter-02@reformulated-2025]\nAllergen check, from the declaration field: kuzhi-paniyaram-batter-01 (original): no declared coconut (neither contains nor may contain) [kuzhi-paniyaram-batter-01@original]\nAllergen check, from the declaration field: sanna-03 (original): NOT SAFE: contains coconut [sanna-03@original]\n\nBased on our current recipe library, here are the fermented batters you can make safely while avoiding coconut:\n\n* **Idli Batter** (`idli-batter-05`) — No declared coconut.\n* **Kuzhi Paniyaram Batter** (`kuzhi-paniyaram-batter-01`) — No declared coconut.\n\n*(Note: **Kallappam Batter** and **Sanna** both contain coconut and are unsafe for your household.)*\n\nALLERGEN_VERDICT: unsafe",
+    "allergen_verdict": "unsafe",
+    "swap_guard": null,
+    "citations": [
+      "idli-batter-05@reformulated-2025",
+      "kallappam-batter-02@reformulated-2025",
+      "kuzhi-paniyaram-batter-01@original",
+      "sanna-03@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "batter"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"kallappam-batter-02@original::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams)\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kallappam-batter-02@reformulated-2025::structure::2\",\n      \"recipe_id\": \"kallappam-batter-02\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kallappam Batter (twelve appams), reformulated 2025\\n## Ingredients\\nHydration: 84%. Final batter weight: approximately 1080g.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::3\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Method\\nKeep the batter noticeably thicker than dosa batter, or the paniyarams will not\\nhold their domed shape. Ferment 8 to 10 hours at 30C until risen and pitted with\\nbubbles. Do not stir the risen batter, or you will knock out the gas that gives\\nthe paniyarams their spongy centre. Spoon gently into a greased paniyaram pan,\\ncook 3 minutes on the first side, turn each ball with a skewer and give it\\n2 minutes more.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::3\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"method\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Method\\nFerment 10 to 12 hours\\nat 28C until the batter has doubled and domed. Do not beat the risen batter down. Pour into greased moulds and steam 12 minutes, then rest 2 minutes before unmoulding.\"\n    },\n    {\n      \"chunk_id\": \"kuzhi-paniyaram-batter-01@original::structure::1\",\n      \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n      \"version\": \"original\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Kuzhi Paniyaram Batter (two dozen)\\n## Ingredients\\nRice to dal ratio: 3:1. Hydration: 80%. Final batter weight: approximately 1300g.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "coconut"
+          ],
+          "recipe_id": "idli-batter-05"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"per_allergen\": {\n    \"coconut\": \"not_declared\"\n  },\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": [\n    \"gluten\",\n    \"nuts\"\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "kallappam-batter-02",
+          "avoid": [
+            "coconut"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"per_allergen\": {\n    \"coconut\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"nuts\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "kuzhi-paniyaram-batter-01",
+          "avoid": [
+            "coconut"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kuzhi-paniyaram-batter-01\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"kuzhi-paniyaram-batter-01@original\",\n  \"per_allergen\": {\n    \"coconut\": \"not_declared\"\n  },\n  \"verdict\": \"no_declared_allergen\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": []\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "coconut"
+          ],
+          "recipe_id": "sanna-03"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"sanna-03\",\n  \"version\": \"original\",\n  \"status\": \"current\",\n  \"citation\": \"sanna-03@original\",\n  \"per_allergen\": {\n    \"coconut\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"alcohol\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 3140.9,
+        "input_tokens": 1365,
+        "output_tokens": 16,
+        "cost_usd": 0.0004495
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1715.5,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 3774.2,
+        "input_tokens": 1151,
+        "output_tokens": 129,
+        "cost_usd": 0.0006678
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 7.3,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 4.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 6.4,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 2.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 3764.6,
+        "input_tokens": 1182,
+        "output_tokens": 98,
+        "cost_usd": 0.0005995999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 15862.6,
+    "total_tokens": 3941,
+    "cost_usd": 0.0017169,
+    "judge": {
+      "verdict": "PASS",
+      "reason": "The allergen check results and recipe recommendations are completely backed by the provided context.",
+      "model": "gemini-3.5-flash-lite",
+      "prompt": "judge_v2"
+    }
+  }
+}

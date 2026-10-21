@@ -1,0 +1,16 @@
+{
+  "mcpServers": {
+    "pantry": {
+      "command": ".venv/Scripts/python.exe",
+      "args": [
+        "pantry_server.py"
+      ]
+    },
+    "ingredient-db": {
+      "command": ".venv/Scripts/python.exe",
+      "args": [
+        "vendor/ingredient_db/server.py"
+      ]
+    }
+  }
+}

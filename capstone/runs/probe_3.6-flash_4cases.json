@@ -1,0 +1,285 @@
+{
+  "a01": {
+    "trace_id": "t-cea850c0c884",
+    "timestamp": "2026-10-16T14:37:15+00:00",
+    "prompt_version": "c1",
+    "model": "gemini-3.6-flash",
+    "question": "My son has a nut allergy. Can he eat kallappam?",
+    "answer": "No, he cannot safely eat Kallappam [kallappam-batter-02@reformulated-2025]. \n\nAccording to the official recipe declaration, Kallappam batter (**kallappam-batter-02**, 2025 reformulated version) **contains nuts** (as well as coconut and yeast) and is marked as **unsafe** for anyone with a nut allergy.",
+    "allergen_verdict": null,
+    "citations": [
+      "kallappam-batter-02@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "nuts"
+          ],
+          "recipe_id": "kallappam-batter-02"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"per_allergen\": {\n    \"nuts\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"nuts\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 7167.6,
+        "input_tokens": 1364,
+        "output_tokens": 33,
+        "cost_usd": 0.0004917
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 33.2,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 4647.5,
+        "input_tokens": 1232,
+        "output_tokens": 86,
+        "cost_usd": 0.0005845999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 15593.9,
+    "total_tokens": 2715,
+    "cost_usd": 0.0010762999999999999
+  },
+  "a02": {
+    "trace_id": "t-d0ebe93f5515",
+    "timestamp": "2026-10-16T14:41:30+00:00",
+    "prompt_version": "c1",
+    "model": "gemini-3.6-flash",
+    "question": "Is kallappam nut free?",
+    "answer": "No, Kallappam (recipe ID: `kallappam-batter-02`, current version: reformulated-2025) is **not nut-free**. \n\nAccording to the official recipe allergen declaration, it **contains nuts** (as well as coconut and yeast), making it **unsafe** for anyone avoiding nuts [kallappam-batter-02@reformulated-2025].",
+    "allergen_verdict": null,
+    "citations": [
+      "kallappam-batter-02@reformulated-2025"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "nuts"
+          ],
+          "recipe_id": "kallappam-batter-02"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"kallappam-batter-02\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"kallappam-batter-02@reformulated-2025\",\n  \"per_allergen\": {\n    \"nuts\": \"contains\"\n  },\n  \"verdict\": \"unsafe\",\n  \"declared_allergens\": [\n    \"coconut\",\n    \"nuts\",\n    \"yeast\"\n  ],\n  \"declared_may_contain\": []\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 48366.6,
+        "input_tokens": 1357,
+        "output_tokens": 33,
+        "cost_usd": 0.0004896
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 7.4,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 44458.2,
+        "input_tokens": 1230,
+        "output_tokens": 88,
+        "cost_usd": 0.000589
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 96009.9,
+    "total_tokens": 2708,
+    "cost_usd": 0.0010785999999999999
+  },
+  "a03": {
+    "trace_id": "t-43a224c3c56f",
+    "timestamp": "2026-10-16T14:44:17+00:00",
+    "prompt_version": "c1",
+    "model": "gemini-3.6-flash",
+    "question": "Can someone with a peanut allergy eat idli?",
+    "answer": "**No**, someone with a peanut allergy should not eat idli prepared with the current recipe [idli-batter-05@reformulated-2025::structure::4]. \n\n### Allergen Details:\n* **Current Status:** May Contain (Traces) [idli-batter-05@reformulated-2025::structure::4]\n* **Reason:** In the current 2025 recipe, the urad dal is milled on shared equipment that processes peanuts and wheat [idli-batter-05@reformulated-2025::structure::0, idli-batter-05@reformulated-2025::structure::4].\n* **Safety Recommendation:** It is not suitable for someone with a peanut allergy unless you obtain ingredients with a guaranteed allergen-free supplier certification [idli-batter-05@reformulated-2025::structure::4].",
+    "allergen_verdict": null,
+    "citations": [
+      "idli-batter-05@reformulated-2025::structure::4",
+      "idli-batter-05@reformulated-2025::structure::4",
+      "idli-batter-05@reformulated-2025::structure::4"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "idli batter peanut nuts"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::4\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Allergen Note\\nVegan. Contains no declared allergens. MAY CONTAIN traces of nuts (peanut) and gluten:\\nthe 2025 urad dal is milled on shared equipment that also processes peanuts and wheat.\\nNot suitable for a nut or peanut allergy without a supplier guarantee.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::0\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\nCURATED FOR THE CAPSTONE, not from the original cookbook. Reformulated in 2025 after the\\nurad dal supplier changed. The new supplier mills dal on a line that also processes\\npeanuts. The ingredients and quantities are unchanged; the declaration is not.\\n\\nPercentages are relative to the rice weight (800g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 800g | 100% |\\n| Whole white urad dal | 200g | 25% |\\n| Water for grinding | 560g | 70% |\\n| Rock salt | 16g | 2% |\\n| Fenugreek seeds | 8g | 1% |\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::4\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Allergen Note\\nVegan and gluten-free with no top-14 allergens. Contains no dairy and no coconut.\\nParboiled rice and urad dal are frequently milled on shared equipment, so buy\\ncertified gluten-free grain if you are cooking for coeliacs.\"\n    }\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "recipe_id": "idli-batter-05",
+          "version": "current",
+          "avoid": [
+            "nuts"
+          ]
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"per_allergen\": {\n    \"nuts\": \"may_contain\"\n  },\n  \"verdict\": \"may_contain\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": [\n    \"gluten\",\n    \"nuts\"\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 47525.2,
+        "input_tokens": 1360,
+        "output_tokens": 2,
+        "cost_usd": 0.000413
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 1409.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 15614.6,
+        "input_tokens": 1382,
+        "output_tokens": 37,
+        "cost_usd": 0.0005070999999999999
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 5.6,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 16244.3,
+        "input_tokens": 1403,
+        "output_tokens": 198,
+        "cost_usd": 0.0009159
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 84163.3,
+    "total_tokens": 4382,
+    "cost_usd": 0.001836
+  },
+  "a04": {
+    "trace_id": "t-5e3fd6d6bb80",
+    "timestamp": "2026-10-16T14:45:09+00:00",
+    "prompt_version": "c1",
+    "model": "gemini-3.6-flash",
+    "question": "Is idli batter safe for a coeliac?",
+    "answer": "No, the current version of the **Idli Batter** recipe (`idli-batter-05`) is **not guaranteed safe for a coeliac** [idli-batter-05@reformulated-2025]. \n\n### Details:\n* **Gluten Verdict:** `may_contain` [idli-batter-05@reformulated-2025].\n* **Reason:** While the recipe contains no direct gluten-containing ingredients, the **urad dal** used in the 2025 formulation is milled on shared equipment that processes wheat (as well as peanuts) [idli-batter-05@reformulated-2025].\n\nTo make idli batter safe for someone with coeliac disease, you must source grains (parboiled rice and urad dal) that are explicitly certified gluten-free to eliminate cross-contamination risks [idli-batter-05@original].",
+    "allergen_verdict": null,
+    "citations": [
+      "idli-batter-05@reformulated-2025",
+      "idli-batter-05@reformulated-2025",
+      "idli-batter-05@reformulated-2025",
+      "idli-batter-05@original"
+    ],
+    "calls": [
+      {
+        "lap": 1,
+        "server": "pantry",
+        "tool": "check_allergens",
+        "arguments": {
+          "avoid": [
+            "gluten"
+          ],
+          "version": "current",
+          "recipe_id": "idli-batter-05"
+        },
+        "is_error": false,
+        "result": "{\n  \"checked\": true,\n  \"recipe_id\": \"idli-batter-05\",\n  \"version\": \"reformulated-2025\",\n  \"status\": \"current\",\n  \"citation\": \"idli-batter-05@reformulated-2025\",\n  \"per_allergen\": {\n    \"gluten\": \"may_contain\"\n  },\n  \"verdict\": \"may_contain\",\n  \"declared_allergens\": [],\n  \"declared_may_contain\": [\n    \"gluten\",\n    \"nuts\"\n  ]\n}"
+      },
+      {
+        "lap": 2,
+        "server": "pantry",
+        "tool": "search_recipes",
+        "arguments": {
+          "query": "idli batter gluten"
+        },
+        "is_error": false,
+        "result": "{\n  \"passages\": [\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::4\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Allergen Note\\nVegan and gluten-free with no top-14 allergens. Contains no dairy and no coconut.\\nParboiled rice and urad dal are frequently milled on shared equipment, so buy\\ncertified gluten-free grain if you are cooking for coeliacs.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@reformulated-2025::structure::4\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"reformulated-2025\",\n      \"status\": \"current\",\n      \"section\": \"allergen_note\",\n      \"text\": \"# Idli Batter (thirty idlis), reformulated 2025\\n## Allergen Note\\nVegan. Contains no declared allergens. MAY CONTAIN traces of nuts (peanut) and gluten:\\nthe 2025 urad dal is milled on shared equipment that also processes peanuts and wheat.\\nNot suitable for a nut or peanut allergy without a supplier guarantee.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::1\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\n## Ingredients\\nRice to dal ratio: 4:1. Hydration: 70%. Final batter weight: approximately 1580g.\"\n    },\n    {\n      \"chunk_id\": \"idli-batter-05@original::structure::0\",\n      \"recipe_id\": \"idli-batter-05\",\n      \"version\": \"original\",\n      \"status\": \"superseded\",\n      \"section\": \"ingredients\",\n      \"text\": \"# Idli Batter (thirty idlis)\\nPercentages are relative to the rice weight (800g = 100%).\\n## Ingredients\\n| Ingredient | Weight | Percentage of base |\\n|---|---|---|\\n| Idli rice, parboiled | 800g | 100% |\\n| Whole white urad dal | 200g | 25% |\\n| Water for grinding | 560g | 70% |\\n| Rock salt | 16g | 2% |\\n| Fenugreek seeds | 8g | 1% |\"\n    }\n  ]\n}"
+      }
+    ],
+    "spans": [
+      {
+        "span": "model:lap1",
+        "latency_ms": 10191.1,
+        "input_tokens": 1360,
+        "output_tokens": 37,
+        "cost_usd": 0.0005005
+      },
+      {
+        "span": "tool:check_allergens",
+        "server": "pantry",
+        "latency_ms": 39.8,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap2",
+        "latency_ms": 9017.7,
+        "input_tokens": 1209,
+        "output_tokens": 19,
+        "cost_usd": 0.0004102
+      },
+      {
+        "span": "tool:search_recipes",
+        "server": "pantry",
+        "latency_ms": 3673.0,
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "cost_usd": 0.0,
+        "is_error": false
+      },
+      {
+        "span": "model:lap3",
+        "latency_ms": 15954.1,
+        "input_tokens": 1256,
+        "output_tokens": 196,
+        "cost_usd": 0.0008667999999999999
+      }
+    ],
+    "stop": "completed",
+    "latency_ms": 46889.1,
+    "total_tokens": 4077,
+    "cost_usd": 0.0017775
+  }
+}

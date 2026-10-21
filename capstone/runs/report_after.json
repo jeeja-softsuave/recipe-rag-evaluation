@@ -1,0 +1,717 @@
+{
+  "label": "after",
+  "n": 32,
+  "judged": true,
+  "rows": [
+    {
+      "case_id": "a01",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-199698a2b99d",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3886,
+      "cost_usd": 0.0014276,
+      "latency_ms": 24183.9
+    },
+    {
+      "case_id": "a02",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-a5abe76c38e4",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2580,
+      "cost_usd": 0.0009302,
+      "latency_ms": 10838.7
+    },
+    {
+      "case_id": "a03",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-b305467a6ff4",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3824,
+      "cost_usd": 0.0015014,
+      "latency_ms": 16555.4
+    },
+    {
+      "case_id": "a04",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-4b31328f4b4c",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3922,
+      "cost_usd": 0.0013988,
+      "latency_ms": 16551.8
+    },
+    {
+      "case_id": "a05",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-43c27e4a6562",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2659,
+      "cost_usd": 0.0009693,
+      "latency_ms": 12404.4
+    },
+    {
+      "case_id": "a06",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-119aacba50f0",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2593,
+      "cost_usd": 0.0009560999999999999,
+      "latency_ms": 11038.7
+    },
+    {
+      "case_id": "a07",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-6628ff639fa7",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3854,
+      "cost_usd": 0.0015676,
+      "latency_ms": 16220.4
+    },
+    {
+      "case_id": "a08",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-e1bca5b15a29",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3738,
+      "cost_usd": 0.0012798,
+      "latency_ms": 14544.1
+    },
+    {
+      "case_id": "a09",
+      "group": "allergen",
+      "allergy": true,
+      "trace_id": "t-83ec6a3f9c09",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2727,
+      "cost_usd": 0.0010138999999999999,
+      "latency_ms": 10087.0
+    },
+    {
+      "case_id": "a10",
+      "group": "version",
+      "allergy": true,
+      "trace_id": "t-b4096e4146ce",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3776,
+      "cost_usd": 0.0013638,
+      "latency_ms": 14060.9
+    },
+    {
+      "case_id": "v01",
+      "group": "version",
+      "allergy": false,
+      "trace_id": "t-8a810a255f06",
+      "assertions_passed": false,
+      "failed": [
+        "cites_expected_version: no citation of kallappam-batter-02"
+      ],
+      "judge": "PASS",
+      "passed": false,
+      "trajectory": {
+        "called": [
+          "scale_recipe",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 5000,
+      "cost_usd": 0.0019136,
+      "latency_ms": 18202.0
+    },
+    {
+      "case_id": "v02",
+      "group": "version",
+      "allergy": false,
+      "trace_id": "t-70280e5f7cfc",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 5114,
+      "cost_usd": 0.0021831999999999997,
+      "latency_ms": 18997.4
+    },
+    {
+      "case_id": "sc01",
+      "group": "scaling",
+      "allergy": false,
+      "trace_id": "t-8b2f2af6c7b1",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "scale_recipe",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3813,
+      "cost_usd": 0.0014409000000000002,
+      "latency_ms": 15984.9
+    },
+    {
+      "case_id": "sc02",
+      "group": "scaling",
+      "allergy": false,
+      "trace_id": "t-72ac137b7dd5",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "scale_recipe",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3806,
+      "cost_usd": 0.0014234,
+      "latency_ms": 14636.9
+    },
+    {
+      "case_id": "sc03",
+      "group": "scaling",
+      "allergy": false,
+      "trace_id": "t-3f5f0dcfd4e1",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "scale_recipe",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3827,
+      "cost_usd": 0.0014803,
+      "latency_ms": 14439.4
+    },
+    {
+      "case_id": "sc04",
+      "group": "scaling",
+      "allergy": false,
+      "trace_id": "t-c58207cd2ce1",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "scale_recipe"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2597,
+      "cost_usd": 0.0009353,
+      "latency_ms": 10268.8
+    },
+    {
+      "case_id": "t01",
+      "group": "safe-temp",
+      "allergy": false,
+      "trace_id": "t-5ab1595b2424",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "safe_temperature"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2667,
+      "cost_usd": 0.0011454999999999998,
+      "latency_ms": 9837.5
+    },
+    {
+      "case_id": "t02",
+      "group": "safe-temp",
+      "allergy": false,
+      "trace_id": "t-38701a0340b1",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "safe_temperature",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2618,
+      "cost_usd": 0.0009922,
+      "latency_ms": 11167.1
+    },
+    {
+      "case_id": "t03",
+      "group": "safe-temp",
+      "allergy": false,
+      "trace_id": "t-6bfd64307429",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "safe_temperature"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2643,
+      "cost_usd": 0.0010678999999999999,
+      "latency_ms": 9814.5
+    },
+    {
+      "case_id": "t04",
+      "group": "safe-temp",
+      "allergy": false,
+      "trace_id": "t-6c71282ccc1f",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "safe_temperature",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3777,
+      "cost_usd": 0.0013773,
+      "latency_ms": 13886.1
+    },
+    {
+      "case_id": "t05",
+      "group": "safe-temp",
+      "allergy": false,
+      "trace_id": "t-ebfc5110e68b",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "safe_temperature",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 4981,
+      "cost_usd": 0.0018506999999999998,
+      "latency_ms": 17864.5
+    },
+    {
+      "case_id": "r01",
+      "group": "refusal",
+      "allergy": true,
+      "trace_id": "t-8054b5bf8f76",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2583,
+      "cost_usd": 0.0009333,
+      "latency_ms": 11711.9
+    },
+    {
+      "case_id": "r02",
+      "group": "refusal",
+      "allergy": false,
+      "trace_id": "t-c4ec0f338988",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "safe_temperature"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2572,
+      "cost_usd": 0.0009058,
+      "latency_ms": 9095.0
+    },
+    {
+      "case_id": "r03",
+      "group": "refusal",
+      "allergy": false,
+      "trace_id": "t-6378224d1312",
+      "assertions_passed": false,
+      "failed": [
+        "refuses_when_out_of_scope: did not refuse"
+      ],
+      "judge": "PASS",
+      "passed": false,
+      "trajectory": {
+        "called": [
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2798,
+      "cost_usd": 0.001473,
+      "latency_ms": 11230.1
+    },
+    {
+      "case_id": "s01",
+      "group": "substitution",
+      "allergy": false,
+      "trace_id": "t-437e6b28e575",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "search_recipes",
+          "substitute_ingredient"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3749,
+      "cost_usd": 0.0013095,
+      "latency_ms": 14010.6
+    },
+    {
+      "case_id": "s02",
+      "group": "substitution",
+      "allergy": false,
+      "trace_id": "t-aa5052bb876a",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 2588,
+      "cost_usd": 0.0009348,
+      "latency_ms": 10775.2
+    },
+    {
+      "case_id": "s03",
+      "group": "substitution",
+      "allergy": true,
+      "trace_id": "t-31159cd80f8a",
+      "assertions_passed": false,
+      "failed": [
+        "allergy_verdict_line_present: verdict line: None",
+        "swap_free_of_stated_allergen: recommends 'grated coconut** (which was used in the ', which contains coconut (coconut)"
+      ],
+      "judge": "PASS",
+      "passed": false,
+      "trajectory": {
+        "called": [
+          "search_recipes",
+          "substitute_ingredient"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 7403,
+      "cost_usd": 0.0028171,
+      "latency_ms": 24723.2
+    },
+    {
+      "case_id": "s04",
+      "group": "substitution",
+      "allergy": true,
+      "trace_id": "t-da48d4250c4e",
+      "assertions_passed": false,
+      "failed": [
+        "mentions_required: missing: ['soy']"
+      ],
+      "judge": "PASS",
+      "passed": false,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes",
+          "substitute_ingredient"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 5031,
+      "cost_usd": 0.0019801,
+      "latency_ms": 18915.8
+    },
+    {
+      "case_id": "b01",
+      "group": "substitution",
+      "allergy": true,
+      "trace_id": "t-bc8f67f8cc42",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes",
+          "substitute_ingredient"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 5006,
+      "cost_usd": 0.0018912,
+      "latency_ms": 17532.4
+    },
+    {
+      "case_id": "p01",
+      "group": "pantry",
+      "allergy": true,
+      "trace_id": "t-359387a97dc2",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3967,
+      "cost_usd": 0.0018127,
+      "latency_ms": 14227.4
+    },
+    {
+      "case_id": "p02",
+      "group": "pantry",
+      "allergy": true,
+      "trace_id": "t-0a142460171c",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3791,
+      "cost_usd": 0.0013924999999999999,
+      "latency_ms": 14141.1
+    },
+    {
+      "case_id": "p03",
+      "group": "pantry",
+      "allergy": true,
+      "trace_id": "t-53e98f006b4d",
+      "assertions_passed": true,
+      "failed": [],
+      "judge": "PASS",
+      "passed": true,
+      "trajectory": {
+        "called": [
+          "check_allergens",
+          "search_recipes"
+        ],
+        "tool_choice_ok": true,
+        "args_ok": true,
+        "passed": true
+      },
+      "tokens": 3919,
+      "cost_usd": 0.0016618999999999998,
+      "latency_ms": 14316.6
+    }
+  ],
+  "assertions_passed": 28,
+  "passed": 28,
+  "allergy_n": 17,
+  "allergy_passed": 15,
+  "tool_choice_accuracy": 1.0,
+  "gap": -0.125
+}

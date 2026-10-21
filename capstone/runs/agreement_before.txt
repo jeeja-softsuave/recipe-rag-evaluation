@@ -1,0 +1,3 @@
+judge agreement 27/32 = 84%  (gate: 85%)
+  too lenient (human FAIL, judge PASS): ['a03', 'sc02', 'sc03', 't01', 't03']
+  too strict  (human PASS, judge FAIL): []
