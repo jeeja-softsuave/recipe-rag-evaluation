@@ -44,6 +44,10 @@ citations: ['kallappam-batter-02@reformulated-2025']
   $2.50 per million output). Those are 3.6 Flash's prices; Flash-Lite lists lower, so this is
   an upper bound. The free tier bills nothing.
 
+**With the security layer (p4, the final system):** **$0.001611** per query (n = 32), **+16%**,
+from the longer prompt c2 and the host-run allergen checks. At 50,000 queries a day that's
+about $81 a day, still not what breaks.
+
 ## What breaks first at 50,000 queries a day
 
 **The model provider's rate limit, by four orders of magnitude.**

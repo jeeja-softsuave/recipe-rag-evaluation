@@ -37,10 +37,12 @@ free key at https://aistudio.google.com/apikey. Then:
 | `pantry.py ask "<question>"` | One question through the agent, MCP tools and retriever (model: gemini-3.5-flash-lite; override with `PANTRY_MODEL`) | 2–4 |
 | `pantry.py trace <trace_id>` | Every span of one request, on both sides of the MCP hop: latency, tokens, cost | 0 |
 | `pantry.py serve` | The pantry MCP server on stdio, for any MCP client | 0 |
+| `ui.py --key <n>` | A local web page over the same entry point: answer, tool calls, version-named citations, trace. Prints its address (localhost only). | 2–4 per question |
 | `pantry.py index` | Rebuild the capstone index | 0 |
 | `capstone_eval.py --label <name>` | The eval suite on the integrated system: 32 cases, assertions, judge, report | ~95 |
 | `capstone_eval.py --label <name> --report` | The report again from stored runs | 0 |
 | `test_pantry.py` | The 18 integration checks, with the model stubbed | 0 |
+| `test_security.py` | The 19 prompt-injection and UI security checks; the stub models obey the attack | 0 |
 
 ## Use the MCP server from your own client
 
@@ -62,6 +64,16 @@ npx @modelcontextprotocol/inspector .venv\Scripts\python.exe pantry.py serve
 `safe_temperature`. If you pass `_meta: {"trace_id": "..."}` on a call, the server logs
 its span under that id in `logs/capstone_spans.jsonl`.
 
+## Traces in OpenTelemetry (optional viewer: Phoenix)
+
+Every request emits OpenTelemetry spans: the agent's model laps and tool calls, and the MCP
+server's own spans, joined into one trace by a W3C `traceparent` carried in MCP `_meta`.
+- **Default:** they go to `logs/otel_spans.jsonl`, with nothing else to run.
+- **To view them in a UI,** start any OTLP collector, for example Arize Phoenix
+  (`pip install arize-phoenix`, then `phoenix serve`). Then set
+  `$env:OTEL_EXPORTER_OTLP_ENDPOINT = "http://localhost:4317"` before `pantry.py ask` or `ui.py`.
+- **No span carries the question or the answer** (health data).
+
 ## What to read
 
 | File | What it is |
@@ -71,19 +83,22 @@ its span under that id in `logs/capstone_spans.jsonl`.
 | `capstone/weaknesses.md` | Top 3 weaknesses, dated Wednesday, written before anyone asked |
 | `capstone/cases.jsonl` | The 32 eval cases; 17 involve an allergy. Built by `capstone/build_cases.py` from the corpus. |
 | `capstone/eval_report.md`, `taxonomy.md`, `failure_loop.md`, `trace_and_scale.md`, `demo_script.md` | Results, failure modes, the closed loop, cost and scale, and the demo |
-| `capstone_assertions.py` | The 13 deterministic checks. Allergen correctness is asserted, never judged. |
+| `capstone_assertions.py` | The 15 deterministic checks. Allergen correctness is asserted, never judged. |
+| `capstone/security.md` | The threat model, the prompt-injection defences, and the red-team results |
 | `data/capstone/` | The corpus: 6 cards plus 2 reformulated-2025 versions, declaration fields, the safe-temperature chart |
 | `results_week*.md` | Each earlier week's findings |
 
 ## Results (Week 12 capstone)
 
-| | before | after one fix (p2) |
-|---|---|---|
-| Allergy cases, n = 17 | 1/17 | **15/17** |
-| Whole suite, n = 32 | 13/32 | 28/32 |
-| Judge agreement vs hand labels | 27/32 = **84%** (below the 85% gate; every miss lenient) | |
+| | before (p1) | one fix (p2) | final (p4, with security) |
+|---|---|---|---|
+| Allergy cases, n = 17 | 1/17 | **14/17** | **16/17** |
+| Whole suite, n = 32 | 13/32 | 27/32 | 30/32 |
+| Unsafe answers given | 1 | 2 | **0** |
+| Red-team injection attacks resisted, n = 5 | | 3/5 (p3) | **5/5** |
+| Judge agreement vs hand labels | 27/32 = **84%** (below the 85% gate; every miss lenient) | | |
 
-All runs use gemini-3.5-flash-lite. Full detail is in `capstone/eval_report.md`. The near-miss,
+All runs use gemini-3.5-flash-lite. Full detail is in `capstone/eval_report.md`; security is in `capstone/security.md`. The near-miss,
 and how it was closed, is in `capstone/failure_loop.md`. Cost and scale are in
 `capstone/trace_and_scale.md`.
 

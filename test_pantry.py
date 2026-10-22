@@ -88,7 +88,7 @@ async def main() -> None:
     check("p2: the declaration verdict comes FIRST, before the model's 'Yes'",
           first_line.startswith("Allergen check, from the declaration field") and "NOT SAFE" in first_line)
     check("p2: the verdict is taken from the tool, not the model",
-          fixed["allergen_verdict"] == "unsafe" and fixed["pipeline_version"] == "p3")
+          fixed["allergen_verdict"] == "unsafe" and fixed["pipeline_version"] == "p4")
     check("p2: the header carries a version-named citation",
           "kallappam-batter-02@reformulated-2025" in fixed["citations"])
     def coconut_model(instruction: str, payload: Any, previous: str | None, specs: Any) -> Any:
@@ -103,7 +103,7 @@ async def main() -> None:
           and "grated coconut** in place" not in guarded["answer"] and "withheld" in guarded["answer"])
     pantry.PIPELINE_VERSION = "p1"
     before = await pantry.answer(QUESTION, generate=hedging_model, log=False)
-    pantry.PIPELINE_VERSION = "p3"
+    pantry.PIPELINE_VERSION = "p4"
     check("p1 still reproduces the before behaviour (no header, no verdict)",
           before["answer"] == "Yes, it is fine." and before["allergen_verdict"] is None)
 

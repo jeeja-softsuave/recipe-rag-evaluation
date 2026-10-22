@@ -60,7 +60,9 @@ FREE_COMPOUND = re.compile(r"\b\w+[- ]free\b", re.I)
 # before "allergic to coconut" could match (caught when the check first failed to fire on s03).
 STATED_ALLERGY = [re.compile(p, re.I) for p in (
     r"allerg\w*\s+to\s+(?:\w+\s+and\s+to\s+|\w+\s+and\s+)?(\w+)", r"allerg\w*\s+to\s+(\w+)",
-    r"(\w+)\s+allerg\w*", r"avoid\w*\s+(\w+)", r"(\w+)[- ]free")]
+    r"(\w+)\s+allerg\w*", r"(\w+)-allerg\w*", r"avoid\w*\s+(\w+)", r"(\w+)[- ]free")]
+# "(\w+)-allerg" added 2026-10-22: "my coconut-allergic guest" stated no allergy to the earlier
+# patterns, so the p4 host could not enforce the check (found by test_security.py).
 
 
 def stated_allergens(question: str) -> set[str]:

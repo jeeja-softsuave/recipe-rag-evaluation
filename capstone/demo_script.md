@@ -68,9 +68,10 @@ Point at:
 
 ## Part 3: a number that moved (2 minutes)
 
-- **Allergy-case pass rate, n = 17: 1/17 → 15/17**, from one change: the host states the
-  declaration verdict first (pipeline p2).
-- **Allergen group:** 0/9 → 9/9.
+- **Allergy-case pass rate, n = 17: 1/17 → 14/17**, from one change: the host states the
+  declaration verdict first (pipeline p2). The final system (p4, with the security layer)
+  scores **16/17**, with **0 unsafe answers**, and resists **5/5 injection attacks** (3/5 before).
+- **Allergen group:** 0/9 → 8/9 (p2) → 9/9 (p4).
 - **Judge agreement on the integrated outputs:** **84% (27/32), below the 85% gate,**
   against labels I reviewed by hand. Every miss is lenient: an allergen hedge, and unstated
   conversions. That is why allergen safety is asserted, never judged.

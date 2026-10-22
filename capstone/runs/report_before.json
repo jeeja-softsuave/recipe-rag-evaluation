@@ -61,7 +61,8 @@
       "failed": [
         "verdict_matches_declaration: expected may_contain, answer says None",
         "allergy_verdict_line_present: verdict line: None",
-        "cites_expected_version: no citation of idli-batter-05"
+        "cites_expected_version: no citation of idli-batter-05",
+        "no_reassurance_against_declaration: reassures against a may_contain declaration: 'Yes, traditional idli batter (made from rice, urad dal, fenu'"
       ],
       "judge": "PASS",
       "passed": false,

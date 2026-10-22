@@ -72,3 +72,7 @@ A demo built on today's evidence would show plumbing, not behaviour.
   Flash. Judge agreement, after hand review: **84%, below the 85% gate** (all misses lenient).
 - **New: the p3 guard over-blocks.** It withheld 3 safe answers in GREEN and cost p01 its pass.
   It is fail-closed by design, but too blunt.
+- **Later the same day: the security layer (p4) is measured.** The red team went from 3/5
+  to 5/5 attacks resisted. The full suite scored 30/32, allergy cases 16/17, with 0 unsafe
+  answers: the first run with none. The hedged "Yes" (M3), which recurred in 3 of 4 runs, is
+  closed by the contradiction guard. Cost +16% per query.

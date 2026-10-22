@@ -37,9 +37,9 @@ JUDGE_VERSION = "v2"
 JUDGE_BATCH = 10
 
 
-def load_cases() -> list[dict[str, Any]]:
+def load_cases(path: Path = CASES_FILE) -> list[dict[str, Any]]:
     """The suite, in file order."""
-    return [json.loads(l) for l in CASES_FILE.read_text(encoding="utf-8").splitlines() if l.strip()]
+    return [json.loads(l) for l in path.read_text(encoding="utf-8").splitlines() if l.strip()]
 
 
 def outputs_path(label: str) -> Path:
@@ -192,13 +192,15 @@ def main() -> None:
     """Run, judge, report; or report / agreement only."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--label", required=True)
+    parser.add_argument("--cases", type=Path, default=CASES_FILE,
+                        help="case file; capstone/redteam_cases.jsonl for the injection suite")
     parser.add_argument("--key", type=int, default=1)
     parser.add_argument("--pace", type=float, default=5.0)
     parser.add_argument("--judge-model", default=pantry.MODEL)
     parser.add_argument("--report", action="store_true", help="report only, no API calls")
     parser.add_argument("--agreement", type=Path, help="hand-labels file to compare the judge against")
     args = parser.parse_args()
-    cases = load_cases()
+    cases = load_cases(args.cases)
     if args.agreement:
         agreement(args.label, args.agreement)
         return

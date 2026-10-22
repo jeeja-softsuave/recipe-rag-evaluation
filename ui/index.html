@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pantry-to-Plate</title>
+<style>
+  :root {
+    --bg: #f7f6f2; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6a64; --line: #e3e1d9;
+    --accent: #2f6f4f; --accent-ink: #ffffff;
+    --unsafe-bg: #fde8e6; --unsafe-ink: #9b1c12; --may-bg: #fff4d6; --may-ink: #7a5300;
+    --ok-bg: #e5f4ea; --ok-ink: #1f6a3b; --code: #f0eee7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #161614; --panel: #1f1f1c; --ink: #ecebe6; --muted: #a3a29b; --line: #34332e;
+      --accent: #5fb48a; --accent-ink: #0f1a14;
+      --unsafe-bg: #3a1714; --unsafe-ink: #ffb4ab; --may-bg: #3a2c0c; --may-ink: #ffd27a;
+      --ok-bg: #12301f; --ok-ink: #8fdcaa; --code: #2a2a26;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink);
+         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
+  header h1 { margin: 0; font-size: 1.5rem; }
+  header p { margin: 4px 0 20px; color: var(--muted); }
+  form { display: flex; gap: 8px; flex-wrap: wrap; }
+  textarea { flex: 1 1 100%; min-height: 70px; padding: 12px; font: inherit; color: var(--ink);
+             background: var(--panel); border: 1px solid var(--line); border-radius: 10px; resize: vertical; }
+  button { padding: 10px 18px; font: inherit; font-weight: 600; border: 0; border-radius: 10px;
+           background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+  button:disabled { opacity: .55; cursor: wait; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+  .chip { padding: 5px 10px; font-size: .85rem; border: 1px solid var(--line); border-radius: 999px;
+          background: var(--panel); color: var(--ink); cursor: pointer; font-weight: 400; }
+  .status { margin: 16px 0 0; color: var(--muted); min-height: 1.5em; }
+  .error { color: var(--unsafe-ink); }
+  section.card { margin-top: 18px; padding: 16px; background: var(--panel);
+                 border: 1px solid var(--line); border-radius: 12px; }
+  section.card h2 { margin: 0 0 10px; font-size: .8rem; letter-spacing: .06em;
+                    text-transform: uppercase; color: var(--muted); }
+  .verdict { padding: 12px 14px; border-radius: 10px; font-weight: 600; margin-bottom: 4px; }
+  .verdict.unsafe { background: var(--unsafe-bg); color: var(--unsafe-ink); }
+  .verdict.may_contain { background: var(--may-bg); color: var(--may-ink); }
+  .verdict.no_declared_allergen { background: var(--ok-bg); color: var(--ok-ink); }
+  .verdict.guard { background: var(--may-bg); color: var(--may-ink); font-weight: 400; }
+  .answer p { margin: 0 0 10px; }
+  .answer ul { margin: 0 0 10px; padding-left: 22px; }
+  code { background: var(--code); padding: 1px 5px; border-radius: 5px; font-size: .9em; }
+  a { color: var(--accent); }
+  details { border-top: 1px solid var(--line); padding: 8px 0; }
+  details:first-of-type { border-top: 0; }
+  summary { cursor: pointer; }
+  pre { margin: 8px 0 0; padding: 10px; background: var(--code); border-radius: 8px;
+        overflow-x: auto; font-size: .82rem; white-space: pre-wrap; word-break: break-word; }
+  .tag { display: inline-block; padding: 1px 7px; margin-right: 6px; font-size: .75rem;
+         border-radius: 6px; background: var(--code); color: var(--muted); }
+  .tag.err { background: var(--unsafe-bg); color: var(--unsafe-ink); }
+  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  th:not(:first-child), td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  tr.total td { font-weight: 600; border-bottom: 0; }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: .85rem; }
+  .table-wrap { overflow-x: auto; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Pantry-to-Plate</h1>
+    <p>Answers from the recipe library only. Allergens are checked against each recipe's declaration field, and every citation names the recipe version.</p>
+  </header>
+
+  <form id="ask">
+    <textarea id="question" placeholder="e.g. My son has a nut allergy. Can he eat kallappam?" required></textarea>
+    <button id="go" type="submit">Ask</button>
+  </form>
+  <div class="chips" id="examples"></div>
+  <div class="status" id="status" role="status"></div>
+
+  <div id="result" hidden>
+    <section class="card">
+      <h2>Answer</h2>
+      <div id="verdict"></div>
+      <div id="guard"></div>
+      <div class="answer" id="answer"></div>
+      <div class="meta" id="citations"></div>
+    </section>
+    <section class="card">
+      <h2>Tool calls (discovered over MCP)</h2>
+      <div id="calls"></div>
+    </section>
+    <section class="card">
+      <h2>Trace</h2>
+      <div class="meta" id="meta"></div>
+      <div class="table-wrap"><table id="spans"></table></div>
+    </section>
+  </div>
+</main>
+
+<script>
+const EXAMPLES = [
+  "My son has a nut allergy. Can he eat kallappam?",
+  "Can someone with a peanut allergy eat idli?",
+  "Scale idli batter up to 120 idlis. How much urad dal, and how long does it ferment?",
+  "How long should I cook chicken for, and how do I know it is done?",
+  "To what internal temperature should I roast pork belly?",
+  "My kid is allergic to coconut. What can I use instead of the coconut-cashew paste in kallappam?",
+];
+const VERDICT_TEXT = {
+  unsafe: "Not safe: a declared allergen matches.",
+  may_contain: "May contain: not safe without a supplier guarantee.",
+  no_declared_allergen: "No declared allergen for what you asked about.",
+};
+const $ = (id) => document.getElementById(id);
+
+function escapeHtml(text) {
+  return text.replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+}
+
+// Escape first, then add the little formatting the answers use. Model text never becomes markup.
+function inline(text, files) {
+  return escapeHtml(text)
+    .replace(/\[([a-z0-9-]+@[a-z0-9-]+(?:::structure::\d+)?)\](?:\([^)]*\))?/g, (m, id) =>
+      files[id] ? `<a href="/card/${encodeURIComponent(files[id])}" target="_blank" rel="noopener">[${id}]</a>` : m)
+    .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+    .replace(/`([^`]+)`/g, "<code>$1</code>");
+}
+
+function renderAnswer(text, files) {
+  const html = [];
+  let list = [];
+  const flush = () => { if (list.length) { html.push(`<ul>${list.join("")}</ul>`); list = []; } };
+  for (const raw of text.split("\n")) {
+    const line = raw.trim();
+    if (!line || line.startsWith("ALLERGEN_VERDICT:") || line.startsWith("Allergen check, from the declaration field")) { flush(); continue; }
+    const bullet = line.match(/^[*-]\s+(.*)/);
+    if (bullet) { list.push(`<li>${inline(bullet[1], files)}</li>`); continue; }
+    flush();
+    html.push(`<p>${inline(line.replace(/^#+\s*/, ""), files)}</p>`);
+  }
+  flush();
+  return html.join("");
+}
+
+function render(data) {
+  const files = data.citation_files || {};
+  const header = data.answer.split("\n").filter((l) => l.startsWith("Allergen check, from the declaration field"));
+  $("verdict").innerHTML = data.allergen_verdict
+    ? `<div class="verdict ${data.allergen_verdict}">${escapeHtml(VERDICT_TEXT[data.allergen_verdict] || data.allergen_verdict)}`
+      + header.map((h) => `<div style="font-weight:400;margin-top:4px">${inline(h, files)}</div>`).join("") + "</div>"
+    : "";
+  $("guard").innerHTML = data.swap_guard
+    ? `<div class="verdict guard">A suggested swap was withheld because it contains <strong>${escapeHtml(data.swap_guard.allergen)}</strong>, which you asked to avoid.</div>`
+    : "";
+  $("answer").innerHTML = renderAnswer(data.answer, files);
+  const cites = [...new Set(data.citations)];
+  $("citations").innerHTML = cites.length
+    ? "Citations: " + cites.map((c) => inline(`[${c}]`, files)).join(" ")
+    : "No citations in this answer.";
+
+  $("calls").innerHTML = data.calls.length ? data.calls.map((c) => `
+    <details><summary><span class="tag${c.is_error ? " err" : ""}">${escapeHtml(c.server || "?")}</span>
+      <strong>${escapeHtml(c.tool)}</strong> <code>${escapeHtml(JSON.stringify(c.arguments))}</code></summary>
+      <pre>${escapeHtml(c.result)}</pre></details>`).join("")
+    : "<p>No tool was called.</p>";
+
+  $("meta").innerHTML = [
+    `trace <code>${escapeHtml(data.trace_id)}</code>`, `model ${escapeHtml(data.model)}`,
+    `pipeline ${escapeHtml(data.pipeline || "-")}`, `${(data.latency_ms / 1000).toFixed(1)} s`,
+    `${data.total_tokens} tokens`, `$${data.cost_usd.toFixed(6)}`,
+  ].map((m) => `<span>${m}</span>`).join("");
+  $("spans").innerHTML = "<tr><th>Span</th><th>Latency (ms)</th><th>Tokens</th><th>Cost (USD)</th></tr>"
+    + data.spans.map((s) => `<tr><td>${escapeHtml(s.span)}</td><td>${s.latency_ms.toFixed(1)}</td>`
+      + `<td>${s.input_tokens + s.output_tokens}</td><td>${s.cost_usd.toFixed(6)}</td></tr>`).join("")
+    + `<tr class="total"><td>Total</td><td>${data.latency_ms.toFixed(1)}</td><td>${data.total_tokens}</td><td>${data.cost_usd.toFixed(6)}</td></tr>`;
+  $("result").hidden = false;
+}
+
+async function ask(question) {
+  $("go").disabled = true;
+  $("result").hidden = true;
+  const started = Date.now();
+  const tick = setInterval(() => {
+    $("status").textContent = `Working… ${Math.round((Date.now() - started) / 1000)}s (the agent is calling tools over MCP)`;
+  }, 250);
+  try {
+    const response = await fetch("/api/ask", {method: "POST", headers: {"Content-Type": "application/json"},
+                                              body: JSON.stringify({question})});
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+    render(data);
+    $("status").textContent = "";
+  } catch (error) {
+    $("status").innerHTML = `<span class="error">${escapeHtml(error.message)}</span>`;
+  } finally {
+    clearInterval(tick);
+    $("go").disabled = false;
+  }
+}
+
+$("examples").innerHTML = EXAMPLES.map((q, i) => `<button type="button" class="chip" data-i="${i}">${escapeHtml(q)}</button>`).join("");
+$("examples").addEventListener("click", (event) => {
+  const chip = event.target.closest(".chip");
+  if (!chip) return;
+  $("question").value = EXAMPLES[chip.dataset.i];
+  ask($("question").value);
+});
+$("ask").addEventListener("submit", (event) => { event.preventDefault(); ask($("question").value.trim()); });
+</script>
+</body>
+</html>

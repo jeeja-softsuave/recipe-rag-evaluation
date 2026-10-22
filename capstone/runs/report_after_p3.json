@@ -574,7 +574,8 @@
       "trace_id": "t-104d5024a3f6",
       "assertions_passed": false,
       "failed": [
-        "allergy_verdict_line_present: verdict line: None"
+        "allergy_verdict_line_present: verdict line: None",
+        "swap_free_of_stated_allergen: recommends 'If your child is allergic to coconut, yo', which contains coconut (coconut)"
       ],
       "judge": "PASS",
       "passed": false,

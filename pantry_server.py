@@ -33,6 +33,7 @@ from capstone_corpus import (
 )
 from recipe_rag import CHROMA_DIR, search_hybrid_rrf
 from recipe_server import substitute_ingredient as week9_substitute
+from telemetry import extract_context, setup as setup_telemetry
 
 SPAN_LOG = Path(__file__).parent / "logs" / "capstone_spans.jsonl"
 SEARCH_TOP_K = 5
@@ -40,6 +41,7 @@ ALLERGEN_VOCABULARY = list(tools.AVOIDABLE)
 INGREDIENT_ROW = tools.INGREDIENT_ROW_PATTERN
 
 server = MCPServer("pantry")
+TRACER = setup_telemetry("pantry-server")
 Allergen = Literal[tuple(ALLERGEN_VOCABULARY)]  # type: ignore[valid-type]
 RecipeId = Literal[tuple(sorted({card["recipe_id"] for card in load_cards().values()}))]  # type: ignore[valid-type]
 Version = Literal["current", "original", "reformulated-2025"]
@@ -48,7 +50,16 @@ Version = Literal["current", "original", "reformulated-2025"]
 def _span(ctx: Context | None, tool: str, started: float, detail: dict[str, Any]) -> None:
     """Write one server-side span, tagged with the caller's trace id if it sent one."""
     meta = getattr(ctx.request_context, "meta", None) if ctx else None
-    trace_id = (meta or {}).get("trace_id") if isinstance(meta, dict) else None
+    meta = meta if isinstance(meta, dict) else {}
+    trace_id = meta.get("trace_id")
+    elapsed_ns = int((time.perf_counter() - started) * 1e9)
+    # OpenTelemetry: a child of the caller's span, via the W3C traceparent it sent in _meta.
+    span = TRACER.start_span(f"mcp.server {tool}", context=extract_context(meta),
+                             start_time=time.time_ns() - elapsed_ns)
+    span.set_attributes({"pantry.trace_id": str(trace_id), "mcp.tool": tool,
+                         **{f"pantry.{k}": json.dumps(v) if isinstance(v, (list, dict)) else str(v)
+                            for k, v in detail.items()}})
+    span.end()
     SPAN_LOG.parent.mkdir(exist_ok=True)
     with SPAN_LOG.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps({
