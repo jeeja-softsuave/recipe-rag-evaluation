@@ -3,122 +3,745 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pantry-to-Plate</title>
+<title>Culinary Bot Studio</title>
 <style>
+  /* Colours from the Culinary Bot Studio logo: navy pan, mid-blue pan, teal leaf, pale blue-grey ground. */
   :root {
-    --bg: #f7f6f2; --panel: #ffffff; --ink: #1d1d1b; --muted: #6b6a64; --line: #e3e1d9;
-    --accent: #2f6f4f; --accent-ink: #ffffff;
-    --unsafe-bg: #fde8e6; --unsafe-ink: #9b1c12; --may-bg: #fff4d6; --may-ink: #7a5300;
-    --ok-bg: #e5f4ea; --ok-ink: #1f6a3b; --code: #f0eee7;
+    --bg: #eef2f8; --side: #e3e9f2; --panel: #ffffff; --ink: #152a40; --muted: #5d6e82; --line: #d4dde9;
+    --navy: #1d4466; --blue: #2a6ca8; --teal: #38b2a2; --handle: #2b2d31;
+    --accent: #1d4466; --accent-2: #2a6ca8; --accent-soft: #dfe9f5; --accent-ink: #ffffff;
+    --teal-soft: #dcf3ef; --teal-ink: #1b7d70;
+    --unsafe-bg: #fde8e6; --unsafe-ink: #a11d12; --may-bg: #fff3d6; --may-ink: #7a5300;
+    --ok-bg: #dcf3ef; --ok-ink: #17695e; --code: #edf1f7;
+    --user: linear-gradient(135deg, #1d4466, #2a6ca8); --user-ink: #ffffff;
+    --shadow: 0 1px 2px rgba(21, 42, 64, .06), 0 8px 24px rgba(21, 42, 64, .07);
+    --shadow-lift: 0 2px 4px rgba(21, 42, 64, .08), 0 14px 32px rgba(21, 42, 64, .12);
   }
   @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #161614; --panel: #1f1f1c; --ink: #ecebe6; --muted: #a3a29b; --line: #34332e;
-      --accent: #5fb48a; --accent-ink: #0f1a14;
+    :root:not([data-theme="light"]) {
+      --bg: #0d1621; --side: #111c29; --panel: #162433; --ink: #e5edf6; --muted: #92a3b7; --line: #243549;
+      --navy: #7fb2e5; --blue: #4d8fd0; --teal: #4fcab9; --handle: #c9d3df;
+      --accent: #5d9fdc; --accent-2: #4d8fd0; --accent-soft: #1a3149; --accent-ink: #0a1420;
+      --teal-soft: #123a36; --teal-ink: #7fe0d2;
       --unsafe-bg: #3a1714; --unsafe-ink: #ffb4ab; --may-bg: #3a2c0c; --may-ink: #ffd27a;
-      --ok-bg: #12301f; --ok-ink: #8fdcaa; --code: #2a2a26;
+      --ok-bg: #123a36; --ok-ink: #8fe6d8; --code: #1d2d3f;
+      --user: linear-gradient(135deg, #24507a, #2f6ea8); --user-ink: #f2f7fc;
+      --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+      --shadow-lift: 0 2px 4px rgba(0, 0, 0, .35), 0 14px 32px rgba(0, 0, 0, .35);
     }
   }
+  :root[data-theme="dark"] {
+    --bg: #0d1621; --side: #111c29; --panel: #162433; --ink: #e5edf6; --muted: #92a3b7; --line: #243549;
+    --navy: #7fb2e5; --blue: #4d8fd0; --teal: #4fcab9; --handle: #c9d3df;
+    --accent: #5d9fdc; --accent-2: #4d8fd0; --accent-soft: #1a3149; --accent-ink: #0a1420;
+    --teal-soft: #123a36; --teal-ink: #7fe0d2;
+    --unsafe-bg: #3a1714; --unsafe-ink: #ffb4ab; --may-bg: #3a2c0c; --may-ink: #ffd27a;
+    --ok-bg: #123a36; --ok-ink: #8fe6d8; --code: #1d2d3f;
+    --user: linear-gradient(135deg, #24507a, #2f6ea8); --user-ink: #f2f7fc;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 8px 24px rgba(0, 0, 0, .25);
+    --shadow-lift: 0 2px 4px rgba(0, 0, 0, .35), 0 14px 32px rgba(0, 0, 0, .35);
+  }
   * { box-sizing: border-box; }
+  html, body { height: 100%; }
   body { margin: 0; background: var(--bg); color: var(--ink);
-         font: 16px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 900px; margin: 0 auto; padding: 24px 16px 48px; }
-  header h1 { margin: 0; font-size: 1.5rem; }
-  header p { margin: 4px 0 20px; color: var(--muted); }
-  form { display: flex; gap: 8px; flex-wrap: wrap; }
-  textarea { flex: 1 1 100%; min-height: 70px; padding: 12px; font: inherit; color: var(--ink);
-             background: var(--panel); border: 1px solid var(--line); border-radius: 10px; resize: vertical; }
-  button { padding: 10px 18px; font: inherit; font-weight: 600; border: 0; border-radius: 10px;
-           background: var(--accent); color: var(--accent-ink); cursor: pointer; }
-  button:disabled { opacity: .55; cursor: wait; }
-  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
-  .chip { padding: 5px 10px; font-size: .85rem; border: 1px solid var(--line); border-radius: 999px;
-          background: var(--panel); color: var(--ink); cursor: pointer; font-weight: 400; }
-  .status { margin: 16px 0 0; color: var(--muted); min-height: 1.5em; }
-  .error { color: var(--unsafe-ink); }
-  section.card { margin-top: 18px; padding: 16px; background: var(--panel);
-                 border: 1px solid var(--line); border-radius: 12px; }
-  section.card h2 { margin: 0 0 10px; font-size: .8rem; letter-spacing: .06em;
-                    text-transform: uppercase; color: var(--muted); }
-  .verdict { padding: 12px 14px; border-radius: 10px; font-weight: 600; margin-bottom: 4px; }
-  .verdict.unsafe { background: var(--unsafe-bg); color: var(--unsafe-ink); }
-  .verdict.may_contain { background: var(--may-bg); color: var(--may-ink); }
-  .verdict.no_declared_allergen { background: var(--ok-bg); color: var(--ok-ink); }
-  .verdict.guard { background: var(--may-bg); color: var(--may-ink); font-weight: 400; }
+         font: 15px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; transition: background .25s, color .25s; }
+  button { font: inherit; color: inherit; cursor: pointer; }
+  a { color: var(--accent-2); }
+  code { background: var(--code); padding: 1px 5px; border-radius: 5px; font-size: .88em; word-break: break-all; }
+  pre { margin: 8px 0 0; padding: 10px; background: var(--code); border-radius: 8px;
+        overflow-x: auto; font-size: .8rem; white-space: pre-wrap; word-break: break-word; }
+  [hidden] { display: none !important; }
+  .i { width: 18px; height: 18px; flex: none; }
+  :focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+
+  /* --- the logo, drawn as SVG so it follows the theme --- */
+  #logo .arch { fill: none; stroke: var(--navy); stroke-width: 3; }
+  #logo .handle { stroke: var(--handle); stroke-width: 9; stroke-linecap: round; }
+  #logo .pan-top { fill: var(--blue); }
+  #logo .pan { fill: var(--navy); }
+  #logo .leaf { fill: var(--teal); }
+  #logo .swoosh { fill: none; stroke: var(--teal); stroke-width: 3.5; stroke-linecap: round; }
+  #logo .shine { fill: none; stroke: #ffffff; stroke-width: 3; stroke-linecap: round; opacity: .9; }
+  .wordmark b { display: block; font-size: 1.05rem; letter-spacing: .06em; color: var(--navy); font-weight: 800; line-height: 1.1; }
+  .wordmark span { display: block; font-size: .62rem; letter-spacing: .34em; color: var(--teal); font-weight: 600; }
+
+  /* --- layout --- */
+  .app { display: grid; grid-template-columns: 276px 1fr; height: 100vh; }
+  .sidebar { display: flex; flex-direction: column; background: var(--side); border-right: 1px solid var(--line);
+             padding: 14px 12px 0; min-height: 0; }
+  .brand { display: flex; align-items: center; gap: 10px; padding: 0 6px 14px; }
+  .brand .logo { width: 58px; height: 34px; flex: none; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 16px;
+         border: 0; border-radius: 10px; font-weight: 600; background: var(--accent); color: var(--accent-ink);
+         transition: transform .12s ease, box-shadow .15s ease, filter .15s; }
+  .btn:hover { filter: brightness(1.08); box-shadow: var(--shadow); }
+  .btn:active { transform: scale(.97); }
+  .btn:disabled { opacity: .55; cursor: wait; }
+  .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); font-weight: 500; }
+  .btn.wide { width: 100%; }
+  .btn kbd, .hint kbd { font: inherit; font-size: .7rem; padding: 0 5px; border-radius: 4px; border: 1px solid currentColor; opacity: .7; }
+  .nav { display: flex; flex-direction: column; gap: 2px; margin: 12px 0 4px; }
+  .nav button { position: relative; display: flex; align-items: center; gap: 10px; padding: 8px 10px; border: 0; border-radius: 9px;
+                background: none; color: var(--muted); text-align: left; transition: background .15s, color .15s, padding .15s; }
+  .nav button:hover { background: var(--panel); color: var(--ink); padding-left: 13px; }
+  .nav button.active { background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+  .nav button.active::before { content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 3px; border-radius: 3px; background: var(--teal); }
+  .nav .group { font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; color: var(--muted); padding: 12px 10px 4px; }
+  .badge { margin-left: auto; font-size: .66rem; padding: 1px 7px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-ink); font-weight: 600; }
+  .convos { flex: 1; overflow-y: auto; min-height: 0; margin: 0 -4px; padding: 0 4px; }
+  .convo { position: relative; display: block; width: 100%; padding: 7px 30px 7px 10px; border: 0; border-radius: 9px; background: none; text-align: left;
+           animation: rise .2s ease; }
+  .convo:hover { background: var(--panel); }
+  .convo.active { background: var(--panel); box-shadow: inset 3px 0 0 var(--teal); }
+  .convo span { display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .convo small { color: var(--muted); font-size: .75rem; }
+  .convo .del { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); opacity: 0; border: 0; background: none;
+                color: var(--muted); padding: 4px; border-radius: 6px; transition: opacity .15s; }
+  .convo:hover .del, .convo:focus-within .del { opacity: 1; }
+  .convo .del:hover { color: var(--unsafe-ink); background: var(--unsafe-bg); }
+  .side-foot { border-top: 1px solid var(--line); padding: 10px 8px 12px; color: var(--muted); font-size: .78rem; }
+  .side-foot .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--teal); margin-right: 6px;
+                    box-shadow: 0 0 0 0 var(--teal); animation: ping 2.4s infinite; }
+  @keyframes ping { 0% { box-shadow: 0 0 0 0 rgba(56, 178, 162, .55); } 70%, 100% { box-shadow: 0 0 0 7px rgba(56, 178, 162, 0); } }
+
+  .main { display: flex; flex-direction: column; min-width: 0; min-height: 0; }
+  .topbar { display: flex; align-items: center; gap: 10px; padding: 11px 20px; border-bottom: 1px solid var(--line); background: var(--bg); }
+  .topbar h1 { margin: 0; font-size: 1rem; font-weight: 600; flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pill { font-size: .74rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; white-space: nowrap; }
+  .pill .dot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--teal); margin-right: 5px; vertical-align: middle; }
+  .icon-btn { display: inline-flex; border: 1px solid transparent; background: none; padding: 6px; border-radius: 9px; color: var(--muted);
+              transition: background .15s, color .15s, transform .3s; }
+  .icon-btn:hover { background: var(--panel); color: var(--ink); border-color: var(--line); }
+  #theme:active { transform: rotate(40deg); }
+  #menu { display: none; }
+  .view { flex: 1; min-height: 0; display: flex; flex-direction: column; animation: fade .2s ease; }
+  .scroll { flex: 1; overflow-y: auto; min-height: 0; scroll-behavior: smooth; }
+  .page { max-width: 940px; margin: 0 auto; padding: 24px 20px 48px; }
+  .page > h2 { margin: 0 0 4px; font-size: 1.35rem; }
+  .lede { color: var(--muted); margin: 0 0 16px; }
+  @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+  /* --- chat --- */
+  .thread { max-width: 820px; margin: 0 auto; padding: 24px 20px 12px; }
+  .hero { text-align: center; padding: 5vh 0 12px; animation: rise .35s ease; }
+  .hero .logo { width: 150px; height: 88px; }
+  #logo .leaf, #logo .swoosh { transform-origin: 280px 176px; animation: sway 3.2s ease-in-out infinite; }
+  @keyframes sway { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-5deg); } }
+  .hero h2 { font-size: 2rem; margin: 10px 0 6px; letter-spacing: -.01em; }
+  .hero h2 em { font-style: normal; background: linear-gradient(90deg, var(--accent-2), var(--teal)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--muted); max-width: 540px; margin: 0 auto 26px; }
+  .suggest { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; text-align: left; }
+  .suggest button { display: flex; gap: 12px; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel);
+                    align-items: flex-start; box-shadow: var(--shadow); text-align: left; animation: rise .35s ease both;
+                    transition: transform .15s ease, box-shadow .15s ease, border-color .15s; }
+  .suggest button:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--teal); }
+  .suggest button:hover .ico { background: var(--teal); color: #fff; }
+  .suggest .ico { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; flex: none;
+                  background: var(--teal-soft); color: var(--teal-ink); transition: background .15s, color .15s; }
+  .suggest b { display: block; font-size: .9rem; }
+  .suggest span { color: var(--muted); font-size: .85rem; }
+  .msg { display: flex; gap: 12px; margin: 0 0 22px; animation: rise .25s ease; }
+  .msg.user { justify-content: flex-end; }
+  .msg.user .bubble { background: var(--user); color: var(--user-ink); border-radius: 16px 16px 4px 16px;
+                      padding: 10px 14px; max-width: 78%; white-space: pre-wrap; box-shadow: var(--shadow); }
+  .msg.bot .bubble { flex: 1; min-width: 0; }
+  .avatar { width: 34px; height: 34px; flex: none; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); padding: 3px; }
   .answer p { margin: 0 0 10px; }
   .answer ul { margin: 0 0 10px; padding-left: 22px; }
-  code { background: var(--code); padding: 1px 5px; border-radius: 5px; font-size: .9em; }
-  a { color: var(--accent); }
-  details { border-top: 1px solid var(--line); padding: 8px 0; }
-  details:first-of-type { border-top: 0; }
-  summary { cursor: pointer; }
-  pre { margin: 8px 0 0; padding: 10px; background: var(--code); border-radius: 8px;
-        overflow-x: auto; font-size: .82rem; white-space: pre-wrap; word-break: break-word; }
-  .tag { display: inline-block; padding: 1px 7px; margin-right: 6px; font-size: .75rem;
-         border-radius: 6px; background: var(--code); color: var(--muted); }
-  .tag.err { background: var(--unsafe-bg); color: var(--unsafe-ink); }
-  table { width: 100%; border-collapse: collapse; font-size: .9rem; }
-  th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
-  th:not(:first-child), td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+  .thinking { display: flex; align-items: center; gap: 10px; color: var(--muted); padding: 8px 0; }
+  .typing { display: inline-flex; gap: 4px; }
+  .typing i { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); animation: bounce 1.1s infinite; }
+  .typing i:nth-child(2) { animation-delay: .15s; background: var(--accent-2); } .typing i:nth-child(3) { animation-delay: .3s; background: var(--navy); }
+  @keyframes bounce { 0%, 70%, 100% { transform: translateY(0); opacity: .5; } 35% { transform: translateY(-5px); opacity: 1; } }
+  .step { animation: fade .3s ease; }
+  .cites { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+  .cite { font-size: .78rem; padding: 2px 9px; border-radius: 999px; background: var(--teal-soft); color: var(--teal-ink); text-decoration: none;
+          transition: transform .12s; }
+  .cite:hover { transform: translateY(-1px); text-decoration: underline; }
+  .actions { display: flex; gap: 4px; margin: 2px 0 6px; }
+  .actions button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid transparent; background: none; color: var(--muted);
+                    font-size: .78rem; padding: 3px 8px; border-radius: 7px; transition: background .15s, color .15s; }
+  .actions button:hover { background: var(--panel); border-color: var(--line); color: var(--ink); }
+  .actions .i { width: 14px; height: 14px; }
+  details.how { margin-top: 4px; border: 1px solid var(--line); border-radius: 12px; padding: 0 12px; background: var(--panel); }
+  details.how > summary { padding: 9px 0; color: var(--muted); font-size: .83rem; cursor: pointer; list-style: none; display: flex; align-items: center; gap: 6px; }
+  details.how > summary::-webkit-details-marker { display: none; }
+  details.how > summary::before { content: "▸"; transition: transform .2s; display: inline-block; }
+  details.how[open] > summary::before { transform: rotate(90deg); }
+  details.how[open] > summary { border-bottom: 1px solid var(--line); margin-bottom: 8px; }
+  details.how .label { margin: 10px 0 4px; font-size: .7rem; letter-spacing: .07em; color: var(--muted); text-transform: uppercase; }
+  details.call { border-top: 1px solid var(--line); padding: 6px 0; }
+  details.call:first-of-type { border-top: 0; }
+  details.call summary { cursor: pointer; font-size: .88rem; }
+  .bar { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--accent-2), var(--teal)); min-width: 2px; }
+
+  .composer-wrap { border-top: 1px solid var(--line); background: var(--bg); padding: 14px 20px 10px; }
+  .composer { max-width: 820px; margin: 0 auto; background: var(--panel); border: 1px solid var(--line);
+              border-radius: 16px; box-shadow: var(--shadow); padding: 10px 10px 8px 14px; transition: border-color .15s, box-shadow .15s; }
+  .composer:focus-within { border-color: var(--teal); box-shadow: 0 0 0 4px var(--teal-soft), var(--shadow); }
+  .composer textarea { width: 100%; border: 0; outline: 0; resize: none; background: none; color: var(--ink);
+                       font: inherit; max-height: 180px; padding: 4px 0; }
+  .composer-row { display: flex; align-items: center; gap: 8px; }
+  .composer-row .hint { flex: 1; color: var(--muted); font-size: .75rem; }
+  .count { font-size: .72rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+  .send { width: 38px; height: 38px; border-radius: 11px; border: 0; display: grid; place-items: center;
+          background: linear-gradient(135deg, var(--accent-2), var(--teal)); color: #fff; transition: transform .12s, opacity .15s; }
+  .send:not(:disabled):hover { transform: translateY(-1px) rotate(-8deg); }
+  .send:disabled { opacity: .35; cursor: default; }
+  .fine { max-width: 820px; margin: 8px auto 0; color: var(--muted); font-size: .74rem; text-align: center; }
+  .jump { position: absolute; left: 50%; transform: translateX(-50%); bottom: 150px; z-index: 5; border: 1px solid var(--line);
+          background: var(--panel); border-radius: 999px; padding: 6px 12px; font-size: .8rem; box-shadow: var(--shadow-lift); animation: rise .2s ease; }
+
+  /* --- shared blocks --- */
+  .card { padding: 16px; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; margin-top: 14px; animation: rise .25s ease; }
+  .card h3 { margin: 0 0 4px; font-size: 1.02rem; }
+  .card h4 { margin: 0 0 10px; font-size: .74rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 12px; }
+  .grid .card { margin-top: 0; transition: transform .15s ease, box-shadow .15s ease, border-color .15s; }
+  .grid .card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--accent-2); }
+  .card.superseded { border-style: dashed; opacity: .85; }
+
+  /* Recipe library ------------------------------------------------- */
+  .filters.library { align-items: end; gap: 10px 18px; padding: 14px 16px; background: var(--panel);
+                     border: 1px solid var(--line); border-radius: 14px; }
+  .filters.library input[type="search"] { min-width: 260px; }
+  .filters.library fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+  .filters.library .toggle { padding-bottom: 0; align-self: center; }
+
+  .rcard { display: flex; flex-direction: column; gap: 10px; height: 100%; }
+  .rcard .rhead { display: flex; align-items: flex-start; gap: 10px; }
+  .rcard h3 { flex: 1; margin: 0; font-size: 1rem; line-height: 1.35;
+              display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .rcard .rhead .tag { flex: none; margin: 2px 0 0; }
+  .rcard .rkey { align-self: flex-start; max-width: 100%; padding: 3px 8px; border-radius: 6px;
+                 background: var(--code); color: var(--muted); font-size: .7rem;
+                 overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .rcard .ryield { margin: 0; font-size: .9rem; color: var(--muted); }
+  .rcard .ryield b { color: var(--ink); font-weight: 650; }
+  .rcard dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 10px; margin: 0; align-items: baseline; }
+  .rcard dt { font-size: .76rem; color: var(--muted); white-space: nowrap; }
+  .rcard dd { display: flex; flex-wrap: wrap; gap: 4px; margin: 0; }
+  .rcard dd .tag { margin: 0; }
+  .rcard .rtimes { display: flex; flex-wrap: wrap; gap: 5px; }
+  .rcard .rtime { padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px; background: var(--bg);
+                  color: var(--muted); font-size: .72rem; white-space: nowrap; }
+  .rcard .rtime b { color: var(--ink); font-weight: 600; }
+  /* primary action spans the row; the two tools share the one below */
+  .rcard .ract { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: auto;
+                 padding-top: 12px; border-top: 1px solid var(--line); }
+  .rcard .ract > :first-child { grid-column: 1 / -1; }
+  .rcard .ract > * { padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: none;
+                     color: var(--accent-2); font-size: .8rem; text-align: center; text-decoration: none;
+                     transition: background .15s, border-color .15s, color .15s; }
+  .rcard .ract > *:hover { background: var(--accent-soft); border-color: var(--accent-2); color: var(--accent); }
+  .verdict { display: flex; gap: 10px; align-items: flex-start; padding: 11px 14px; border-radius: 11px; font-weight: 600; margin-bottom: 8px; animation: pop .3s ease; }
+  .verdict .i { margin-top: 2px; }
+  @keyframes pop { 0% { transform: scale(.97); opacity: 0; } 60% { transform: scale(1.01); opacity: 1; } 100% { transform: none; } }
+  .verdict.unsafe { background: var(--unsafe-bg); color: var(--unsafe-ink); }
+  .verdict.may_contain { background: var(--may-bg); color: var(--may-ink); }
+  .verdict.no_declared_allergen, .verdict.ok { background: var(--ok-bg); color: var(--ok-ink); }
+  .verdict.guard { background: var(--may-bg); color: var(--may-ink); font-weight: 400; }
+  .verdict.error { background: var(--unsafe-bg); color: var(--unsafe-ink); font-weight: 400; }
+  .verdict small { display: block; font-weight: 400; margin-top: 3px; }
+  .tag { display: inline-block; padding: 1px 8px; margin: 0 5px 4px 0; font-size: .74rem; border-radius: 6px; background: var(--code); color: var(--muted); }
+  .tag.unsafe, .tag.err { background: var(--unsafe-bg); color: var(--unsafe-ink); }
+  .tag.may { background: var(--may-bg); color: var(--may-ink); }
+  .tag.ok { background: var(--ok-bg); color: var(--ok-ink); }
+  .meta { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--muted); font-size: .82rem; }
+  form.tool { display: flex; gap: 12px; flex-wrap: wrap; align-items: flex-end; background: var(--panel);
+              border: 1px solid var(--line); border-radius: 14px; padding: 14px; box-shadow: var(--shadow); }
+  form.tool label, .filters label { display: flex; flex-direction: column; gap: 4px; font-size: .8rem; color: var(--muted); }
+  input, select { padding: 9px 11px; font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 9px;
+                  transition: border-color .15s, box-shadow .15s; }
+  input:focus, select:focus { outline: 0; border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-soft); }
+  input[type="number"] { width: 96px; }
+  input[type="range"] { padding: 0; border: 0; background: none; accent-color: var(--teal); width: 220px; box-shadow: none; }
+  fieldset { border: 0; padding: 0; margin: 0; }
+  legend { font-size: .8rem; color: var(--muted); margin-bottom: 4px; }
+  .checks { display: flex; flex-wrap: wrap; gap: 6px; }
+  .checks label { flex-direction: row !important; align-items: center; gap: 6px !important; padding: 6px 11px; border: 1px solid var(--line);
+                  border-radius: 999px; color: var(--ink) !important; font-size: .88rem !important; cursor: pointer; user-select: none;
+                  transition: background .15s, border-color .15s, transform .1s; }
+  .checks label:hover { border-color: var(--teal); }
+  .checks label:active { transform: scale(.96); }
+  .checks label:has(input:checked) { border-color: var(--teal); background: var(--teal-soft); color: var(--teal-ink) !important; }
+  .checks input { display: none; }
+  .checks label::before { content: "+"; font-weight: 700; width: 10px; text-align: center; }
+  .checks label:has(input:checked)::before { content: "✓"; }
+  .filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: flex-end; margin-bottom: 14px; }
+  .filters input[type="search"] { min-width: 240px; }
+  .toggle { flex-direction: row !important; align-items: center; gap: 8px !important; cursor: pointer; padding-bottom: 8px; }
+  .toggle input { appearance: none; width: 36px; height: 20px; border-radius: 999px; background: var(--line); position: relative; padding: 0;
+                  border: 0; cursor: pointer; transition: background .2s; }
+  .toggle input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: #fff;
+                         transition: transform .2s; box-shadow: 0 1px 2px rgba(0, 0, 0, .25); }
+  .toggle input:checked { background: var(--teal); }
+  .toggle input:checked::after { transform: translateX(16px); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .chip { padding: 5px 11px; font-size: .84rem; border: 1px solid var(--line); border-radius: 999px; background: var(--panel);
+          transition: border-color .15s, transform .1s, background .15s; }
+  .chip:hover { border-color: var(--teal); background: var(--teal-soft); }
+  .chip:active { transform: scale(.96); }
+  .linkish { border: 0; background: none; color: var(--accent-2); padding: 0; text-decoration: underline; }
+  .status { margin: 12px 0 0; color: var(--muted); min-height: 1.4em; }
+  .err-text { color: var(--unsafe-ink); }
+  .empty { text-align: center; color: var(--muted); padding: 30px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+  th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 500; font-size: .8rem; }
+  table.num th:not(:first-child), table.num td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
   tr.total td { font-weight: 600; border-bottom: 0; }
-  .meta { display: flex; flex-wrap: wrap; gap: 6px 16px; color: var(--muted); font-size: .85rem; }
+  tr.click { cursor: pointer; transition: background .12s; } tr.click:hover td { background: var(--accent-soft); }
+  tr.selected td { background: var(--teal-soft); }
   .table-wrap { overflow-x: auto; }
-  [hidden] { display: none !important; }
+  .big { font-size: 2.8rem; font-weight: 800; font-variant-numeric: tabular-nums; background: linear-gradient(90deg, var(--accent-2), var(--teal));
+         -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1.1; }
+  .gauge { height: 10px; border-radius: 5px; background: var(--code); overflow: hidden; margin-top: 10px; }
+  .gauge div { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--teal), var(--accent-2), #d9534f); transition: width .8s ease; }
+  .flash { animation: flash .6s ease; }
+  @keyframes flash { 0% { background: var(--teal-soft); } 100% { background: transparent; } }
+
+  .toasts { position: fixed; right: 18px; bottom: 18px; display: flex; flex-direction: column; gap: 8px; z-index: 50; }
+  .toast { background: var(--ink); color: var(--bg); padding: 9px 14px; border-radius: 10px; font-size: .86rem; box-shadow: var(--shadow-lift);
+           animation: rise .2s ease; transition: opacity .3s, transform .3s; }
+  .toast.out { opacity: 0; transform: translateY(6px); }
+
+  /* --- tool pages --- */
+  .page-head { display: flex; gap: 14px; align-items: center; margin-bottom: 18px; animation: rise .25s ease; }
+  .page-head h2 { margin: 0; font-size: 1.4rem; }
+  .page-head .lede { margin: 2px 0 0; }
+  .page-ico { width: 50px; height: 50px; flex: none; border-radius: 15px; display: grid; place-items: center; color: #fff;
+              background: linear-gradient(135deg, var(--navy), var(--blue) 55%, var(--teal)); box-shadow: var(--shadow-lift); }
+  .page-ico .i { width: 25px; height: 25px; }
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+  .stat { position: relative; overflow: hidden; background: var(--panel); border: 1px solid var(--line); border-radius: 14px;
+          padding: 12px 14px; animation: rise .3s ease both; }
+  .stat::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(var(--blue), var(--teal)); }
+  .stat b { display: block; font-size: 1.55rem; font-variant-numeric: tabular-nums; color: var(--navy); line-height: 1.2; }
+  .stat span { color: var(--muted); font-size: .78rem; }
+  .filters.card { margin-top: 0; }
+  .chip.on { border-color: var(--teal); background: var(--teal-soft); color: var(--teal-ink); font-weight: 600; }
+
+  .rc { display: flex; flex-direction: column; gap: 6px; }
+  .rc-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 4px; }
+  .mono { width: 42px; height: 42px; flex: none; border-radius: 12px; display: grid; place-items: center; color: #fff;
+          font-weight: 800; font-size: 1.1rem; box-shadow: var(--shadow); }
+  .rc-head h3 { font-size: .98rem; line-height: 1.3; }
+  .rc-head code { font-size: .7rem; word-break: break-word; }
+  .rc-row { display: flex; gap: 6px; align-items: baseline; font-size: .88rem; }
+  .rc-row > span:first-child { width: 88px; flex: none; color: var(--muted); font-size: .8rem; }
+  .times { display: flex; flex-wrap: wrap; gap: 6px; }
+  .time { display: inline-flex; align-items: center; gap: 4px; font-size: .76rem; padding: 2px 8px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+  .time .i { width: 13px; height: 13px; }
+  .changes { display: flex; gap: 8px; align-items: flex-start; padding: 8px 10px; border-radius: 10px; background: var(--may-bg); color: var(--may-ink); font-size: .82rem; }
+  .changes .i { width: 15px; height: 15px; margin-top: 2px; }
+  .rc-foot { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--line); }
+  .mini { display: inline-flex; align-items: center; gap: 5px; font-size: .8rem; padding: 5px 10px; border-radius: 8px; border: 1px solid var(--line);
+          background: var(--bg); color: var(--ink); text-decoration: none; transition: border-color .15s, background .15s, transform .1s; }
+  .mini:hover { border-color: var(--teal); background: var(--teal-soft); color: var(--teal-ink); }
+  .mini:active { transform: scale(.96); }
+  .mini .i { width: 14px; height: 14px; }
+
+  table.matrix th, table.matrix td { text-align: center; padding: 6px 4px; }
+  table.matrix th:first-child, table.matrix td:first-child { text-align: left; padding-left: 8px; }
+  table.matrix th { text-transform: capitalize; }
+  .cell button { width: 32px; height: 32px; border-radius: 9px; border: 0; font-weight: 700; transition: transform .12s, box-shadow .12s; }
+  .cell button:hover { transform: scale(1.15); box-shadow: var(--shadow); }
+  .cell .unsafe, .sw.unsafe { background: var(--unsafe-bg); color: var(--unsafe-ink); }
+  .cell .may, .sw.may { background: var(--may-bg); color: var(--may-ink); }
+  .cell .ok, .sw.ok { background: var(--ok-bg); color: var(--ok-ink); }
+  tr.picked td { background: var(--accent-soft); }
+  .legend { display: flex; flex-wrap: wrap; gap: 14px; font-size: .8rem; color: var(--muted); margin-top: 10px; }
+  .sw { display: inline-block; width: 12px; height: 12px; border-radius: 4px; margin-right: 6px; vertical-align: -1px; }
+
+  .stepper { display: inline-flex; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: var(--bg); }
+  .stepper button { border: 0; background: none; width: 34px; font-size: 1.1rem; color: var(--ink); transition: background .12s; }
+  .stepper button:hover { background: var(--teal-soft); color: var(--teal-ink); }
+  .stepper input { border: 0; border-radius: 0; width: 70px; text-align: center; background: none; }
+  .stepper input:focus { box-shadow: none; }
+
+  .temp-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 12px; margin-top: 18px; }
+  .tcard { text-align: left; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); animation: rise .3s ease both;
+           transition: transform .15s, box-shadow .15s, border-color .15s; }
+  .tcard:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); }
+  .tcard.selected { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-soft), var(--shadow); }
+  .tc-top { display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .tc-top b { text-transform: capitalize; }
+  .tcard .num { font-size: 1.7rem; font-weight: 800; font-variant-numeric: tabular-nums; margin-top: 6px; }
+  .tcard.hot .num { color: #c8553d; } .tcard.cold .num { color: var(--blue); }
+  .thermo { height: 8px; background: var(--code); border-radius: 4px; margin: 8px 0; overflow: hidden; }
+  .thermo div { height: 100%; border-radius: 4px; transition: width .8s ease; }
+  .hot .thermo div { background: linear-gradient(90deg, #f2b950, #d9534f); }
+  .cold .thermo div { background: linear-gradient(90deg, var(--teal), var(--blue)); }
+  .tcard .meta { font-size: .76rem; }
+
+  .swap-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; margin-top: 12px; }
+  .scard { text-align: left; padding: 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); display: flex; flex-direction: column;
+           gap: 8px; animation: rise .3s ease both; transition: transform .15s, box-shadow .15s, border-color .15s; }
+  .scard:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--teal); }
+  .scard.selected { border-color: var(--teal); box-shadow: 0 0 0 3px var(--teal-soft); }
+  .flow { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; font-weight: 600; }
+  .flow span { padding: 8px 10px; border-radius: 10px; background: var(--code); font-size: .88rem; }
+  .flow span:last-child { background: var(--teal-soft); color: var(--teal-ink); }
+  .flow .arrow { background: none !important; padding: 0; color: var(--teal); font-size: 1.2rem; }
+
+  .dist { display: flex; height: 14px; border-radius: 7px; overflow: hidden; background: var(--code); }
+  .dist div { height: 100%; transition: width .8s ease; }
+  .dist .unsafe { background: #d9534f; } .dist .may { background: #e9a83a; } .dist .ok { background: var(--teal); } .dist .none { background: var(--line); }
+  .sw.none { background: var(--line); }
+  #log-legend .sw.unsafe { background: #d9534f; } #log-legend .sw.may { background: #e9a83a; } #log-legend .sw.ok { background: var(--teal); }
+  form.tool input[maxlength] { min-width: 280px; }
+
+  /* --- phones and narrow windows: the sidebar slides in --- */
+  .scrim { display: none; }
+  @media (max-width: 860px) {
+    .app { grid-template-columns: 1fr; }
+    .sidebar { position: fixed; inset: 0 auto 0 0; width: 280px; z-index: 20; transform: translateX(-100%);
+               transition: transform .22s ease; box-shadow: var(--shadow-lift); }
+    .sidebar.open { transform: none; }
+    .scrim.open { display: block; position: fixed; inset: 0; background: rgba(5, 15, 25, .4); z-index: 10; animation: fade .2s; }
+    #menu { display: inline-flex; }
+    .topbar { padding: 10px 16px; }
+    .topbar .pill { display: none; }
+    .thread, .page { padding-left: 16px; padding-right: 16px; }
+    .composer-wrap { padding: 10px 16px 8px; }
+    .composer-row .hint { display: none; }
+    .msg.user .bubble { max-width: 88%; }
+    .hero h2 { font-size: 1.6rem; }
+    input[type="range"] { width: 150px; }
+    .filters input[type="search"] { min-width: 0; width: 100%; }
+    .page-ico { width: 42px; height: 42px; }
+    form.tool input[maxlength] { min-width: 0; width: 100%; }
+    .flow { grid-template-columns: 1fr; } .flow .arrow { transform: rotate(90deg); justify-self: center; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  }
 </style>
 </head>
 <body>
-<main>
-  <header>
-    <h1>Pantry-to-Plate</h1>
-    <p>Answers from the recipe library only. Allergens are checked against each recipe's declaration field, and every citation names the recipe version.</p>
-  </header>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="logo" viewBox="168 124 272 124">
+    <path class="arch" d="M209 246 V187 A 96.5 58 0 0 1 402 187 V246"/>
+    <path class="handle" d="M178 181 L236 180"/>
+    <path class="handle" d="M368 184 L430 167"/>
+    <path class="leaf" d="M268 177 C 265 166 269 158 274 152 C 284 160 291 168 293 177 Z"/>
+    <path class="swoosh" d="M300 177 C 318 160 344 150 362 156 C 356 152 350 152 346 154"/>
+    <path class="pan-top" d="M233 177 L356 179 L351 188 C 336 203 296 214 263 214 C 246 209 237 195 233 177 Z"/>
+    <path class="pan" d="M244 214 L372 183 C 369 215 341 240 300 241 C 268 241 249 231 244 214 Z"/>
+    <path class="shine" d="M247 185 C 250 193 255 197 261 200"/>
+    <path class="shine" d="M331 210 C 340 206 347 199 351 192"/>
+  </symbol>
+</svg>
+<div class="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <svg class="logo" aria-hidden="true"><use href="#logo"/></svg>
+      <div class="wordmark"><b>CULINARY</b><span>BOT STUDIO</span></div>
+    </div>
+    <button class="btn wide" id="new-chat" type="button" title="New chat (Alt+N)"><span data-icon="plus"></span>New chat</button>
+    <nav class="nav" id="nav">
+      <button data-view="chat" class="active"><span data-icon="chat"></span>Chat <span class="badge">AI</span></button>
+      <div class="group">Kitchen tools · instant</div>
+      <button data-view="recipes"><span data-icon="book"></span>Recipes</button>
+      <button data-view="check"><span data-icon="shield"></span>Allergen check</button>
+      <button data-view="scale"><span data-icon="scale"></span>Scale a recipe</button>
+      <button data-view="temp"><span data-icon="thermo"></span>Safe temperatures</button>
+      <button data-view="swap"><span data-icon="swap"></span>Swaps</button>
+      <div class="group">Behind the scenes</div>
+      <button data-view="log"><span data-icon="log"></span>Request log</button>
+    </nav>
+    <div class="nav"><div class="group">This session's chats</div></div>
+    <div class="convos" id="convos"></div>
+    <div class="side-foot" id="side-foot">Loading the library…</div>
+  </aside>
+  <div class="scrim" id="scrim"></div>
 
-  <form id="ask">
-    <textarea id="question" placeholder="e.g. My son has a nut allergy. Can he eat kallappam?" required></textarea>
-    <button id="go" type="submit">Ask</button>
-  </form>
-  <div class="chips" id="examples"></div>
-  <div class="status" id="status" role="status"></div>
+  <section class="main" style="position:relative">
+    <header class="topbar">
+      <button class="icon-btn" id="menu" type="button" aria-label="Open menu"><span data-icon="menu"></span></button>
+      <h1 id="view-title">New chat</h1>
+      <span class="pill" id="model-pill"></span>
+      <button class="icon-btn" id="theme" type="button" aria-label="Switch light or dark theme" title="Switch theme"><span data-icon="moon"></span></button>
+    </header>
 
-  <div id="result" hidden>
-    <section class="card">
-      <h2>Answer</h2>
-      <div id="verdict"></div>
-      <div id="guard"></div>
-      <div class="answer" id="answer"></div>
-      <div class="meta" id="citations"></div>
-    </section>
-    <section class="card">
-      <h2>Tool calls (discovered over MCP)</h2>
-      <div id="calls"></div>
-    </section>
-    <section class="card">
-      <h2>Trace</h2>
-      <div class="meta" id="meta"></div>
-      <div class="table-wrap"><table id="spans"></table></div>
-    </section>
-  </div>
-</main>
+    <!-- Chat: the full agent, model + MCP tools -->
+    <div class="view" data-view="chat">
+      <div class="scroll" id="thread-scroll"><div class="thread" id="thread"></div></div>
+      <button class="jump" id="jump" type="button" hidden>↓ Latest</button>
+      <div class="composer-wrap">
+        <form class="composer" id="composer">
+          <textarea id="question" rows="1" maxlength="1000" placeholder="Ask about a recipe, an allergy, scaling, or a safe temperature…" aria-label="Your question"></textarea>
+          <div class="composer-row">
+            <span class="hint"><kbd>Enter</kbd> send · <kbd>Shift</kbd>+<kbd>Enter</kbd> new line · <kbd>/</kbd> focus</span>
+            <span class="count" id="count"></span>
+            <button class="send" id="send" type="submit" aria-label="Send" disabled><span data-icon="send"></span></button>
+          </div>
+        </form>
+        <p class="fine">Allergen verdicts come from each recipe's declaration field, never from the AI. Always check the packet label too.</p>
+      </div>
+    </div>
+
+    <!-- Recipes -->
+    <div class="view" data-view="recipes" hidden><div class="scroll"><div class="page">
+      <div class="page-head"><span class="page-ico"><span data-icon="book"></span></span>
+        <div><h2>Recipe library</h2><p class="lede">Every version of every recipe. Superseded versions are kept so you can see what changed; answers always use the current one.</p></div></div>
+      <div class="stats" id="recipe-stats"></div>
+      <div class="filters card">
+        <label>Search <input type="search" id="recipe-search" placeholder="Name or recipe id…"></label>
+        <fieldset><legend>Safe for someone avoiding</legend><div class="checks" id="recipe-avoid"></div></fieldset>
+        <label class="toggle"><input type="checkbox" id="recipe-old"> Show superseded</label>
+      </div>
+      <div class="meta" id="recipe-count" style="margin:14px 0 10px"></div>
+      <div class="grid" id="recipe-grid"></div>
+    </div></div></div>
+
+    <!-- Allergen check -->
+    <div class="view" data-view="check" hidden><div class="scroll"><div class="page">
+      <div class="page-head"><span class="page-ico"><span data-icon="shield"></span></span>
+        <div><h2>Allergen check</h2><p class="lede">An exact match against the recipe's <code>allergens</code> and <code>may_contain</code> fields. Updates as you pick; no AI, no guessing.</p></div></div>
+      <form class="tool" id="check-form">
+        <label>Recipe <select id="check-recipe"></select></label>
+        <label>Version <select id="check-version"></select></label>
+        <fieldset><legend>Avoid</legend><div class="checks" id="check-avoid"></div></fieldset>
+        <button class="btn" type="submit">Check</button>
+      </form>
+      <div class="status" id="check-status" role="status"></div>
+      <div id="check-result"></div>
+      <div class="card">
+        <h4>Declaration matrix · every current recipe · click a cell to check it</h4>
+        <div class="table-wrap"><table class="matrix" id="matrix"></table></div>
+        <div class="legend"><span><i class="sw unsafe"></i>contains</span><span><i class="sw may"></i>may contain</span><span><i class="sw ok"></i>not declared</span></div>
+      </div>
+    </div></div></div>
+
+    <!-- Scale -->
+    <div class="view" data-view="scale" hidden><div class="scroll"><div class="page">
+      <div class="page-head"><span class="page-ico"><span data-icon="scale"></span></span>
+        <div><h2>Scale a recipe</h2><p class="lede">Drag, step or pick a size: ingredients scale by weight as you go. Soak, ferment and cook times stay as listed.</p></div></div>
+      <form class="tool" id="scale-form">
+        <label>Recipe <select id="scale-recipe"></select></label>
+        <label>Target yield <span class="stepper">
+          <button type="button" data-step="-1" aria-label="One fewer">−</button>
+          <input id="scale-target" type="number" min="1" value="60" required>
+          <button type="button" data-step="1" aria-label="One more">+</button></span></label>
+        <label>&nbsp;<input id="scale-range" type="range" min="1" value="60" aria-label="Target yield slider"></label>
+        <button class="btn" type="submit">Scale</button>
+      </form>
+      <div class="chips" id="scale-presets"></div>
+      <div class="status" id="scale-status" role="status"></div>
+      <div id="scale-result"></div>
+    </div></div></div>
+
+    <!-- Safe temperatures -->
+    <div class="view" data-view="temp" hidden><div class="scroll"><div class="page">
+      <div class="page-head"><span class="page-ico"><span data-icon="thermo"></span></span>
+        <div><h2>Safe temperatures</h2><p class="lede">The whole food-safety chart. Click a food, or search by any name; a food that isn't in the chart gets no number rather than a guess.</p></div></div>
+      <form class="tool" id="temp-form">
+        <label>Food <input id="temp-item" maxlength="120" placeholder="e.g. poultry, leftover idli, buttermilk" required list="temp-list"></label>
+        <datalist id="temp-list"></datalist>
+        <button class="btn" type="submit">Look up</button>
+      </form>
+      <div class="chips" id="temp-chips"></div>
+      <div class="status" id="temp-status" role="status"></div>
+      <div id="temp-result"></div>
+      <div class="temp-grid" id="temp-grid"></div>
+    </div></div></div>
+
+    <!-- Swaps -->
+    <div class="view" data-view="swap" hidden><div class="scroll"><div class="page">
+      <div class="page-head"><span class="page-ico"><span data-icon="swap"></span></span>
+        <div><h2>Ingredient swaps</h2><p class="lede">Only swaps the test kitchen has recorded. Each one shows its own allergens; check them before you cook.</p></div></div>
+      <form class="tool" id="swap-form">
+        <label>Ingredient <input id="swap-ingredient" maxlength="120" placeholder="e.g. Grated coconut" required list="swap-list"></label>
+        <datalist id="swap-list"></datalist>
+        <label>Avoiding <select id="swap-avoid"></select></label>
+        <button class="btn" type="submit">Find a swap</button>
+      </form>
+      <div class="status" id="swap-status" role="status"></div>
+      <div id="swap-result"></div>
+      <div class="chips" id="swap-filter" style="margin-top:20px"></div>
+      <div class="swap-grid" id="swap-grid"></div>
+    </div></div></div>
+
+    <!-- Request log -->
+    <div class="view" data-view="log" hidden><div class="scroll"><div class="page">
+      <div class="page-head"><span class="page-ico"><span data-icon="log"></span></span>
+        <div><h2>Request log</h2><p class="lede">Recent chat requests on this machine. Questions are stored redacted and no user id is kept. Click a row to see its trace across the MCP hop.</p></div></div>
+      <div class="stats" id="log-stats"></div>
+      <div class="card" id="log-dist-card" hidden><h4>Allergen verdicts given</h4><div class="dist" id="log-dist"></div><div class="legend" id="log-legend"></div></div>
+      <div class="filters" style="margin-top:14px">
+        <label style="flex:1">Search <input type="search" id="log-search" placeholder="Redacted question or trace id…"></label>
+        <button class="btn ghost" type="button" id="log-refresh"><span data-icon="refresh"></span>Refresh</button>
+      </div>
+      <div class="status" id="log-status" role="status"></div>
+      <div class="card"><div class="table-wrap"><table id="log-table"></table></div></div>
+      <div id="trace-result"></div>
+    </div></div></div>
+  </section>
+</div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
 
 <script>
-const EXAMPLES = [
-  "My son has a nut allergy. Can he eat kallappam?",
-  "Can someone with a peanut allergy eat idli?",
-  "Scale idli batter up to 120 idlis. How much urad dal, and how long does it ferment?",
-  "How long should I cook chicken for, and how do I know it is done?",
-  "To what internal temperature should I roast pork belly?",
-  "My kid is allergic to coconut. What can I use instead of the coconut-cashew paste in kallappam?",
+const ICONS = {
+  plus: '<path d="M12 5v14M5 12h14"/>',
+  chat: '<path d="M4 5h16v11H9l-5 4z"/>',
+  book: '<path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/>',
+  shield: '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>',
+  scale: '<path d="M12 4v16M6 20h12M5 8h14M5 8l-3 7h6zM19 8l-3 7h6z"/>',
+  thermo: '<path d="M10 14V5a2 2 0 0 1 4 0v9a4 4 0 1 1-4 0z"/><path d="M12 11v6"/>',
+  swap: '<path d="M4 8h14l-4-4M20 16H6l4 4"/>',
+  log: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+  send: '<path d="M12 19V5M6 11l6-6 6 6"/>',
+  menu: '<path d="M4 7h16M4 12h16M4 17h16"/>',
+  moon: '<path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/>',
+  sun: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/>',
+  copy: '<rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/>',
+  retry: '<path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/>',
+  refresh: '<path d="M20 12a8 8 0 1 1-3-6.2"/><path d="M20 4v5h-5"/>',
+  trash: '<path d="M5 7h14M10 7V4h4v3M7 7l1 13h8l1-13"/>',
+  alert: '<path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17.5v.5"/>',
+  check: '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
+  info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+};
+const icon = (name) => `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`;
+const LOGO = '<svg class="logo" aria-hidden="true"><use href="#logo"/></svg>';
+
+const SUGGESTIONS = [
+  {icon: "shield", title: "Nut allergy", q: "My son has a nut allergy. Can he eat kallappam?"},
+  {icon: "shield", title: "Peanut allergy", q: "Can someone with a peanut allergy eat idli?"},
+  {icon: "scale", title: "Cook for a crowd", q: "Scale idli batter up to 120 idlis. How much urad dal, and how long does it ferment?"},
+  {icon: "thermo", title: "Is it done?", q: "How long should I cook chicken for, and how do I know it is done?"},
+  {icon: "swap", title: "Coconut-free swap", q: "My kid is allergic to coconut. What can I use instead of the coconut-cashew paste in kallappam?"},
+  {icon: "thermo", title: "Not in the chart", q: "To what internal temperature should I roast pork belly?"},
 ];
+const THINKING = ["Reading your question…", "Discovering tools over MCP…", "Searching the recipe library…",
+                  "Checking the declaration fields…", "Writing the answer…", "Running the safety guards…"];
 const VERDICT_TEXT = {
   unsafe: "Not safe: a declared allergen matches.",
   may_contain: "May contain: not safe without a supplier guarantee.",
   no_declared_allergen: "No declared allergen for what you asked about.",
 };
+const VERDICT_ICON = {unsafe: "alert", may_contain: "alert", no_declared_allergen: "check", ok: "check", guard: "info", error: "alert"};
+const VIEW_TITLES = {recipes: "Recipes", check: "Allergen check", scale: "Scale a recipe", temp: "Safe temperatures",
+                     swap: "Swaps", log: "Request log"};
 const $ = (id) => document.getElementById(id);
+let META = null, RECIPES = [], FILES = {};
 
-function escapeHtml(text) {
-  return text.replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+function escapeHtml(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (c) => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
 }
+const tags = (list, cls) => list.length ? list.map((a) => `<span class="tag ${cls}">${escapeHtml(a)}</span>`).join("") : '<span class="tag">none</span>';
+const verdictTag = (v) => v ? `<span class="tag ${v === "unsafe" ? "unsafe" : v === "may_contain" ? "may" : "ok"}">${escapeHtml(v.replace(/_/g, " "))}</span>` : "";
+const banner = (kind, html) => `<div class="verdict ${escapeHtml(kind)}">${icon(VERDICT_ICON[kind] || "info")}<div>${html}</div></div>`;
+const cardLink = (key, label) => FILES[key]
+  ? `<a href="/card/${encodeURIComponent(FILES[key])}" target="_blank" rel="noopener">${escapeHtml(label ?? key)}</a>` : escapeHtml(label ?? key);
+const debounce = (fn, ms) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
+
+function ago(ms) {
+  const s = Math.round((Date.now() - ms) / 1000);
+  return s < 60 ? "just now" : s < 3600 ? `${Math.round(s / 60)}m ago` : s < 86400 ? `${Math.round(s / 3600)}h ago` : `${Math.round(s / 86400)}d ago`;
+}
+
+function toast(text) {
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.textContent = text;
+  $("toasts").append(el);
+  setTimeout(() => { el.classList.add("out"); setTimeout(() => el.remove(), 300); }, 2200);
+}
+
+async function api(path, body) {
+  const options = body === undefined ? {} : {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)};
+  const response = await fetch(path, options);
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
+  return data;
+}
+
+// Runs a tool screen's action with a busy button and an error line.
+async function run(form, statusId, action) {
+  const button = form.querySelector("button[type=submit]");
+  button.disabled = true;
+  $(statusId).textContent = "";
+  try { await action(); }
+  catch (error) { $(statusId).innerHTML = `<span class="err-text">${escapeHtml(error.message)}</span>`; }
+  finally { button.disabled = false; }
+}
+
+// --- theme: a per-viewer convenience, so browser storage is fine here ---
+function applyTheme(theme) {
+  if (theme) document.documentElement.dataset.theme = theme; else delete document.documentElement.dataset.theme;
+  const dark = theme ? theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+  $("theme").innerHTML = icon(dark ? "sun" : "moon");
+}
+let savedTheme = null;
+try { savedTheme = localStorage.getItem("cbs.theme"); } catch { /* storage blocked */ }
+$("theme").addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme ? document.documentElement.dataset.theme === "dark"
+                                                       : matchMedia("(prefers-color-scheme: dark)").matches;
+  const next = dark ? "light" : "dark";
+  applyTheme(next);
+  try { localStorage.setItem("cbs.theme", next); } catch { /* storage blocked */ }
+});
+
+// --- navigation ---
+function showView(view) {
+  document.querySelectorAll("#nav button").forEach((b) => b.classList.toggle("active", b.dataset.view === view));
+  document.querySelectorAll(".view").forEach((v) => { v.hidden = v.dataset.view !== view; });
+  $("view-title").textContent = view === "chat" ? (current()?.title || "New chat") : VIEW_TITLES[view];
+  if (view === "log") loadLog();
+  if (view === "scale" && META) scaleNow();
+  if (view === "chat") $("question").focus();
+  closeMenu();
+  history.replaceState(null, "", view === "chat" ? location.pathname : `#${view}`);
+}
+$("nav").addEventListener("click", (e) => { const b = e.target.closest("button[data-view]"); if (b) showView(b.dataset.view); });
+const closeMenu = () => { $("sidebar").classList.remove("open"); $("scrim").classList.remove("open"); };
+$("menu").addEventListener("click", () => { $("sidebar").classList.add("open"); $("scrim").classList.add("open"); });
+$("scrim").addEventListener("click", closeMenu);
+document.addEventListener("keydown", (e) => {
+  const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
+  if (e.key === "Escape") closeMenu();
+  if (e.key === "/" && !typing) { e.preventDefault(); showView("chat"); }
+  if (e.altKey && e.key.toLowerCase() === "n") { e.preventDefault(); newChat(); }
+});
+
+// --- chats: kept in this tab only (sessionStorage), because a question can carry health data ---
+let chats = [], activeId = null, busy = false;
+try { chats = JSON.parse(sessionStorage.getItem("pp.chats") || "[]"); } catch { chats = []; }
+chats.forEach((c) => c.messages.forEach((m) => { if (m.pending) { delete m.pending; m.error = "Interrupted by a page reload."; } }));
+const save = () => { try { sessionStorage.setItem("pp.chats", JSON.stringify(chats)); } catch { /* private mode: memory only */ } };
+const current = () => chats.find((c) => c.id === activeId);
+
+function newChat() {
+  activeId = null;
+  renderConvos(); renderThread(); showView("chat");
+}
+$("new-chat").addEventListener("click", newChat);
+
+function renderConvos() {
+  $("convos").innerHTML = chats.length
+    ? chats.map((c) => `<div class="convo ${c.id === activeId ? "active" : ""}" data-id="${escapeHtml(c.id)}" role="button" tabindex="0">
+        <span>${escapeHtml(c.title)}</span><small>${c.messages.filter((m) => m.role === "user").length} question(s) · ${ago(c.updated)}</small>
+        <button class="del" type="button" aria-label="Delete this chat" title="Delete">${icon("trash")}</button></div>`).join("")
+    : '<p class="meta" style="padding:4px 10px">No chats yet. Try a suggestion →</p>';
+}
+$("convos").addEventListener("click", (e) => {
+  const row = e.target.closest(".convo");
+  if (!row) return;
+  if (e.target.closest(".del")) {
+    if (busy && row.dataset.id === activeId) return toast("Wait for the answer first.");
+    chats = chats.filter((c) => c.id !== row.dataset.id);
+    if (activeId === row.dataset.id) activeId = null;
+    save(); renderConvos(); renderThread();
+    return toast("Chat deleted");
+  }
+  activeId = row.dataset.id;
+  renderConvos(); renderThread(); showView("chat");
+});
+$("convos").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.classList.contains("convo")) e.target.click(); });
 
 // Escape first, then add the little formatting the answers use. Model text never becomes markup.
 function inline(text, files) {
@@ -145,70 +768,501 @@ function renderAnswer(text, files) {
   return html.join("");
 }
 
-function render(data) {
-  const files = data.citation_files || {};
-  const header = data.answer.split("\n").filter((l) => l.startsWith("Allergen check, from the declaration field"));
-  $("verdict").innerHTML = data.allergen_verdict
-    ? `<div class="verdict ${data.allergen_verdict}">${escapeHtml(VERDICT_TEXT[data.allergen_verdict] || data.allergen_verdict)}`
-      + header.map((h) => `<div style="font-weight:400;margin-top:4px">${inline(h, files)}</div>`).join("") + "</div>"
-    : "";
-  $("guard").innerHTML = data.swap_guard
-    ? `<div class="verdict guard">A suggested swap was withheld because it contains <strong>${escapeHtml(data.swap_guard.allergen)}</strong>, which you asked to avoid.</div>`
-    : "";
-  $("answer").innerHTML = renderAnswer(data.answer, files);
-  const cites = [...new Set(data.citations)];
-  $("citations").innerHTML = cites.length
-    ? "Citations: " + cites.map((c) => inline(`[${c}]`, files)).join(" ")
-    : "No citations in this answer.";
-
-  $("calls").innerHTML = data.calls.length ? data.calls.map((c) => `
-    <details><summary><span class="tag${c.is_error ? " err" : ""}">${escapeHtml(c.server || "?")}</span>
-      <strong>${escapeHtml(c.tool)}</strong> <code>${escapeHtml(JSON.stringify(c.arguments))}</code></summary>
-      <pre>${escapeHtml(c.result)}</pre></details>`).join("")
-    : "<p>No tool was called.</p>";
-
-  $("meta").innerHTML = [
-    `trace <code>${escapeHtml(data.trace_id)}</code>`, `model ${escapeHtml(data.model)}`,
-    `pipeline ${escapeHtml(data.pipeline || "-")}`, `${(data.latency_ms / 1000).toFixed(1)} s`,
-    `${data.total_tokens} tokens`, `$${data.cost_usd.toFixed(6)}`,
-  ].map((m) => `<span>${m}</span>`).join("");
-  $("spans").innerHTML = "<tr><th>Span</th><th>Latency (ms)</th><th>Tokens</th><th>Cost (USD)</th></tr>"
-    + data.spans.map((s) => `<tr><td>${escapeHtml(s.span)}</td><td>${s.latency_ms.toFixed(1)}</td>`
-      + `<td>${s.input_tokens + s.output_tokens}</td><td>${s.cost_usd.toFixed(6)}</td></tr>`).join("")
-    + `<tr class="total"><td>Total</td><td>${data.latency_ms.toFixed(1)}</td><td>${data.total_tokens}</td><td>${data.cost_usd.toFixed(6)}</td></tr>`;
-  $("result").hidden = false;
+// A span table with a small bar per row, so the slow step stands out at a glance.
+function spanTable(spans, total) {
+  const longest = Math.max(1, ...spans.map((s) => s.latency_ms ?? 0));
+  return "<tr><th>Span</th><th style=\"width:30%\"></th><th>Latency (ms)</th><th>Tokens</th><th>Cost (USD)</th></tr>"
+    + spans.map((s) => `<tr><td>${escapeHtml(s.span)}</td><td><div class="bar" style="width:${(100 * (s.latency_ms ?? 0) / longest).toFixed(1)}%"></div></td>`
+      + `<td>${(s.latency_ms ?? 0).toFixed(1)}</td><td>${(s.input_tokens ?? 0) + (s.output_tokens ?? 0)}</td><td>${(s.cost_usd ?? 0).toFixed(6)}</td></tr>`).join("")
+    + `<tr class="total"><td>Total</td><td></td><td>${total.latency_ms.toFixed(1)}</td><td>${total.total_tokens}</td><td>${total.cost_usd.toFixed(6)}</td></tr>`;
 }
 
-async function ask(question) {
-  $("go").disabled = true;
-  $("result").hidden = true;
-  const started = Date.now();
+function botHtml(m, index) {
+  if (m.pending) {
+    return `<div class="thinking"><span class="typing"><i></i><i></i><i></i></span><span class="step" id="thinking-step">${THINKING[0]}</span>
+      <span class="count" id="thinking-time"></span></div>`;
+  }
+  if (m.error) {
+    return banner("error", escapeHtml(m.error))
+      + `<div class="actions"><button type="button" data-retry="${index}">${icon("retry")}Try again</button></div>`;
+  }
+  const d = m.data, files = d.citation_files || {};
+  const header = d.answer.split("\n").filter((l) => l.startsWith("Allergen check, from the declaration field"));
+  const parts = [];
+  if (d.allergen_verdict) {
+    parts.push(banner(d.allergen_verdict, escapeHtml(VERDICT_TEXT[d.allergen_verdict] || d.allergen_verdict)
+      + header.map((h) => `<small>${inline(h, files)}</small>`).join("")));
+  }
+  if (d.swap_guard) parts.push(banner("guard", `A suggested swap was withheld because it contains <strong>${escapeHtml(d.swap_guard.allergen)}</strong>, which you asked to avoid.`));
+  if (d.contradiction_guard) parts.push(banner("guard", "Reassuring text that contradicted the declaration was withheld."));
+  if (d.injection_flags.length) parts.push(banner("guard", `Instructions inside the question were ignored (${escapeHtml(d.injection_flags.join(", "))}).`));
+  parts.push(`<div class="answer">${renderAnswer(d.answer, files)}</div>`);
+  const cites = [...new Set(d.citations)];
+  if (cites.length) {
+    parts.push(`<div class="cites">${cites.map((c) => files[c]
+      ? `<a class="cite" href="/card/${encodeURIComponent(files[c])}" target="_blank" rel="noopener">${escapeHtml(c)}</a>`
+      : `<span class="cite">${escapeHtml(c)}</span>`).join("")}</div>`);
+  }
+  parts.push(`<div class="actions"><button type="button" data-copy="${index}">${icon("copy")}Copy</button>
+    <button type="button" data-retry="${index}">${icon("retry")}Ask again</button></div>`);
+  const calls = d.calls.map((c) => `
+    <details class="call"><summary><span class="tag${c.is_error ? " err" : ""}">${escapeHtml(c.server || "?")}</span>
+      ${c.host_enforced ? '<span class="tag may">run by host</span>' : ""}
+      <strong>${escapeHtml(c.tool)}</strong> <code>${escapeHtml(JSON.stringify(c.arguments))}</code></summary>
+      <pre>${escapeHtml(c.result)}</pre></details>`).join("") || "<p>No tool was called.</p>";
+  parts.push(`<details class="how"><summary>How this was answered · ${d.calls.length} tool call${d.calls.length === 1 ? "" : "s"} · ${(d.latency_ms / 1000).toFixed(1)} s · $${d.cost_usd.toFixed(5)}</summary>
+    <div class="label">Tool calls (discovered over MCP)</div>${calls}
+    <div class="label">Trace</div>
+    <div class="meta"><span>trace <code>${escapeHtml(d.trace_id)}</code></span><span>model ${escapeHtml(d.model)}</span><span>pipeline ${escapeHtml(d.pipeline || "-")}</span></div>
+    <div class="table-wrap" style="margin-bottom:10px"><table class="num">${spanTable(d.spans, d)}</table></div></details>`);
+  return parts.join("");
+}
+
+function renderThread() {
+  const chat = current();
+  if (!chat || !chat.messages.length) {
+    $("thread").innerHTML = `<div class="hero">${LOGO}
+      <h2>What shall we <em>cook</em> today?</h2>
+      <p>Ask about any recipe in the library. Answers come from the recipe cards only, allergens are checked against each recipe's declaration, and every source names its version.</p>
+      <div class="suggest">${SUGGESTIONS.map((s, i) => `<button type="button" data-i="${i}" style="animation-delay:${i * 50}ms"><span class="ico">${icon(s.icon)}</span>
+        <div><b>${escapeHtml(s.title)}</b><span>${escapeHtml(s.q)}</span></div></button>`).join("")}</div></div>`;
+  } else {
+    $("thread").innerHTML = chat.messages.map((m, i) => m.role === "user"
+      ? `<div class="msg user"><div class="bubble">${escapeHtml(m.text)}</div></div>`
+      : `<div class="msg bot"><svg class="avatar logo" aria-hidden="true"><use href="#logo"/></svg>
+         <div class="bubble">${botHtml(m, i)}</div></div>`).join("");
+  }
+  const box = $("thread-scroll");
+  box.scrollTop = box.scrollHeight;
+  $("jump").hidden = true;
+  if (!document.querySelector('.view[data-view="chat"]').hidden) $("view-title").textContent = chat?.title || "New chat";
+}
+$("thread").addEventListener("click", async (e) => {
+  const suggestion = e.target.closest(".suggest button");
+  if (suggestion) return send(SUGGESTIONS[suggestion.dataset.i].q);
+  const copy = e.target.closest("[data-copy]");
+  if (copy) {
+    const text = current().messages[copy.dataset.copy].data.answer;
+    try { await navigator.clipboard.writeText(text); toast("Answer copied"); } catch { toast("Copy isn't allowed in this browser"); }
+    return;
+  }
+  const retry = e.target.closest("[data-retry]");
+  if (retry) {
+    const question = current().messages[retry.dataset.retry - 1]?.text;
+    if (question) send(question);
+  }
+});
+$("thread-scroll").addEventListener("scroll", () => {
+  const box = $("thread-scroll");
+  $("jump").hidden = box.scrollHeight - box.scrollTop - box.clientHeight < 120;
+});
+$("jump").addEventListener("click", () => { const box = $("thread-scroll"); box.scrollTop = box.scrollHeight; });
+
+async function send(text) {
+  text = text.trim();
+  if (busy || !text) return;
+  let chat = current();
+  if (!chat) {
+    chat = {id: `c${Date.now()}`, title: text.length > 48 ? `${text.slice(0, 48)}…` : text, updated: Date.now(), messages: []};
+    chats.unshift(chat);
+    activeId = chat.id;
+  }
+  const pending = {role: "bot", pending: true, started: Date.now()};
+  chat.messages.push({role: "user", text}, pending);
+  chat.updated = Date.now();
+  $("question").value = "";
+  onInput();
+  busy = true; syncSend();
+  save(); renderConvos(); renderThread();
+  let step = 0;
   const tick = setInterval(() => {
-    $("status").textContent = `Working… ${Math.round((Date.now() - started) / 1000)}s (the agent is calling tools over MCP)`;
-  }, 250);
-  try {
-    const response = await fetch("/api/ask", {method: "POST", headers: {"Content-Type": "application/json"},
-                                              body: JSON.stringify({question})});
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || `HTTP ${response.status}`);
-    render(data);
-    $("status").textContent = "";
-  } catch (error) {
-    $("status").innerHTML = `<span class="error">${escapeHtml(error.message)}</span>`;
-  } finally {
+    const seconds = Math.round((Date.now() - pending.started) / 1000);
+    const time = $("thinking-time"), label = $("thinking-step");
+    if (time) time.textContent = `${seconds}s`;
+    if (label && seconds && seconds % 4 === 0 && step < THINKING.length - 1 && seconds / 4 > step) {
+      step += 1;
+      label.textContent = THINKING[step];
+      label.classList.remove("step"); void label.offsetWidth; label.classList.add("step");
+    }
+  }, 500);
+  try { pending.data = await api("/api/ask", {question: text}); }
+  catch (error) { pending.error = error.message; }
+  finally {
     clearInterval(tick);
-    $("go").disabled = false;
+    delete pending.pending;
+    busy = false; syncSend();
+    chat.updated = Date.now();
+    save(); renderConvos();
+    if (current() === chat) renderThread(); else toast("An answer arrived in another chat");
   }
 }
 
-$("examples").innerHTML = EXAMPLES.map((q, i) => `<button type="button" class="chip" data-i="${i}">${escapeHtml(q)}</button>`).join("");
-$("examples").addEventListener("click", (event) => {
-  const chip = event.target.closest(".chip");
-  if (!chip) return;
-  $("question").value = EXAMPLES[chip.dataset.i];
-  ask($("question").value);
+function onInput() {
+  const t = $("question");
+  t.style.height = "auto";
+  t.style.height = `${Math.min(t.scrollHeight, 180)}px`;
+  $("count").textContent = t.value.length > 800 ? `${t.value.length}/1000` : "";
+  syncSend();
+}
+const syncSend = () => { $("send").disabled = busy || !$("question").value.trim(); };
+$("question").addEventListener("input", onInput);
+$("question").addEventListener("keydown", (e) => {
+  if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); send($("question").value); }
 });
-$("ask").addEventListener("submit", (event) => { event.preventDefault(); ask($("question").value.trim()); });
+$("composer").addEventListener("submit", (e) => { e.preventDefault(); send($("question").value); });
+
+// --- tool pages: shared bits ---
+ICONS.clock = '<circle cx="12" cy="12" r="8"/><path d="M12 8v4l2.5 1.5"/>';
+ICONS.open = '<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/>';
+const MONO = ["var(--navy)", "var(--blue)", "#2f9488"];
+const stat = (value, label, i = 0) => `<div class="stat" style="animation-delay:${i * 50}ms"><b>${escapeHtml(value)}</b><span>${escapeHtml(label)}</span></div>`;
+const liveRecipes = () => RECIPES.filter((r) => r.status === "current");
+const pretty = (key) => key.replace(/_/g, " ");
+
+// --- Recipes: search, allergen filter, superseded toggle, and what changed between versions ---
+function versionChange(r) {
+  const old = RECIPES.find((o) => o.recipe_id === r.recipe_id && o.status !== "current");
+  if (!old || r.status !== "current") return "";
+  const bits = [
+    ...r.allergens.filter((a) => !old.allergens.includes(a)).map((a) => `now <b>contains ${escapeHtml(a)}</b>`),
+    ...r.may_contain.filter((a) => !old.may_contain.includes(a)).map((a) => `now <b>may contain ${escapeHtml(a)}</b>`),
+    ...old.allergens.filter((a) => !r.allergens.includes(a)).map((a) => `no longer contains ${escapeHtml(a)}`),
+  ];
+  return bits.length ? `<div class="changes">${icon("alert")}<span>Changed since <code>${escapeHtml(old.version)}</code>: ${bits.join(", ")}</span></div>` : "";
+}
+
+function renderRecipes() {
+  const query = $("recipe-search").value.trim().toLowerCase();
+  const avoid = [...document.querySelectorAll("#recipe-avoid input:checked")].map((i) => i.value);
+  const showOld = $("recipe-old").checked;
+  const shown = RECIPES.filter((r) => (showOld || r.status === "current")
+    && (!query || `${r.title} ${r.key}`.toLowerCase().includes(query))
+    && !avoid.some((a) => r.allergens.includes(a) || r.may_contain.includes(a)));
+  $("recipe-count").textContent = avoid.length
+    ? `${shown.length} recipe version(s) declare none of: ${avoid.join(", ")} (neither contains nor may contain).`
+    : `${shown.length} of ${showOld ? RECIPES.length : liveRecipes().length} shown`;
+  $("recipe-grid").innerHTML = shown.length ? shown.map((r, i) => `
+    <div class="card rc ${r.status === "current" ? "" : "superseded"}" style="animation-delay:${i * 40}ms">
+      <div class="rc-head"><span class="mono" style="background:${MONO[META.recipe_ids.indexOf(r.recipe_id) % MONO.length]}">${escapeHtml(r.title.charAt(0))}</span>
+        <div><h3>${escapeHtml(r.title)}</h3><code>${escapeHtml(r.key)}</code></div></div>
+      <div><span class="tag ${r.status === "current" ? "ok" : ""}">${escapeHtml(r.status)}</span><span class="tag">makes ${escapeHtml(r.yield_qty)} ${escapeHtml(r.yield_unit)}</span></div>
+      <div class="rc-row"><span>Contains</span><span>${tags(r.allergens, "unsafe")}</span></div>
+      <div class="rc-row"><span>May contain</span><span>${tags(r.may_contain, "may")}</span></div>
+      <div class="times">${Object.entries(r.times || {}).map(([k, v]) => `<span class="time">${icon("clock")}${escapeHtml(pretty(k))}: ${escapeHtml(v)}</span>`).join("")}</div>
+      ${versionChange(r)}
+      <div class="rc-foot">
+        ${FILES[r.key] ? `<a class="mini" href="/card/${encodeURIComponent(FILES[r.key])}" target="_blank" rel="noopener">${icon("open")}Card</a>` : ""}
+        ${r.status === "current" ? `<button type="button" class="mini" data-check="${escapeHtml(r.recipe_id)}">${icon("shield")}Check</button>
+        <button type="button" class="mini" data-scale="${escapeHtml(r.recipe_id)}">${icon("scale")}Scale</button>` : ""}
+      </div>
+    </div>`).join("") : '<div class="empty" style="grid-column:1/-1">Nothing matches. Try fewer filters.</div>';
+}
+$("recipe-search").addEventListener("input", debounce(renderRecipes, 120));
+$("recipe-avoid").addEventListener("change", renderRecipes);
+$("recipe-old").addEventListener("change", renderRecipes);
+$("recipe-grid").addEventListener("click", (e) => {
+  const b = e.target.closest("button");
+  if (!b) return;
+  if (b.dataset.check) { $("check-recipe").value = b.dataset.check; $("check-version").value = "current"; showView("check"); }
+  if (b.dataset.scale) { $("scale-recipe").value = b.dataset.scale; showView("scale"); }
+});
+
+// --- Allergen check: runs as soon as the choice is complete; the matrix is the same declaration fields ---
+function renderMatrix() {
+  const picked = $("check-recipe").value;
+  $("matrix").innerHTML = `<tr><th>Recipe</th>${META.allergens.map((a) => `<th>${escapeHtml(a)}</th>`).join("")}</tr>`
+    + liveRecipes().map((r) => `<tr class="${r.recipe_id === picked ? "picked" : ""}"><td>${escapeHtml(r.title)}</td>${META.allergens.map((a) => {
+      const v = r.allergens.includes(a) ? "unsafe" : r.may_contain.includes(a) ? "may" : "ok";
+      const label = {unsafe: "contains", may: "may contain", ok: "does not declare"}[v];
+      return `<td class="cell"><button type="button" class="${v}" data-r="${escapeHtml(r.recipe_id)}" data-a="${escapeHtml(a)}"
+        title="${escapeHtml(r.title)} ${label} ${escapeHtml(a)}" aria-label="${escapeHtml(r.title)} ${label} ${escapeHtml(a)}">${{unsafe: "✕", may: "!", ok: "✓"}[v]}</button></td>`;
+    }).join("")}</tr>`).join("");
+}
+$("matrix").addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-r]");
+  if (!b) return;
+  $("check-recipe").value = b.dataset.r;
+  $("check-version").value = "current";
+  document.querySelectorAll("#check-avoid input").forEach((i) => { i.checked = i.value === b.dataset.a; });
+  checkNow();
+  $("check-form").scrollIntoView({behavior: "smooth", block: "start"});
+});
+
+function checkNow() {
+  renderMatrix();
+  const avoid = [...document.querySelectorAll("#check-avoid input:checked")].map((i) => i.value);
+  if (!avoid.length) { $("check-result").innerHTML = '<div class="empty">Pick one or more allergens to avoid, or click a cell in the matrix below.</div>'; return; }
+  run($("check-form"), "check-status", async () => {
+    const r = await api("/api/check", {recipe_id: $("check-recipe").value, version: $("check-version").value, avoid});
+    $("check-result").innerHTML = `
+      <div class="card">
+        ${banner(r.verdict, `${escapeHtml(VERDICT_TEXT[r.verdict] || r.verdict)}
+          <small>From the declaration field of ${cardLink(r.citation)} (${escapeHtml(r.status)} version)</small>`)}
+        ${r.status !== "current" ? banner("guard", "This is a superseded version. The recipe served today is the current one; check that too.") : ""}
+        <table><tr><th>Allergen</th><th>Result</th></tr>
+          ${Object.entries(r.per_allergen).map(([a, v]) => `<tr><td>${escapeHtml(a)}</td><td>${verdictTag(v)}</td></tr>`).join("")}
+        </table>
+        <div class="meta" style="margin-top:10px"><span>Declared: ${tags(r.declared_allergens, "unsafe")}</span><span>May contain: ${tags(r.declared_may_contain, "may")}</span></div>
+      </div>`;
+  });
+}
+$("check-form").addEventListener("submit", (e) => { e.preventDefault(); checkNow(); });
+$("check-form").addEventListener("change", checkNow);
+
+// --- Scale: stepper, slider and number stay in step, and the result updates live ---
+function setTarget(n) {
+  const value = Math.max(1, Math.min(META.max_target, Math.round(n) || 1));
+  $("scale-target").value = $("scale-range").value = value;
+  document.querySelectorAll("#scale-presets .chip").forEach((c) => c.classList.toggle("on", Number(c.dataset.n) === value));
+}
+function scaleNow() {
+  run($("scale-form"), "scale-status", async () => {
+    const r = await api("/api/scale", {recipe_id: $("scale-recipe").value, target_yield: Number($("scale-target").value)});
+    const heaviest = Math.max(...r.ingredients.map((i) => i.grams));
+    const total = r.ingredients.reduce((sum, i) => sum + i.grams, 0);
+    const times = Object.entries(r.times_unchanged);
+    $("scale-result").innerHTML = `
+      <div class="stats" style="margin-top:14px">
+        ${stat(`×${r.factor}`, `${r.base_yield} → ${r.target_yield}`, 0)}
+        ${stat(total >= 1000 ? `${(total / 1000).toFixed(2)} kg` : `${total} g`, "total weight of ingredients", 1)}
+        ${times.map(([k, v], i) => stat(v, `${pretty(k)} · unchanged`, i + 2)).join("")}
+      </div>
+      <div class="card">
+        <h4>Ingredients for ${escapeHtml(r.target_yield)}</h4>
+        <table class="num"><tr><th>Ingredient</th><th style="width:38%"></th><th>Weight</th></tr>
+          ${r.ingredients.map((i) => `<tr class="flash"><td>${escapeHtml(i.ingredient)}</td><td><div class="bar" style="width:${(100 * i.grams / heaviest).toFixed(1)}%"></div></td>
+            <td>${Number(i.grams).toLocaleString()} g</td></tr>`).join("")}
+        </table>
+        ${banner("guard", `${escapeHtml(r.note)}`)}
+        <div class="meta">Source: ${cardLink(r.citation)}</div>
+      </div>`;
+  });
+}
+const scaleSoon = debounce(scaleNow, 250);
+$("scale-range").addEventListener("input", () => { setTarget($("scale-range").value); scaleSoon(); });
+$("scale-target").addEventListener("input", () => { $("scale-range").value = $("scale-target").value; if ($("scale-target").checkValidity()) scaleSoon(); });
+$("scale-form").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-step]");
+  if (b) { setTarget(Number($("scale-target").value) + Number(b.dataset.step)); scaleSoon(); }
+});
+$("scale-recipe").addEventListener("change", scaleNow);
+$("scale-form").addEventListener("submit", (e) => { e.preventDefault(); scaleNow(); });
+$("scale-presets").addEventListener("click", (e) => {
+  const c = e.target.closest(".chip");
+  if (c) { setTarget(Number(c.dataset.n)); scaleNow(); }
+});
+
+// --- Safe temperatures: the whole chart as cards, plus a search that refuses unknown foods ---
+const KIND_LABEL = {cook: "cook to", reheat: "reheat to", hold: "keep at or below", cool: "cool to"};
+const isMinimum = (e) => e.min_internal_c != null;
+const tempOf = (e) => (isMinimum(e) ? e.min_internal_c : e.max_hold_c);
+
+function renderTempGrid(selected) {
+  $("temp-grid").innerHTML = META.chart.map((e, i) => `
+    <button type="button" class="tcard ${isMinimum(e) ? "hot" : "cold"} ${e.item === selected ? "selected" : ""}" data-item="${escapeHtml(e.item)}" style="animation-delay:${i * 40}ms">
+      <div class="tc-top"><b>${escapeHtml(e.item)}</b><span class="tag ${isMinimum(e) ? "unsafe" : "ok"}">${escapeHtml(KIND_LABEL[e.kind] || e.kind)}</span></div>
+      <div class="num">${isMinimum(e) ? "≥" : "≤"} ${tempOf(e)} °C</div>
+      <div class="thermo"><div style="width:${Math.max(4, tempOf(e))}%"></div></div>
+      <div class="meta">${e.aliases.slice(0, 3).map(escapeHtml).join(" · ")}</div>
+    </button>`).join("");
+}
+function countUp(el, target, prefix) {
+  const start = performance.now();
+  const frame = (now) => {
+    const p = Math.min(1, (now - start) / 600);
+    el.textContent = `${prefix}${Math.round(target * (1 - Math.pow(1 - p, 3)))} °C`;
+    if (p < 1) requestAnimationFrame(frame);
+  };
+  requestAnimationFrame(frame);
+}
+function lookupTemp(item) {
+  $("temp-item").value = item;
+  run($("temp-form"), "temp-status", async () => {
+    const r = await api("/api/temperature", {item});
+    renderTempGrid(r.found ? r.item : null);
+    if (!r.found) {
+      $("temp-result").innerHTML = `<div class="card">${banner("guard", `<strong>${escapeHtml(r.item)}</strong> is not in the food-safety chart, so no temperature is given. Don't guess one.`)}
+        <div class="meta">In the chart: ${r.chart_items.map(escapeHtml).join(", ")}</div></div>`;
+      return;
+    }
+    const min = isMinimum(r), value = tempOf(r);
+    $("temp-result").innerHTML = `<div class="card ${min ? "hot" : "cold"}"><h4>${escapeHtml(r.item)} · ${min ? "minimum internal temperature" : "maximum holding temperature"}</h4>
+      <div class="big" id="temp-big">${min ? "≥" : "≤"} 0 °C</div>
+      <div class="thermo" style="height:12px"><div id="temp-gauge" style="width:0"></div></div>
+      <div class="meta" style="justify-content:space-between"><span>0 °C</span><span>100 °C</span></div>
+      <p style="margin:8px 0 0">${escapeHtml(r.rule)}</p>
+      ${r.max_cool_hours ? `<div class="meta" style="margin-top:6px">${icon("clock")} within ${escapeHtml(r.max_cool_hours)} hours</div>` : ""}</div>`;
+    countUp($("temp-big"), value, min ? "≥ " : "≤ ");
+    requestAnimationFrame(() => requestAnimationFrame(() => { $("temp-gauge").style.width = `${Math.max(4, value)}%`; }));
+  });
+}
+$("temp-form").addEventListener("submit", (e) => { e.preventDefault(); lookupTemp($("temp-item").value.trim()); });
+$("temp-chips").addEventListener("click", (e) => { const c = e.target.closest(".chip"); if (c) lookupTemp(c.dataset.item); });
+$("temp-grid").addEventListener("click", (e) => {
+  const c = e.target.closest(".tcard");
+  if (c) { lookupTemp(c.dataset.item); $("temp-form").scrollIntoView({behavior: "smooth", block: "start"}); }
+});
+
+// --- Swaps: the table as from → to cards, filtered by what you avoid ---
+let swapFilter = "all";
+function renderSwaps(selected) {
+  const avoids = ["all", ...new Set(META.substitutions.map((s) => s.avoid))];
+  $("swap-filter").innerHTML = avoids.map((a) => `<button type="button" class="chip ${a === swapFilter ? "on" : ""}" data-f="${escapeHtml(a)}">${a === "all" ? `All swaps (${META.substitutions.length})` : `Avoiding ${escapeHtml(a)}`}</button>`).join("");
+  $("swap-grid").innerHTML = META.substitutions.map((s, i) => ({...s, i}))
+    .filter((s) => swapFilter === "all" || s.avoid === swapFilter)
+    .map((s, n) => `<button type="button" class="scard ${s.i === selected ? "selected" : ""}" data-i="${s.i}" style="animation-delay:${n * 40}ms">
+      <div class="meta"><span class="tag">avoiding ${escapeHtml(s.avoid)}</span><span>${escapeHtml(s.source)}</span></div>
+      <div class="flow"><span>${escapeHtml(s.ingredient)}</span><span class="arrow">→</span><span>${escapeHtml(s.substitute)}</span></div>
+      <div class="rc-row"><span>Swap contains</span><span>${tags(s.contains, s.contains.length ? "may" : "ok")}</span></div>
+    </button>`).join("");
+}
+$("swap-filter").addEventListener("click", (e) => {
+  const c = e.target.closest("[data-f]");
+  if (c) { swapFilter = c.dataset.f; renderSwaps(); }
+});
+$("swap-form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  run(e.target, "swap-status", async () => {
+    const r = await api("/api/substitute", {ingredient: $("swap-ingredient").value.trim(), avoid: $("swap-avoid").value});
+    if (!r.substituted) {
+      renderSwaps();
+      $("swap-result").innerHTML = `<div class="card">${banner("guard", escapeHtml(r.reason))}
+        <div class="chips">${(r.did_you_mean || []).map((d) => `<button type="button" class="chip" data-swap="${escapeHtml(d)}">Try "${escapeHtml(d)}"</button>`).join("")}</div></div>`;
+      return;
+    }
+    renderSwaps(META.substitutions.findIndex((s) => s.ingredient === r.ingredient && s.avoid === r.avoid));
+    const contains = r.substitute_contains || [];
+    $("swap-result").innerHTML = `<div class="card">
+      <h4>Avoiding ${escapeHtml(r.avoid)}</h4>
+      <div class="flow" style="margin-bottom:10px"><span>${escapeHtml(r.ingredient)}</span><span class="arrow">→</span><span>${escapeHtml(r.substitute)}</span></div>
+      ${banner(contains.length ? "may_contain" : "ok", contains.length
+        ? `The swap itself contains ${contains.map(escapeHtml).join(", ")}.<small>Check these against everyone you're cooking for.</small>`
+        : "The swap contains none of the tracked allergens.")}
+      ${r.source ? `<div class="meta">Source: ${escapeHtml(r.source)}</div>` : ""}</div>`;
+  });
+});
+$("swap-result").addEventListener("click", (e) => {
+  const c = e.target.closest("[data-swap]");
+  if (c) { $("swap-ingredient").value = c.dataset.swap; $("swap-form").requestSubmit(); }
+});
+$("swap-grid").addEventListener("click", (e) => {
+  const card = e.target.closest(".scard");
+  if (!card) return;
+  const s = META.substitutions[card.dataset.i];
+  $("swap-ingredient").value = s.ingredient;
+  $("swap-avoid").value = s.avoid;
+  $("swap-form").requestSubmit();
+  $("swap-form").scrollIntoView({behavior: "smooth", block: "start"});
+});
+
+// --- Request log: stats, verdict mix, search ---
+let LOG_ROWS = [];
+async function loadLog() {
+  try {
+    LOG_ROWS = await api("/api/history");
+    renderLog();
+  } catch (error) {
+    $("log-status").innerHTML = `<span class="err-text">${escapeHtml(error.message)}</span>`;
+  }
+}
+function renderLog() {
+  const all = LOG_ROWS;
+  const latencies = all.map((r) => r.latency_ms || 0).sort((a, b) => a - b);
+  const median = latencies.length ? latencies[Math.floor(latencies.length / 2)] : 0;
+  const cost = all.reduce((sum, r) => sum + (r.cost_usd || 0), 0);
+  $("log-stats").innerHTML = [
+    stat(all.length, "requests in the log", 0),
+    stat(`${(median / 1000).toFixed(1)} s`, "median latency", 1),
+    stat(`$${(all.length ? cost / all.length : 0).toFixed(5)}`, "average cost per request", 2),
+    stat(all.filter((r) => (r.injection_flags || []).length).length, "injection attempts screened", 3),
+  ].join("");
+  const kinds = [["unsafe", "unsafe", "not safe"], ["may_contain", "may", "may contain"], ["no_declared_allergen", "ok", "no declared allergen"], [null, "none", "no allergy asked"]];
+  const counts = kinds.map(([v]) => all.filter((r) => (r.allergen_verdict || null) === v).length);
+  $("log-dist-card").hidden = !all.length;
+  $("log-dist").innerHTML = kinds.map(([, cls], i) => `<div class="${cls}" style="width:${all.length ? (100 * counts[i] / all.length).toFixed(1) : 0}%"></div>`).join("");
+  $("log-legend").innerHTML = kinds.map(([, cls, label], i) => `<span><i class="sw ${cls}"></i>${label}: ${counts[i]}</span>`).join("");
+
+  const q = $("log-search").value.trim().toLowerCase();
+  const rows = all.filter((r) => !q || `${r.question_redacted} ${r.trace_id}`.toLowerCase().includes(q));
+  $("log-table").innerHTML = rows.length
+    ? "<tr><th>When (UTC)</th><th>Question (redacted)</th><th>Verdict</th><th>Latency</th><th>Cost</th></tr>"
+      + rows.map((r) => `<tr class="click" data-trace="${escapeHtml(r.trace_id)}">
+          <td style="white-space:nowrap">${escapeHtml((r.timestamp || "").replace("T", " ").slice(0, 16))}</td>
+          <td>${escapeHtml(r.question_redacted)}${(r.injection_flags || []).length ? ' <span class="tag err">injection screened</span>' : ""}</td>
+          <td>${verdictTag(r.allergen_verdict)}</td>
+          <td style="white-space:nowrap">${((r.latency_ms || 0) / 1000).toFixed(1)} s</td><td>$${(r.cost_usd || 0).toFixed(5)}</td></tr>`).join("")
+    : `<tr><td class="empty">${all.length ? "Nothing matches that search." : "No requests logged yet. Ask a question in Chat first."}</td></tr>`;
+  $("log-status").textContent = q ? `${rows.length} of ${all.length} match` : `${all.length} most recent`;
+}
+$("log-search").addEventListener("input", debounce(renderLog, 120));
+$("log-refresh").addEventListener("click", () => loadLog().then(() => toast("Log refreshed")));
+$("log-table").addEventListener("click", async (e) => {
+  const row = e.target.closest("tr[data-trace]");
+  if (!row) return;
+  document.querySelectorAll("#log-table tr.selected").forEach((t) => t.classList.remove("selected"));
+  row.classList.add("selected");
+  try {
+    const t = await api(`/api/trace/${encodeURIComponent(row.dataset.trace)}`);
+    const r = t.request;
+    $("trace-result").innerHTML = `
+      <div class="card"><h4>Trace ${escapeHtml(r.trace_id)} · agent side</h4>
+        <div class="meta"><span>model ${escapeHtml(r.model)}</span><span>pipeline ${escapeHtml(r.pipeline_version)}</span>
+          <span>tools: ${(r.tool_calls || []).map((c) => escapeHtml(c.tool)).join(", ") || "none"}</span></div>
+        <div class="meta" style="margin:6px 0">Citations: ${(r.citations || []).map((c) => `<code>${escapeHtml(c)}</code>`).join(" ") || "none"}</div>
+        <div class="table-wrap"><table class="num">${spanTable(r.spans || [], r)}</table></div></div>
+      <div class="card"><h4>Server side · pantry MCP server, same trace id</h4>
+        ${t.server_spans.length ? `<table class="num"><tr><th>Span</th><th>Latency (ms)</th></tr>${t.server_spans.map((s) => `<tr><td>${escapeHtml(s.span)}</td><td>${(s.latency_ms ?? 0).toFixed(1)}</td></tr>`).join("")}</table>` : "<p>No server spans for this trace.</p>"}</div>`;
+    $("trace-result").scrollIntoView({behavior: "smooth"});
+  } catch (error) {
+    $("log-status").innerHTML = `<span class="err-text">${escapeHtml(error.message)}</span>`;
+  }
+});
+
+// --- start ---
+document.querySelectorAll("[data-icon]").forEach((el) => { el.outerHTML = icon(el.dataset.icon); });
+applyTheme(savedTheme);
+renderConvos();
+renderThread();
+(async () => {
+  try {
+    [META, RECIPES] = await Promise.all([api("/api/meta"), api("/api/recipes")]);
+  } catch (error) {
+    $("side-foot").innerHTML = `<span class="err-text">Could not load the library: ${escapeHtml(error.message)}</span>`;
+    return;
+  }
+  FILES = Object.fromEntries(RECIPES.map((r) => [r.key, r.file]));
+  const live = liveRecipes();
+  $("side-foot").innerHTML = `<span class="dot"></span>${live.length} recipes · ${RECIPES.length} versions · ${META.chart.length} chart foods`;
+  $("model-pill").innerHTML = `<span class="dot"></span>${escapeHtml(META.model)} · ${escapeHtml(META.pipeline)}`;
+  const reformulated = live.filter((r) => RECIPES.some((o) => o.recipe_id === r.recipe_id && o.status !== "current")).length;
+  $("recipe-stats").innerHTML = [
+    stat(live.length, "recipes served today", 0), stat(RECIPES.length, "versions on file", 1),
+    stat(reformulated, "reformulated since the original", 2), stat(META.allergens.length, "allergens tracked", 3),
+  ].join("");
+  const titles = Object.fromEntries(live.map((r) => [r.recipe_id, r.title]));
+  const recipeOptions = META.recipe_ids.map((id) => `<option value="${escapeHtml(id)}">${escapeHtml(titles[id] || id)}</option>`).join("");
+  const allergenChecks = META.allergens.map((a) => `<label><input type="checkbox" value="${escapeHtml(a)}">${escapeHtml(a)}</label>`).join("");
+  $("check-recipe").innerHTML = recipeOptions;
+  $("scale-recipe").innerHTML = recipeOptions;
+  $("scale-target").max = $("scale-range").max = META.max_target;
+  $("scale-presets").innerHTML = [12, 30, 60, 120, META.max_target].map((n) => `<button type="button" class="chip" data-n="${n}">${n}</button>`).join("");
+  setTarget(60);
+  $("check-version").innerHTML = META.versions.map((v) => `<option>${escapeHtml(v)}</option>`).join("");
+  $("check-avoid").innerHTML = allergenChecks;
+  $("recipe-avoid").innerHTML = allergenChecks;
+  $("check-result").innerHTML = '<div class="empty">Pick one or more allergens to avoid, or click a cell in the matrix below.</div>';
+  $("swap-avoid").innerHTML = META.allergens.map((a) => `<option>${escapeHtml(a)}</option>`).join("");
+  $("temp-list").innerHTML = META.chart.flatMap((c) => [c.item, ...c.aliases]).map((f) => `<option value="${escapeHtml(f)}">`).join("");
+  $("swap-list").innerHTML = [...new Set(META.substitutions.map((s) => s.ingredient))].map((s) => `<option value="${escapeHtml(s)}">`).join("");
+  $("temp-chips").innerHTML = '<span class="meta" style="align-self:center">Not in the chart:</span>'
+    + ["pork belly", "tofu"].map((f) => `<button type="button" class="chip" data-item="${f}">${f}</button>`).join("");
+  renderMatrix();
+  renderTempGrid();
+  renderSwaps();
+  renderRecipes();
+  const start = location.hash.slice(1);
+  if (VIEW_TITLES[start]) showView(start);
+})();
 </script>
 </body>
 </html>

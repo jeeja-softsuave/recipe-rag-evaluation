@@ -37,12 +37,13 @@ free key at https://aistudio.google.com/apikey. Then:
 | `pantry.py ask "<question>"` | One question through the agent, MCP tools and retriever (model: gemini-3.5-flash-lite; override with `PANTRY_MODEL`) | 2–4 |
 | `pantry.py trace <trace_id>` | Every span of one request, on both sides of the MCP hop: latency, tokens, cost | 0 |
 | `pantry.py serve` | The pantry MCP server on stdio, for any MCP client | 0 |
-| `ui.py --key <n>` | A local web page over the same entry point: answer, tool calls, version-named citations, trace. Prints its address (localhost only). | 2–4 per question |
+| `ui.py --key <n>` | The local web app. **Ask** runs the agent (answer, tool calls, version-named citations, trace). **Recipes, Allergen check, Scale, Safe temperatures, Swaps** call the same MCP tool functions directly, with no model. **History** shows the redacted request log and each trace across the MCP hop. Prints its address (localhost only). | 2–4 per question on Ask; 0 on every other tab |
 | `pantry.py index` | Rebuild the capstone index | 0 |
 | `capstone_eval.py --label <name>` | The eval suite on the integrated system: 32 cases, assertions, judge, report | ~95 |
 | `capstone_eval.py --label <name> --report` | The report again from stored runs | 0 |
 | `test_pantry.py` | The 18 integration checks, with the model stubbed | 0 |
 | `test_security.py` | The 19 prompt-injection and UI security checks; the stub models obey the attack | 0 |
+| `test_ui.py` | The 19 checks on the web app's tool screens: exact verdicts, scaling, refusals, input validation | 0 |
 
 ## Use the MCP server from your own client
 
