@@ -12,6 +12,7 @@ never from the prose of the allergen note.
 
 from __future__ import annotations
 
+import functools
 import json
 import time
 from datetime import datetime, timezone
@@ -31,12 +32,30 @@ from capstone_corpus import (
     version_key,
     versions_of,
 )
-from recipe_rag import CHROMA_DIR, search_hybrid_rrf
+from recipe_rag import CHROMA_DIR, _embedding_function, search_hybrid_rrf
 from recipe_server import substitute_ingredient as week9_substitute
 from telemetry import extract_context, setup as setup_telemetry
 
 SPAN_LOG = Path(__file__).parent / "logs" / "capstone_spans.jsonl"
 SEARCH_TOP_K = 5
+
+
+@functools.lru_cache(maxsize=1)
+def _collection() -> Any:
+    """Opened once per server process, with its embedding model loaded once. Reopening it on
+    every search cost ~1 s per call (traces, 2026-10-27: search_recipes median 1.6 s)."""
+    return chromadb.PersistentClient(path=CHROMA_DIR).get_collection(COLLECTION, embedding_function=_embedding_function())
+
+
+@functools.lru_cache(maxsize=256)
+def _search_cached(query: str) -> tuple[dict[str, Any], ...]:
+    return tuple(search_hybrid_rrf(_collection(), query, SEARCH_TOP_K))
+
+
+def _search(query: str) -> list[dict[str, Any]]:
+    """Hybrid search; a repeated query (agents often re-search the same words) comes from memory.
+    The index only changes when `pantry.py index` rebuilds it, which restarts the server."""
+    return [dict(hit) for hit in _search_cached(" ".join(query.lower().split()))]
 ALLERGEN_VOCABULARY = list(tools.AVOIDABLE)
 INGREDIENT_ROW = tools.INGREDIENT_ROW_PATTERN
 
@@ -87,8 +106,7 @@ def search_recipes(
     versions; a superseded version is no longer what the publisher serves. Search only: does
     not check allergens, scale quantities or suggest substitutes."""
     started = time.perf_counter()
-    collection = chromadb.PersistentClient(path=CHROMA_DIR).get_collection(COLLECTION)
-    hits = search_hybrid_rrf(collection, query, SEARCH_TOP_K)
+    hits = _search(query)
     cards = load_cards()
     passages = []
     for hit in hits:

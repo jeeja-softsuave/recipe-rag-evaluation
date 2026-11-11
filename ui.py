@@ -15,19 +15,25 @@ from __future__ import annotations
 
 import argparse
 import asyncio
+import hashlib
 import json
 import os
+import re
+import secrets
 import threading
+from concurrent.futures import Future, ThreadPoolExecutor
 import time
 from collections import deque
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any, Callable
 
+import fastpath
 import pantry
 import pantry_server
 import tools
 from capstone_corpus import CARDS_DIR, load_cards, safety_chart
+from mcp_agent import connect, load_config
 
 PROJECT_DIR = Path(__file__).parent
 PAGE = PROJECT_DIR / "ui" / "index.html"
@@ -39,6 +45,13 @@ HISTORY_LIMIT = 50
 RATE_LIMIT = 10            # questions per minute on Ask; each one costs 2-4 model calls
 RATE_WINDOW_SECONDS = 60.0
 TOOL_RATE_LIMIT = 120      # the tool screens make no model calls; this only stops a runaway loop
+CACHE_TTL_SECONDS = 1800   # a repeated question within 30 minutes is answered from memory
+CACHE_SIZE = 200
+# Every reply within 15 s: an agent answer not ready after this long is replaced, for now, by the
+# recipe facts the cards hold, and the page collects the full answer from /api/job/<id> later.
+ANSWER_BUDGET_SECONDS = 13.0
+JOB_TTL_SECONDS = 600
+MAX_CONTEXT_CHARS = 500
 # The page is one self-contained file: nothing may load from, post to, or frame it from elsewhere.
 SECURITY_HEADERS = {
     "Content-Security-Policy": ("default-src 'self'; script-src 'self' 'unsafe-inline'; "
@@ -87,7 +100,105 @@ def make_server(port: int) -> ThreadingHTTPServer:
     server.allowed_hosts = {f"127.0.0.1:{bound}", f"localhost:{bound}"}
     server.limiter = RateLimiter()
     server.tool_limiter = RateLimiter(TOOL_RATE_LIMIT)
+    server.cache = AnswerCache()
+    server.instant = True
+    server.runner = None  # main() attaches an AgentRunner; tests answer per request
+    server.budget = ANSWER_BUDGET_SECONDS
+    server.jobs = {}      # job id -> (created, future, cache key question, mode)
     return server
+
+
+class AnswerCache:
+    """A repeated question is answered from memory. Memory only, never written to disk, because
+    a question can carry health data; keyed by a hash of the normalised question."""
+
+    def __init__(self, ttl: float = CACHE_TTL_SECONDS, size: int = CACHE_SIZE) -> None:
+        self.ttl, self.size, self.items = ttl, size, {}
+        self.lock = threading.Lock()
+
+    @staticmethod
+    def key(question: str) -> str:
+        return hashlib.sha256(re.sub(r"[\s?!.,]+", " ", question.lower()).strip().encode()).hexdigest()
+
+    def get(self, question: str) -> dict[str, Any] | None:
+        with self.lock:
+            hit = self.items.get(self.key(question))
+            return hit[1] if hit and time.monotonic() - hit[0] < self.ttl else None
+
+    def put(self, question: str, payload: dict[str, Any]) -> None:
+        with self.lock:
+            if len(self.items) >= self.size:
+                self.items.pop(next(iter(self.items)))  # oldest first
+            self.items[self.key(question)] = (time.monotonic(), payload)
+
+
+class AgentRunner:
+    """One event-loop thread that keeps the MCP servers connected for the app's lifetime, so an
+    agent question does not pay ~4 s to start them and warm the retriever (measured)."""
+
+    def __init__(self) -> None:
+        self.loop, self.hub, self.ready = asyncio.new_event_loop(), None, threading.Event()
+        threading.Thread(target=self.loop.run_until_complete, args=(self._hold(),), daemon=True).start()
+
+    async def _hold(self) -> None:
+        try:
+            async with connect(load_config(pantry.CONFIG)) as hub:
+                await pantry._call_tool(hub, "search_recipes", {"query": "idli batter"}, "t-warmup")
+                self.hub = hub
+                self.ready.set()
+                await asyncio.Event().wait()  # held until the process exits
+        finally:
+            self.ready.set()
+
+    def submit(self, question: str) -> Future:
+        if not self.ready.wait(timeout=60) or self.hub is None:
+            return submit_per_request(question)  # servers failed to start: per-question path
+        return asyncio.run_coroutine_threadsafe(pantry.answer(question, hub=self.hub), self.loop)
+
+
+_BACKGROUND = ThreadPoolExecutor(max_workers=8, thread_name_prefix="agent")
+
+
+def submit_per_request(question: str) -> Future:
+    """The agent on its own event loop, opening the MCP servers for this question only."""
+    return _BACKGROUND.submit(lambda: asyncio.run(pantry.answer(question)))
+
+
+def _mentions(error: BaseException, text: str) -> bool:
+    """True when the error, or any error wrapped inside it (anyio nests them), mentions text."""
+    if isinstance(error, BaseExceptionGroup):
+        return any(_mentions(inner, text) for inner in error.exceptions)
+    return text in str(error) or (error.__cause__ is not None and _mentions(error.__cause__, text))
+
+
+def error_reply(error: BaseException) -> tuple[int, dict[str, str]]:
+    """A plain message for the page; the details stay in the terminal."""
+    if pantry.is_quota_error(error):
+        return 429, {"error": f"Model quota refused ({pantry.MODEL}). The tool tabs still work; "
+                              "restart with other --keys for Chat."}
+    if _mentions(error, "free tier is not available"):
+        return 503, {"error": "Google refused these Gemini keys: their projects have no free-tier access. "
+                              "Enable billing on one project, or restart with keys that work. The tool tabs still work."}
+    print(f"  error: {type(error).__name__}", flush=True)
+    return 500, {"error": "Something went wrong answering that. See the terminal."}
+
+
+def with_context(question: str, context: Any) -> str:
+    """A follow-up ('what is the alternative?') carries the chat's previous question, so the agent
+    and the guards both see the allergy and the recipe it refers to."""
+    earlier = str(context or "").strip()[:MAX_CONTEXT_CHARS]
+    return f"{question}\n\n(Earlier in this chat I asked: {earlier})" if earlier else question
+
+
+def interim(question: str) -> dict[str, Any]:
+    """What the app can say at once while the agent is still working: the declaration facts of
+    every recipe the question names, straight from the cards. No verdict is drawn from them."""
+    lowered = question.lower()
+    named = sorted({rid for word, rid in pantry.RECIPE_WORDS.items() if re.search(rf"\b{word}s?\b", lowered)})
+    cards = [c for c in load_cards().values() if c["recipe_id"] in named and c["status"] == "current"]
+    return {"cards": [{"title": c["title"], "citation": c["key"], "allergens": c["allergens"],
+                       "may_contain": c["may_contain"], "yield": f"{c['yield_qty']} {c['yield_unit']}",
+                       "times": c["times"], "file": Path(c["source_file"]).name} for c in cards[:3]]}
 
 
 # --- input validation: the MCP schema does not apply when the tools are called directly ---
@@ -221,6 +332,8 @@ def view(record: dict[str, Any]) -> dict[str, Any]:
         "cost_usd": record["cost_usd"],
         "model": record["model"],
         "pipeline": record.get("pipeline_version"),
+        "route": "instant" if str(record.get("stop", "")).startswith("instant") else "agent",
+        "cached": False,
     }
 
 
@@ -267,6 +380,8 @@ class Handler(BaseHTTPRequestHandler):
             self._json(200, recipes())
         elif path == "/api/history":
             self._json(200, history())
+        elif path.startswith("/api/job/"):
+            self._job(path[len("/api/job/"):])
         elif path.startswith("/api/trace/"):
             found = trace(path[len("/api/trace/"):])
             self._json(200 if found else 404, found or {"error": "no such trace in this machine's log"})
@@ -315,25 +430,73 @@ class Handler(BaseHTTPRequestHandler):
         body = self._read_json()
         if body is None:
             return
+        question = str(body.get("question", "")).strip()
+        mode = body.get("mode", "auto")
+        if not question or mode not in ("auto", "agent"):
+            self._json(400, {"error": "ask a question" if not question else "mode must be auto or agent"})
+            return
+        asked = with_context(question, body.get("context"))
+        # Fastest first: a repeat from memory, then the tools alone, then the agent.
+        # mode "agent" skips both, to show the full agent loop.
+        if mode == "auto":
+            if not self.server.tool_limiter.allow():
+                self._json(429, {"error": "too many requests; wait a moment"})
+                return
+            if (cached := self.server.cache.get(asked)) is not None:
+                self._json(200, {**cached, "cached": True})
+                return
+            if self.server.instant and (record := fastpath.answer(question)) is not None:
+                payload = view(record)
+                self.server.cache.put(asked, payload)
+                self._json(200, payload)
+                return
         if not self.server.limiter.allow():
             self._json(429, {"error": f"at most {RATE_LIMIT} questions a minute; wait a moment"})
             return
-        question = str(body.get("question", "")).strip()
-        if not question:
-            self._json(400, {"error": "ask a question"})
-            return
+        runner = self.server.runner
+        future = runner.submit(asked) if runner else submit_per_request(asked)
         try:
-            record = asyncio.run(pantry.answer(question))
-        except Exception as error:
-            if pantry.is_quota_error(error):
-                self._json(429, {"error": f"Model quota refused ({pantry.MODEL}). The other tabs still "
-                                          "work; restart with another --key for Ask."})
-                return
-            # Details stay in the terminal; the page gets a generic message.
-            print(f"  error: {type(error).__name__}")
-            self._json(500, {"error": "Something went wrong answering that. See the terminal."})
+            record = future.result(timeout=self.server.budget)
+        except TimeoutError:
+            # Over budget: reply now with what the cards say, and let the page collect the rest.
+            self._expire_jobs()
+            job = secrets.token_urlsafe(12)
+            self.server.jobs[job] = (time.monotonic(), future, asked, mode)
+            self._json(202, {"pending": job, "interim": interim(asked), "budget_s": self.server.budget})
             return
-        self._json(200, view(record))
+        except Exception as error:
+            self._json(*error_reply(error))
+            return
+        self._json(200, self._finish_answer(record, asked, mode))
+
+    def _finish_answer(self, record: dict[str, Any], asked: str, mode: str) -> dict[str, Any]:
+        payload = view(record)
+        if mode == "auto" and not record["injection_flags"]:
+            self.server.cache.put(asked, payload)
+        return payload
+
+    def _expire_jobs(self) -> None:
+        now = time.monotonic()
+        for job in [j for j, (created, *_) in self.server.jobs.items() if now - created > JOB_TTL_SECONDS]:
+            self.server.jobs.pop(job, None)
+
+    def _job(self, job: str) -> None:
+        """GET /api/job/<id>: 202 while the agent works, then the answer once (the job is removed)."""
+        entry = self.server.jobs.get(job)
+        if entry is None:
+            self._json(404, {"error": "no such answer pending (it may have expired)"})
+            return
+        _, future, asked, mode = entry
+        if not future.done():
+            self._json(202, {"pending": job})
+            return
+        self.server.jobs.pop(job, None)
+        try:
+            record = future.result()
+        except Exception as error:
+            self._json(*error_reply(error))
+            return
+        self._json(200, self._finish_answer(record, asked, mode))
 
     def log_message(self, format: str, *args: Any) -> None:
         """Quiet: one line per request, never the question (health data)."""
@@ -344,17 +507,29 @@ def main() -> None:
     """Serve the app on localhost."""
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--key", type=int, default=1, help="which GEMINI_API_KEY slot to use for Ask")
+    parser.add_argument("--keys", help="several slots to spread and hedge model calls over, e.g. 1,2,3,4,5")
+    parser.add_argument("--hedge-after", type=float, default=pantry.HEDGE_AFTER_SECONDS,
+                        help="seconds before a slow model call is re-sent on another key (0 = off)")
+    parser.add_argument("--no-instant", action="store_true", help="send every question to the agent")
     parser.add_argument("--port", type=int, default=PORT)
     args = parser.parse_args()
-    name = "GEMINI_API_KEY" if args.key == 1 else f"GEMINI_API_KEY{args.key}"
-    if name in os.environ:
-        os.environ["GEMINI_API_KEY"] = os.environ[name]
-    else:
-        print(f"  note: {name} is not set; Ask will fail, but every other tab works without a key.")
+    slots = [int(s) for s in args.keys.split(",")] if args.keys else [args.key]
+    names = [("GEMINI_API_KEY" if slot == 1 else f"GEMINI_API_KEY{slot}") for slot in slots]
+    missing = [name for name in names if name not in os.environ]
+    if missing:
+        print(f"  note: {', '.join(missing)} not set; the agent will skip them. Every tool tab works without a key.")
+    present = [name for name in names if name in os.environ]
+    if present:
+        os.environ["GEMINI_API_KEY"] = os.environ[present[0]]
+        os.environ["GEMINI_KEY_POOL"] = ",".join(present)
+    pantry.HEDGE_AFTER_SECONDS = args.hedge_after
     server = make_server(args.port)
+    server.instant = not args.no_instant
+    server.runner = AgentRunner()
     port = server.server_address[1]
     print(f"Culinary Bot Studio (Pantry-to-Plate) on http://{HOST}:{port}  (model {pantry.MODEL}, pipeline "
-          f"{pantry.PIPELINE_VERSION}, key slot {args.key}). Ctrl+C to stop.", flush=True)
+          f"{pantry.PIPELINE_VERSION}, key slots {','.join(map(str, slots))}, hedge after {args.hedge_after:g}s, "
+          f"instant answers {'off' if args.no_instant else 'on'}). Ctrl+C to stop.", flush=True)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

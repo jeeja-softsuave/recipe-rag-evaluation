@@ -6,6 +6,7 @@ import math
 import re
 import time
 from pathlib import Path
+import functools
 from typing import Any
 
 import chromadb
@@ -61,9 +62,32 @@ SYSTEM_PROMPT = (
 )
 
 
+@functools.lru_cache(maxsize=1)
+def _onnx_model() -> Any:
+    """The all-MiniLM ONNX model, loaded once per process."""
+    from chromadb.utils.embedding_functions.onnx_mini_lm_l6_v2 import ONNXMiniLM_L6_V2
+
+    return ONNXMiniLM_L6_V2()
+
+
+class _ReusedDefaultEmbedding(embedding_functions.DefaultEmbeddingFunction):
+    """Chroma's default embedding, with its model kept loaded. The stock class builds a new
+    ONNX session on every call (~0.2-1 s per query, found in the capstone traces 2026-10-27);
+    same model and name ("default"), so the vectors and the stored collections are unchanged."""
+
+    def __call__(self, input: Any) -> Any:  # noqa: A002 (Chroma's parameter name)
+        return _onnx_model()(input)
+
+
+def _embed_query(query: str) -> Any:
+    """The query vector, from the loaded model. Passed to Chroma as query_embeddings because a
+    persisted collection rebuilds the stock embedding from its saved config and ignores ours."""
+    return _onnx_model()([query])
+
+
 def _embedding_function() -> embedding_functions.EmbeddingFunction:
     """Return the local sentence-embedding function used by every collection."""
-    return embedding_functions.DefaultEmbeddingFunction()
+    return _ReusedDefaultEmbedding()
 
 
 def _parse_front_matter(text: str) -> tuple[dict[str, str], str]:
@@ -285,7 +309,7 @@ def build_index(collection_name: str, chunks: list[dict[str, Any]]) -> Collectio
 def search(collection: Collection, query: str, top_k: int = TOP_K) -> list[dict[str, Any]]:
     """Return the top_k chunks for a query, best first."""
     raw = collection.query(
-        query_texts=[query],
+        query_embeddings=_embed_query(query),
         n_results=top_k,
         include=["documents", "metadatas", "distances"],
     )
@@ -314,7 +338,7 @@ def search_with_dietary_filter(
     """Return the top_k chunks for a query, restricted to one dietary tag."""
     flag = f"{DIETARY_TAG_PREFIX}{dietary_tag.strip().replace('-', '_')}"
     raw = collection.query(
-        query_texts=[query],
+        query_embeddings=_embed_query(query),
         n_results=top_k,
         where={flag: True},
         include=["documents", "metadatas", "distances"],

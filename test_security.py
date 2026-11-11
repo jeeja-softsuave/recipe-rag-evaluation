@@ -113,7 +113,8 @@ def ui_checks() -> None:
         except urllib.error.HTTPError as error:
             return error.code, dict(error.headers)
 
-    ask = json.dumps({"question": "Is moru dairy free?"}).encode()
+    # mode "agent": the rate limit guards model calls, which instant and cached answers never make.
+    ask = json.dumps({"question": "Is moru dairy free?", "mode": "agent"}).encode()
     status, headers = request("/")
     check("the page carries a Content-Security-Policy and anti-framing headers",
           status == 200 and "frame-ancestors 'none'" in headers.get("Content-Security-Policy", "")

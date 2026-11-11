@@ -160,6 +160,13 @@
           transition: transform .12s; }
   .cite:hover { transform: translateY(-1px); text-decoration: underline; }
   .actions { display: flex; gap: 4px; margin: 2px 0 6px; }
+  .route { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; font-weight: 600; padding: 3px 10px;
+           border-radius: 999px; background: var(--teal-soft); color: var(--teal-ink); margin-bottom: 8px; animation: pop .3s ease; }
+  .route .i { width: 14px; height: 14px; }
+  .interim-card { display: flex; flex-direction: column; gap: 5px; padding: 12px 14px; margin-bottom: 8px; border: 1px dashed var(--teal);
+                  border-radius: 12px; background: var(--panel); animation: rise .25s ease; }
+  .interim-card .cite { align-self: flex-start; }
+  .msg.user .via { display: block; font-size: .72rem; opacity: .75; margin-top: 2px; }
   .actions button { display: inline-flex; align-items: center; gap: 5px; border: 1px solid transparent; background: none; color: var(--muted);
                     font-size: .78rem; padding: 3px 8px; border-radius: 7px; transition: background .15s, color .15s; }
   .actions button:hover { background: var(--panel); border-color: var(--line); color: var(--ink); }
@@ -393,6 +400,87 @@
   #log-legend .sw.unsafe { background: #d9534f; } #log-legend .sw.may { background: #e9a83a; } #log-legend .sw.ok { background: var(--teal); }
   form.tool input[maxlength] { min-width: 280px; }
 
+  /* --- customer view vs developer view: one class on <html>, no re-render, no extra requests --- */
+  :root:not(.dev) .dv { display: none !important; }
+  :root.dev .uv { display: none !important; }
+  #dev-toggle.on { color: var(--teal-ink); background: var(--teal-soft); border-color: var(--teal); }
+  .devtag { font-size: .66rem; font-weight: 800; letter-spacing: .08em; padding: 2px 7px; border-radius: 6px;
+            background: repeating-linear-gradient(45deg, var(--may-bg), var(--may-bg) 6px, transparent 6px, transparent 12px), var(--panel);
+            color: var(--may-ink); border: 1px solid var(--may-ink); }
+
+  /* --- polish: depth, light and motion (CSS only; the GPU does it, the server never sees it) --- */
+  .main { background:
+            radial-gradient(900px 520px at 100% -8%, color-mix(in srgb, var(--teal) 13%, transparent), transparent 62%),
+            radial-gradient(800px 520px at -6% 108%, color-mix(in srgb, var(--blue) 12%, transparent), transparent 62%), var(--bg); }
+  .topbar, .composer-wrap { background: color-mix(in srgb, var(--bg) 72%, transparent); backdrop-filter: blur(14px) saturate(1.4);
+                            -webkit-backdrop-filter: blur(14px) saturate(1.4); position: relative; z-index: 2; }
+  .composer-wrap { border-top-color: color-mix(in srgb, var(--line) 70%, transparent); }
+  .sidebar { background: linear-gradient(180deg, var(--side), color-mix(in srgb, var(--side) 88%, var(--teal))); }
+
+  .hero { position: relative; isolation: isolate; padding-top: 7vh; }
+  .hero::before { content: ""; position: absolute; z-index: -1; left: 50%; top: -30px; width: min(620px, 92%); height: 300px;
+                  transform: translateX(-50%); border-radius: 50%; filter: blur(70px); opacity: .26;
+                  background: conic-gradient(from 0deg, var(--teal), var(--blue), var(--navy), var(--teal));
+                  animation: aurora 16s linear infinite; }
+  @keyframes aurora { to { transform: translateX(-50%) rotate(360deg); } }
+  .hero .logo { width: 170px; height: 100px; filter: drop-shadow(0 10px 22px color-mix(in srgb, var(--blue) 35%, transparent));
+                animation: float 5s ease-in-out infinite; }
+  @keyframes float { 50% { transform: translateY(-6px); } }
+  .hero h2 { font-size: clamp(1.8rem, 4.2vw, 2.7rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.12; }
+  .hero h2 em { background-image: linear-gradient(90deg, var(--accent-2), var(--teal), var(--accent-2)); background-size: 200% 100%;
+                animation: sheen 6s linear infinite; }
+  @keyframes sheen { to { background-position: -200% 0; } }
+  .trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: -12px 0 26px; }
+  .trust span { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; padding: 5px 11px; border-radius: 999px;
+                background: color-mix(in srgb, var(--panel) 80%, transparent); border: 1px solid var(--line); color: var(--muted);
+                animation: rise .4s ease both; }
+  .trust .i { width: 14px; height: 14px; color: var(--teal); }
+  .suggest button { border: 1px solid transparent;
+                    background: linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(135deg, var(--line), var(--line)) border-box; }
+  .suggest button:hover { background: linear-gradient(var(--panel), var(--panel)) padding-box,
+                                      linear-gradient(135deg, var(--blue), var(--teal)) border-box; }
+
+  .msg.bot .bubble { background: var(--panel); border: 1px solid var(--line); border-radius: 18px 18px 18px 6px;
+                     padding: 14px 16px 10px; box-shadow: var(--shadow); }
+  .avatar { box-shadow: 0 0 0 3px var(--teal-soft); }
+  .msg.bot.loading .avatar { animation: glow 1.6s ease-in-out infinite; }
+  @keyframes glow { 50% { box-shadow: 0 0 0 6px color-mix(in srgb, var(--teal) 25%, transparent); } }
+  .answer > * { animation: rise .3s ease both; }
+  .answer > :nth-child(2) { animation-delay: 30ms; } .answer > :nth-child(3) { animation-delay: 60ms; } .answer > :nth-child(n+4) { animation-delay: 90ms; }
+  .verdict { border-left: 4px solid currentColor; border-radius: 12px; }
+  .verdict > .i { width: 22px; height: 22px; padding: 4px; box-sizing: content-box; border-radius: 50%;
+                  background: color-mix(in srgb, currentColor 14%, transparent); margin-top: -2px; }
+  .verdict.guard, .verdict.error { border-left-width: 3px; }
+
+  .skel { display: grid; gap: 8px; margin: 4px 0 10px; }
+  .skel i { display: block; height: 11px; border-radius: 6px;
+            background: linear-gradient(90deg, var(--code) 25%, color-mix(in srgb, var(--teal) 18%, var(--code)) 50%, var(--code) 75%);
+            background-size: 200% 100%; animation: shimmer 1.3s linear infinite; }
+  .skel i:nth-child(2) { width: 86%; } .skel i:nth-child(3) { width: 58%; }
+  @keyframes shimmer { to { background-position: -200% 0; } }
+  .steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+  .steps span { display: inline-flex; align-items: center; gap: 5px; font-size: .74rem; padding: 3px 9px; border-radius: 999px;
+                border: 1px solid var(--line); color: var(--muted); transition: background .3s, color .3s, border-color .3s; }
+  .steps span.done { background: var(--teal-soft); color: var(--teal-ink); border-color: transparent; }
+  .steps span.now { border-color: var(--teal); color: var(--ink); }
+  .steps .i { width: 12px; height: 12px; }
+
+  .src { display: inline-flex; align-items: center; gap: 6px; font-size: .78rem; padding: 4px 10px 4px 6px; border-radius: 999px;
+         background: var(--code); color: var(--ink); text-decoration: none; border: 1px solid transparent; transition: border-color .15s, transform .12s; }
+  .src:hover { border-color: var(--teal); transform: translateY(-1px); }
+  .src .i { width: 20px; height: 20px; padding: 3px; box-sizing: border-box; border-radius: 50%; background: var(--teal); color: #fff; }
+  .src small { color: var(--muted); }
+  .src-inline { display: inline-grid; place-items: center; width: 18px; height: 18px; border-radius: 50%; vertical-align: 1px;
+                background: var(--teal-soft); color: var(--teal-ink); margin: 0 1px; }
+  .src-inline .i { width: 11px; height: 11px; }
+  .answer-foot { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; border-top: 1px solid var(--line); margin-top: 8px; padding-top: 6px; }
+  .answer-foot .actions { margin: 0; }
+  .answer-foot .took { margin-left: auto; font-size: .74rem; color: var(--muted); display: inline-flex; align-items: center; gap: 4px; }
+  .answer-foot .took .i { width: 13px; height: 13px; }
+  .send { box-shadow: 0 6px 18px color-mix(in srgb, var(--teal) 35%, transparent); }
+  .composer:focus-within { border-color: transparent;
+                           background: linear-gradient(var(--panel), var(--panel)) padding-box, linear-gradient(135deg, var(--blue), var(--teal)) border-box; }
+
   /* --- phones and narrow windows: the sidebar slides in --- */
   .scrim { display: none; }
   @media (max-width: 860px) {
@@ -449,8 +537,8 @@
       <button data-view="scale"><span data-icon="scale"></span>Scale a recipe</button>
       <button data-view="temp"><span data-icon="thermo"></span>Safe temperatures</button>
       <button data-view="swap"><span data-icon="swap"></span>Swaps</button>
-      <div class="group">Behind the scenes</div>
-      <button data-view="log"><span data-icon="log"></span>Request log</button>
+      <div class="group dv">Developer</div>
+      <button data-view="log" class="dv"><span data-icon="log"></span>Request log</button>
     </nav>
     <div class="nav"><div class="group">This session's chats</div></div>
     <div class="convos" id="convos"></div>
@@ -462,7 +550,10 @@
     <header class="topbar">
       <button class="icon-btn" id="menu" type="button" aria-label="Open menu"><span data-icon="menu"></span></button>
       <h1 id="view-title">New chat</h1>
-      <span class="pill" id="model-pill"></span>
+      <span class="devtag dv">DEV</span>
+      <span class="pill dv" id="model-pill"></span>
+      <span class="pill uv"><span class="dot"></span>Kitchen assistant online</span>
+      <button class="icon-btn" id="dev-toggle" type="button" aria-pressed="false" aria-label="Developer mode" title="Developer mode (Alt+D)"><span data-icon="code"></span></button>
       <button class="icon-btn" id="theme" type="button" aria-label="Switch light or dark theme" title="Switch theme"><span data-icon="moon"></span></button>
     </header>
 
@@ -479,7 +570,7 @@
             <button class="send" id="send" type="submit" aria-label="Send" disabled><span data-icon="send"></span></button>
           </div>
         </form>
-        <p class="fine">Allergen verdicts come from each recipe's declaration field, never from the AI. Always check the packet label too.</p>
+        <p class="fine">Allergen answers come from each recipe's official allergen list, never from the AI. Always check the packet label too.</p>
       </div>
     </div>
 
@@ -500,7 +591,7 @@
     <!-- Allergen check -->
     <div class="view" data-view="check" hidden><div class="scroll"><div class="page">
       <div class="page-head"><span class="page-ico"><span data-icon="shield"></span></span>
-        <div><h2>Allergen check</h2><p class="lede">An exact match against the recipe's <code>allergens</code> and <code>may_contain</code> fields. Updates as you pick; no AI, no guessing.</p></div></div>
+        <div><h2>Allergen check</h2><p class="lede">Checked against each recipe's official allergen list, including "may contain" warnings. Updates as you pick; no AI, no guessing.</p></div></div>
       <form class="tool" id="check-form">
         <label>Recipe <select id="check-recipe"></select></label>
         <label>Version <select id="check-version"></select></label>
@@ -604,6 +695,8 @@ const ICONS = {
   alert: '<path d="M12 3l10 18H2z"/><path d="M12 10v4M12 17.5v.5"/>',
   check: '<circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/>',
   info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',
+  bolt: '<path d="M13 3L5 13h6l-1 8 8-10h-6z"/>',
+  code: '<path d="M8 7l-5 5 5 5M16 7l5 5-5 5"/>',
 };
 const icon = (name) => `<svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[name]}</svg>`;
 const LOGO = '<svg class="logo" aria-hidden="true"><use href="#logo"/></svg>';
@@ -612,12 +705,14 @@ const SUGGESTIONS = [
   {icon: "shield", title: "Nut allergy", q: "My son has a nut allergy. Can he eat kallappam?"},
   {icon: "shield", title: "Peanut allergy", q: "Can someone with a peanut allergy eat idli?"},
   {icon: "scale", title: "Cook for a crowd", q: "Scale idli batter up to 120 idlis. How much urad dal, and how long does it ferment?"},
-  {icon: "thermo", title: "Is it done?", q: "How long should I cook chicken for, and how do I know it is done?"},
+  {icon: "thermo", title: "Storing batter", q: "Can I keep fermented idli batter on the counter for two days?"},
   {icon: "swap", title: "Coconut-free swap", q: "My kid is allergic to coconut. What can I use instead of the coconut-cashew paste in kallappam?"},
-  {icon: "thermo", title: "Not in the chart", q: "To what internal temperature should I roast pork belly?"},
+  {icon: "thermo", title: "Cooling rice", q: "I cooked rice for neeragaram. How quickly does it need to cool?"},
 ];
 const THINKING = ["Reading your question…", "Discovering tools over MCP…", "Searching the recipe library…",
                   "Checking the declaration fields…", "Writing the answer…", "Running the safety guards…"];
+// What a customer sees while the answer is written: plain steps, no plumbing.
+const STEPS = ["Understanding", "Finding recipes", "Checking allergens", "Writing", "Safety check"];
 const VERDICT_TEXT = {
   unsafe: "Not safe: a declared allergen matches.",
   may_contain: "May contain: not safe without a supplier guarantee.",
@@ -686,6 +781,23 @@ $("theme").addEventListener("click", () => {
   try { localStorage.setItem("cbs.theme", next); } catch { /* storage blocked */ }
 });
 
+// --- developer mode: shows models, traces, tool calls and the request log; off for customers ---
+function applyDev(on) {
+  document.documentElement.classList.toggle("dev", on);
+  $("dev-toggle").classList.toggle("on", on);
+  $("dev-toggle").setAttribute("aria-pressed", String(on));
+  if (!on && !document.querySelector('.view[data-view="log"]').hidden) showView("chat");
+}
+let devMode = false;
+try { devMode = localStorage.getItem("cbs.dev") === "1"; } catch { /* storage blocked */ }
+function toggleDev() {
+  devMode = !devMode;
+  applyDev(devMode);
+  try { localStorage.setItem("cbs.dev", devMode ? "1" : "0"); } catch { /* storage blocked */ }
+  toast(devMode ? "Developer mode on: traces, tools and the request log" : "Developer mode off");
+}
+$("dev-toggle").addEventListener("click", toggleDev);
+
 // --- navigation ---
 function showView(view) {
   document.querySelectorAll("#nav button").forEach((b) => b.classList.toggle("active", b.dataset.view === view));
@@ -706,6 +818,7 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "Escape") closeMenu();
   if (e.key === "/" && !typing) { e.preventDefault(); showView("chat"); }
   if (e.altKey && e.key.toLowerCase() === "n") { e.preventDefault(); newChat(); }
+  if (e.altKey && e.key.toLowerCase() === "d") { e.preventDefault(); toggleDev(); }
 });
 
 // --- chats: kept in this tab only (sessionStorage), because a question can carry health data ---
@@ -743,11 +856,26 @@ $("convos").addEventListener("click", (e) => {
 });
 $("convos").addEventListener("keydown", (e) => { if (e.key === "Enter" && e.target.classList.contains("convo")) e.target.click(); });
 
+// A citation id (recipe-02@reformulated-2025::structure::3) as a customer would name it.
+function sourceName(id) {
+  const key = String(id).split("::")[0];
+  const r = RECIPES.find((x) => x.key === key);
+  if (!r) return {title: "Recipe card", note: ""};
+  return {title: r.title, note: r.status === "current" ? "current recipe" : `older ${r.version} version`};
+}
+const sourceChip = (id, file) => {
+  const s = sourceName(id);
+  const body = `${icon("book")}<span>${escapeHtml(s.title)}</span>${s.note ? `<small>· ${escapeHtml(s.note)}</small>` : ""}`;
+  return file ? `<a class="src uv" href="/card/${encodeURIComponent(file)}" target="_blank" rel="noopener">${body}</a>` : `<span class="src uv">${body}</span>`;
+};
+
 // Escape first, then add the little formatting the answers use. Model text never becomes markup.
 function inline(text, files) {
   return escapeHtml(text)
     .replace(/\[([a-z0-9-]+@[a-z0-9-]+(?:::structure::\d+)?)\](?:\([^)]*\))?/g, (m, id) =>
-      files[id] ? `<a href="/card/${encodeURIComponent(files[id])}" target="_blank" rel="noopener">[${id}]</a>` : m)
+      files[id] ? `<a class="dv" href="/card/${encodeURIComponent(files[id])}" target="_blank" rel="noopener">[${id}]</a>`
+        + `<a class="src-inline uv" href="/card/${encodeURIComponent(files[id])}" target="_blank" rel="noopener" title="Source: ${escapeHtml(sourceName(id).title)}">${icon("book")}</a>`
+        : `<span class="dv">${m}</span>`)
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/`([^`]+)`/g, "<code>$1</code>");
 }
@@ -777,10 +905,34 @@ function spanTable(spans, total) {
     + `<tr class="total"><td>Total</td><td></td><td>${total.latency_ms.toFixed(1)}</td><td>${total.total_tokens}</td><td>${total.cost_usd.toFixed(6)}</td></tr>`;
 }
 
+// The verdict line the pipeline writes ("…: kallappam-batter-02 (reformulated-2025): NOT SAFE: contains coconut [..]"),
+// said the way a customer would: "Kallappam batter contains coconut."
+function friendlyVerdict(line) {
+  const m = line.match(/declaration field:\s*([a-z0-9-]+)\s*\(([^)]+)\):\s*(.*?)\s*(?:\[[^\]]*\])?\s*$/);
+  if (!m) return "Checked against the recipe's official allergen list.";
+  const r = RECIPES.find((x) => x.recipe_id === m[1] && x.version === m[2]) || RECIPES.find((x) => x.recipe_id === m[1]);
+  // "NOT SAFE: contains nuts" -> "contains nuts"; "MAY CONTAIN nuts: not safe for…" -> "may contain nuts"
+  const detail = m[3].replace(/^[A-Z][A-Z ]*:\s*/, "").replace(/^MAY CONTAIN/, "may contain").split(":")[0].replace(/\.$/, "");
+  return `${escapeHtml(r ? r.title : "This recipe")}${detail ? ` ${escapeHtml(detail)}` : ""}. From the recipe's official allergen list.`;
+}
+const took = (ms) => (ms < 1000 ? `${Math.max(1, Math.round(ms))} ms` : `${(ms / 1000).toFixed(1)} s`);
+
 function botHtml(m, index) {
   if (m.pending) {
-    return `<div class="thinking"><span class="typing"><i></i><i></i><i></i></span><span class="step" id="thinking-step">${THINKING[0]}</span>
+    const thinking = `<div class="uv"><div class="skel"><i></i><i></i><i></i></div>
+        <div class="steps" id="steps">${STEPS.map((s, i) => `<span class="${i === 0 ? "now" : ""}">${s}</span>`).join("")}</div></div>
+      <div class="thinking dv"><span class="typing"><i></i><i></i><i></i></span><span class="step" id="thinking-step">${m.interim ? "Still writing the full answer…" : THINKING[0]}</span>
       <span class="count" id="thinking-time"></span></div>`;
+    if (!m.interim) return thinking;
+    // Over the time budget: the recipe facts now, the full answer replaces this when it lands.
+    const cards = m.interim.cards.map((c) => `<div class="interim-card">
+        <b>${escapeHtml(c.title)}</b> <a class="cite dv" href="/card/${encodeURIComponent(c.file)}" target="_blank" rel="noopener">${escapeHtml(c.citation)}</a>
+        <div class="rc-row"><span>Contains</span><span>${tags(c.allergens, "unsafe")}</span></div>
+        <div class="rc-row"><span>May contain</span><span>${tags(c.may_contain, "may")}</span></div>
+        <div class="times"><span class="time">${icon("book")}makes ${escapeHtml(c.yield)}</span>${Object.entries(c.times || {}).map(([k, v]) => `<span class="time">${icon("clock")}${escapeHtml(pretty(k))}: ${escapeHtml(v)}</span>`).join("")}</div>
+      </div>`).join("");
+    return `<div class="route">${icon("bolt")}<span class="uv">Here are the key facts while the full answer is prepared</span><span class="dv">Quick facts while the AI finishes · from the recipe cards</span></div>
+      ${cards || "<p class=\"meta\">This one is taking a little longer. The full answer will appear here.</p>"}${thinking}`;
   }
   if (m.error) {
     return banner("error", escapeHtml(m.error))
@@ -791,26 +943,33 @@ function botHtml(m, index) {
   const parts = [];
   if (d.allergen_verdict) {
     parts.push(banner(d.allergen_verdict, escapeHtml(VERDICT_TEXT[d.allergen_verdict] || d.allergen_verdict)
-      + header.map((h) => `<small>${inline(h, files)}</small>`).join("")));
+      + header.map((h) => `<small class="dv">${inline(h, files)}</small><small class="uv">${friendlyVerdict(h)}</small>`).join("")));
   }
   if (d.swap_guard) parts.push(banner("guard", `A suggested swap was withheld because it contains <strong>${escapeHtml(d.swap_guard.allergen)}</strong>, which you asked to avoid.`));
   if (d.contradiction_guard) parts.push(banner("guard", "Reassuring text that contradicted the declaration was withheld."));
-  if (d.injection_flags.length) parts.push(banner("guard", `Instructions inside the question were ignored (${escapeHtml(d.injection_flags.join(", "))}).`));
+  if (d.injection_flags.length) parts.push(banner("guard", `<span class="uv">Part of your message looked like instructions to the assistant, so it was ignored.</span><span class="dv">Instructions inside the question were ignored (${escapeHtml(d.injection_flags.join(", "))}).</span>`));
+  if (d.cached) parts.push(`<div class="route dv">${icon("bolt")}From memory · this question was answered earlier in this session</div>`);
+  else if (d.route === "instant") parts.push(`<div class="route dv">${icon("bolt")}Instant answer · from the kitchen tools, no AI · ${took(d.latency_ms)}</div>`);
   parts.push(`<div class="answer">${renderAnswer(d.answer, files)}</div>`);
   const cites = [...new Set(d.citations)];
   if (cites.length) {
-    parts.push(`<div class="cites">${cites.map((c) => files[c]
-      ? `<a class="cite" href="/card/${encodeURIComponent(files[c])}" target="_blank" rel="noopener">${escapeHtml(c)}</a>`
-      : `<span class="cite">${escapeHtml(c)}</span>`).join("")}</div>`);
+    // A customer sees one chip per recipe; a developer sees every chunk id.
+    const recipes = [...new Map(cites.map((c) => [c.split("::")[0], c])).values()];
+    parts.push(`<div class="cites">${recipes.map((c) => sourceChip(c, files[c] || files[c.split("::")[0]])).join("")}${cites.map((c) => files[c]
+      ? `<a class="cite dv" href="/card/${encodeURIComponent(files[c])}" target="_blank" rel="noopener">${escapeHtml(c)}</a>`
+      : `<span class="cite dv">${escapeHtml(c)}</span>`).join("")}</div>`);
   }
-  parts.push(`<div class="actions"><button type="button" data-copy="${index}">${icon("copy")}Copy</button>
-    <button type="button" data-retry="${index}">${icon("retry")}Ask again</button></div>`);
+  const quick = d.route === "instant" || d.cached;
+  const tookLabel = d.cached ? "Answered instantly" : quick ? `Instant answer · ${took(d.latency_ms)}` : `Answered in ${took(d.latency_ms)}`;
+  parts.push(`<div class="answer-foot"><div class="actions"><button type="button" data-copy="${index}">${icon("copy")}Copy</button>
+    <button type="button" data-retry="${index}" data-mode="agent">${icon(quick ? "chat" : "retry")}${quick ? "Ask the AI for more detail" : "Ask again"}</button></div>
+    <span class="took uv">${icon(quick ? "bolt" : "clock")}${tookLabel}</span></div>`);
   const calls = d.calls.map((c) => `
     <details class="call"><summary><span class="tag${c.is_error ? " err" : ""}">${escapeHtml(c.server || "?")}</span>
       ${c.host_enforced ? '<span class="tag may">run by host</span>' : ""}
       <strong>${escapeHtml(c.tool)}</strong> <code>${escapeHtml(JSON.stringify(c.arguments))}</code></summary>
       <pre>${escapeHtml(c.result)}</pre></details>`).join("") || "<p>No tool was called.</p>";
-  parts.push(`<details class="how"><summary>How this was answered · ${d.calls.length} tool call${d.calls.length === 1 ? "" : "s"} · ${(d.latency_ms / 1000).toFixed(1)} s · $${d.cost_usd.toFixed(5)}</summary>
+  parts.push(`<details class="how dv"><summary>How this was answered · ${d.calls.length} tool call${d.calls.length === 1 ? "" : "s"} · ${(d.latency_ms / 1000).toFixed(1)} s · $${d.cost_usd.toFixed(5)}</summary>
     <div class="label">Tool calls (discovered over MCP)</div>${calls}
     <div class="label">Trace</div>
     <div class="meta"><span>trace <code>${escapeHtml(d.trace_id)}</code></span><span>model ${escapeHtml(d.model)}</span><span>pipeline ${escapeHtml(d.pipeline || "-")}</span></div>
@@ -823,17 +982,21 @@ function renderThread() {
   if (!chat || !chat.messages.length) {
     $("thread").innerHTML = `<div class="hero">${LOGO}
       <h2>What shall we <em>cook</em> today?</h2>
-      <p>Ask about any recipe in the library. Answers come from the recipe cards only, allergens are checked against each recipe's declaration, and every source names its version.</p>
+      <p>Your fermented-foods kitchen assistant. Ask about allergies, cooking for a crowd, storing batter, or safe temperatures.</p>
+      <div class="trust">
+        <span style="animation-delay:60ms">${icon("shield")}Allergens from each recipe's official list</span>
+        <span style="animation-delay:120ms">${icon("bolt")}Instant answers to common questions</span>
+        <span style="animation-delay:180ms">${icon("book")}Every answer shows its recipe</span></div>
       <div class="suggest">${SUGGESTIONS.map((s, i) => `<button type="button" data-i="${i}" style="animation-delay:${i * 50}ms"><span class="ico">${icon(s.icon)}</span>
         <div><b>${escapeHtml(s.title)}</b><span>${escapeHtml(s.q)}</span></div></button>`).join("")}</div></div>`;
   } else {
     $("thread").innerHTML = chat.messages.map((m, i) => m.role === "user"
-      ? `<div class="msg user"><div class="bubble">${escapeHtml(m.text)}</div></div>`
-      : `<div class="msg bot"><svg class="avatar logo" aria-hidden="true"><use href="#logo"/></svg>
+      ? `<div class="msg user"><div class="bubble">${escapeHtml(m.text)}${m.mode === "agent" ? '<small class="via">asked the AI agent</small>' : ""}</div></div>`
+      : `<div class="msg bot${m.pending ? " loading" : ""}"><svg class="avatar logo" aria-hidden="true"><use href="#logo"/></svg>
          <div class="bubble">${botHtml(m, i)}</div></div>`).join("");
   }
   const box = $("thread-scroll");
-  box.scrollTop = box.scrollHeight;
+  box.scrollTop = chat?.messages.length ? box.scrollHeight : 0;
   $("jump").hidden = true;
   if (!document.querySelector('.view[data-view="chat"]').hidden) $("view-title").textContent = chat?.title || "New chat";
 }
@@ -849,7 +1012,7 @@ $("thread").addEventListener("click", async (e) => {
   const retry = e.target.closest("[data-retry]");
   if (retry) {
     const question = current().messages[retry.dataset.retry - 1]?.text;
-    if (question) send(question);
+    if (question) send(question, retry.dataset.mode || "auto");
   }
 });
 $("thread-scroll").addEventListener("scroll", () => {
@@ -858,7 +1021,7 @@ $("thread-scroll").addEventListener("scroll", () => {
 });
 $("jump").addEventListener("click", () => { const box = $("thread-scroll"); box.scrollTop = box.scrollHeight; });
 
-async function send(text) {
+async function send(text, mode = "auto") {
   text = text.trim();
   if (busy || !text) return;
   let chat = current();
@@ -867,8 +1030,10 @@ async function send(text) {
     chats.unshift(chat);
     activeId = chat.id;
   }
+  const previous = [...chat.messages].reverse().find((m) => m.role === "user")?.text;
+  const context = previous && previous !== text ? previous : undefined;
   const pending = {role: "bot", pending: true, started: Date.now()};
-  chat.messages.push({role: "user", text}, pending);
+  chat.messages.push({role: "user", text, mode}, pending);
   chat.updated = Date.now();
   $("question").value = "";
   onInput();
@@ -877,15 +1042,32 @@ async function send(text) {
   let step = 0;
   const tick = setInterval(() => {
     const seconds = Math.round((Date.now() - pending.started) / 1000);
-    const time = $("thinking-time"), label = $("thinking-step");
+    const time = $("thinking-time"), label = $("thinking-step"), steps = $("steps");
     if (time) time.textContent = `${seconds}s`;
+    if (steps) {
+      // A step every ~3 s; the last one waits for the answer rather than claiming it is done.
+      const at = Math.min(STEPS.length - 1, Math.floor(seconds / 3));
+      [...steps.children].forEach((s, i) => { s.className = i < at ? "done" : i === at ? "now" : ""; });
+    }
     if (label && seconds && seconds % 4 === 0 && step < THINKING.length - 1 && seconds / 4 > step) {
       step += 1;
       label.textContent = THINKING[step];
       label.classList.remove("step"); void label.offsetWidth; label.classList.add("step");
     }
   }, 500);
-  try { pending.data = await api("/api/ask", {question: text}); }
+  try {
+    let data = await api("/api/ask", {question: text, mode, context});
+    if (data.pending) {
+      // The server replied inside its time budget with interim facts; collect the full answer.
+      pending.interim = data.interim;
+      if (current() === chat) renderThread();
+      while (data.pending) {
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        data = await api(`/api/job/${encodeURIComponent(data.pending)}`);
+      }
+    }
+    pending.data = data;
+  }
   catch (error) { pending.error = error.message; }
   finally {
     clearInterval(tick);
@@ -944,8 +1126,8 @@ function renderRecipes() {
   $("recipe-grid").innerHTML = shown.length ? shown.map((r, i) => `
     <div class="card rc ${r.status === "current" ? "" : "superseded"}" style="animation-delay:${i * 40}ms">
       <div class="rc-head"><span class="mono" style="background:${MONO[META.recipe_ids.indexOf(r.recipe_id) % MONO.length]}">${escapeHtml(r.title.charAt(0))}</span>
-        <div><h3>${escapeHtml(r.title)}</h3><code>${escapeHtml(r.key)}</code></div></div>
-      <div><span class="tag ${r.status === "current" ? "ok" : ""}">${escapeHtml(r.status)}</span><span class="tag">makes ${escapeHtml(r.yield_qty)} ${escapeHtml(r.yield_unit)}</span></div>
+        <div><h3>${escapeHtml(r.title)}</h3><code class="dv">${escapeHtml(r.key)}</code></div></div>
+      <div><span class="tag ${r.status === "current" ? "ok" : ""}"><span class="uv">${r.status === "current" ? "current recipe" : "older version"}</span><span class="dv">${escapeHtml(r.status)}</span></span><span class="tag">makes ${escapeHtml(r.yield_qty)} ${escapeHtml(r.yield_unit)}</span></div>
       <div class="rc-row"><span>Contains</span><span>${tags(r.allergens, "unsafe")}</span></div>
       <div class="rc-row"><span>May contain</span><span>${tags(r.may_contain, "may")}</span></div>
       <div class="times">${Object.entries(r.times || {}).map(([k, v]) => `<span class="time">${icon("clock")}${escapeHtml(pretty(k))}: ${escapeHtml(v)}</span>`).join("")}</div>
@@ -1221,6 +1403,8 @@ $("log-table").addEventListener("click", async (e) => {
 // --- start ---
 document.querySelectorAll("[data-icon]").forEach((el) => { el.outerHTML = icon(el.dataset.icon); });
 applyTheme(savedTheme);
+document.documentElement.classList.toggle("dev", devMode);
+$("dev-toggle").classList.toggle("on", devMode);
 renderConvos();
 renderThread();
 (async () => {
@@ -1255,13 +1439,14 @@ renderThread();
   $("temp-list").innerHTML = META.chart.flatMap((c) => [c.item, ...c.aliases]).map((f) => `<option value="${escapeHtml(f)}">`).join("");
   $("swap-list").innerHTML = [...new Set(META.substitutions.map((s) => s.ingredient))].map((s) => `<option value="${escapeHtml(s)}">`).join("");
   $("temp-chips").innerHTML = '<span class="meta" style="align-self:center">Not in the chart:</span>'
-    + ["pork belly", "tofu"].map((f) => `<button type="button" class="chip" data-item="${f}">${f}</button>`).join("");
+    + ["curd", "dosa"].map((f) => `<button type="button" class="chip" data-item="${f}">${f}</button>`).join("");
   renderMatrix();
   renderTempGrid();
   renderSwaps();
   renderRecipes();
   const start = location.hash.slice(1);
-  if (VIEW_TITLES[start]) showView(start);
+  if (VIEW_TITLES[start] && (start !== "log" || devMode)) showView(start);
+  renderThread();  // source chips need the recipe titles, which have just arrived
 })();
 </script>
 </body>
